@@ -26,6 +26,6 @@ jobs:
             git pull origin main
             yarn install
             pm2 kill
-            yarn run build:api --max-old-space-size=1024
+            NODE_OPTIONS="--max-old-space-size=1024" yarn run api:build
             pm2 --name voz-y-cuento-api start "yarn start:api"
             pm2 save
