@@ -13,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Deploy to EC2
+      - name: Deploy Backend
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.PROD_HOST }}
@@ -22,3 +22,9 @@ jobs:
           script: |
             cd ${{ secrets.PROD_PATH }}
             echo -e "${{ secrets.PROD_ENV }}" > .env.production
+            source ~/.zshrc
+            git pull origin main
+            yarn install
+            pm2 kill
+            NODE_OPTIONS="--max-old-space-size=1024" pm2 --name voz-y-cuento-api start "yarn start:api"
+            pm2 save
