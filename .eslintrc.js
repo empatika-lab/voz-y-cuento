@@ -9,7 +9,7 @@ module.exports = {
 		'plugin:@typescript-eslint/stylistic-type-checked',
 		'prettier',
 	],
-	ignorePatterns: ['.eslintrc.cjs', 'dist', 'app.example.tsx'],
+	ignorePatterns: ['.eslintrc.cjs', 'dist'],
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		tsconfigRootDir: __dirname,
