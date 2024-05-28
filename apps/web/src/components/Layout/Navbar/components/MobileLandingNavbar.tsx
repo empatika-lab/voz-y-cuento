@@ -10,12 +10,12 @@ import Logo from '@images/logo.png';
 import LogoInWhite from '@images/logo-white.png';
 import BurgerOpenIcon from '@images/icons/burger-open.svg';
 import BurgerCloseIcon from '@images/icons/burger-close.svg';
-import MortarboardIcon from '@images/icons/mortarboard.svg';
 
 /* Utils */
 import { cn } from '@frontend/lib/utils/classNames';
-import Button from '@/components/Button';
-import ROUTES from '@/lib/utils/routes';
+
+/* Components */
+import EnterDashboardButton from './EnterDashboard.client';
 
 export default function MobileLandingNavbar({
 	navItems,
@@ -36,7 +36,7 @@ export default function MobileLandingNavbar({
 		<nav
 			className={cn(
 				'fixed left-0 top-0 z-20 flex h-[62px] w-full flex-col overflow-hidden py-3 transition-all duration-100 lg:hidden',
-				"[&:has(input[type='checkbox']:checked)]:h-screen",
+				"[&:has(input[type='checkbox']:checked)]:h-screen"
 			)}
 			style={{
 				background:
@@ -77,7 +77,7 @@ export default function MobileLandingNavbar({
 						alt="Abrir Menú"
 						className={cn(
 							'pointer-events-none absolute inset-0 opacity-100 transition-all duration-200 ease-in-out',
-							{ 'opacity-0': isOpen },
+							{ 'opacity-0': isOpen }
 						)}
 						src={BurgerOpenIcon}
 					/>
@@ -86,7 +86,7 @@ export default function MobileLandingNavbar({
 						alt="Cerrar Menú"
 						className={cn(
 							'pointer-events-none absolute inset-0 opacity-0 transition-all duration-200 ease-in-out',
-							{ 'opacity-100': isOpen },
+							{ 'opacity-100': isOpen }
 						)}
 						src={BurgerCloseIcon}
 					/>
@@ -94,14 +94,7 @@ export default function MobileLandingNavbar({
 			</div>
 
 			<ul className="flex flex-col items-center py-12">
-				<Button
-					className="mx-auto flex h-auto items-center gap-2 text-gray-900"
-					href={ROUTES.DASHBOARD}
-					variant="outline"
-				>
-					Entrar a la escuela
-					<NextImage alt="" priority src={MortarboardIcon as string} />
-				</Button>
+				<EnterDashboardButton />
 
 				{navItems.map(({ label, href }) => (
 					<li
@@ -110,7 +103,7 @@ export default function MobileLandingNavbar({
 							'pt-12 font-bold text-gray-900 opacity-0 transition-opacity duration-500',
 							{
 								'opacity-100': isOpen,
-							},
+							}
 						)}
 					>
 						<Link href={href}>{label}</Link>

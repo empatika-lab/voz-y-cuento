@@ -3,13 +3,9 @@ import NextLink from 'next/link';
 
 /* Assets */
 import Logo from '@images/logo.png';
-import MortarboardIcon from '@images/icons/mortarboard.svg';
-
-/* Utils */
-import ROUTES from '@/lib/utils/routes';
 
 /* Components */
-import Button from '@frontend/components/Button';
+import EnterDashboardButton from './EnterDashboard.client';
 
 export default function DesktopLandingNavbar({
 	navItems,
@@ -48,14 +44,7 @@ export default function DesktopLandingNavbar({
 				</ul>
 
 				<div className="flex-1">
-					<Button
-						className="ml-auto flex h-auto items-center gap-2 text-gray-900"
-						href={ROUTES.DASHBOARD}
-						variant="outline"
-					>
-						Entrar a la escuela
-						<NextImage alt="" priority src={MortarboardIcon as string} />
-					</Button>
+					<EnterDashboardButton />
 				</div>
 			</div>
 		</nav>

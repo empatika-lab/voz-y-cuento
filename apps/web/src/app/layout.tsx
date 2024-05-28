@@ -3,6 +3,9 @@ import type { Metadata } from 'next';
 /* Styles */
 import '@frontend/lib/styles/globals.css';
 
+/* Contexts */
+import { PaywallProvider as PaywallContext } from '@/lib/context/paywall';
+
 /* Fonts */
 import localFont from 'next/font/local';
 import { Raleway } from 'next/font/google';
@@ -36,7 +39,7 @@ export default function RootLayout({
 			<body
 				className={`${raleway.variable} ${busther.variable} h-full bg-cyan-50 font-sans antialiased`}
 			>
-				{children}
+				<PaywallContext>{children}</PaywallContext>
 			</body>
 		</html>
 	);
