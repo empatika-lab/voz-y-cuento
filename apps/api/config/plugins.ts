@@ -6,7 +6,7 @@ export default () => ({
 				expiresIn: '60d',
 			},
 			register: {
-				allowedFields: ['whatsapp'],
+				allowedFields: ['whatsapp', 'name'],
 			},
 		},
 	},

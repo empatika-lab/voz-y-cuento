@@ -10,7 +10,7 @@ dotenv.config({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	experimental: {
-		reactCompiler: true,
+		reactCompiler: false,
 		ppr: true,
 	},
 	images: {

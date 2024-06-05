@@ -500,6 +500,7 @@ export interface PluginUsersPermissionsUser
 			'plugin::users-permissions.role'
 		>;
 		whatsapp: Schema.Attribute.String;
+		name: Schema.Attribute.String & Schema.Attribute.Required;
 		createdAt: Schema.Attribute.DateTime;
 		updatedAt: Schema.Attribute.DateTime;
 		publishedAt: Schema.Attribute.DateTime;

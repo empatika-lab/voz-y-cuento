@@ -10,6 +10,9 @@ import { PaywallProvider as PaywallContext } from '@/lib/context/paywall';
 import localFont from 'next/font/local';
 import { Raleway } from 'next/font/google';
 
+/* Components */
+import Paywall from '@/components/Paywall';
+
 const raleway = Raleway({
 	subsets: ['latin'],
 	weight: ['300', '400', '500', '700'],
@@ -39,7 +42,10 @@ export default function RootLayout({
 			<body
 				className={`${raleway.variable} ${busther.variable} h-full bg-cyan-50 font-sans antialiased`}
 			>
-				<PaywallContext>{children}</PaywallContext>
+				<PaywallContext>
+					{children}
+					<Paywall />
+				</PaywallContext>
 			</body>
 		</html>
 	);

@@ -1,21 +1,25 @@
 'use client';
 
 import NextImage from 'next/image';
+import { useRouter } from 'next/navigation';
 
 /* Utils */
 import Button from '@/components/Button';
 import ROUTES from '@/lib/utils/routes';
+
+/* Hooks */
+import { usePaywallContext } from '@/lib/context/paywall';
 import { isSessionValid } from '@/lib/actions/session';
 
 /* Assets */
 import MortarboardIcon from '@images/icons/mortarboard.svg';
-import { usePaywallContext } from '@/lib/context/paywall';
-import { useRouter } from 'next/navigation';
 
 export default function EnterDashboardButton() {
 	/* Hooks */
 	const router = useRouter();
-	const { setShouldShowPaywall } = usePaywallContext();
+	const { setShouldShowPaywall, setOnSuccessRedirectUrl } = usePaywallContext();
+
+	/* Handlers */
 	async function handleClick() {
 		const isValid = await isSessionValid();
 
@@ -24,6 +28,7 @@ export default function EnterDashboardButton() {
 			router.push(ROUTES.DASHBOARD);
 		} else {
 			setShouldShowPaywall(true);
+			setOnSuccessRedirectUrl(ROUTES.DASHBOARD);
 		}
 	}
 
@@ -34,7 +39,7 @@ export default function EnterDashboardButton() {
 			onClick={handleClick}
 		>
 			Entrar a la escuela
-			<NextImage alt="" priority src={MortarboardIcon as string} />
+			<NextImage alt="" priority src={MortarboardIcon} />
 		</Button>
 	);
 }
