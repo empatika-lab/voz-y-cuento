@@ -23,6 +23,7 @@ jobs:
             cd ${{ secrets.PROD_PATH }}
             echo -e "${{ secrets.PROD_ENV }}" > .env.production
             source ~/.zshrc
+            git reset --hard HEAD
             git pull origin main
             yarn install
             pm2 kill
