@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 export interface FetchWrapperProps {
 	endpoint: string;
 	config?: RequestInit;
@@ -26,9 +29,35 @@ export function isSuccessResponse<Data>(
 		typeof response === 'object' &&
 		response !== null &&
 		'success' in response &&
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access
-		(response as any).success === true &&
+		response.success === true &&
 		'data' in response
+	);
+}
+
+/**
+ * Type guard for checking if the response is an error response.
+ * @param {unknown} response - The response to check.
+ * @returns {response is { error: StrapiErrorResponse; success: false }} - True if the response is an error response.
+ */
+export function isErrorResponse(
+	response: unknown,
+): response is { error: StrapiErrorResponse; success: false } {
+	return (
+		typeof response === 'object' &&
+		response !== null &&
+		'success' in response &&
+		(response as any).success === false &&
+		'error' in response &&
+		typeof (response as any).error === 'object' &&
+		(response as any).error !== null &&
+		'status' in (response as any).error &&
+		typeof (response as any).error.status === 'number' &&
+		'name' in (response as any).error &&
+		typeof (response as any).error.name === 'string' &&
+		'message' in (response as any).error &&
+		typeof (response as any).error.message === 'string' &&
+		'details' in (response as any).error &&
+		typeof (response as any).error.details === 'object'
 	);
 }
 
@@ -45,7 +74,8 @@ export default async function fetchApi<Data>({
 	queryParams,
 	role = 'private',
 }: FetchWrapperProps): Promise<
-	{ data: Data; success: true } | { error: StrapiErrorResponse; success: false }
+	| { data: Data; success: true }
+	| { error: StrapiErrorResponse | Error; success: false }
 > {
 	try {
 		let headers: RequestInit['headers'] = {
@@ -79,11 +109,19 @@ export default async function fetchApi<Data>({
 			headers,
 		});
 
-		const result = (await jsonResponse.json()) as Data;
+		const result = await jsonResponse.json();
+
+		if ('error' in result) {
+			return {
+				success: false,
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+				error: result.error as StrapiErrorResponse | Error,
+			};
+		}
 
 		return {
 			success: true,
-			data: result,
+			data: result as Data,
 		};
 	} catch (error) {
 		// eslint-disable-next-line no-console

@@ -29,7 +29,7 @@ export async function isSessionValid(): Promise<boolean> {
 	try {
 		const isTokenValid = await jwtVerify(
 			token,
-			new TextEncoder().encode(process.env.JWT_SECRET)
+			new TextEncoder().encode(process.env.JWT_SECRET),
 		);
 
 		if (!isTokenValid) {
@@ -42,9 +42,9 @@ export async function isSessionValid(): Promise<boolean> {
 	}
 }
 
-export async function create(
+export async function createSession(
 	jwtToken: string,
-	userData: Pick<User, 'id' | 'email' | 'username' | 'whatsapp'>
+	userData: Pick<User, 'id' | 'email' | 'username' | 'whatsapp'>,
 ) {
 	/* Session Token */
 	cookies().set({
