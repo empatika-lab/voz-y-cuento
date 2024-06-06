@@ -30,7 +30,11 @@ export async function isSessionValid(): Promise<boolean> {
 		const isTokenValid = await jwtVerify(
 			token,
 			new TextEncoder().encode(process.env.JWT_SECRET),
-		);
+		).catch((e) => {
+			// eslint-disable-next-line no-console
+			console.error({ e });
+			return false;
+		});
 
 		if (!isTokenValid) {
 			return false;
