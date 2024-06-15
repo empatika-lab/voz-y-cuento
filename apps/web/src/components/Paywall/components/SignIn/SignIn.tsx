@@ -20,13 +20,18 @@ import TextInput from '@/components/TextInput';
 
 /* Hooks */
 import { usePaywallContext } from '@/lib/context/paywall';
+
+/* Actions */
 import { tryUserSignIn } from './SignIn.actions';
+import { createSession } from '@/lib/actions/session';
 
 /* Utils */
 import { cn } from '@/lib/utils/classNames';
 import { isErrorResponse, isSuccessResponse } from '@/lib/utils/api';
-import { createSession } from '@/lib/actions/session';
-import { User } from '@voz-y-cuento/types';
+import ROUTES from '@/lib/utils/routes';
+
+/* Types */
+import type { User } from '@voz-y-cuento/types';
 
 interface SignInProps {
 	switchToSignUp: () => void;
@@ -100,7 +105,7 @@ export default function SignIn({ switchToSignUp }: SignInProps) {
 				src={Logo}
 			/>
 
-			<p className="tex-base mt-6 lg:mt-8 lg:text-2xl">
+			<p className="tex-base mt-6 lg:mt-8 lg:text-xl">
 				Para continuar ingresa tu correo electrónico y contraseña.
 			</p>
 
@@ -174,6 +179,14 @@ export default function SignIn({ switchToSignUp }: SignInProps) {
 							onClick={switchToSignUp}
 						>
 							Registrarme
+						</Button>
+						<Button
+							className="mt-4 border-0 text-center text-sm hover:shadow-none"
+							href={ROUTES.RESET_PASSWORD}
+							type="button"
+							variant="ghost"
+						>
+							<span className="text-sm">Olvidé mi contraseña</span>
 						</Button>
 					</div>
 				</footer>

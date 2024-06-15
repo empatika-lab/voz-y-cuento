@@ -33,7 +33,7 @@ const button = tv({
 			fill: '',
 			outline: 'bg-transparent hover:bg-transparent active:bg-transparent',
 			ghost:
-				'bg-transparent border-0 shadow-none hover:bg-[rgba(243, 245, 245, 0.50)] hover:shadow-3xl',
+				'bg-transparent border-0 shadow-none hover:bg-cyan-100 active:bg-cyan-200 hover:shadow-3xl',
 		},
 	},
 });
@@ -64,7 +64,7 @@ export default function Button({
 	}
 
 	return (
-		<button className={cn([button({ color, variant }), className])} {...props}>
+		<button className={cn([button({ color, variant })], className)} {...props}>
 			{children}
 		</button>
 	);

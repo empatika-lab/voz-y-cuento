@@ -10,9 +10,9 @@ import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 
 export default function Paywall() {
-	const [currentView, setCurrentView] = useState<'sign-in' | 'sign-up'>(
-		'sign-in',
-	);
+	const [currentView, setCurrentView] = useState<
+		'sign-in' | 'sign-up' | 'reset-password'
+	>('sign-in');
 
 	/* Hooks */
 	const { shouldShowPaywall, setShouldShowPaywall } = usePaywallContext();

@@ -16,6 +16,13 @@ export interface StrapiErrorResponse {
 	details: Record<string, unknown>;
 }
 
+export interface ErrorResponse {
+	status?: number;
+	name?: string;
+	message: string;
+	details?: Record<string, unknown>;
+}
+
 /**
  * Type guard for checking if the response is a success response.
  * @template Data - The expected response data type.
@@ -37,11 +44,11 @@ export function isSuccessResponse<Data>(
 /**
  * Type guard for checking if the response is an error response.
  * @param {unknown} response - The response to check.
- * @returns {response is { error: StrapiErrorResponse; success: false }} - True if the response is an error response.
+ * @returns {response is { error: ErrorResponse; success: false }} - True if the response is an error response.
  */
 export function isErrorResponse(
 	response: unknown,
-): response is { error: StrapiErrorResponse; success: false } {
+): response is { error: ErrorResponse; success: false } {
 	return (
 		typeof response === 'object' &&
 		response !== null &&
@@ -50,14 +57,7 @@ export function isErrorResponse(
 		'error' in response &&
 		typeof (response as any).error === 'object' &&
 		(response as any).error !== null &&
-		'status' in (response as any).error &&
-		typeof (response as any).error.status === 'number' &&
-		'name' in (response as any).error &&
-		typeof (response as any).error.name === 'string' &&
-		'message' in (response as any).error &&
-		typeof (response as any).error.message === 'string' &&
-		'details' in (response as any).error &&
-		typeof (response as any).error.details === 'object'
+		'message' in (response as any).error
 	);
 }
 
@@ -65,7 +65,7 @@ export function isErrorResponse(
  * Fetches data from the Strapi API
  * @template Data - The expected response data type.
  * @param {FetchWrapperProps} props - The fetch options.
- * @returns {Promise<{ data: Data; success: true } | { error: StrapiErrorResponse; success: false }>} - A promise that resolves to the API response.
+ * @returns {Promise<{ data: Data; success: true } | { error: ErrorResponse; success: false }>} - A promise that resolves to the API response.
  */
 export default async function fetchApi<Data>({
 	endpoint,
@@ -75,7 +75,7 @@ export default async function fetchApi<Data>({
 	role = 'private',
 }: FetchWrapperProps): Promise<
 	| { data: Data; success: true }
-	| { error: StrapiErrorResponse | Error; success: false }
+	| { error: ErrorResponse | Error; success: false }
 > {
 	try {
 		let headers: RequestInit['headers'] = {

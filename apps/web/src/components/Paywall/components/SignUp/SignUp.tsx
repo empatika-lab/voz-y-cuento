@@ -25,6 +25,7 @@ import { usePaywallContext } from '@/lib/context/paywall';
 
 /* Utils */
 import { cn } from '@/lib/utils/classNames';
+import ROUTES from '@/lib/utils/routes';
 
 interface SignUpProps {
 	switchToSignIn: () => void;
@@ -101,7 +102,7 @@ export default function SignUp({ switchToSignIn }: SignUpProps) {
 			/>
 
 			<h1 className="mx-auto mt-12 text-center text-2xl font-bold">
-				Creá tu cuenta
+				Crea tu cuenta
 			</h1>
 			<form
 				className="flex max-w-full flex-col items-center justify-center gap-3 pb-8 pt-4"
@@ -247,6 +248,14 @@ export default function SignUp({ switchToSignIn }: SignUpProps) {
 							onClick={switchToSignIn}
 						>
 							Ingresar
+						</Button>
+						<Button
+							className="mt-4 border-0 text-center text-sm hover:shadow-none"
+							href={ROUTES.RESET_PASSWORD}
+							type="button"
+							variant="ghost"
+						>
+							<span className="text-sm">Olvidé mi contraseña</span>
 						</Button>
 					</div>
 				</footer>

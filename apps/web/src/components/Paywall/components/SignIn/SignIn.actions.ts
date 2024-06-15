@@ -25,34 +25,4 @@ export async function tryUserSignIn(data: SignInDto) {
 	});
 
 	return response;
-
-	// const result: {
-	// 	error?: {
-	// 		message?: string;
-	// 	};
-
-	// 	jwt: string;
-	// 	user: User;
-	// } = await response.json();
-
-	// if (!response) {
-	// 	return {
-	// 		error: 'Por favor, revisa tu conexión a internet.',
-	// 		success: false,
-	// 	};
-	// }
-
-	// if (result?.error?.message?.includes('identifier or password')) {
-	// 	return {
-	// 		error:
-	// 			'Revisa el correo o la contraseña que ingresaste, alguno de estos no es correcto.',
-	// 		success: false,
-	// 	};
-	// }
-
-	// if (result?.jwt && result?.user) {
-	// 	await createSession(result.jwt, result.user);
-	// }
-
-	return { success: false };
 }
