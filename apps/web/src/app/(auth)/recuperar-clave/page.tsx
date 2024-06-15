@@ -37,7 +37,7 @@ export default function RecoverPassword({
 	const currentStep = getCurrentStep();
 
 	return (
-		<article className="mx-auto flex h-screen max-w-sm flex-col items-center justify-center bg-cyan-50">
+		<article className="container mx-auto flex h-screen max-w-sm flex-col items-center justify-center bg-cyan-50">
 			<NextImage
 				alt="Logo de Voz y Cuento"
 				className="mx-auto mb-10 h-[48px] w-[140px] rounded-2xl"
