@@ -24,6 +24,7 @@ async function fetchCourses() {
 			endpoint: '/courses?populate=*',
 			role: 'admin',
 			config: {
+				cache: "force-cache",
 				next: {
 					tags: ['course'],
 				},

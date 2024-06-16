@@ -80,13 +80,14 @@ export default async function fetchApi<Data>({
 	try {
 		let headers: RequestInit['headers'] = {
 			'Content-type': 'application/json',
+
 		};
 
 		if (role === 'private') {
 			if (!token) {
 				throw new Error('Bearer token not provided.');
 			}
-			headers = { ...headers, Authorization: `earer ${token}` };
+			headers = { ...headers, Authorization: `bearer ${token}` };
 		}
 
 		if (role === 'admin') {
