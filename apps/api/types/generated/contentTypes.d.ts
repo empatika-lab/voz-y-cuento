@@ -17,7 +17,7 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
 			Schema.Attribute.Unique;
 		shortDescription: Schema.Attribute.Text;
 		isFree: Schema.Attribute.Boolean;
-		cardImage: Schema.Attribute.Media;
+		cardImage: Schema.Attribute.Media<'images'>;
 		category: Schema.Attribute.Enumeration<
 			['Introductorio', 'Tem\u00E1tico', 'Laboratorio']
 		> &
