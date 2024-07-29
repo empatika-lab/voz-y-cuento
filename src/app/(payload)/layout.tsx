@@ -7,9 +7,9 @@ import React from 'react';
 
 import './custom.scss';
 
-type Args = {
+interface Args {
 	children: React.ReactNode;
-};
+}
 
 const Layout = ({ children }: Args) => <RootLayout config={configPromise}>{children}</RootLayout>;
 
