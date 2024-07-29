@@ -5,13 +5,16 @@
 	"license": "MIT",
 	"type": "module",
 	"scripts": {
-		"build": "cross-env NODE_OPTIONS=--no-deprecation next build",
-		"dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
-		"devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
+		"build": "NODE_OPTIONS=--no-deprecation next build",
+		"dev": "NODE_OPTIONS=--no-deprecation next dev",
+		"devsafe": "rm -rf .next && NODE_OPTIONS=--no-deprecation next dev",
 		"generate:types": "payload generate:types",
-		"lint": "cross-env NODE_OPTIONS=--no-deprecation next lint",
-		"payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
-		"start": "cross-env NODE_OPTIONS=--no-deprecation next start"
+		"format": "prettier ./ --check",
+		"format:fix": "prettier ./ --write",
+		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+		"lint:fix": "eslint . --fix --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+		"payload": "NODE_OPTIONS=--no-deprecation payload",
+		"start": "NODE_OPTIONS=--no-deprecation next start"
 	},
 	"dependencies": {
 		"@payloadcms/db-postgres": "beta",
@@ -19,7 +22,6 @@
 		"@payloadcms/plugin-cloud": "beta",
 		"@payloadcms/richtext-lexical": "beta",
 		"@payloadcms/storage-uploadthing": "beta",
-		"cross-env": "^7.0.3",
 		"graphql": "^16.8.1",
 		"next": "canary",
 		"payload": "beta",
