@@ -36,6 +36,19 @@ export const Course: CollectionConfig = {
 							type: 'checkbox',
 						},
 						{
+							name: 'image',
+							label: 'Imágen de Portada',
+							admin: {
+								description: 'Esta imágen se muestra en la tarjeta del Curso.',
+								style: {
+									marginTop: '2rem',
+								},
+							},
+							type: 'upload',
+							relationTo: 'media',
+							required: true,
+						},
+						{
 							type: 'row',
 							fields: [
 								{

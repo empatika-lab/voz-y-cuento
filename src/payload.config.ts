@@ -9,19 +9,23 @@ import { fileURLToPath } from 'url';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
+/* Uploads */
+import { uploadthingStorage } from '@payloadcms/storage-uploadthing';
+
 /* Translations */
 import { es } from '@payloadcms/translations/languages/es';
 
 /* Collections */
 import { Admin } from './collections/Admin';
 import { Course } from './collections/Course';
+import { Media } from './collections/Media';
 import { Student } from './collections/Student';
 
 export default buildConfig({
 	admin: {
 		user: Admin.slug,
 	},
-	collections: [Admin, Course, Student],
+	collections: [Admin, Course, Media, Student],
 	cookiePrefix: 'vyc',
 	editor: lexicalEditor(),
 	i18n: {
@@ -38,7 +42,20 @@ export default buildConfig({
 		},
 	}),
 	sharp,
+	upload: {
+		limits: {
+			fileSize: 5000000, // 5MB
+		},
+	},
 	plugins: [
-		// storage-adapter-placeholder
+		uploadthingStorage({
+			collections: {
+				[Media.slug]: true,
+			},
+			options: {
+				apiKey: process.env.UPLOADTHING_SECRET,
+				acl: 'public-read',
+			},
+		}),
 	],
 });
