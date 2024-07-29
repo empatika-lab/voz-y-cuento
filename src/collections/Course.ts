@@ -36,17 +36,34 @@ export const Course: CollectionConfig = {
 							type: 'checkbox',
 						},
 						{
-							name: 'image',
-							label: 'Imágen de Portada',
+							type: 'row',
 							admin: {
-								description: 'Esta imágen se muestra en la tarjeta del Curso.',
-								style: {
-									marginTop: '2rem',
+								condition: (_data, sibling) => {
+									return !sibling.isFree;
 								},
 							},
-							type: 'upload',
-							relationTo: 'media',
-							required: true,
+							fields: [
+								{
+									admin: {
+										width: '50%',
+										description: 'El precio para alumnos dentro de Argentina.',
+									},
+									label: 'Precio en Pesos',
+									name: 'arsPrice',
+									required: true,
+									type: 'number',
+								},
+								{
+									admin: {
+										width: '50%',
+										description: 'El precio para alumnos fuera de Argentina.',
+									},
+									label: 'Precio en Dólares',
+									name: 'usdPrice',
+									required: true,
+									type: 'number',
+								},
+							],
 						},
 						{
 							type: 'row',
@@ -78,36 +95,17 @@ export const Course: CollectionConfig = {
 							],
 						},
 						{
-							type: 'row',
+							name: 'image',
+							label: 'Imágen de Portada',
 							admin: {
-								condition: (_data, sibling) => {
-									return !sibling.isFree;
+								description: 'Esta imágen se muestra en la tarjeta del Curso.',
+								style: {
+									marginTop: '4rem',
 								},
 							},
-							fields: [
-								{
-									admin: {
-										width: '50%',
-										description: 'El precio para alumnos dentro de Argentina.',
-										style: { marginTop: '2rem' },
-									},
-									label: 'Precio en Pesos',
-									name: 'arsPrice',
-									required: true,
-									type: 'number',
-								},
-								{
-									admin: {
-										width: '50%',
-										description: 'El precio para alumnos fuera de Argentina.',
-										style: { marginTop: '2rem' },
-									},
-									label: 'Precio en Dólares',
-									name: 'usdPrice',
-									required: true,
-									type: 'number',
-								},
-							],
+							type: 'upload',
+							relationTo: 'media',
+							required: true,
 						},
 						{
 							type: 'array',
