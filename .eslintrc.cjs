@@ -7,7 +7,7 @@ module.exports = {
 		'plugin:@typescript-eslint/stylistic-type-checked',
 		'prettier',
 	],
-
+	ignores: ['next.config.mjs'],
 	parserOptions: {
 		project: ['./tsconfig.json'],
 		tsconfigRootDir: __dirname,
