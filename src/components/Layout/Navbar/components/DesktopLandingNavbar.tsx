@@ -5,7 +5,7 @@ import NextLink from 'next/link';
 import Logo from '@images/logo.png';
 
 /* Components */
-import EnterDashboardButton from './EnterDashboard.client';
+// import EnterDashboardButton from './EnterDashboard.client';
 
 export default function DesktopLandingNavbar({
 	navItems,

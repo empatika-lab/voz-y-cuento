@@ -9,6 +9,9 @@ import { fileURLToPath } from 'url';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
+/* Utils */
+import { cachedPayloadPlugin } from './lib/utils/api';
+
 /* Uploads */
 import { uploadthingStorage } from '@payloadcms/storage-uploadthing';
 
@@ -48,6 +51,7 @@ export default buildConfig({
 		},
 	},
 	plugins: [
+		cachedPayloadPlugin,
 		uploadthingStorage({
 			collections: {
 				[Media.slug]: true,

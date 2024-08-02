@@ -1,25 +1,32 @@
+import configPromise from '@payload-config';
+import { getPayloadHMR } from '@payloadcms/next/utilities';
+
 /* Hero */
 import Footer from '@/components/Layout/Footer';
 import Hero from '@/components/Layout/Hero';
 import { LandingNavbar } from '@/components/Layout/Navbar';
-import { payload } from '@/lib/utils/api';
 
-function fetchCourses() {
-	const a = payload.find({ collection: 'courses' }).catch((e) => {
-		console.log(`[fetchCourses]`, e);
+/* Utils */
+import { getCachedPayload } from '@/lib/utils/api';
+import { prettyPrint } from '@/lib/utils/dev';
+
+async function fetchCourses() {
+	const payload = await getPayloadHMR({
+		config: configPromise,
+	});
+	const cachedPayload = getCachedPayload(payload);
+
+	const courses = cachedPayload.find({ collection: 'courses' }).catch((e) => {
+		prettyPrint(e);
 	});
 
-	return a;
+	return courses;
 }
 
 export default async function CoursesPage() {
 	const courses = await fetchCourses();
-
+	// eslint-disable-next-line no-console
 	console.log(courses);
-
-	if (!courses) {
-		return null;
-	}
 
 	return (
 		<>

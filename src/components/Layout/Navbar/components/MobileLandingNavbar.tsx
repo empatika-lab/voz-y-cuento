@@ -15,7 +15,7 @@ import BurgerCloseIcon from '@images/icons/burger-close.svg';
 import { cn } from '@lib/utils/classNames';
 
 /* Components */
-import EnterDashboardButton from './EnterDashboard.client';
+// import EnterDashboardButton from './EnterDashboard.client';
 
 export default function MobileLandingNavbar({
 	navItems,

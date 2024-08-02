@@ -1,7 +1,7 @@
 'use client';
 
 import NextImage from 'next/image';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 
 /* Utils */
 import Button from '@/components/Button';
@@ -9,20 +9,19 @@ import Button from '@/components/Button';
 
 /* Hooks */
 // import { usePaywallContext } from '@/lib/context/paywall';
-import { isSessionValid } from '@/lib/actions/session';
+// import { isSessionValid } from '@/lib/actions/session';
 
 /* Assets */
 import MortarboardIcon from '@images/icons/mortarboard.svg';
 
 export default function EnterDashboardButton() {
 	/* Hooks */
-	const router = useRouter();
+	// const router = useRouter();
 	// const { setShouldShowPaywall, setOnSuccessRedirectUrl } = usePaywallContext();
 
 	/* Handlers */
 	async function handleClick() {
-		const isValid = await isSessionValid();
-
+		// const isValid = await isSessionValid();
 		// if (isValid) {
 		// 	setShouldShowPaywall(false);
 		// 	router.push(ROUTES.DASHBOARD);

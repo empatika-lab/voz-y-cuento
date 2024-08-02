@@ -1805,6 +1805,11 @@
   resolved "https://registry.yarnpkg.com/@one-ini/wasm/-/wasm-0.1.1.tgz#6013659736c9dbfccc96e8a9c2b3de317df39323"
   integrity sha512-XuySG1E38YScSJoMlqovLru4KTUNSjgVTIjyh7qMX6aNN5HY5Ct5LhRJdxO79JtTzKfzV/bnWpz+zquYrISsvw==
 
+"@payload-enchants/cached-local-api@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@payload-enchants/cached-local-api/-/cached-local-api-1.2.2.tgz#d50f9ebdbd44216be3e59e7913cfe00e46e97740"
+  integrity sha512-a5xXo6Cn5fTrnXZm2oRksWEjT11YbTfS9CJjQIjd8LruNfAdiU9doyOqgCO9kyz4lhme6X5rsttVyQKj6/P3JA==
+
 "@payloadcms/db-postgres@beta":
   version "3.0.0-beta.70"
   resolved "https://registry.yarnpkg.com/@payloadcms/db-postgres/-/db-postgres-3.0.0-beta.70.tgz#2e84bcc8b67ee1cd1701a46b850c3d9f15e87468"
