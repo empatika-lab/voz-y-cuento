@@ -17,6 +17,7 @@
 		"start": "NODE_OPTIONS=--no-deprecation next start"
 	},
 	"dependencies": {
+		"@hookform/resolvers": "^3.9.0",
 		"@payload-enchants/cached-local-api": "^1.2.2",
 		"@payloadcms/db-postgres": "beta",
 		"@payloadcms/next": "beta",
@@ -29,11 +30,13 @@
 		"graphql": "^16.8.1",
 		"jose": "^5.3.0",
 		"next": "canary",
+		"oslo": "^1.2.1",
 		"payload": "beta",
 		"react": "rc",
 		"react-dom": "rc",
 		"react-hook-form": "^7.51.5",
 		"react-loader-spinner": "^6.1.6",
+		"server-only": "^0.0.1",
 		"sharp": "0.32.6",
 		"tailwind-merge": "^2.2.0",
 		"tailwind-variants": "^0.1.20",

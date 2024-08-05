@@ -23,8 +23,8 @@ export default function FooterSocial() {
 		<section className="container mx-auto border-b-2 border-black py-6 lg:py-8">
 			<div className="flex flex-wrap items-center ">
 				<p className="text-center lg:max-w-[66%] lg:text-left lg:text-2xl">
-					Sígueme en mis redes sociales. Allí comparto mucho más sobre este
-					maravilloso arte. ¡Te espero!
+					Sígueme en mis redes sociales. Allí comparto mucho más sobre este maravilloso arte. ¡Te
+					espero!
 				</p>
 
 				<ul className="mx-auto mt-8 flex gap-8 lg:mr-0 lg:mt-0 lg:justify-end">

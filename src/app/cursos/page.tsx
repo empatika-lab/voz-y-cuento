@@ -7,7 +7,7 @@ import Hero from '@/components/Layout/Hero';
 import { LandingNavbar } from '@/components/Layout/Navbar';
 
 /* Utils */
-import { getCachedPayload } from '@/lib/utils/api';
+import { getCachedPayload } from '@/lib/utils/localApi';
 import { prettyPrint } from '@/lib/utils/dev';
 
 async function fetchCourses() {

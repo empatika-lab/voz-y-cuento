@@ -13,9 +13,7 @@ import BurgerCloseIcon from '@images/icons/burger-close.svg';
 
 /* Utils */
 import { cn } from '@lib/utils/classNames';
-
-/* Components */
-// import EnterDashboardButton from './EnterDashboard.client';
+import ROUTES from '@/lib/utils/routes';
 
 export default function MobileLandingNavbar({
 	navItems,
@@ -46,16 +44,19 @@ export default function MobileLandingNavbar({
 			}}
 		>
 			<div className="container flex items-center justify-between">
-				{path === '/' ? (
-					<NextImage alt="Volver al Inicio" className="h-9 w-auto" priority src={Logo} />
-				) : (
-					<NextImage
-						alt="Volver al Inicio"
-						className="relative z-20 h-9 w-auto"
-						priority
-						src={LogoInWhite}
-					/>
-				)}
+				<Link href={path.includes(ROUTES.DASHBOARD) ? ROUTES.DASHBOARD : ROUTES.HOME}>
+					{path === '/' ? (
+						<NextImage alt="Volver al Inicio" className="h-9 w-auto" priority src={Logo} />
+					) : (
+						<NextImage
+							alt="Volver al Inicio"
+							className="relative z-20 h-9 w-auto"
+							priority
+							src={LogoInWhite}
+						/>
+					)}
+				</Link>
+
 				<button
 					aria-label={isOpen ? 'Cerrar Menú de Navegación' : 'Abrir Menú de Navegación'}
 					className=" relative z-40 h-9 w-9"
@@ -84,8 +85,6 @@ export default function MobileLandingNavbar({
 			</div>
 
 			<ul className="flex flex-col items-center py-12">
-				{/* <EnterDashboardButton /> */}
-
 				{navItems.map(({ label, href }) => (
 					<li
 						key={label}

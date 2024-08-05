@@ -10,7 +10,7 @@ const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
 /* Utils */
-import { cachedPayloadPlugin } from './lib/utils/api';
+import { cachedPayloadPlugin } from './lib/utils/localApi';
 
 /* Uploads */
 import { uploadthingStorage } from '@payloadcms/storage-uploadthing';

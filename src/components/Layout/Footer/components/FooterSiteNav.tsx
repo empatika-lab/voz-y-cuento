@@ -54,11 +54,7 @@ export default function FooterSideNav() {
 		<section className="container flex flex-wrap gap-4 pt-6">
 			<header className="w-[152px] lg:w-[259px]">
 				<figure>
-					<NextImage
-						alt="Logo de Voz y Cuento"
-						className="h-auto w-[105px]"
-						src={Logo}
-					/>
+					<NextImage alt="Logo de Voz y Cuento" className="h-auto w-[105px]" src={Logo} />
 					<figcaption className="mt-1 max-w-[80%] text-sm lg:mt-10">
 						Escuela de narración oral escénica.
 					</figcaption>

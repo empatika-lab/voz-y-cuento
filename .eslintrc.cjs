@@ -21,8 +21,8 @@ module.exports = {
 			'error',
 			{ props: true, ignorePropertyModificationsForRegex: ['^state'] },
 		],
-		'no-unused-vars': 'off',
 		'@typescript-eslint/ban-ts-comment': 'off',
+		'@typescript-eslint/ban-tslint-comment': 'off',
 		'@typescript-eslint/no-unused-vars': [
 			'error',
 			{

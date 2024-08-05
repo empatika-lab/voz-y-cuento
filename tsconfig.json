@@ -24,7 +24,8 @@
 			"@images/*": ["./public/images/*"],
 			"@payload-config": ["./src/payload.config.ts"]
 		},
-		"target": "ES2017"
+		"target": "ES2017",
+		"verbatimModuleSyntax": true
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "tailwind.config.js"],
 	"exclude": ["node_modules"]
