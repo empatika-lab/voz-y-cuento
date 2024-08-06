@@ -1,5 +1,8 @@
-import React, { ButtonHTMLAttributes, PropsWithChildren } from 'react';
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
+
+/* Types */
+import type { ButtonHTMLAttributes, PropsWithChildren } from 'react';
+import type { StaticImageData } from 'next/image';
 
 /* Utils */
 import { cn } from '@/lib/utils/classNames';

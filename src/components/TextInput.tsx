@@ -1,4 +1,5 @@
-import { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from 'react';
+/* Types */
+import type { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from 'react';
 
 /* Utils */
 import { cn } from '@lib/utils/classNames';

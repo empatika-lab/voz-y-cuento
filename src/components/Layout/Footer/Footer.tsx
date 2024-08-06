@@ -4,7 +4,7 @@ import FooterSideNav from '@/components/Layout/Footer/components/FooterSiteNav';
 import FooterSocial from '@/components/Layout/Footer/components/FooterSocial';
 
 /* Types */
-import { PropsWithClassName } from '@/lib/types';
+import type { PropsWithClassName } from '@/lib/types';
 
 /* Utils */
 import { cn } from '@/lib/utils/classNames';

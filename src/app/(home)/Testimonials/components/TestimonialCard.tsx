@@ -1,11 +1,12 @@
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 
 /* Assets */
 import QuoteLeft from '@images/icons/quote.svg';
 import QuoteRight from '@images/icons/quote-right.svg';
 
 /* Types */
-import { PropsWithClassName } from '@/lib/types';
+import type { PropsWithClassName } from '@/lib/types';
+import type { StaticImageData } from 'next/image';
 
 /* Utils */
 import { cn } from '@/lib/utils/classNames';

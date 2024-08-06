@@ -1,12 +1,14 @@
-import { ButtonHTMLAttributes } from 'react';
-import NextLink, { LinkProps } from 'next/link';
-import { tv, VariantProps } from 'tailwind-variants';
+import NextLink from 'next/link';
+import { tv } from 'tailwind-variants';
 
 /* Utils */
 import { cn } from '@lib/utils/classNames';
 
 /* Types */
-import { PropsWithClassName } from '@lib/types';
+import type { LinkProps } from 'next/link';
+import type { ButtonHTMLAttributes } from 'react';
+import type { PropsWithClassName } from '@lib/types';
+import type { VariantProps } from 'tailwind-variants';
 
 const button = tv({
 	base: [

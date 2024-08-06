@@ -1,7 +1,7 @@
 import NextImage from 'next/image';
 
 /* Types */
-import { PropsWithClassName } from '@/lib/types';
+import type { PropsWithClassName } from '@/lib/types';
 
 type Hero = PropsWithClassName;
 

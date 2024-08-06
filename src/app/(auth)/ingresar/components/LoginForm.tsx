@@ -13,10 +13,14 @@ import ClosedEye from '@images/icons/eye-close.svg';
 
 /* Components */
 import TextInput from '@/components/TextInput';
-import { cn } from '@/lib/utils/classNames';
 import Button from '@/components/Button';
-import { tryLogin } from '../../actions/tryLogin';
+
+/* Utils */
+import { cn } from '@/lib/utils/classNames';
 import ROUTES from '@/lib/utils/routes';
+
+/* Actions */
+import { tryLogin } from '../../actions/tryLogin';
 
 export const loginValidationSchema = z.object({
 	email: z.string().email('Debes ingresar un correo electrónico válido.'),
