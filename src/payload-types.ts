@@ -129,6 +129,8 @@ export interface Media {
  */
 export interface Student {
   id: number;
+  name?: string | null;
+  whatsapp?: string | null;
   updatedAt: string;
   createdAt: string;
   email: string;

@@ -3,7 +3,7 @@ import NextImage from 'next/image';
 /* Assets */
 import Logo from '@images/logo.png';
 
-export default function LoginHeader() {
+export default function RegisterHeader() {
 	return (
 		<header>
 			<NextImage
@@ -13,10 +13,10 @@ export default function LoginHeader() {
 				src={Logo}
 			/>
 
-			<h1 className="mt-8 text-2xl font-bold text-center">Ingresar a la Escuela</h1>
+			<h1 className="mt-8 text-2xl font-bold text-center">Crea tu cuenta</h1>
 
 			<p className="tex-base mt-6 lg:mt-8 lg:text-xl text-pretty mx-auto text-center">
-				Para continuar ingresa tu correo electrónico y contraseña.
+				Registrate usando un correo electrónico y una contraseña.
 			</p>
 		</header>
 	);

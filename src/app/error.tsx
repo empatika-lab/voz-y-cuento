@@ -23,7 +23,7 @@ export default function Error({
 	return (
 		<article className="h-full px-5 py-10 flex items-center flex-col justify-center md:max-w-[420px] mx-auto">
 			<h1 className="font-bold text-xl lg:text-3xl text-red-600 text-center">
-				¡Uy! Hubo un error insperado.
+				¡Uy! Hubo un error inesperado.
 			</h1>
 
 			<p className="mt-6">Por favor, asegurate de tener conexión a internet.</p>

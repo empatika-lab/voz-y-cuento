@@ -15,5 +15,19 @@ export const Student: CollectionConfig = {
 	fields: [
 		// Email added by default
 		// Add more fields as needed
+
+		{
+			name: 'name',
+			type: 'text',
+			label: 'Nombre y Apellido',
+		},
+		{
+			label: 'Whatsapp',
+			name: 'whatsapp',
+			type: 'text',
+			admin: {
+				description: 'Número de Whatsapp para contactar.',
+			},
+		},
 	],
 };
