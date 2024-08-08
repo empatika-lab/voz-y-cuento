@@ -35,6 +35,7 @@ export interface Config {
 export interface AdminAuthOperations {
   forgotPassword: {
     email: string;
+    password: string;
   };
   login: {
     email: string;
@@ -46,11 +47,13 @@ export interface AdminAuthOperations {
   };
   unlock: {
     email: string;
+    password: string;
   };
 }
 export interface StudentAuthOperations {
   forgotPassword: {
     email: string;
+    password: string;
   };
   login: {
     email: string;
@@ -62,6 +65,7 @@ export interface StudentAuthOperations {
   };
   unlock: {
     email: string;
+    password: string;
   };
 }
 /**

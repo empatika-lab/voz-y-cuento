@@ -9,6 +9,9 @@ import { fileURLToPath } from 'url';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
+/* Email */
+import { resendAdapter } from '@payloadcms/email-resend';
+
 /* Utils */
 import { cachedPayloadPlugin } from './lib/utils/localApi';
 
@@ -31,6 +34,11 @@ export default buildConfig({
 	collections: [Admin, Course, Media, Student],
 	cookiePrefix: 'vyc',
 	editor: lexicalEditor(),
+	email: resendAdapter({
+		defaultFromAddress: 'no-responder@vozycuento.com',
+		defaultFromName: 'Voz y Cuento',
+		apiKey: process.env.RESEND_API_KEY ?? '',
+	}),
 	i18n: {
 		fallbackLanguage: 'es',
 		supportedLanguages: { es },
