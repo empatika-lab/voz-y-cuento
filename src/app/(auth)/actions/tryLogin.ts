@@ -7,16 +7,16 @@ import type { ServerActionResponse } from '@/lib/types/action';
 import type { Student } from '@/payload-types';
 import { cookies } from 'next/headers';
 
-interface PayloadLoginData {
+interface PayloadLoginResponse {
 	exp?: number;
 	token?: string;
 	user?: Partial<Student>;
 }
 
 export async function tryLogin(
-	_prevState: ServerActionResponse<PayloadLoginData> | null,
+	_prevState: ServerActionResponse<PayloadLoginResponse> | null,
 	formData: FormData,
-): Promise<ServerActionResponse<PayloadLoginData>> {
+): Promise<ServerActionResponse<PayloadLoginResponse>> {
 	const payload = await getPayloadHMR({
 		config: configPromise,
 	});
@@ -43,7 +43,7 @@ export async function tryLogin(
 
 		return { success: true, data: loginResult };
 	} catch (error) {
-		payload.logger.error('[tryLogin]:', error);
+		payload.logger.error(`[tryLogin]: ${error as string}`);
 		return {
 			success: false,
 			error: error instanceof Error ? error.message : 'An unknown error occurred',

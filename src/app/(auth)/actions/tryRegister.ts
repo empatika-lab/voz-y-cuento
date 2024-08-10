@@ -2,22 +2,25 @@
 
 import configPromise from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { cookies } from 'next/headers';
 
+/* Types */
 import type { ServerActionResponse } from '@/lib/types/action';
 import type { Student } from '@/payload-types';
-import { cookies } from 'next/headers';
+
+/* Utils */
 import { isPayloadErrorResponse } from '@/lib/utils/error';
 
-interface PayloadRegisterData {
+interface PayloadRegisterResponse {
 	exp?: number;
 	token?: string;
 	user?: Partial<Student>;
 }
 
 export async function tryRegister(
-	_prevState: ServerActionResponse<PayloadRegisterData> | null,
+	_prevState: ServerActionResponse<PayloadRegisterResponse> | null,
 	formData: FormData,
-): Promise<ServerActionResponse<PayloadRegisterData>> {
+): Promise<ServerActionResponse<PayloadRegisterResponse>> {
 	const payload = await getPayloadHMR({
 		config: configPromise,
 	});
@@ -33,10 +36,8 @@ export async function tryRegister(
 			},
 		});
 
-		console.log({ registerResult });
-
 		if (!registerResult.id) {
-			payload.logger.error('[tryRegister]:', registerResult);
+			payload.logger.error(`[tryRegister]: Did not get response from API`);
 			return {
 				success: false,
 				error: 'Error inesperado al intentar crear la cuenta. Por favor, intenta más tarde.',
@@ -64,6 +65,8 @@ export async function tryRegister(
 
 		return { success: true, data: loginResult };
 	} catch (error) {
+		payload.logger.error(`[tryRegister]: ${error as string}`);
+
 		if (isPayloadErrorResponse(error)) {
 			return {
 				success: false,
