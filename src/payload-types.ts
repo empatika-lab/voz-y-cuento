@@ -98,6 +98,7 @@ export interface Course {
   shortDescription: string;
   longDescription: string;
   image: number | Media;
+  category?: ('Introductorio' | 'Temático' | 'Laboratorio') | null;
   syllabus?:
     | {
         unit?: string | null;

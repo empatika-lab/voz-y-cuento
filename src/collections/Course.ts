@@ -86,6 +86,9 @@ export const Course: CollectionConfig = {
 										description:
 											'Descipción detallada del curso. Se muestra en la página de detalle del curso',
 										width: '50%',
+										style: {
+											marginTop: '2rem',
+										},
 									},
 									label: 'Descripción Larga',
 									name: 'longDescription',
@@ -108,6 +111,20 @@ export const Course: CollectionConfig = {
 							required: true,
 						},
 						{
+							type: 'select',
+							label: 'Categoría',
+							name: 'category',
+							admin: {
+								description: 'Elegir el tipo de curso.',
+							},
+							options: [
+								{ label: 'Introductorio', value: 'Introductorio' },
+								{ label: 'Temático', value: 'Temático' },
+								{ label: 'Laboratoio', value: 'Laboratorio' },
+							],
+							defaultValue: 'Temático',
+						},
+						{
 							type: 'array',
 							name: 'syllabus',
 							label: 'Temario',
@@ -121,7 +138,7 @@ export const Course: CollectionConfig = {
 									label: 'Tema',
 									name: 'unit',
 									type: 'text',
-									maxLength: 64,
+									maxLength: 128,
 								},
 							],
 						},
