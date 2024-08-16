@@ -10,13 +10,24 @@ import { LandingNavbar } from '@/components/Layout/Navbar';
 import { getCachedPayload } from '@/lib/utils/localApi';
 import { prettyPrint } from '@/lib/utils/dev';
 
+/* Components */
+import Breadcrumbs from '@/components/Breadcrumbs';
+import { CourseCards } from './components/CourseCards';
+
+const breacrumbItems = [
+	{
+		text: 'Cursos',
+		href: '/cursos',
+	},
+];
+
 async function fetchCourses() {
 	const payload = await getPayloadHMR({
 		config: configPromise,
 	});
 	const cachedPayload = getCachedPayload(payload);
 
-	const courses = cachedPayload.find({ collection: 'courses' }).catch((e) => {
+	const courses = cachedPayload.find({ collection: 'courses', limit: 1000 }).catch((e) => {
 		prettyPrint(e);
 	});
 
@@ -27,6 +38,10 @@ export default async function CoursesPage() {
 	const courses = await fetchCourses();
 	// eslint-disable-next-line no-console
 	console.log(courses);
+
+	if (!courses) {
+		return null;
+	}
 
 	return (
 		<>
@@ -42,8 +57,8 @@ export default async function CoursesPage() {
 				</div>
 			</Hero>
 			<main className="container py-20">
-				{/* <Breadcrumbs items={breacrumbItems} />
-				<CourseCards courses={courses} /> */}
+				<Breadcrumbs items={breacrumbItems} />
+				<CourseCards courses={courses} />
 			</main>
 			<Footer />
 		</>

@@ -22,24 +22,24 @@ export async function trySendingResetPasswordEmail(
 	});
 
 	try {
-		// const result = await payload.sendEmail({
-		// 	collection: 'students',
-		// 	data: {
-		// 		email: formData.get('email') as string,
-		// 	},
-		// 	disableEmail: true,
-		// });
+		const result = await payload.sendEmail({
+			collection: 'students',
+			data: {
+				email: formData.get('email') as string,
+			},
+			disableEmail: true,
+		});
 
-		// console.log({ result });
+		console.log({ result });
 
-		// if (!result) {
-		// 	payload.logger.error('[trySendingResetPasswordEmail]:', result);
-		// 	return {
-		// 		success: false,
-		// 		error:
-		// 			'Error inesperado al intentar al enviar un e-mail con instrucciones. Por favor, intenta más tarde.',
-		// 	};
-		// }
+		if (!result) {
+			payload.logger.error('[trySendingResetPasswordEmail]:', result);
+			return {
+				success: false,
+				error:
+					'Error inesperado al intentar al enviar un e-mail con instrucciones. Por favor, intenta más tarde.',
+			};
+		}
 
 		return { success: true, data: { email: '' } };
 	} catch (error) {

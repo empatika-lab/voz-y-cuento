@@ -5,12 +5,14 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import sharp from 'sharp';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer';
+import nodemailerSendgrid from 'nodemailer-sendgrid';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
 /* Utils */
-import { cachedPayloadPlugin } from './lib/utils/localApi';
+import { cachedPayloadPlugin } from '@lib/utils/localApi';
 
 /* Uploads */
 import { uploadthingStorage } from '@payloadcms/storage-uploadthing';
@@ -19,10 +21,10 @@ import { uploadthingStorage } from '@payloadcms/storage-uploadthing';
 import { es } from '@payloadcms/translations/languages/es';
 
 /* Collections */
-import { Admin } from './collections/Admin';
-import { Course } from './collections/Course';
-import { Media } from './collections/Media';
-import { Student } from './collections/Student';
+import { Admin } from '@payload/collections/Admin';
+import { Course } from '@payload/collections/Course';
+import { Media } from '@payload/collections/Media';
+import { Student } from '@payload/collections/Student';
 
 export default buildConfig({
 	admin: {
@@ -31,19 +33,13 @@ export default buildConfig({
 	collections: [Admin, Course, Media, Student],
 	cookiePrefix: 'vyc',
 	editor: lexicalEditor(),
-	// email: nodemailerAdapter({
-	// 	defaultFromAddress: 'info@payloadcms.com',
-	// 	defaultFromName: 'Payload',
-	// 	// Nodemailer transportOptions
-	// 	transportOptions: {
-	// 		host: process.env.SMTP_HOST,
-	// 		port: 587,
-	// 		auth: {
-	// 			user: process.env.SMTP_USER,
-	// 			pass: process.env.SMTP_PASS,
-	// 		},
-	// 	},
-	// }),
+	email: nodemailerAdapter({
+		defaultFromAddress: 'vozycuentoweb@gmail.com',
+		defaultFromName: 'Payload',
+		transportOptions: nodemailerSendgrid({
+			apiKey: process.env.SENDGRID_API_KEY!,
+		}),
+	}),
 	i18n: {
 		fallbackLanguage: 'es',
 		supportedLanguages: { es },

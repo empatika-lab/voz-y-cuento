@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload';
+import { slugField } from '../fields/slug';
 
 export const Course: CollectionConfig = {
 	slug: 'courses',
@@ -28,6 +29,7 @@ export const Course: CollectionConfig = {
 							type: 'text',
 							maxLength: 100,
 						},
+						{ ...slugField() },
 						{
 							label: 'Es gratuito',
 							name: 'isFree',

@@ -92,7 +92,6 @@ export interface Admin {
 export interface Course {
   id: number;
   name: string;
-  slug?: string | null;
   isFree?: boolean | null;
   arsPrice: number;
   usdPrice: number;

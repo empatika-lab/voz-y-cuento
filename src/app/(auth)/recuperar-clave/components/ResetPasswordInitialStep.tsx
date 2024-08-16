@@ -46,7 +46,6 @@ export default function ResetPasswordInitialStep() {
 	const formRef = useRef<HTMLFormElement>(null);
 
 	/* Handlers */
-
 	if (isEmailSent) {
 		return (
 			<>
