@@ -1,6 +1,6 @@
 'use client';
 
-import { startTransition, useActionState, useRef, useState } from 'react';
+import { startTransition, useActionState, useEffect, useRef, useState } from 'react';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -14,7 +14,6 @@ import Button from '@/components/Button';
 /* Utils */
 import { cn } from '@/lib/utils/classNames';
 import ROUTES from '@/lib/utils/routes';
-import { isPayloadErrorResponse } from '@/lib/utils/error';
 
 /* Actions */
 import { trySendingResetPasswordEmail } from '../../actions/trySendingResetPasswordEmail';
@@ -31,7 +30,6 @@ export default function ResetPasswordInitialStep() {
 	const {
 		register,
 		handleSubmit,
-		setError,
 		clearErrors,
 		formState: { errors },
 	} = useForm<RecoverPasswordValidationSchema>({
@@ -45,7 +43,16 @@ export default function ResetPasswordInitialStep() {
 	/* Refs */
 	const formRef = useRef<HTMLFormElement>(null);
 
-	/* Handlers */
+	/* Effects */
+	useEffect(() => {
+		if (formState?.success) {
+			setIsEmailSent(true);
+			clearErrors();
+		}
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [formState]);
+
 	if (isEmailSent) {
 		return (
 			<>

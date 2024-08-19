@@ -29,7 +29,11 @@ export const loginValidationSchema = z.object({
 
 export type ValidationSchema = z.infer<typeof loginValidationSchema>;
 
-export default function LoginForm() {
+interface LoginFormProps {
+	email?: string;
+}
+
+export default function LoginForm({ email }: LoginFormProps) {
 	const [isPasswordHidden, setIsPasswordHidden] = useState(true);
 	const [formState, formAction, isSubmitting] = useActionState(tryLogin, null);
 
@@ -42,7 +46,7 @@ export default function LoginForm() {
 	} = useForm<ValidationSchema>({
 		resolver: zodResolver(loginValidationSchema),
 		defaultValues: {
-			email: '',
+			email: email ?? '',
 			password: '',
 		},
 	});

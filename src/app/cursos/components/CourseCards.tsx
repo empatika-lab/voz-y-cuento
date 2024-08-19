@@ -1,6 +1,6 @@
 /* Types */
 import type { PaginatedDocs } from 'payload';
-import type { Course } from '@/payload-types';
+import type { Course } from '@/payload/payload-types';
 
 /* Components */
 import CourseCard from './CourseCard';

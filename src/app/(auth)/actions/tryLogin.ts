@@ -2,10 +2,12 @@
 
 import configPromise from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { cookies } from 'next/headers';
+
+/* Types */
 
 import type { ServerActionResponse } from '@/lib/types/action';
-import type { Student } from '@/payload-types';
-import { cookies } from 'next/headers';
+import type { Student } from '@/payload/payload-types';
 
 interface PayloadLoginResponse {
 	exp?: number;

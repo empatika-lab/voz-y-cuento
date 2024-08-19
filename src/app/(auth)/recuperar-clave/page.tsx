@@ -5,6 +5,7 @@ import Logo from '@images/logo.png';
 
 /* Components */
 import ResetPasswordInitialStep from './components/ResetPasswordInitialStep';
+import ResetPasswordCreateNewPassword from './components/ResetPasswordCreateNewPassword';
 
 export type RecoverPasswordSteps = 'initial' | 'check-inbox' | 'new-password' | 'success';
 
@@ -40,9 +41,10 @@ export default function RecoverPassword({
 			<h1 className="mx-auto mt-8 text-center text-2xl font-bold">Recupera tu contraseña</h1>
 
 			{currentStep === 'initial' && <ResetPasswordInitialStep />}
-			{/* {currentStep === 'new-password' && searchParams?.code && searchParams?.email && (
+
+			{currentStep === 'new-password' && searchParams?.code && (
 				<ResetPasswordCreateNewPassword code={searchParams.code} email={searchParams.email} />
-			)}  */}
+			)}
 		</article>
 	);
 }

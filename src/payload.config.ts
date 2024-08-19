@@ -5,8 +5,6 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import sharp from 'sharp';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { nodemailerAdapter } from '@payloadcms/email-nodemailer';
-import nodemailerSendgrid from 'nodemailer-sendgrid';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -33,21 +31,13 @@ export default buildConfig({
 	collections: [Admin, Course, Media, Student],
 	cookiePrefix: 'vyc',
 	editor: lexicalEditor(),
-	email: nodemailerAdapter({
-		defaultFromAddress: 'vozycuentoweb@gmail.com',
-		defaultFromName: 'Payload',
-		transportOptions: nodemailerSendgrid({
-			apiKey: process.env.SENDGRID_API_KEY!,
-		}),
-	}),
 	i18n: {
 		fallbackLanguage: 'es',
 		supportedLanguages: { es },
 	},
 	secret: process.env.PAYLOAD_SECRET ?? '',
-
 	typescript: {
-		outputFile: path.resolve(dirname, 'payload-types.ts'),
+		outputFile: path.resolve(dirname, 'payload', 'payload-types.ts'),
 	},
 	db: postgresAdapter({
 		pool: {

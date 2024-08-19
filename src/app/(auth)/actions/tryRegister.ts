@@ -6,7 +6,7 @@ import { cookies } from 'next/headers';
 
 /* Types */
 import type { ServerActionResponse } from '@/lib/types/action';
-import type { Student } from '@/payload-types';
+import type { Student } from '@/payload/payload-types';
 
 /* Utils */
 import { isPayloadErrorResponse } from '@/lib/utils/error';

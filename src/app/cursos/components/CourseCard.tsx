@@ -5,7 +5,7 @@ import NextLink from 'next/link';
 import arrowRight from '@images/icons/arrow-right.svg';
 
 /* Types */
-import type { Course, Media } from '@/payload-types';
+import type { Course } from '@/payload/payload-types';
 
 /* Utils */
 // import { getImageUrl } from '@/lib/utils/images';
@@ -15,6 +15,7 @@ export interface CardCoursesProps {
 }
 
 export default function CardCourse({ course }: CardCoursesProps) {
+	// eslint-disable-next-line no-console
 	console.log({ course });
 	return (
 		<li
@@ -24,12 +25,12 @@ export default function CardCourse({ course }: CardCoursesProps) {
 			<NextLink href={`/cursos/${course.slug}`}>
 				{/* Card Image */}
 				<div className="relative h-[180px] w-full lg:h-[200px]">
-					{course.image && (
+					{course.image && typeof course.image !== 'number' && (
 						<NextImage
-							alt={(course.image as Media).alt}
+							alt={course.image.alt}
 							className="rounded-t-2xl object-cover"
 							fill
-							src={(course.image as Media).url!}
+							src={course.image.url!}
 						/>
 					)}
 

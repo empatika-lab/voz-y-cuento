@@ -2,6 +2,7 @@
 
 import configPromise from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
+import sendgrid, { type ClientResponse } from '@sendgrid/mail/';
 
 /* Types */
 import type { ServerActionResponse } from '@/lib/types/action';
@@ -21,19 +22,38 @@ export async function trySendingResetPasswordEmail(
 		config: configPromise,
 	});
 
+	const email = formData.get('email') as string;
+
 	try {
-		const result = await payload.sendEmail({
-			collection: 'students',
-			data: {
-				email: formData.get('email') as string,
-			},
+		const resetToken = await payload.forgotPassword({
 			disableEmail: true,
+			data: {
+				email,
+			},
+			collection: 'students',
 		});
 
-		console.log({ result });
+		if (!resetToken) {
+			payload.logger.error('[trySendingResetPasswordEmail]: could not get reset password token.');
+			return {
+				success: false,
+				error:
+					'Error inesperado al intentar al enviar un e-mail con instrucciones. Por favor, intenta más tarde.',
+			};
+		}
 
-		if (!result) {
-			payload.logger.error('[trySendingResetPasswordEmail]:', result);
+		sendgrid.setApiKey(process.env.SENDGRID_API_KEY!);
+		const sengridResponse = await sendgrid.send({
+			dynamicTemplateData: {
+				reset_url: `${process.env.NEXT_PUBLIC_WEB_URL}/recuperar-clave?step=new-password&code=${resetToken}&email=${email}`,
+			},
+			from: 'vozycuento@gmail.com',
+			subject: 'Voz y Cuento - Contraseña olvidada',
+			templateId: 'd-61f19b818b9f4b31a5f878aae103c54b',
+			to: email,
+		});
+
+		if (sengridResponse.at(0) && (sengridResponse.at(0) as ClientResponse).statusCode !== 202) {
 			return {
 				success: false,
 				error:
