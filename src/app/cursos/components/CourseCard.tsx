@@ -7,16 +7,11 @@ import arrowRight from '@images/icons/arrow-right.svg';
 /* Types */
 import type { Course } from '@/payload/payload-types';
 
-/* Utils */
-// import { getImageUrl } from '@/lib/utils/images';
-
 export interface CardCoursesProps {
 	course: Course;
 }
 
 export default function CardCourse({ course }: CardCoursesProps) {
-	// eslint-disable-next-line no-console
-	console.log({ course });
 	return (
 		<li
 			key={course.id}

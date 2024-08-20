@@ -29,7 +29,6 @@ export const Course: CollectionConfig = {
 							type: 'text',
 							maxLength: 100,
 						},
-						{ ...slugField() },
 						{
 							label: 'Es gratuito',
 							name: 'isFree',
@@ -148,5 +147,6 @@ export const Course: CollectionConfig = {
 				},
 			],
 		},
+		{ ...slugField('name') },
 	],
 };

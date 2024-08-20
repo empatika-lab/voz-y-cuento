@@ -13,7 +13,8 @@ const formatSlug =
 			return format(value);
 		}
 
-		if (operation === 'create') {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+		if (('slug' in originalDoc && originalDoc.slug === null) || operation === 'create') {
 			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 			const fallbackData = data?.[fallback] || originalDoc?.[fallback];
 
@@ -22,8 +23,7 @@ const formatSlug =
 			}
 		}
 
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-		return value;
+		return value as string;
 	};
 
 export default formatSlug;
