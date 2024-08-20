@@ -8,7 +8,7 @@ export default function FooterAdvert() {
 				<p className="mt-6 font-medium lg:text-2xl">
 					Visita{' '}
 					<a
-						className="text-red-600"
+						className="text-red-600 font-bold"
 						href="https://www.instagram.com/libreriavozycuento"
 						target="_blank"
 					>
