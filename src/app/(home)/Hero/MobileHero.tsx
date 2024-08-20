@@ -25,13 +25,13 @@ export default function MobileHero() {
 				</p>
 
 				<div aria-hidden className="absolute bottom-0 right-0 overflow-hidden">
-					<NextImage alt="" className="h-[224px] w-auto" src={Emilce} />
+					<NextImage alt="" className="h-[224px] w-auto" src={Emilce} priority />
 				</div>
 
-				<NextImage alt="" className="absolute right-[25%] top-[40%]" src={Bird1} />
-				<NextImage alt="" className="absolute right-0 top-[35%]" src={Bird2} />
-				<NextImage alt="" className="absolute bottom-1 right-0" src={Book} />
-				<NextImage alt="" className="absolute -bottom-5 right-[25%]" src={Books} />
+				<NextImage alt="" className="absolute right-[25%] top-[40%]" src={Bird1} priority />
+				<NextImage alt="" className="absolute right-0 top-[35%]" src={Bird2} priority />
+				<NextImage alt="" className="absolute bottom-1 right-0" src={Book} priority />
+				<NextImage alt="" className="absolute -bottom-5 right-[25%]" src={Books} priority />
 
 				<Button className="relative top-10 font-bold" href={ROUTES.EXPLORE} type="button">
 					¡Empecemos la aventura!

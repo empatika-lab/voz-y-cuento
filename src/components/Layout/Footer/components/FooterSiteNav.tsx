@@ -75,9 +75,9 @@ export default function FooterSideNav() {
 									<NextLink href={item.href}>{item.label}</NextLink>
 								</li>
 							) : (
-								<p key={item.label} className="text-sm lg:text-base">
+								<li key={item.label} className="text-sm lg:text-base">
 									{item.label}
-								</p>
+								</li>
 							),
 						)}
 					</ul>

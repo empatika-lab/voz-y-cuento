@@ -31,13 +31,24 @@ export default function DesktopHero() {
 					<NextImage alt="" className="h-auto w-[472px]" src={Emilce} />
 				</div>
 
-				<NextImage alt="" className="absolute right-[40%] top-[20%]" src={Bird1} />
-				<NextImage alt="" className="absolute right-[3%] top-[5%] 2xl:right-[17%]" src={Bird2} />
-				<NextImage alt="" className="absolute right-[3%] top-[30%] 2xl:right-[17%]" src={Book} />
+				<NextImage alt="" className="absolute right-[40%] top-[20%]" src={Bird1} priority />
+				<NextImage
+					alt=""
+					className="absolute right-[3%] top-[5%] 2xl:right-[17%]"
+					src={Bird2}
+					priority
+				/>
+				<NextImage
+					alt=""
+					className="absolute right-[3%] top-[30%] 2xl:right-[17%]"
+					src={Book}
+					priority
+				/>
 				<NextImage
 					alt=""
 					className="absolute -bottom-12 right-[33%] xl:right-[25%] 2xl:right-[33%] "
 					src={Books}
+					priority
 				/>
 
 				<Button
