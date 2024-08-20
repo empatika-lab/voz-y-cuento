@@ -63,7 +63,11 @@ export default function MobileLandingNavbar({
 					onClick={toggleMenu}
 					onKeyDown={toggleMenu}
 				>
-					<input className="absolute inset-0 appearance-none " type="checkbox" />
+					<input
+						className="absolute inset-0 appearance-none"
+						type="checkbox"
+						aria-label={isOpen ? 'Cerrar menù' : 'Abrir menú'}
+					/>
 					<NextImage
 						alt="Abrir Menú"
 						className={cn(
