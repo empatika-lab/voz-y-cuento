@@ -1,18 +1,16 @@
 import configPromise from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 
-/* Hero */
+/* Components */
+import { LandingNavbar } from '@/components/Layout/Navbar';
 import Footer from '@/components/Layout/Footer';
 import Hero from '@/components/Layout/Hero';
-import { LandingNavbar } from '@/components/Layout/Navbar';
+import Breadcrumbs from '@/components/Breadcrumbs';
+import { CourseCards } from './components/CourseCards';
 
 /* Utils */
 import { getCachedPayload } from '@/lib/utils/localApi';
 import { prettyPrint } from '@/lib/utils/dev';
-
-/* Components */
-import Breadcrumbs from '@/components/Breadcrumbs';
-import { CourseCards } from './components/CourseCards';
 
 const breacrumbItems = [
 	{
