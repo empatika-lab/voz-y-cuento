@@ -2,7 +2,7 @@
 
 import NextImage from 'next/image';
 import { startTransition, useActionState, useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -39,6 +39,7 @@ export default function LoginForm({ email }: LoginFormProps) {
 
 	/* Hooks */
 	const router = useRouter();
+	const params = useSearchParams();
 	const {
 		register,
 		handleSubmit,
@@ -58,9 +59,16 @@ export default function LoginForm({ email }: LoginFormProps) {
 	useEffect(() => {
 		if (formState?.success) {
 			// TODO: dispatch toast message
+			if (params.has('redirect')) {
+				const redirectionTarget = params.get('redirect');
+				if (redirectionTarget) {
+					router.push(redirectionTarget);
+					return;
+				}
+			}
 			router.push(ROUTES.DASHBOARD);
 		}
-	}, [formState, router]);
+	}, [formState, router, params]);
 
 	return (
 		<form

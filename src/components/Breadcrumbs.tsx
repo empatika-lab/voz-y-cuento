@@ -30,21 +30,21 @@ export default function Breadcrumbs({ items }: BreadcumbsProps) {
 				<NextImage alt="" height={24} src={chevronRight} width={24} />
 
 				{items.map((item, index, array) => (
-					<>
-						<li key={item.text} className="flex">
-							<NextLink
-								className={cn('font-medium', {
-									'line-clamp-1': index === array.length - 1,
-								})}
-								href={item.href}
-							>
-								{item.text}
-							</NextLink>
-						</li>
+					<li key={item.text} className="flex">
+						<NextLink
+							className={cn('font-medium', {
+								'line-clamp-1': index === array.length - 1,
+								'pl-3': index === array.length - 1,
+								'lg:pl-0': true,
+							})}
+							href={item.href}
+						>
+							{item.text}
+						</NextLink>
 						{index !== array.length - 1 && (
 							<NextImage alt="" height={24} src={chevronRight} width={24} />
 						)}
-					</>
+					</li>
 				))}
 			</ul>
 		</nav>

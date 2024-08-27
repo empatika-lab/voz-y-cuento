@@ -16,6 +16,7 @@ export interface Config {
     courses: Course;
     media: Media;
     students: Student;
+    pending: Pending;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -147,6 +148,17 @@ export interface Student {
   loginAttempts?: number | null;
   lockUntil?: string | null;
   password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pending".
+ */
+export interface Pending {
+  id: number;
+  course: number | Course;
+  student: number | Student;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

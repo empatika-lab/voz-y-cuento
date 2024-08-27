@@ -23,12 +23,13 @@ import { Admin } from '@payload/collections/Admin';
 import { Course } from '@payload/collections/Course';
 import { Media } from '@payload/collections/Media';
 import { Student } from '@payload/collections/Student';
+import { PendingPayments } from '@payload/collections/PendingPayments';
 
 export default buildConfig({
 	admin: {
 		user: Admin.slug,
 	},
-	collections: [Admin, Course, Media, Student],
+	collections: [Admin, Course, Media, Student, PendingPayments],
 	cookiePrefix: 'vyc',
 	editor: lexicalEditor(),
 	i18n: {

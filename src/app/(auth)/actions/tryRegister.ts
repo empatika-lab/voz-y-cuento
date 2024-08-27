@@ -10,6 +10,7 @@ import type { Student } from '@/payload/payload-types';
 
 /* Utils */
 import { isPayloadErrorResponse } from '@/lib/utils/error';
+import { SESSION_COOKIE_NAME } from '@/lib/utils/auth';
 
 interface PayloadRegisterResponse {
 	exp?: number;
@@ -56,7 +57,7 @@ export async function tryRegister(
 		cookieManager.set({
 			expires: new Date(loginResult.exp! * 1000),
 			httpOnly: true,
-			name: 'vyc-token',
+			name: SESSION_COOKIE_NAME,
 			path: '/',
 			sameSite: 'lax',
 			secure: process.env.NODE_ENV === 'production',
