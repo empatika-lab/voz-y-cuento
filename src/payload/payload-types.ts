@@ -17,6 +17,7 @@ export interface Config {
     media: Media;
     students: Student;
     pending: Pending;
+    events: Event;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -157,6 +158,20 @@ export interface Pending {
   id: number;
   course: number | Course;
   student: number | Student;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events".
+ */
+export interface Event {
+  id: number;
+  title?: string | null;
+  description?: string | null;
+  category: 'Familiar' | 'Maternal' | 'Infantil' | 'Institucion';
+  level: 'Inicial' | 'Primario' | 'Secundario';
+  image: number | Media;
   updatedAt: string;
   createdAt: string;
 }

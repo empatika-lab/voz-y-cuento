@@ -28,6 +28,7 @@ export const Course: CollectionConfig = {
 							required: true,
 							type: 'text',
 							maxLength: 100,
+							unique: true,
 						},
 						{
 							label: 'Es gratuito',
@@ -81,7 +82,6 @@ export const Course: CollectionConfig = {
 									type: 'textarea',
 									maxLength: 100,
 								},
-
 								{
 									admin: {
 										description:
