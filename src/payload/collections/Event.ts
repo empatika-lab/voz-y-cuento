@@ -15,6 +15,7 @@ export const Event: CollectionConfig = {
 			name: 'title',
 			label: 'Título',
 			unique: true,
+			required: true,
 			admin: {
 				description: 'El nombre del Evento para contratar.',
 				width: '100%',
@@ -24,6 +25,7 @@ export const Event: CollectionConfig = {
 			type: 'textarea',
 			name: 'description',
 			label: 'Descripción',
+			required: true,
 			maxLength: 220,
 			admin: {
 				description:
