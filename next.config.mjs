@@ -8,6 +8,9 @@ const nextConfig = {
 	experimental: {
 		ppr: true,
 	},
+	images: {
+		remotePatterns: [{ hostname: 'localhost', hostname: 'voz-y-cuento.vercel.app' }],
+	},
 };
 
 export default withPayload(nextConfig);

@@ -19,7 +19,7 @@ const breadcrumbItems = [
 	},
 ];
 
-export async function getEvents() {
+async function fetchEvents() {
 	const payload = await getPayloadHMR({
 		config: configPromise,
 	});
@@ -34,13 +34,11 @@ export async function getEvents() {
 
 export default async function HireMe() {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const events = await getEvents();
+	const events = await fetchEvents();
 
 	if (!events) {
 		return null;
 	}
-
-	console.log(events);
 
 	return (
 		<>

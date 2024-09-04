@@ -24,7 +24,7 @@ export default function HireMeCard({ event }: HireMeCardProps) {
 					</div>
 				</div>
 				<NextImage
-					src={(event.image as Media).url!}
+					src={`${process.env.NEXT_PUBLIC_WEB_URL}${(event.image as Media).url}`}
 					alt={event.title}
 					fill
 					className="rounded-[20px] object-center"
