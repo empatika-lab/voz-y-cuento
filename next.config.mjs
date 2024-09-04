@@ -9,7 +9,10 @@ const nextConfig = {
 		ppr: true,
 	},
 	images: {
-		remotePatterns: [{ hostname: 'localhost', hostname: 'voz-y-cuento.vercel.app' }],
+		remotePatterns: [
+			{ hostname: 'localhost', port: '3000' },
+			{ hostname: 'voz-y-cuento.vercel.app' },
+		],
 	},
 };
 

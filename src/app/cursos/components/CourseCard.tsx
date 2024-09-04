@@ -25,14 +25,14 @@ export default function CardCourse({ course }: CardCoursesProps) {
 							alt={course.image.alt}
 							className="rounded-t-2xl object-cover"
 							fill
-							src={course.image.url!}
+							src={`${process.env.NEXT_PUBLIC_WEB_URL}${course.image.url!}`}
 						/>
 					)}
 
 					{/* Category Badge */}
 					{course.category && (
 						<aside className="absolute right-2 top-2 rounded-full bg-cyan-100 px-4 py-2 font-bold text-black">
-							{course.category}!
+							{course.category}
 						</aside>
 					)}
 

@@ -34,8 +34,6 @@ async function fetchCourses() {
 
 export default async function CoursesPage() {
 	const courses = await fetchCourses();
-	// eslint-disable-next-line no-console
-	console.log(courses);
 
 	if (!courses) {
 		return null;
