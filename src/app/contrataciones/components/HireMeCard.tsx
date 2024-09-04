@@ -19,9 +19,6 @@ export default function HireMeCard({ event }: HireMeCardProps) {
 						width={400}
 						height={320}
 					/>
-					<div className=" w-full h-full flex items-center justify-center">
-						<h1 className="text-xl font-bold">{event.title}</h1>
-					</div>
 				</div>
 				<NextImage
 					src={`${process.env.NEXT_PUBLIC_WEB_URL}${(event.image as Media).url}`}
