@@ -11,6 +11,7 @@ import Footer from '@/components/Layout/Footer';
 import Hero from '@/components/Layout/Hero';
 import { LandingNavbar } from '@/components/Layout/Navbar';
 import HireMeCard from './components/HireMeCard';
+import Button from '@/components/Button';
 
 const breadcrumbItems = [
 	{
@@ -51,13 +52,20 @@ export default async function HireMe() {
 				</div>
 			</Hero>
 
-			<main className="container py-20">
+			<main className="container py-20 w-full flex flex-col gap-10">
 				<Breadcrumbs items={breadcrumbItems} />
 				<ul className="flex flex-col lg:flex-row mt-10 lg:mt-12 gap-10 item-center justify-center">
 					{events.docs.map((event) => {
 						return <HireMeCard event={event} key={event.id} />;
 					})}
 				</ul>
+
+				<Button
+					className="mt-2 mx-auto text-center"
+					href="mailto:emibrusant@gmail.com?subject=Quiero%20Contratarte"
+				>
+					Contactame
+				</Button>
 			</main>
 			<Footer />
 		</>
