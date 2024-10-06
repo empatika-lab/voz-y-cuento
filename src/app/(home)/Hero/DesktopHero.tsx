@@ -56,7 +56,7 @@ export default function DesktopHero() {
 					href={ROUTES.EXPLORE}
 					type="button"
 				>
-					¡Empecemos la aventura!
+					Ver Cursos
 				</Button>
 			</div>
 		</header>
