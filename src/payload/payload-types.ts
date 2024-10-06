@@ -18,6 +18,7 @@ export interface Config {
     students: Student;
     pending: Pending;
     events: Event;
+    'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -172,6 +173,50 @@ export interface Event {
   category: 'Familiar' | 'Maternal' | 'Infantil' | 'Institucion';
   level: 'Inicial' | 'Primario' | 'Secundario';
   image: number | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-locked-documents".
+ */
+export interface PayloadLockedDocument {
+  id: number;
+  document?:
+    | ({
+        relationTo: 'admins';
+        value: number | Admin;
+      } | null)
+    | ({
+        relationTo: 'courses';
+        value: number | Course;
+      } | null)
+    | ({
+        relationTo: 'media';
+        value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'students';
+        value: number | Student;
+      } | null)
+    | ({
+        relationTo: 'pending';
+        value: number | Pending;
+      } | null)
+    | ({
+        relationTo: 'events';
+        value: number | Event;
+      } | null);
+  globalSlug?: string | null;
+  user:
+    | {
+        relationTo: 'admins';
+        value: number | Admin;
+      }
+    | {
+        relationTo: 'students';
+        value: number | Student;
+      };
   updatedAt: string;
   createdAt: string;
 }

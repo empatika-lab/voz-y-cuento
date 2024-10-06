@@ -20,6 +20,7 @@ export const Student: CollectionConfig = {
 			name: 'name',
 			type: 'text',
 			label: 'Nombre y Apellido',
+			saveToJWT: true,
 		},
 		{
 			label: 'Whatsapp',

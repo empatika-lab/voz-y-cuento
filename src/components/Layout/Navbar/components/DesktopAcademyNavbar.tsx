@@ -4,7 +4,10 @@ import NextLink from 'next/link';
 /* Assets */
 import Logo from '@images/logo.png';
 
-export default function DesktopLandingNavbar({
+/* Components */
+// import EnterDashboardButton from './EnterDashboard.client';
+
+export default function DesktopAcademyNavbar({
 	navItems,
 }: {
 	navItems: { label: string; href: string }[];
@@ -31,6 +34,8 @@ export default function DesktopLandingNavbar({
 						</li>
 					))}
 				</ul>
+
+				<div className="flex-1">HOLA</div>
 			</div>
 		</nav>
 	);

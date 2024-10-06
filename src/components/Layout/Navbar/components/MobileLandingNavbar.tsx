@@ -44,7 +44,7 @@ export default function MobileLandingNavbar({
 			}}
 		>
 			<div className="container flex items-center justify-between">
-				<Link href={path.includes(ROUTES.DASHBOARD) ? ROUTES.DASHBOARD : ROUTES.HOME}>
+				<Link href={path.includes('escuela') ? ROUTES.ACADEMY.HOME : ROUTES.HOME}>
 					{path === '/' ? (
 						<NextImage alt="Volver al Inicio" className="h-9 w-auto" priority src={Logo} />
 					) : (

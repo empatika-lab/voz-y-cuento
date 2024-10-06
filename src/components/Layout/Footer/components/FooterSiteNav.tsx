@@ -17,7 +17,7 @@ const footerLinks = [
 			},
 			{
 				label: 'Cursos',
-				href: ROUTES.DASHBOARD,
+				href: ROUTES.EXPLORE,
 			},
 			{
 				label: 'Contrataciones',

@@ -26,7 +26,7 @@ async function checkIfLogged(req: NextRequest) {
 		});
 		if (!isValid) return false;
 		return true;
-	} catch (error) {
+	} catch {
 		return false;
 	}
 }
@@ -39,7 +39,7 @@ export async function middleware(req: NextRequest) {
 	if (isLoggedIn) {
 		if (isProtected) return NextResponse.next();
 
-		return NextResponse.redirect(new URL(ROUTES.DASHBOARD, req.url));
+		return NextResponse.redirect(new URL(ROUTES.ACADEMY.HOME, req.url));
 	}
 
 	if (!isLoggedIn && isProtected) {

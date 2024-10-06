@@ -1,3 +1,5 @@
+import { use } from 'react';
+
 import NextImage from 'next/image';
 
 /* Assets */
@@ -12,16 +14,18 @@ export type RecoverPasswordSteps = 'initial' | 'check-inbox' | 'new-password' | 
 export default function RecoverPassword({
 	searchParams,
 }: {
-	searchParams?: Record<string, string>;
+	searchParams: Promise<{ step?: string; code?: string; email: string }>;
 }) {
+	const { step, code, email } = use(searchParams);
+
 	/* Helpers */
 	function getCurrentStep(): RecoverPasswordSteps {
-		if (!searchParams?.step) {
+		if (!step) {
 			return 'initial';
 		}
 
-		if (searchParams.step === 'check-inbox' || searchParams.step === 'new-password') {
-			return searchParams.step;
+		if (step === 'check-inbox' || step === 'new-password') {
+			return step;
 		}
 
 		return 'initial';
@@ -42,8 +46,8 @@ export default function RecoverPassword({
 
 			{currentStep === 'initial' && <ResetPasswordInitialStep />}
 
-			{currentStep === 'new-password' && searchParams?.code && (
-				<ResetPasswordCreateNewPassword code={searchParams.code} email={searchParams.email} />
+			{currentStep === 'new-password' && code && email && (
+				<ResetPasswordCreateNewPassword code={code} email={email} />
 			)}
 		</article>
 	);

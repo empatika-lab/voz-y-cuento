@@ -32,7 +32,8 @@ export async function tryLogin(
 			},
 		});
 
-		const cookieManager = cookies();
+		const cookieManager = await cookies();
+
 		cookieManager.set({
 			expires: new Date(loginResult.exp! * 1000),
 			httpOnly: true,

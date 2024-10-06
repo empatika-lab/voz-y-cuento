@@ -1,6 +1,10 @@
 const ROUTES = {
 	HOME: '/',
-	DASHBOARD: '/escuela',
+	ACADEMY: {
+		HOME: '/escuela',
+		EXPLORE: '/escuela/cursos',
+		MY_COURSES: '/escuela/mis-cursos',
+	},
 	ABOUT: '/mi-historia',
 	HIRE: '/contrataciones',
 	EXPLORE: '/cursos',

@@ -18,7 +18,7 @@ export async function decode(jwt: string) {
 
 	try {
 		return await validateJWT('HS256', base64StringToUInt8Array(process.env.PAYLOAD_SECRET!), jwt);
-	} catch (error) {
+	} catch {
 		return false;
 	}
 }
