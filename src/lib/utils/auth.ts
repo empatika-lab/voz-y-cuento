@@ -31,8 +31,6 @@ export function getUserFromJWT(jwt: string) {
 		email: payload.email,
 		name: payload.name,
 	};
-
-	return null;
 }
 
 export const SESSION_COOKIE_NAME = 'vyc-token';

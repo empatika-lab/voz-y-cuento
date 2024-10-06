@@ -11,7 +11,9 @@ export const Student: CollectionConfig = {
 		singular: 'Alumno',
 		plural: 'Alumnos',
 	},
-	auth: true,
+	auth: {
+		maxLoginAttempts: 15,
+	},
 	fields: [
 		// Email added by default
 		// Add more fields as needed
