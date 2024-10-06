@@ -68,7 +68,7 @@ export default function RegisterForm() {
 	useEffect(() => {
 		if (formState?.success) {
 			// TODO: dispatch toast message
-			router.push(ROUTES.ACADEMY.HOME);
+			router.push(ROUTES.ACADEMY.MY_COURSES);
 		}
 	}, [formState, router]);
 

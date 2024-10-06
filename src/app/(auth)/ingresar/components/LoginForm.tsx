@@ -66,7 +66,7 @@ export default function LoginForm({ email }: LoginFormProps) {
 					return;
 				}
 			}
-			router.push(ROUTES.ACADEMY.HOME);
+			router.push(ROUTES.ACADEMY.MY_COURSES);
 		}
 	}, [formState, router, params]);
 

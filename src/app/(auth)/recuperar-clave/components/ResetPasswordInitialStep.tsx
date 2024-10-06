@@ -60,7 +60,11 @@ export default function ResetPasswordInitialStep() {
 					Revisa la bandeja de entrada del correo electrónico que ingresaste. <br />
 					Recibirás allí instrucciones para generar una nueva contraseña.
 				</p>
-				<Button className="mt-10 w-full text-center" href={ROUTES.ACADEMY.HOME} variant="outline">
+				<Button
+					className="mt-10 w-full text-center"
+					href={ROUTES.ACADEMY.MY_COURSES}
+					variant="outline"
+				>
 					Regresar
 				</Button>
 			</>
@@ -115,7 +119,7 @@ export default function ResetPasswordInitialStep() {
 				</Button>
 			</form>
 
-			<Button className="w-full text-center" href={ROUTES.ACADEMY.HOME} variant="outline">
+			<Button className="w-full text-center" href={ROUTES.ACADEMY.MY_COURSES} variant="outline">
 				Regresar
 			</Button>
 		</>

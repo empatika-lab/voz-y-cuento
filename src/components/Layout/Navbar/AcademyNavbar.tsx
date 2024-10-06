@@ -15,11 +15,15 @@ export const navItems = [
 	},
 ];
 
-export function AcademyNavbar() {
+interface AcademyNavbarProps {
+	userName: string;
+}
+
+export function AcademyNavbar({ userName }: AcademyNavbarProps) {
 	return (
 		<>
 			{/* <MobileNavbar navItems={navItems} /> */}
-			<AcademyDesktopNavbar navItems={navItems} />
+			<AcademyDesktopNavbar navItems={navItems} userName={userName} />
 		</>
 	);
 }

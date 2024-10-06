@@ -3,27 +3,20 @@ import NextLink from 'next/link';
 
 /* Assets */
 import Logo from '@images/logo.png';
-
-/* Components */
-// import EnterDashboardButton from './EnterDashboard.client';
+import UserAvatar from '@images/icons/user.svg';
+import ChevronDownIcon from '@images/icons/chevron-down.svg';
 
 export default function DesktopAcademyNavbar({
 	navItems,
+	userName,
 }: {
 	navItems: { label: string; href: string }[];
+	userName: string;
 }) {
 	return (
-		<nav
-			className="relative z-10 hidden h-[96px] items-center justify-between lg:flex"
-			style={{
-				background:
-					'linear-gradient(0deg, rgba(248, 253, 253, 0.30) 0%, rgba(248, 253, 253, 0.30) 100%), linear-gradient(103deg, #B6E8E9 11.95%, #EADACA 53.96%, #F6B8B3 97.05%)',
-			}}
-		>
+		<nav className="relative z-10 hidden h-[96px] items-center justify-between lg:flex cursor-pointer">
 			<div className="container flex w-full items-center justify-between ">
-				<div className="w-1/4">
-					<NextImage alt="Volver al Inicio" className="h-9 w-auto" priority src={Logo} />
-				</div>
+				<NextImage alt="Volver al Inicio" className="h-9 w-auto" priority src={Logo} />
 
 				<ul className="mx-8 flex w-full items-center justify-center gap-8 xl:gap-10">
 					{navItems.map(({ label, href }) => (
@@ -35,7 +28,11 @@ export default function DesktopAcademyNavbar({
 					))}
 				</ul>
 
-				<div className="flex-1">HOLA</div>
+				<div className="flex-1 min-w-fit flex items-center gap-3">
+					<NextImage alt="Tu Avatar" src={UserAvatar} />
+					<p>{userName}</p>
+					<NextImage alt="Menú de opciones" src={ChevronDownIcon} />
+				</div>
 			</div>
 		</nav>
 	);

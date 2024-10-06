@@ -39,7 +39,7 @@ export async function middleware(req: NextRequest) {
 	if (isLoggedIn) {
 		if (isProtected) return NextResponse.next();
 
-		return NextResponse.redirect(new URL(ROUTES.ACADEMY.HOME, req.url));
+		return NextResponse.redirect(new URL(ROUTES.ACADEMY.MY_COURSES, req.url));
 	}
 
 	if (!isLoggedIn && isProtected) {

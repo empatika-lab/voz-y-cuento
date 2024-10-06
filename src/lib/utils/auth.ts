@@ -2,7 +2,7 @@ import 'server-only';
 
 import { sha256 } from 'oslo/crypto';
 import { encodeHex } from 'oslo/encoding';
-import { validateJWT } from 'oslo/jwt';
+import { parseJWT, validateJWT } from 'oslo/jwt';
 
 export async function getPayloadSecret(): Promise<string> {
 	const data = new TextEncoder().encode(process.env.PAYLOAD_SECRET);
@@ -21,6 +21,18 @@ export async function decode(jwt: string) {
 	} catch {
 		return false;
 	}
+}
+
+export function getUserFromJWT(jwt: string) {
+	const payload = parseJWT(jwt)?.payload as { id: string; email: string; name: string };
+
+	return {
+		id: payload.id,
+		email: payload.email,
+		name: payload.name,
+	};
+
+	return null;
 }
 
 export const SESSION_COOKIE_NAME = 'vyc-token';

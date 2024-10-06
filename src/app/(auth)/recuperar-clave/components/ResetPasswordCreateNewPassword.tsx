@@ -208,7 +208,7 @@ export default function ResetPasswordCreateNewPassword({
 				</Button>
 			</form>
 
-			<Button className="w-full text-center" href={ROUTES.ACADEMY.HOME} variant="outline">
+			<Button className="w-full text-center" href={ROUTES.ACADEMY.MY_COURSES} variant="outline">
 				Regresar
 			</Button>
 		</>
