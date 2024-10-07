@@ -140,6 +140,7 @@ export interface Student {
   id: number;
   name?: string | null;
   whatsapp?: string | null;
+  courses?: (number | Course)[] | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -159,6 +160,7 @@ export interface Pending {
   id: number;
   course: number | Course;
   student: number | Student;
+  isPaid: boolean;
   updatedAt: string;
   createdAt: string;
 }

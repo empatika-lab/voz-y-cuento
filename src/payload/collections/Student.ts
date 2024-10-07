@@ -32,5 +32,15 @@ export const Student: CollectionConfig = {
 				description: 'Número de Whatsapp para contactar.',
 			},
 		},
+		{
+			type: 'relationship',
+			relationTo: 'courses',
+			name: 'courses',
+			hasMany: true,
+			label: 'Cursos',
+			admin: {
+				description: 'Cursos a los que el alumno pertenece.',
+			},
+		},
 	],
 };
