@@ -132,7 +132,8 @@ export const Course: CollectionConfig = {
 							minRows: 1,
 							labels: { plural: 'Temas', singular: 'Tema' },
 							admin: {
-								description: 'Se muestra en el detalle del Curso.',
+								description:
+									'Un punteo de los temas que se ven en el curso (no van los títulos del los videos, sólo de qué trata cada curso). Se muestra en el detalle del Curso.',
 							},
 							fields: [
 								{
