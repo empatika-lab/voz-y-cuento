@@ -2,7 +2,7 @@
 
 import NextImage from 'next/image';
 import { startTransition, useActionState, useEffect, useRef, useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -31,15 +31,16 @@ export type ValidationSchema = z.infer<typeof loginValidationSchema>;
 
 interface LoginFormProps {
 	email?: string;
+	redirect?: string;
 }
 
-export default function LoginForm({ email }: LoginFormProps) {
+export default function LoginForm({ email, redirect }: LoginFormProps) {
 	const [isPasswordHidden, setIsPasswordHidden] = useState(true);
 	const [formState, formAction, isSubmitting] = useActionState(tryLogin, null);
 
 	/* Hooks */
 	const router = useRouter();
-	const params = useSearchParams();
+
 	const {
 		register,
 		handleSubmit,
@@ -58,17 +59,13 @@ export default function LoginForm({ email }: LoginFormProps) {
 	/* Effects */
 	useEffect(() => {
 		if (formState?.success) {
-			// TODO: dispatch toast message
-			if (params.has('redirect')) {
-				const redirectionTarget = params.get('redirect');
-				if (redirectionTarget) {
-					router.push(redirectionTarget);
-					return;
-				}
+			if (redirect) {
+				router.push(`${ROUTES.ACADEMY.MY_COURSES}?redirect=${redirect}`);
+			} else {
+				router.push(ROUTES.ACADEMY.MY_COURSES);
 			}
-			router.push(ROUTES.ACADEMY.MY_COURSES);
 		}
-	}, [formState, router, params]);
+	}, [formState, router, redirect]);
 
 	return (
 		<form

@@ -3,6 +3,13 @@ import NextLink from 'next/link';
 
 /* Assets */
 import Logo from '@images/logo.png';
+import MortarboardIcon from '@images/icons/mortarboard.svg';
+
+/* Components */
+import Button from '@/components/Button';
+
+/* Utils */
+import ROUTES from '@/lib/utils/routes';
 
 export default function DesktopLandingNavbar({
 	navItems,
@@ -18,11 +25,11 @@ export default function DesktopLandingNavbar({
 			}}
 		>
 			<div className="container flex w-full items-center justify-between ">
-				<div className="w-1/4">
+				<div className="w-fit">
 					<NextImage alt="Volver al Inicio" className="h-9 w-auto" priority src={Logo} />
 				</div>
 
-				<ul className="mx-8 flex w-full items-center justify-center gap-8 xl:gap-10">
+				<ul className="flex flex-1 mx-auto items-center justify-center gap-8 xl:gap-10">
 					{navItems.map(({ label, href }) => (
 						<li key={label} className="text-sm font-bold text-gray-900 xl:text-base">
 							<NextLink className="hover:text-cyan-800" href={href}>
@@ -31,6 +38,14 @@ export default function DesktopLandingNavbar({
 						</li>
 					))}
 				</ul>
+
+				<Button
+					variant="outline"
+					className="flex items-center w-fit gap-1 font-bold"
+					href={ROUTES.LOGIN}
+				>
+					Ingresar a la Escuela <NextImage alt="Ingresar a la Escuela" src={MortarboardIcon} />
+				</Button>
 			</div>
 		</nav>
 	);

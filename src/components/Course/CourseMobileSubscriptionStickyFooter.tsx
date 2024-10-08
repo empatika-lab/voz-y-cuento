@@ -57,7 +57,7 @@ export default function CourseMobileSubscriptionStickyFooter({
 				<div className="flex items-center py-3 pr-5">
 					<Button
 						className="flex items-center justify-center gap-2 bg-pink-400"
-						href={`${ROUTES.LOGIN}?redirect=escuela/cursos/${course.slug}`}
+						href={`${ROUTES.LOGIN}?redirect=cursos/${course.slug}`}
 					>
 						Inscribirme
 					</Button>

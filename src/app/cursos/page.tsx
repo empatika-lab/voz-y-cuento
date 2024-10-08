@@ -6,7 +6,7 @@ import { LandingNavbar } from '@/components/Layout/Navbar';
 import Footer from '@/components/Layout/Footer';
 import Hero from '@/components/Layout/Hero';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import { CourseCards } from './components/CourseCards';
+import { CourseCards } from '@/components/Course/CourseCards';
 
 /* Utils */
 import { getCachedPayload } from '@/lib/utils/localApi';

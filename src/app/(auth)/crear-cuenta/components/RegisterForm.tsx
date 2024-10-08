@@ -38,7 +38,7 @@ const registerValidationSchema = z
 	});
 export type ValidationSchema = z.infer<typeof registerValidationSchema>;
 
-export default function RegisterForm() {
+export default function RegisterForm({ redirect }: { redirect?: string }) {
 	const [isPasswordHidden, setIsPasswordHidden] = useState(true);
 	const [isConfirmPasswordHidden, setIsConfirmPasswordHidden] = useState(true);
 	const [formState, formAction, isSubmitting] = useActionState(tryRegister, null);
@@ -67,10 +67,13 @@ export default function RegisterForm() {
 	/* Effects */
 	useEffect(() => {
 		if (formState?.success) {
-			// TODO: dispatch toast message
-			router.push(ROUTES.ACADEMY.MY_COURSES);
+			if (redirect) {
+				router.push(`${ROUTES.ACADEMY.MY_COURSES}?redirect=${redirect}`);
+			} else {
+				router.push(ROUTES.ACADEMY.MY_COURSES);
+			}
 		}
-	}, [formState, router]);
+	}, [formState, router, redirect]);
 
 	useEffect(() => {
 		if (formState && !formState.success && formState.error) {

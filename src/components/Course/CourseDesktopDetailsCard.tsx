@@ -13,9 +13,6 @@ import type { Course } from '@/payload/payload-types';
 /* Utils */
 import ROUTES from '@/lib/utils/routes';
 
-/* Actions */
-// import handleCourseSubscription from '@/app/cursos/[slug]/actions/handleCourseSubscription.action';
-
 interface CourseDesktopDetailsCardProps {
 	course: Course;
 	features: { id: number; label: string; icon: string }[];
@@ -64,7 +61,7 @@ export default function CourseDesktopDetailsCard({
 
 					<Button
 						className="flex items-center justify-center gap-2 bg-pink-400"
-						href={`${ROUTES.LOGIN}?redirect=escuela/cursos/${course.slug}`}
+						href={`${ROUTES.LOGIN}?redirect=cursos/${course.slug}`}
 					>
 						Inscribirme
 					</Button>
@@ -72,65 +69,4 @@ export default function CourseDesktopDetailsCard({
 			</article>
 		);
 	}
-
-	// return (
-	// 	<article>
-	// 		<div className="bg-cyan-25 rounded-t-2xl shadow-xl">
-	// 			<h2 className="text-pretty px-8 pt-8 text-center text-2xl font-bold">
-	// 				Curso <br /> {course.name}
-	// 			</h2>
-
-	// 			{/* Características de los cursos */}
-	// 			<ul className="mt-8 px-8 pb-8">
-	// 				{features.map((feature) => {
-	// 					return (
-	// 						<li key={feature.id} className="mt-4 flex gap-4 font-medium [&:first-of-type]:mt-0">
-	// 							<NextImage alt={feature.label} height={16} src={feature.icon} width={16} />
-	// 							<p>{feature.label}</p>
-	// 						</li>
-	// 					);
-	// 				})}
-	// 			</ul>
-	// 		</div>
-
-	// 		{/* Inscripción */}
-	// 		<footer className="flex flex-col gap-8 rounded-b-2xl bg-pink-50 p-8 shadow-xl">
-	// 			{courseStudentStatus !== 'not-confirmed' && course.arsPrice && (
-	// 				<div className="flex justify-between gap-2">
-	// 					<p className="w-1/2 text-xl">Residentes de Argentina</p>
-	// 					<strong className="text-xl text-pink-900">ARS ${course.arsPrice}</strong>
-	// 				</div>
-	// 			)}
-
-	// 			{courseStudentStatus !== 'not-confirmed' && course.usdPrice && (
-	// 				<div className="flex justify-between gap-2">
-	// 					<p className="w-1/2 text-xl">Resto del mundo</p>
-	// 					<strong className="text-xl">USD ${course.usdPrice}</strong>
-	// 				</div>
-	// 			)}
-
-	// 			{courseStudentStatus === 'confirmed' && (
-	// 				<NextLink href={`/escuela/${course.slug}`}>
-	// 					<Button>Ir al Curso</Button>
-	// 				</NextLink>
-	// 			)}
-
-	// 			{courseStudentStatus === 'unsubscribed' && (
-	// 				<form action={handleCourseSubscription} className="flex items-center py-3 pr-5">
-	// 					<input name="course" type="hidden" value={course.id} />
-	// 					<input name="slug" type="hidden" value={course.slug} />
-
-	// 					<EnrollButton />
-	// 				</form>
-	// 			)}
-
-	// 			{courseStudentStatus === 'not-confirmed' && (
-	// 				<div className="flex items-center px-5 py-3 text-center">
-	// 					Ya te inscribiste a este curso pero no hemos recibido tu comprobante de pago o no lo
-	// 					hemos procesado aún.
-	// 				</div>
-	// 			)}
-	// 		</footer>
-	// 	</article>
-	// );
 }

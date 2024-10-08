@@ -7,18 +7,18 @@ import LoginFooter from './components/LoginFooter';
 import LoginBackButton from './components/LoginBackButton';
 
 interface LoginProps {
-	searchParams: Promise<{ email?: string }>;
+	searchParams: Promise<{ email?: string; redirect?: string }>;
 }
 
 export default function Login({ searchParams }: LoginProps) {
-	const { email } = use(searchParams);
+	const { email, redirect } = use(searchParams);
 
 	return (
 		<article className="bg-cyan-25 min-h-full flex items-center flex-col py-10">
 			<div className="max-w-[356px] px-5">
 				<LoginHeader />
-				<LoginForm email={email} />
-				<LoginFooter />
+				<LoginForm email={email} redirect={redirect} />
+				<LoginFooter redirect={redirect} />
 				<LoginBackButton />
 			</div>
 		</article>
