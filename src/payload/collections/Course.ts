@@ -121,7 +121,8 @@ export const Course: CollectionConfig = {
 							options: [
 								{ label: 'Introductorio', value: 'Introductorio' },
 								{ label: 'Temático', value: 'Temático' },
-								{ label: 'Laboratoio', value: 'Laboratorio' },
+								{ label: 'Laboratorio', value: 'Laboratorio' },
+								{ label: 'Seminario', value: 'Seminario' },
 							],
 							defaultValue: 'Temático',
 						},
