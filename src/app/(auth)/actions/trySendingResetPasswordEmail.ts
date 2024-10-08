@@ -1,5 +1,7 @@
 'use server';
 
+import 'server-only';
+
 import configPromise from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 import sendgrid, { type ClientResponse } from '@sendgrid/mail/';
