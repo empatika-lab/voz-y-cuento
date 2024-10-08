@@ -56,6 +56,10 @@ export const Event: CollectionConfig = {
 				{ label: 'Primario', value: 'Primario' },
 				{ label: 'Secundario', value: 'Secundario' },
 			],
+			// Only show if Category is equal to "Institución Educativa"
+			admin: {
+				condition: (_data, siblingData) => siblingData.category === 'Institucion',
+			},
 		},
 		{
 			name: 'image',

@@ -173,7 +173,7 @@ export interface Event {
   title: string;
   description: string;
   category: 'Familiar' | 'Maternal' | 'Infantil' | 'Institucion';
-  level: 'Inicial' | 'Primario' | 'Secundario';
+  level?: ('Inicial' | 'Primario' | 'Secundario') | null;
   image: number | Media;
   updatedAt: string;
   createdAt: string;
