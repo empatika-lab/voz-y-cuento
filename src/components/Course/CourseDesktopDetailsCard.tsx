@@ -12,6 +12,7 @@ import type { Course } from '@/payload/payload-types';
 
 /* Utils */
 import ROUTES from '@/lib/utils/routes';
+import { usePathname } from 'next/navigation';
 
 interface CourseDesktopDetailsCardProps {
 	course: Course;
@@ -26,6 +27,9 @@ export default function CourseDesktopDetailsCard({
 	features,
 	userIsAuthenticated,
 }: CourseDesktopDetailsCardProps) {
+	const pathname = usePathname();
+	const ctaText = pathname?.includes('escuela') ? 'Comprar' : 'Inscribirme';
+
 	if (!userIsAuthenticated) {
 		return (
 			<article>
@@ -63,7 +67,7 @@ export default function CourseDesktopDetailsCard({
 						className="flex items-center justify-center gap-2 bg-pink-400"
 						href={`${ROUTES.LOGIN}?redirect=cursos/${course.slug}`}
 					>
-						Inscribirme
+						{ctaText}
 					</Button>
 				</footer>
 			</article>
