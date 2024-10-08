@@ -7,6 +7,9 @@ export const { cachedPayloadPlugin, getCachedPayload } = buildCachedPayload({
 			findOneFields: ['slug'],
 			slug: 'courses',
 		},
+		{
+			slug: 'events',
+		},
 	],
 	loggerDebug: true,
 	// globals: [{ slug: 'header' }],
