@@ -16,6 +16,7 @@ import ROUTES from '@/lib/utils/routes';
 /* Types */
 import type { PropsWithClassName, CourseStudentStatus } from '@/lib/types';
 import type { Course } from '@/payload/payload-types';
+import { usePathname } from 'next/navigation';
 
 interface CourseMobileSubscriptionStickyFooterProps extends PropsWithClassName {
 	course: Course;
@@ -29,6 +30,9 @@ export default function CourseMobileSubscriptionStickyFooter({
 	// courseStudentStatus,
 	userIsAuthenticated,
 }: CourseMobileSubscriptionStickyFooterProps) {
+	const pathname = usePathname();
+	const ctaText = pathname?.includes('escuela') ? 'Comprar' : 'Inscribirme';
+
 	if (!userIsAuthenticated) {
 		return (
 			<footer
@@ -59,7 +63,7 @@ export default function CourseMobileSubscriptionStickyFooter({
 						className="flex items-center justify-center gap-2 bg-pink-400"
 						href={`${ROUTES.LOGIN}?redirect=cursos/${course.slug}`}
 					>
-						Inscribirme
+						{ctaText}
 					</Button>
 				</div>
 			</footer>

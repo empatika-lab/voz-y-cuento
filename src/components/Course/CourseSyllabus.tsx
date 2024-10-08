@@ -11,7 +11,7 @@ export default function CourseSyllbus({ syllabus }: CourseSyllbusProps) {
 
 	return (
 		<article>
-			<h2 className="py-8 text-2xl font-bold lg:py-8">¿Qué veré en este curso?</h2>
+			<h2 className="py-8 text-2xl font-bold lg:py-8">¿Qué te propongo?</h2>
 
 			<ul className="flex flex-col gap-5 pl-4 lg:gap-10">
 				{syllabus.map(({ id, unit }) => {

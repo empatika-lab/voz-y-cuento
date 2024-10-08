@@ -1,8 +1,10 @@
 /* Components */
 import AcademyDesktopNavbar from '@/components/Layout/Navbar/components/DesktopAcademyNavbar';
+import MobileAcademyNavbar from './components/MobileAcademyNavbar';
 
 /* Actions */
 import { tryLogout } from '@/app/(auth)/actions/tryLogout';
+
 /* Utils */
 import ROUTES from '@/lib/utils/routes';
 
@@ -24,7 +26,7 @@ interface AcademyNavbarProps {
 export function AcademyNavbar({ userName }: AcademyNavbarProps) {
 	return (
 		<>
-			{/* <MobileNavbar navItems={navItems} /> */}
+			<MobileAcademyNavbar navItems={navItems} userName={userName} tryLogout={tryLogout} />
 			<AcademyDesktopNavbar navItems={navItems} userName={userName} tryLogout={tryLogout} />
 		</>
 	);

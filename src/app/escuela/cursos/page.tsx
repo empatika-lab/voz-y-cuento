@@ -1,16 +1,16 @@
 import { cookies } from 'next/headers';
-import configPromise from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
+import configPromise from '@payload-config';
 
 /* Utils */
 import { getUserFromJWT, SESSION_COOKIE_NAME } from '@/lib/utils/auth';
 
 /* Components */
 import { AcademyNavbar } from '@/components/Layout/Navbar';
+import { CourseCards } from '@/components/Course/CourseCards';
 import Footer from '@/components/Layout/Footer';
 import Hero from '@/components/Layout/Hero';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import { CourseCards } from '@/components/Course/CourseCards';
 
 /* Utils */
 import { getCachedPayload } from '@/lib/utils/localApi';

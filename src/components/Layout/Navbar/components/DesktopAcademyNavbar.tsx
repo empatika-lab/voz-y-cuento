@@ -48,7 +48,7 @@ export default function DesktopAcademyNavbar({
 	}, []);
 
 	return (
-		<nav className="relative z-10 hidden h-[96px] items-center justify-between lg:flex">
+		<nav className="relative z-10 hidden h-[96px] items-center justify-between lg:flex bg-cyan-50">
 			<div className="container flex w-full items-center justify-between ">
 				<NextImage alt="Volver al Inicio" className="h-9 w-auto" priority src={Logo} />
 

@@ -34,7 +34,7 @@ export default function MobileHero() {
 				<NextImage alt="" className="absolute -bottom-5 right-[25%]" src={Books} priority />
 
 				<Button className="relative top-10 font-bold" href={ROUTES.EXPLORE} type="button">
-					¡Empecemos la aventura!
+					Ver Cursos
 				</Button>
 			</div>
 		</header>

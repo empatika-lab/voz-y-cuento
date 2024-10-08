@@ -1,13 +1,15 @@
 import configPromise from '@payload-config';
 import { notFound } from 'next/navigation';
+import { cookies } from 'next/headers';
 
 /* Utils */
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { prettyPrint } from '@/lib/utils/dev';
 import { getCachedPayload } from '@/lib/utils/localApi';
+import { getUserFromJWT, SESSION_COOKIE_NAME } from '@/lib/utils/auth';
 
 /* Components */
-import { LandingNavbar } from '@/components/Layout/Navbar/LandingNavbar';
+import { AcademyNavbar } from '@/components/Layout/Navbar';
 import Hero from '@/components/Layout/Hero';
 import Footer from '@/components/Layout/Footer';
 import CourseMobileView from '@/components/Course/CourseMobileView';
@@ -84,8 +86,11 @@ export default async function CourseDetailsPage({ params }: CourseDetailsPagePro
 
 	if (!course) {
 		notFound();
-		return null;
 	}
+
+	const cookieStore = await cookies();
+
+	const user = getUserFromJWT(cookieStore.get(SESSION_COOKIE_NAME)!.value);
 
 	/* Derived State */
 	const breadcrumbItems = [
@@ -101,7 +106,7 @@ export default async function CourseDetailsPage({ params }: CourseDetailsPagePro
 
 	return (
 		<>
-			<LandingNavbar />
+			<AcademyNavbar userName={user.name} />
 			<Hero>
 				<div className="container pt-24">
 					<h1 className="font-display relative text-4xl font-normal text-white lg:text-8xl">
