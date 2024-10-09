@@ -61,8 +61,8 @@ export default async function AcademyPage() {
 				</div>
 			</Hero>
 			<main className="container py-20">
-				<Breadcrumbs items={breacrumbItems} />
-				<CourseCards courses={courses} />
+				<Breadcrumbs items={breacrumbItems} isAcademy />
+				<CourseCards courses={courses} isAcademy />
 			</main>
 			<Footer />
 		</>

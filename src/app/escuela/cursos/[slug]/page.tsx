@@ -121,6 +121,7 @@ export default async function CourseDetailsPage({ params }: CourseDetailsPagePro
 					courseStudentStatus="unsubscribed"
 					features={features}
 					userIsAuthenticated={false}
+					isAcademy
 				/>
 				<CourseDesktopView
 					breacrumbItems={breadcrumbItems}
@@ -128,6 +129,7 @@ export default async function CourseDetailsPage({ params }: CourseDetailsPagePro
 					courseStudentStatus="unsubscribed"
 					features={features}
 					userIsAuthenticated={false}
+					isAcademy
 				/>
 			</main>
 			<Footer className="pb-32" />

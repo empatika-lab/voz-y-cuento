@@ -25,6 +25,7 @@ interface CourseMobileViewProps {
 		icon: string;
 	}[];
 	userIsAuthenticated: boolean;
+	isAcademy?: boolean;
 }
 
 export default function CourseMobileView({
@@ -33,11 +34,12 @@ export default function CourseMobileView({
 	features,
 	userIsAuthenticated = false,
 	courseStudentStatus = 'unsubscribed',
+	isAcademy = false,
 }: CourseMobileViewProps) {
 	return (
 		<div className="lg:hidden">
 			<div className="px-5 py-[132px]">
-				<Breadcrumbs items={breacrumbItems} />
+				<Breadcrumbs items={breacrumbItems} isAcademy={isAcademy} />
 
 				{/* Descripción del curso */}
 				<CourseLongDescription description={course.longDescription} />

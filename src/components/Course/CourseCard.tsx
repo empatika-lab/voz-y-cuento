@@ -9,15 +9,16 @@ import type { Course } from '@/payload/payload-types';
 
 export interface CardCoursesProps {
 	course: Course;
+	isAcademy?: boolean;
 }
 
-export default function CardCourse({ course }: CardCoursesProps) {
+export default function CardCourse({ course, isAcademy = false }: CardCoursesProps) {
 	return (
 		<li
 			key={course.id}
 			className="flex w-[320px] flex-col rounded-2xl border border-solid border-gray-900 bg-white shadow-lg transition-transform ease-in-out will-change-transform hover:scale-[1.03] active:border-cyan-600 lg:w-[356px]"
 		>
-			<NextLink href={`/cursos/${course.slug}`}>
+			<NextLink href={isAcademy ? `/escuela/cursos/${course.slug}` : `/cursos/${course.slug}`}>
 				{/* Card Image */}
 				<div className="relative h-[180px] w-full lg:h-[200px]">
 					{course.image && typeof course.image !== 'number' && (

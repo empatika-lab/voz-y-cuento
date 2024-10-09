@@ -7,14 +7,15 @@ import chevronRight from '@images/icons/chevron-right.svg';
 /* Utils */
 import { cn } from '@/lib/utils/classNames';
 
-interface BreadcumbsProps {
+interface BreadcrumbsProps {
 	items: {
 		text: string;
 		href: string;
 	}[];
+	isAcademy?: boolean;
 }
 
-export default function Breadcrumbs({ items }: BreadcumbsProps) {
+export default function Breadcrumbs({ items, isAcademy = false }: BreadcrumbsProps) {
 	if (!items.length) {
 		return null;
 	}
@@ -35,7 +36,7 @@ export default function Breadcrumbs({ items }: BreadcumbsProps) {
 							className={cn('font-medium max-w-[200px] lg:max-w-none', {
 								'line-clamp-1': index === array.length - 1,
 							})}
-							href={item.href}
+							href={isAcademy ? `/escuela${item.href}` : item.href}
 						>
 							<span className="flex-1">{item.text}</span>
 						</NextLink>

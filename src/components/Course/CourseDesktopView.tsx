@@ -19,6 +19,7 @@ interface CourseDesktopViewProps {
 	features: { id: number; label: string; icon: string }[];
 	courseStudentStatus: CourseStudentStatus;
 	userIsAuthenticated: boolean;
+	isAcademy?: boolean;
 }
 
 export default function CourseDesktopView({
@@ -27,11 +28,12 @@ export default function CourseDesktopView({
 	features,
 	userIsAuthenticated,
 	courseStudentStatus,
+	isAcademy = false,
 }: CourseDesktopViewProps) {
 	return (
 		<>
 			<div className="container hidden py-20 lg:block lg:py-32">
-				<Breadcrumbs items={breacrumbItems} />
+				<Breadcrumbs items={breacrumbItems} isAcademy={isAcademy} />
 
 				<div className="flex justify-between">
 					<div className="w-[60%]" id="course-detail-left-col">
