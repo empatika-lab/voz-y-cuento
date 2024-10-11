@@ -1,12 +1,15 @@
 import { notFound } from 'next/navigation';
+import { cookies } from 'next/headers';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 import configPromise from '@payload-config';
 
 /* Utils */
 import { prettyPrint } from '@/lib/utils/dev';
 import { getCachedPayload } from '@/lib/utils/localApi';
+import { getUserFromJWT, SESSION_COOKIE_NAME } from '@/lib/utils/auth';
 
 /* Components */
+import { AcademyNavbar } from '@/components/Layout/Navbar';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import Footer from '@/components/Layout/Footer';
 import BuyCourseCard from './components/BuyCourseCard';
@@ -59,6 +62,10 @@ export default async function BuyCoursePage({ params }: BuyCoursePageProps) {
 		notFound();
 	}
 
+	const cookieStore = await cookies();
+
+	const user = getUserFromJWT(cookieStore.get(SESSION_COOKIE_NAME)!.value);
+
 	/* Derived State */
 	const breadcrumbItems = [
 		{
@@ -73,6 +80,7 @@ export default async function BuyCoursePage({ params }: BuyCoursePageProps) {
 
 	return (
 		<>
+			<AcademyNavbar userName={user?.name} />
 			<main className="container py-20">
 				<Breadcrumbs items={breadcrumbItems} isAcademy />
 				<BuyCourseCard course={course} />
