@@ -1,10 +1,8 @@
 'use client';
 
 import NextImage from 'next/image';
-// import NextLink from 'next/link';
 
 /* Components */
-// import EnrollButton from './components/EnrollButton';
 import Button from '@/components/Button';
 
 /* Types */
@@ -13,7 +11,10 @@ import type { Course } from '@/payload/payload-types';
 
 /* Utils */
 import ROUTES from '@/lib/utils/routes';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+
+/* Actions */
+import { setBuyCourseRedirection } from '@/app/(auth)/ingresar/actions/setBuyCourseRedirection';
 
 interface CourseDesktopDetailsCardProps {
 	course: Course;
@@ -28,11 +29,12 @@ export default function CourseDesktopDetailsCard({
 	features,
 	userIsAuthenticated,
 }: CourseDesktopDetailsCardProps) {
+	const router = useRouter();
 	const pathname = usePathname();
 	const ctaText = pathname?.includes('escuela') ? 'Comprar' : 'Inscribirme';
 	const ctLink = pathname?.includes('escuela')
 		? `/escuela/cursos/${course.slug}/comprar`
-		: `${ROUTES.LOGIN}?redirect=cursos/${course.slug}`;
+		: `${ROUTES.LOGIN}`;
 
 	if (!userIsAuthenticated) {
 		return (
@@ -67,7 +69,15 @@ export default function CourseDesktopDetailsCard({
 						<strong className="text-xl">USD ${course.usdPrice}</strong>
 					</div>
 
-					<Button className="flex items-center justify-center gap-2 bg-pink-400" href={ctLink}>
+					<Button
+						className="flex items-center justify-center gap-2 bg-pink-400"
+						onClick={() => {
+							if (course.slug) {
+								void setBuyCourseRedirection(course.slug);
+							}
+							router.push(ctLink);
+						}}
+					>
 						{ctaText}
 					</Button>
 				</footer>

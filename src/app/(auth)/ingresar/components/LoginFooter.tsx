@@ -4,9 +4,7 @@ import Button from '@/components/Button';
 /* Utils */
 import ROUTES from '@/lib/utils/routes';
 
-export default function LoginFooter({ redirect }: { redirect?: string }) {
-	const registerUrl = redirect ? `${ROUTES.REGISTER}?redirect=${redirect}` : ROUTES.REGISTER;
-
+export default function LoginFooter() {
 	return (
 		<footer className="mt-6 flex w-full flex-col items-center justify-center rounded-xl border border-gray-300 bg-cyan-50 p-3">
 			<p>¿No tienes una cuenta?</p>
@@ -14,7 +12,7 @@ export default function LoginFooter({ redirect }: { redirect?: string }) {
 			<Button
 				className="mt-4 w-full lg:max-w-fit text-center text-cyan-700"
 				variant="outline"
-				href={registerUrl}
+				href={ROUTES.REGISTER}
 			>
 				Registrarme
 			</Button>

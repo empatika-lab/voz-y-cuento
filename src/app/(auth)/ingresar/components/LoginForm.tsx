@@ -31,10 +31,9 @@ export type ValidationSchema = z.infer<typeof loginValidationSchema>;
 
 interface LoginFormProps {
 	email?: string;
-	redirect?: string;
 }
 
-export default function LoginForm({ email, redirect }: LoginFormProps) {
+export default function LoginForm({ email }: LoginFormProps) {
 	const [isPasswordHidden, setIsPasswordHidden] = useState(true);
 	const [formState, formAction, isSubmitting] = useActionState(tryLogin, null);
 
@@ -59,13 +58,9 @@ export default function LoginForm({ email, redirect }: LoginFormProps) {
 	/* Effects */
 	useEffect(() => {
 		if (formState?.success) {
-			if (redirect) {
-				router.push(`${ROUTES.ACADEMY.MY_COURSES}?redirect=${redirect}`);
-			} else {
-				router.push(ROUTES.ACADEMY.MY_COURSES);
-			}
+			router.push(ROUTES.ACADEMY.MY_COURSES);
 		}
-	}, [formState, router, redirect]);
+	}, [formState, router]);
 
 	return (
 		<form

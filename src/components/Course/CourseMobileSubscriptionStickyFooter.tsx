@@ -1,9 +1,9 @@
 'use client';
 
 import NextImage from 'next/image';
+import { usePathname, useRouter } from 'next/navigation';
 
 /* Components */
-// import EnrollButton from './CourseDetailsCard/components/EnrollButton';
 import Button from '@/components/Button';
 
 /* Utils */
@@ -11,12 +11,11 @@ import { cn } from '@/lib/utils/classNames';
 import ROUTES from '@/lib/utils/routes';
 
 /* Actions */
-// import handleCourseSubscription from '../actions/handleCourseSubscription.action';
+import { setBuyCourseRedirection } from '@/app/(auth)/ingresar/actions/setBuyCourseRedirection';
 
 /* Types */
 import type { PropsWithClassName, CourseStudentStatus } from '@/lib/types';
 import type { Course } from '@/payload/payload-types';
-import { usePathname } from 'next/navigation';
 
 interface CourseMobileSubscriptionStickyFooterProps extends PropsWithClassName {
 	course: Course;
@@ -30,8 +29,12 @@ export default function CourseMobileSubscriptionStickyFooter({
 	// courseStudentStatus,
 	userIsAuthenticated,
 }: CourseMobileSubscriptionStickyFooterProps) {
+	const router = useRouter();
 	const pathname = usePathname();
 	const ctaText = pathname?.includes('escuela') ? 'Comprar' : 'Inscribirme';
+	const ctLink = pathname?.includes('escuela')
+		? `/escuela/cursos/${course.slug}/comprar`
+		: `${ROUTES.LOGIN}`;
 
 	if (!userIsAuthenticated) {
 		return (
@@ -61,7 +64,13 @@ export default function CourseMobileSubscriptionStickyFooter({
 				<div className="flex items-center py-3 pr-5">
 					<Button
 						className="flex items-center justify-center gap-2 bg-pink-400"
-						href={`${ROUTES.LOGIN}?redirect=cursos/${course.slug}`}
+						href={ROUTES.LOGIN}
+						onClick={() => {
+							if (course.slug) {
+								void setBuyCourseRedirection(course.slug);
+							}
+							router.push(ctLink);
+						}}
 					>
 						{ctaText}
 					</Button>
