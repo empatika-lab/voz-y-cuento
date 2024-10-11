@@ -1,4 +1,5 @@
 'use client';
+
 import NextImage from 'next/image';
 // import NextLink from 'next/link';
 
@@ -29,6 +30,9 @@ export default function CourseDesktopDetailsCard({
 }: CourseDesktopDetailsCardProps) {
 	const pathname = usePathname();
 	const ctaText = pathname?.includes('escuela') ? 'Comprar' : 'Inscribirme';
+	const ctLink = pathname?.includes('escuela')
+		? `/escuela/cursos/${course.slug}/comprar`
+		: `${ROUTES.LOGIN}?redirect=cursos/${course.slug}`;
 
 	if (!userIsAuthenticated) {
 		return (
@@ -63,10 +67,7 @@ export default function CourseDesktopDetailsCard({
 						<strong className="text-xl">USD ${course.usdPrice}</strong>
 					</div>
 
-					<Button
-						className="flex items-center justify-center gap-2 bg-pink-400"
-						href={`${ROUTES.LOGIN}?redirect=cursos/${course.slug}`}
-					>
+					<Button className="flex items-center justify-center gap-2 bg-pink-400" href={ctLink}>
 						{ctaText}
 					</Button>
 				</footer>
