@@ -13,6 +13,7 @@ export const Student: CollectionConfig = {
 	},
 	auth: {
 		maxLoginAttempts: 15,
+		tokenExpiration: 60 * 60 * 24 * 15, // 15 days
 	},
 	fields: [
 		// Email added by default
