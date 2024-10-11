@@ -120,7 +120,6 @@ export default async function CourseDetailsPage({ params }: CourseDetailsPagePro
 					course={course}
 					courseStudentStatus="unsubscribed"
 					features={features}
-					userIsAuthenticated={false}
 					isAcademy
 				/>
 				<CourseDesktopView
@@ -128,7 +127,6 @@ export default async function CourseDetailsPage({ params }: CourseDetailsPagePro
 					course={course}
 					courseStudentStatus="unsubscribed"
 					features={features}
-					userIsAuthenticated={false}
 					isAcademy
 				/>
 			</main>

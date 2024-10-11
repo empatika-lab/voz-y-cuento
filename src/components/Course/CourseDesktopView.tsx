@@ -18,7 +18,7 @@ interface CourseDesktopViewProps {
 	course: Course;
 	features: { id: number; label: string; icon: string }[];
 	courseStudentStatus: CourseStudentStatus;
-	userIsAuthenticated: boolean;
+
 	isAcademy?: boolean;
 }
 
@@ -26,7 +26,6 @@ export default function CourseDesktopView({
 	breacrumbItems,
 	course,
 	features,
-	userIsAuthenticated,
 	courseStudentStatus,
 	isAcademy = false,
 }: CourseDesktopViewProps) {
@@ -59,7 +58,6 @@ export default function CourseDesktopView({
 							course={course}
 							courseStudentStatus={courseStudentStatus}
 							features={features}
-							userIsAuthenticated={userIsAuthenticated}
 						/>
 					</div>
 				</div>

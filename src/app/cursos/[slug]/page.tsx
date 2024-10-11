@@ -115,14 +115,12 @@ export default async function CourseDetailsPage({ params }: CourseDetailsPagePro
 					course={course}
 					courseStudentStatus="unsubscribed"
 					features={features}
-					userIsAuthenticated={false}
 				/>
 				<CourseDesktopView
 					breacrumbItems={breadcrumbItems}
 					course={course}
 					courseStudentStatus="unsubscribed"
 					features={features}
-					userIsAuthenticated={false}
 				/>
 			</main>
 			<Footer className="pb-32" />

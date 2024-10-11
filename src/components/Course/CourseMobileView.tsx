@@ -1,3 +1,7 @@
+/* Types */
+import type { Course } from '@/payload/payload-types';
+import type { CourseStudentStatus } from '@/lib/types/student';
+
 /* Components */
 import Breadcrumbs from '@/components/Breadcrumbs';
 import CourseLongDescription from './CourseLongDescription';
@@ -5,11 +9,6 @@ import CourseMobileFeatures from './CourseMobileFeatures';
 import CourseContentAccordion from './CourseContentAccordion';
 import CourseSyllabus from './CourseSyllabus';
 import BeAPartSection from './BeAPartSectionMobile';
-// import CourseMobileSubscriptionStickyFooter from '@/app/cursos/[slug]/components/CourseMobileSubscriptionStickyFooter';
-
-/* Types */
-import type { Course } from '@/payload/payload-types';
-import type { CourseStudentStatus } from '@/lib/types/student';
 import CourseMobileSubscriptionStickyFooter from './CourseMobileSubscriptionStickyFooter';
 
 interface CourseMobileViewProps {
@@ -24,7 +23,6 @@ interface CourseMobileViewProps {
 		label: string;
 		icon: string;
 	}[];
-	userIsAuthenticated: boolean;
 	isAcademy?: boolean;
 }
 
@@ -32,7 +30,6 @@ export default function CourseMobileView({
 	breacrumbItems,
 	course,
 	features,
-	userIsAuthenticated = false,
 	courseStudentStatus = 'unsubscribed',
 	isAcademy = false,
 }: CourseMobileViewProps) {
@@ -67,7 +64,6 @@ export default function CourseMobileView({
 			<CourseMobileSubscriptionStickyFooter
 				course={course}
 				courseStudentStatus={courseStudentStatus}
-				userIsAuthenticated={userIsAuthenticated}
 			/>
 		</div>
 	);
