@@ -20,12 +20,16 @@ interface CourseDesktopDetailsCardProps {
 	course: Course;
 	features: { id: number; label: string; icon: string }[];
 	courseStudentStatus: CourseStudentStatus;
+	tryAddPendingPayment?: (studentId: number, courseId: number) => Promise<void>;
+	studentId?: number;
 }
 
 export default function CourseDesktopDetailsCard({
 	course,
 	// courseStudentStatus,
 	features,
+	studentId,
+	tryAddPendingPayment,
 }: CourseDesktopDetailsCardProps) {
 	const router = useRouter();
 	const pathname = usePathname();
@@ -57,7 +61,7 @@ export default function CourseDesktopDetailsCard({
 			{/* Inscripción */}
 			<footer className="flex flex-col gap-8 rounded-b-2xl bg-pink-50 p-8 shadow-xl">
 				<div className="flex justify-between gap-2">
-					<p className="w-1/2 text-xl">Residentes de Argentina!</p>
+					<p className="w-1/2 text-xl">Residentes de Argentina</p>
 					<strong className="text-xl text-pink-900">ARS ${course.arsPrice}</strong>
 				</div>
 
@@ -70,6 +74,9 @@ export default function CourseDesktopDetailsCard({
 					className="flex items-center justify-center gap-2 bg-pink-400"
 					onClick={() => {
 						if (course.slug) {
+							if (studentId && tryAddPendingPayment) {
+								void tryAddPendingPayment(studentId, course.id);
+							}
 							void setBuyCourseRedirection(course.slug);
 						}
 						router.push(ctLink);

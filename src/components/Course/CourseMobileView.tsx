@@ -24,6 +24,8 @@ interface CourseMobileViewProps {
 		icon: string;
 	}[];
 	isAcademy?: boolean;
+	tryAddPendingPayment?: (studentId: number, courseId: number) => Promise<void>;
+	studentId?: number;
 }
 
 export default function CourseMobileView({
@@ -32,6 +34,8 @@ export default function CourseMobileView({
 	features,
 	courseStudentStatus = 'unsubscribed',
 	isAcademy = false,
+	tryAddPendingPayment,
+	studentId,
 }: CourseMobileViewProps) {
 	return (
 		<div className="lg:hidden">
@@ -64,6 +68,8 @@ export default function CourseMobileView({
 			<CourseMobileSubscriptionStickyFooter
 				course={course}
 				courseStudentStatus={courseStudentStatus}
+				tryAddPendingPayment={tryAddPendingPayment}
+				studentId={studentId}
 			/>
 		</div>
 	);

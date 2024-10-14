@@ -54,7 +54,7 @@ export default async function CoursesPage() {
 			</Hero>
 			<main className="container py-20">
 				<Breadcrumbs items={breacrumbItems} />
-				<CourseCards courses={courses} />
+				<CourseCards courses={courses.docs} />
 			</main>
 			<Footer />
 		</>

@@ -15,6 +15,9 @@ import Footer from '@/components/Layout/Footer';
 import CourseMobileView from '@/components/Course/CourseMobileView';
 import CourseDesktopView from '@/components/Course/CourseDesktopView';
 
+/* Actions */
+import tryAddPendingPayment from '@/app/(auth)/actions/tryAddPendingPayment';
+
 const features = [
 	{
 		id: 1,
@@ -121,6 +124,8 @@ export default async function CourseDetailsPage({ params }: CourseDetailsPagePro
 					courseStudentStatus="unsubscribed"
 					features={features}
 					isAcademy
+					tryAddPendingPayment={tryAddPendingPayment}
+					studentId={parseInt(user.id, 10)}
 				/>
 				<CourseDesktopView
 					breacrumbItems={breadcrumbItems}
@@ -128,6 +133,8 @@ export default async function CourseDetailsPage({ params }: CourseDetailsPagePro
 					courseStudentStatus="unsubscribed"
 					features={features}
 					isAcademy
+					tryAddPendingPayment={tryAddPendingPayment}
+					studentId={parseInt(user.id, 10)}
 				/>
 			</main>
 			<Footer className="pb-32" />

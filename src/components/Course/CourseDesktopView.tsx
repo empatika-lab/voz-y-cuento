@@ -18,8 +18,9 @@ interface CourseDesktopViewProps {
 	course: Course;
 	features: { id: number; label: string; icon: string }[];
 	courseStudentStatus: CourseStudentStatus;
-
 	isAcademy?: boolean;
+	tryAddPendingPayment?: (studentId: number, courseId: number) => Promise<void>;
+	studentId?: number;
 }
 
 export default function CourseDesktopView({
@@ -28,6 +29,8 @@ export default function CourseDesktopView({
 	features,
 	courseStudentStatus,
 	isAcademy = false,
+	tryAddPendingPayment,
+	studentId,
 }: CourseDesktopViewProps) {
 	return (
 		<>
@@ -58,6 +61,8 @@ export default function CourseDesktopView({
 							course={course}
 							courseStudentStatus={courseStudentStatus}
 							features={features}
+							tryAddPendingPayment={tryAddPendingPayment}
+							studentId={studentId}
 						/>
 					</div>
 				</div>

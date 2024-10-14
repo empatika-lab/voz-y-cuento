@@ -20,12 +20,15 @@ import type { Course } from '@/payload/payload-types';
 interface CourseMobileSubscriptionStickyFooterProps extends PropsWithClassName {
 	course: Course;
 	courseStudentStatus: CourseStudentStatus;
+	tryAddPendingPayment?: (studentId: number, courseId: number) => Promise<void>;
+	studentId?: number;
 }
 
 export default function CourseMobileSubscriptionStickyFooter({
 	className,
 	course,
-	// courseStudentStatus,
+	tryAddPendingPayment,
+	studentId,
 }: CourseMobileSubscriptionStickyFooterProps) {
 	const router = useRouter();
 	const pathname = usePathname();
@@ -64,6 +67,9 @@ export default function CourseMobileSubscriptionStickyFooter({
 					href={ROUTES.LOGIN}
 					onClick={() => {
 						if (course.slug) {
+							if (studentId && tryAddPendingPayment) {
+								void tryAddPendingPayment(studentId, course.id);
+							}
 							void setBuyCourseRedirection(course.slug);
 						}
 						router.push(ctLink);
@@ -75,56 +81,3 @@ export default function CourseMobileSubscriptionStickyFooter({
 		</footer>
 	);
 }
-
-// return (
-// 	<footer
-// 		className={cn(
-// 			'position shadow-pink fixed bottom-0 left-0 z-10 flex w-full justify-between rounded-t-xl bg-pink-50',
-// 			className,
-// 		)}
-// 	>
-// 		{courseStudentStatus !== 'not-confirmed' && (
-// 			<div className="flex flex-col gap-3 py-3 pl-5 text-right">
-// 				<div className="flex gap-2">
-// 					<strong className="text-xl text-pink-900">ARS ${course.arsPrice}</strong>
-// 					<NextImage
-// 						alt="Bandera Argentina"
-// 						height={16}
-// 						src={'/images/argentina-flag.svg'}
-// 						width={16}
-// 					/>
-// 				</div>
-// 				<div className="flex items-center justify-end gap-2">
-// 					<div className="flex items-center justify-end gap-2">
-// 						<p className="text-sm font-bold">USD ${course.usdPrice}</p>
-// 						<NextImage alt="Bandera Argentina" height={16} src={'/images/globe.svg'} width={16} />
-// 					</div>
-// 				</div>
-// 			</div>
-// 		)}
-
-// 		{courseStudentStatus === 'unsubscribed' && (
-// 			<div className="flex items-center py-3 pr-5">
-// 				<form action={handleCourseSubscription} className="flex items-center py-3 pr-5">
-// 					<input name="course" type="hidden" value={course.id} />
-
-// 					<EnrollButton />
-// 				</form>
-// 			</div>
-// 		)}
-
-// 		{courseStudentStatus === 'confirmed' && (
-// 			<div className="flex items-center py-3 pr-5">
-// 				<Link href={`/escuela/${course.slug}`}>
-// 					<Button>Ir al Curso</Button>
-// 				</Link>
-// 			</div>
-// 		)}
-
-// 		{courseStudentStatus === 'not-confirmed' && (
-// 			<div className="flex items-center px-5 py-3 text-center">
-// 				Ya compraste a este curso pero no hemos recibido tu comprobante de pago o no lo hemos
-// 				procesado aún.
-// 			</div>
-// 		)}
-// 	</footer>

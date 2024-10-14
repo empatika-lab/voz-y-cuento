@@ -84,7 +84,6 @@ export default async function CourseDetailsPage({ params }: CourseDetailsPagePro
 
 	if (!course) {
 		notFound();
-		return null;
 	}
 
 	/* Derived State */

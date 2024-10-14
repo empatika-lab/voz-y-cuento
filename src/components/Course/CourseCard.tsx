@@ -7,8 +7,11 @@ import arrowRight from '@images/icons/arrow-right.svg';
 /* Types */
 import type { Course } from '@/payload/payload-types';
 
+/* Utils */
+import { cn } from '@/lib/utils/classNames';
+
 export interface CardCoursesProps {
-	course: Course;
+	course: Course & { isPending?: boolean };
 	isAcademy?: boolean;
 }
 
@@ -16,7 +19,10 @@ export default function CardCourse({ course, isAcademy = false }: CardCoursesPro
 	return (
 		<li
 			key={course.id}
-			className="flex w-[320px] flex-col rounded-2xl border border-solid border-gray-900 bg-white shadow-lg transition-transform ease-in-out will-change-transform hover:scale-[1.03] active:border-cyan-600 lg:w-[356px]"
+			className={cn(
+				'flex w-[320px] flex-col rounded-2xl border border-solid border-gray-900 bg-white shadow-lg transition-transform ease-in-out will-change-transform hover:scale-[1.03] active:border-cyan-600 lg:w-[356px]',
+				course.isPending ? 'opacity-50' : 'opacity-100',
+			)}
 		>
 			<NextLink href={isAcademy ? `/escuela/cursos/${course.slug}` : `/cursos/${course.slug}`}>
 				{/* Card Image */}

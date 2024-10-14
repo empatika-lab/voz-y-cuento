@@ -7,6 +7,7 @@ import { unsetBuyCourseRedirection } from '@/app/(auth)/ingresar/actions/setBuyC
 
 export default function BuyCourseClearRedirect() {
 	useEffect(() => {
+		// TODO: add course to student pending payments
 		void unsetBuyCourseRedirection();
 	}, []);
 

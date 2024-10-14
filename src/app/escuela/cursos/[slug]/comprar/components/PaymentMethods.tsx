@@ -187,7 +187,7 @@ export default function PaymentMethods() {
 
 					<p className="font-bold text-2xl text-center">Mercado Pago</p>
 
-					<dl>
+					<dl className="mt-7">
 						<dt className="inline-block">Titular:</dt>
 						<dd className="inline-block">&nbsp; Emilce Noemí Brusa</dd>
 						<br />
