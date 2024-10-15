@@ -3,6 +3,7 @@ import Image from '@images/emilce.png';
 
 /* Components */
 import Button from '@/components/Button';
+import ROUTES from '@/lib/utils/routes';
 
 export default function About() {
 	return (
@@ -39,7 +40,7 @@ export default function About() {
 
 					<Button
 						className="relative top-10 bg-transparent text-center text-base lg:top-14"
-						href="/mi-histoira"
+						href={ROUTES.ABOUT}
 						type="button"
 					>
 						Te cuento mi camino

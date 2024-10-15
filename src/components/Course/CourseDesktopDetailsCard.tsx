@@ -38,11 +38,23 @@ export default function CourseDesktopDetailsCard({
 		? `/escuela/cursos/${course.slug}/comprar`
 		: `${ROUTES.LOGIN}`;
 
+	// Helpers
+	function getCourseLabel(category: Course['category']) {
+		switch (category) {
+			case 'Seminario':
+				return 'Seminario';
+			case 'Laboratorio':
+				return 'Laboratorio';
+			default:
+				return 'Curso';
+		}
+	}
+
 	return (
 		<article className="sticky top-4">
 			<div className="bg-cyan-25 rounded-t-2xl shadow-xl">
 				<h2 className="text-pretty px-8 pt-8 text-center text-2xl font-bold">
-					Curso <br /> {course.name}
+					{getCourseLabel(course.category)} <br /> {course.name}
 				</h2>
 
 				{/* Características de los cursos */}
