@@ -8,8 +8,8 @@ interface HireMeCardProps {
 
 export default function HireMeCard({ event }: HireMeCardProps) {
 	return (
-		<li className="flip-card w-[340px] h-[316px] [perspective:1000px] rounded-[20px] lg:mx-0 ">
-			<div className="flip-card-inner relative transition-transform duration-700 [transform-style:preserve-3d] hover:[transform:rotateY(180deg)] rounded-[20px] w-[340px] h-[316px]">
+		<li className="flip-card w-[340px] h-[316px] [perspective:1000px] rounded-[20px] lg:mx-0 group">
+			<div className="flip-card-inner relative transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] rounded-[20px] w-[340px] h-[316px]">
 				{/* Front */}
 				<div className="flip-card-front absolute [backface-visibility:hidden] inset-0 w-full h-full rounded-[20px]">
 					<NextImage
