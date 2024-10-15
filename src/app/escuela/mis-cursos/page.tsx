@@ -1,4 +1,5 @@
 import configPromise from '@payload-config';
+import NextLink from 'next/link';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
@@ -86,7 +87,23 @@ export default async function AcademyMyCoursesPage() {
 				</div>
 			</Hero>
 			<main className="container mt-48 pb-16">
-				<CourseCards courses={courses} isAcademy />
+				{courses.length ? (
+					<CourseCards courses={courses} isAcademy />
+				) : (
+					<div className="flex flex-col items-center justify-center pt-14">
+						<h2 className="text-2xl font-bold">Nada por aquí aún</h2>
+						<p className="mt-2">
+							Explora la{' '}
+							<NextLink
+								href={ROUTES.ACADEMY.EXPLORE}
+								className="text-cyan-600 font-medium hover:text-cyan-500"
+							>
+								Biblioteca de Cursos
+							</NextLink>{' '}
+							y comienza tu aventura en el mundo de la narración.
+						</p>
+					</div>
+				)}
 			</main>
 		</>
 	);
