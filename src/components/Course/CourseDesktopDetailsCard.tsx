@@ -1,4 +1,5 @@
 'use client';
+import { usePathname, useRouter } from 'next/navigation';
 
 import NextImage from 'next/image';
 
@@ -11,7 +12,6 @@ import type { Course } from '@/payload/payload-types';
 
 /* Utils */
 import ROUTES from '@/lib/utils/routes';
-import { usePathname, useRouter } from 'next/navigation';
 
 /* Actions */
 import { setBuyCourseRedirection } from '@/app/(auth)/ingresar/actions/setBuyCourseRedirection';

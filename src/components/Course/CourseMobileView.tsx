@@ -58,7 +58,9 @@ export default function CourseMobileView({
 				<div className="mt-16 h-[1px] w-full bg-[#0C0E0E]" />
 
 				{/* Bloques de contenido del curso */}
-				<CourseContentAccordion />
+				{course.category !== 'Seminario' && course.category !== 'Laboratorio' && (
+					<CourseContentAccordion />
+				)}
 			</div>
 
 			{/* Sección Sé Parte */}

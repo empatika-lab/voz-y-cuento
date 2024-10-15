@@ -10,12 +10,12 @@ import ROUTES from '@/lib/utils/routes';
 
 export const navItems = [
 	{
-		label: 'Explorar',
-		href: ROUTES.ACADEMY.EXPLORE,
-	},
-	{
 		label: 'Mis cursos',
 		href: ROUTES.ACADEMY.MY_COURSES,
+	},
+	{
+		label: 'Explorar',
+		href: ROUTES.ACADEMY.EXPLORE,
 	},
 ];
 

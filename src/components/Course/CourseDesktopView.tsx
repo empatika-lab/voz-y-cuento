@@ -42,17 +42,23 @@ export default function CourseDesktopView({
 						{/* Descripción del curso */}
 						<CourseLongDescription description={course.longDescription} />
 
-						{/* Separador */}
-						<div className="mt-16 h-[1px] w-full bg-[#0C0E0E]" />
-
 						{/* Temario del curso */}
-						<CourseSyllbus syllabus={course.syllabus} />
-
-						{/* Separador */}
-						<div className="mt-16 h-[1px] w-full bg-[#0C0E0E]" />
+						{course.syllabus?.length ? (
+							<>
+								{/* Separador */}
+								<div className="mt-16 h-[1px] w-full bg-[#0C0E0E]" />
+								<CourseSyllbus syllabus={course.syllabus} />
+							</>
+						) : null}
 
 						{/* Bloques de contenido del curso */}
-						<CourseContentAccordeon />
+						{course.category !== 'Seminario' && course.category !== 'Laboratorio' && (
+							<>
+								{/* Separador */}
+								<div className="mt-16 h-[1px] w-full bg-[#0C0E0E]" />
+								<CourseContentAccordeon />
+							</>
+						)}
 					</div>
 
 					{/* Tarjeta del curso */}
