@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import type { CollectionConfig } from 'payload';
+import sendgrid, { type ClientResponse } from '@sendgrid/mail';
 
 export const PendingPayments: CollectionConfig = {
 	slug: 'pending',
@@ -38,6 +39,46 @@ export const PendingPayments: CollectionConfig = {
 		},
 	],
 	hooks: {
+		afterChange: [
+			async ({ operation, doc, req }) => {
+				try {
+					if (operation === 'create' && doc.isPaid === false) {
+						sendgrid.setApiKey(process.env.SENDGRID_API_KEY!);
+						const studentData = await req.payload.findByID({
+							collection: 'students',
+							id: doc.student.id,
+						});
+						const courseData = await req.payload.findByID({
+							collection: 'courses',
+							id: doc.course.id,
+						});
+
+						const sengridResponse = await sendgrid.send({
+							dynamicTemplateData: {
+								student_name: studentData.name,
+								student_email: studentData.email,
+								course_name: courseData.name,
+							},
+							from: 'vozycuento@gmail.com',
+							subject: 'Voz y Cuento - Contraseña olvidada',
+							templateId: 'd-ff6b4efaebc0424ea2711095392d1464',
+							to: 'vozycuento@gmail.com',
+						});
+
+						if (
+							sengridResponse.at(0) &&
+							(sengridResponse.at(0) as ClientResponse).statusCode !== 202
+						) {
+							// eslint-disable-next-line no-console
+							console.error('[PendingPayments][afterChange]', sengridResponse.at(0));
+						}
+					}
+				} catch (error) {
+					// eslint-disable-next-line no-console
+					console.log('[PendingPayments][afterChange]', error);
+				}
+			},
+		],
 		beforeChange: [
 			async ({ operation, data, originalDoc, req }) => {
 				try {
