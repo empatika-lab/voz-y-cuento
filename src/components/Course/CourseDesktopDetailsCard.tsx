@@ -26,7 +26,6 @@ interface CourseDesktopDetailsCardProps {
 
 export default function CourseDesktopDetailsCard({
 	course,
-	// courseStudentStatus,
 	features,
 	studentId,
 	tryAddPendingPayment,
