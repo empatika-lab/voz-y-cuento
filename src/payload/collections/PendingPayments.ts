@@ -43,6 +43,7 @@ export const PendingPayments: CollectionConfig = {
 			async ({ operation, doc, req }) => {
 				try {
 					if (operation === 'create' && doc.isPaid === false) {
+						// Send email to admin
 						sendgrid.setApiKey(process.env.SENDGRID_API_KEY!);
 						const studentData = await req.payload.findByID({
 							collection: 'students',
@@ -72,6 +73,34 @@ export const PendingPayments: CollectionConfig = {
 							// eslint-disable-next-line no-console
 							console.error('[PendingPayments][afterChange]', sengridResponse.at(0));
 						}
+
+						// Check to see if there are duplicates
+						setTimeout(async () => {
+							const duplicates = await req.payload.find({
+								collection: 'pending',
+								where: {
+									and: [
+										{
+											student: {
+												equals: doc.student.id,
+											},
+										},
+										{
+											course: {
+												equals: doc.course.id,
+											},
+										},
+									],
+								},
+							});
+
+							if (duplicates.totalDocs > 1) {
+								await req.payload.delete({
+									collection: 'pending',
+									id: duplicates.docs[0].id,
+								});
+							}
+						}, 2000);
 					}
 				} catch (error) {
 					// eslint-disable-next-line no-console
