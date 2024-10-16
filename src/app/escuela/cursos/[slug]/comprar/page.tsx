@@ -15,7 +15,7 @@ import Footer from '@/components/Layout/Footer';
 import BuyCourseCard from './components/BuyCourseCard';
 import PaymentMethods from './components/PaymentMethods';
 import BuyCourseInstruction from './components/BuyCourseInstructions';
-import BuyCourseClearRedirect from './components/BuyCourseClearRedirect';
+import BuyCourseEffects from './components/BuyCourseAddPendingPayment';
 
 interface BuyCoursePageProps {
 	params: Promise<{
@@ -86,7 +86,7 @@ export default async function BuyCoursePage({ params }: BuyCoursePageProps) {
 				<BuyCourseCard course={course} />
 				<PaymentMethods />
 				<BuyCourseInstruction />
-				<BuyCourseClearRedirect />
+				<BuyCourseEffects courseId={course.id} studentId={parseInt(user.id, 10)} />
 			</main>
 			<Footer />
 		</>

@@ -9,6 +9,23 @@ export default async function tryAddPendingPayment(studentId: number, courseId: 
 	});
 
 	try {
+		const pendingPayment = await payload.find({
+			collection: 'pending',
+			limit: 1,
+			where: {
+				student: {
+					equals: studentId,
+				},
+				course: {
+					equals: courseId,
+				},
+			},
+		});
+
+		if (pendingPayment.totalDocs > 0) {
+			return;
+		}
+
 		await payload.create({
 			collection: 'pending',
 			data: {
