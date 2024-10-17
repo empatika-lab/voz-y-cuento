@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import NextImage from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 
@@ -30,6 +31,9 @@ export default function CourseMobileSubscriptionStickyFooter({
 	tryAddPendingPayment,
 	studentId,
 }: CourseMobileSubscriptionStickyFooterProps) {
+	const [isPendingPayment, setIsPendingPayment] = useState(false);
+
+	/* Hooks */
 	const router = useRouter();
 	const pathname = usePathname();
 	const ctaText = pathname?.includes('escuela') ? 'Comprar' : 'Inscribirme';
@@ -61,46 +65,48 @@ export default function CourseMobileSubscriptionStickyFooter({
 					</div>
 				</div>
 			</div>
-			{tryAddPendingPayment && (
-				<form>
+
+			{tryAddPendingPayment ? (
+				<form className="flex items-center justify-center pr-5">
 					<Button
 						className="flex items-center justify-center gap-2 bg-pink-400"
-						href={ROUTES.LOGIN}
+						disabled={isPendingPayment}
 						type="submit"
 						onClick={async () => {
 							if (course.slug) {
 								if (studentId && tryAddPendingPayment) {
+									setIsPendingPayment(true);
 									const success = await tryAddPendingPayment(studentId, course.id);
 									if (success) {
+										await setBuyCourseRedirection(course.slug);
 										router.push(ctLink);
+										setIsPendingPayment(false);
+										return;
 									}
+									return;
 								}
-								void setBuyCourseRedirection(course.slug);
-								router.push(ctLink);
 							}
+						}}
+					>
+						{isPendingPayment ? 'Enviando...' : ctaText}
+					</Button>
+				</form>
+			) : (
+				<div className="flex items-center py-3 pr-5">
+					<Button
+						className="bg-pink-400 text-center"
+						href={ROUTES.LOGIN}
+						onClick={() => {
+							if (course.slug) {
+								void setBuyCourseRedirection(course.slug);
+							}
+							router.push(ctLink);
 						}}
 					>
 						{ctaText}
 					</Button>
-				</form>
+				</div>
 			)}
-			{/* <div className="flex items-center py-3 pr-5">
-				<Button
-					className="flex items-center justify-center gap-2 bg-pink-400"
-					href={ROUTES.LOGIN}
-					onClick={() => {
-						if (course.slug) {
-							if (studentId && tryAddPendingPayment) {
-								void tryAddPendingPayment(studentId, course.id);
-							}
-							void setBuyCourseRedirection(course.slug);
-						}
-						router.push(ctLink);
-					}}
-				>
-					{ctaText}
-				</Button>
-			</div> */}
 		</footer>
 	);
 }

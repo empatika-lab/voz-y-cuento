@@ -19,7 +19,7 @@ interface CourseDesktopViewProps {
 	features: { id: number; label: string; icon: string }[];
 	courseStudentStatus: CourseStudentStatus;
 	isAcademy?: boolean;
-	tryAddPendingPayment?: (studentId: number, courseId: number) => Promise<void>;
+	tryAddPendingPayment?: (studentId: number, courseId: number) => Promise<boolean>;
 	studentId?: number;
 }
 

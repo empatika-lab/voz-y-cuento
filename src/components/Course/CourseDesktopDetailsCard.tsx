@@ -31,15 +31,17 @@ export default function CourseDesktopDetailsCard({
 	studentId,
 	tryAddPendingPayment,
 }: CourseDesktopDetailsCardProps) {
+	const [isPendingPayment, setIsPendingPayment] = useState(false);
+
+	/* Hooks */
 	const router = useRouter();
 	const pathname = usePathname();
 	const ctaText = pathname?.includes('escuela') ? 'Comprar' : 'Inscribirme';
 	const ctLink = pathname?.includes('escuela')
 		? `/escuela/cursos/${course.slug}/comprar`
 		: `${ROUTES.LOGIN}`;
-	const [isPendingPayment, setIsPendingPayment] = useState(false);
 
-	// Helpers
+	/* Helpers */
 	function getCourseLabel(category: Course['category']) {
 		switch (category) {
 			case 'Seminario':
@@ -83,27 +85,46 @@ export default function CourseDesktopDetailsCard({
 					<strong className="text-xl">USD ${course.usdPrice}</strong>
 				</div>
 
-				<Button
-					className="flex items-center justify-center gap-2 bg-pink-400"
-					disabled={isPendingPayment}
-					onClick={async () => {
-						if (course.slug) {
-							if (studentId && tryAddPendingPayment) {
-								setIsPendingPayment(true);
-								const success = await tryAddPendingPayment(studentId, course.id);
-								if (success) {
+				{tryAddPendingPayment ? (
+					<form>
+						<Button
+							className="flex items-center justify-center gap-2 bg-pink-400"
+							disabled={isPendingPayment}
+							type="submit"
+							onClick={async () => {
+								if (course.slug) {
+									if (studentId && tryAddPendingPayment) {
+										setIsPendingPayment(true);
+										const success = await tryAddPendingPayment(studentId, course.id);
+										if (success) {
+											router.push(ctLink);
+											setIsPendingPayment(false);
+											return;
+										}
+										return;
+									}
 									void setBuyCourseRedirection(course.slug);
-									setIsPendingPayment(false);
 									router.push(ctLink);
 								}
+							}}
+						>
+							{isPendingPayment ? 'Enviando...' : ctaText}
+						</Button>
+					</form>
+				) : (
+					<Button
+						className="flex items-center justify-center gap-2 bg-pink-400"
+						href={ROUTES.LOGIN}
+						onClick={() => {
+							if (course.slug) {
+								void setBuyCourseRedirection(course.slug);
 							}
-							void setBuyCourseRedirection(course.slug);
-						}
-						router.push(ctLink);
-					}}
-				>
-					{isPendingPayment ? 'Enviando...' : ctaText}
-				</Button>
+							router.push(ctLink);
+						}}
+					>
+						{ctaText}
+					</Button>
+				)}
 			</footer>
 		</article>
 	);
