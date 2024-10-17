@@ -20,7 +20,7 @@ import type { Course } from '@/payload/payload-types';
 interface CourseMobileSubscriptionStickyFooterProps extends PropsWithClassName {
 	course: Course;
 	courseStudentStatus: CourseStudentStatus;
-	tryAddPendingPayment?: (studentId: number, courseId: number) => Promise<void>;
+	tryAddPendingPayment?: (studentId: number, courseId: number) => Promise<boolean>;
 	studentId?: number;
 }
 
@@ -61,7 +61,30 @@ export default function CourseMobileSubscriptionStickyFooter({
 					</div>
 				</div>
 			</div>
-			<div className="flex items-center py-3 pr-5">
+			{tryAddPendingPayment && (
+				<form>
+					<Button
+						className="flex items-center justify-center gap-2 bg-pink-400"
+						href={ROUTES.LOGIN}
+						type="submit"
+						onClick={async () => {
+							if (course.slug) {
+								if (studentId && tryAddPendingPayment) {
+									const success = await tryAddPendingPayment(studentId, course.id);
+									if (success) {
+										router.push(ctLink);
+									}
+								}
+								void setBuyCourseRedirection(course.slug);
+								router.push(ctLink);
+							}
+						}}
+					>
+						{ctaText}
+					</Button>
+				</form>
+			)}
+			{/* <div className="flex items-center py-3 pr-5">
 				<Button
 					className="flex items-center justify-center gap-2 bg-pink-400"
 					href={ROUTES.LOGIN}
@@ -77,7 +100,7 @@ export default function CourseMobileSubscriptionStickyFooter({
 				>
 					{ctaText}
 				</Button>
-			</div>
+			</div> */}
 		</footer>
 	);
 }

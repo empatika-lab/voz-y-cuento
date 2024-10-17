@@ -15,12 +15,13 @@ import ROUTES from '@/lib/utils/routes';
 
 /* Actions */
 import { setBuyCourseRedirection } from '@/app/(auth)/ingresar/actions/setBuyCourseRedirection';
+import { useState } from 'react';
 
 interface CourseDesktopDetailsCardProps {
 	course: Course;
 	features: { id: number; label: string; icon: string }[];
 	courseStudentStatus: CourseStudentStatus;
-	tryAddPendingPayment?: (studentId: number, courseId: number) => Promise<void>;
+	tryAddPendingPayment?: (studentId: number, courseId: number) => Promise<boolean>;
 	studentId?: number;
 }
 
@@ -36,6 +37,7 @@ export default function CourseDesktopDetailsCard({
 	const ctLink = pathname?.includes('escuela')
 		? `/escuela/cursos/${course.slug}/comprar`
 		: `${ROUTES.LOGIN}`;
+	const [isPendingPayment, setIsPendingPayment] = useState(false);
 
 	// Helpers
 	function getCourseLabel(category: Course['category']) {
@@ -83,17 +85,24 @@ export default function CourseDesktopDetailsCard({
 
 				<Button
 					className="flex items-center justify-center gap-2 bg-pink-400"
-					onClick={() => {
+					disabled={isPendingPayment}
+					onClick={async () => {
 						if (course.slug) {
 							if (studentId && tryAddPendingPayment) {
-								void tryAddPendingPayment(studentId, course.id);
+								setIsPendingPayment(true);
+								const success = await tryAddPendingPayment(studentId, course.id);
+								if (success) {
+									void setBuyCourseRedirection(course.slug);
+									setIsPendingPayment(false);
+									router.push(ctLink);
+								}
 							}
 							void setBuyCourseRedirection(course.slug);
 						}
 						router.push(ctLink);
 					}}
 				>
-					{ctaText}
+					{isPendingPayment ? 'Enviando...' : ctaText}
 				</Button>
 			</footer>
 		</article>

@@ -24,7 +24,7 @@ interface CourseMobileViewProps {
 		icon: string;
 	}[];
 	isAcademy?: boolean;
-	tryAddPendingPayment?: (studentId: number, courseId: number) => Promise<void>;
+	tryAddPendingPayment?: (studentId: number, courseId: number) => Promise<boolean>;
 	studentId?: number;
 }
 

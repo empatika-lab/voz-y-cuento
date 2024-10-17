@@ -23,7 +23,7 @@ export default async function tryAddPendingPayment(studentId: number, courseId: 
 		});
 
 		if (pendingPayment.totalDocs > 0) {
-			return;
+			return true;
 		}
 
 		await payload.create({
@@ -34,8 +34,11 @@ export default async function tryAddPendingPayment(studentId: number, courseId: 
 				isPaid: false,
 			},
 		});
+
+		return true;
 	} catch (error) {
 		// eslint-disable-next-line no-console
 		console.error('[tryAddPendingPayment] Error adding pending payment', error);
+		return false;
 	}
 }
