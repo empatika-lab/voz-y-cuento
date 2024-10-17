@@ -109,18 +109,8 @@ export default async function CourseDetailsPage({ params }: CourseDetailsPagePro
 				</div>
 			</Hero>
 			<main>
-				<CourseMobileView
-					breacrumbItems={breadcrumbItems}
-					course={course}
-					courseStudentStatus="unsubscribed"
-					features={features}
-				/>
-				<CourseDesktopView
-					breacrumbItems={breadcrumbItems}
-					course={course}
-					courseStudentStatus="unsubscribed"
-					features={features}
-				/>
+				<CourseMobileView breacrumbItems={breadcrumbItems} course={course} features={features} />
+				<CourseDesktopView breacrumbItems={breadcrumbItems} course={course} features={features} />
 			</main>
 			<Footer className="pb-32" />
 		</>

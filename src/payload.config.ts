@@ -31,7 +31,7 @@ export default buildConfig({
 		user: Admin.slug,
 	},
 	collections: [Admin, Course, Media, Student, PendingPayments, Event],
-	cookiePrefix: 'vyc',
+	cookiePrefix: 'vycadmin',
 	editor: lexicalEditor(),
 	i18n: {
 		fallbackLanguage: 'es',

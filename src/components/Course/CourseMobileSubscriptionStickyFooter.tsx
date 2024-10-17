@@ -15,12 +15,11 @@ import ROUTES from '@/lib/utils/routes';
 import { setBuyCourseRedirection } from '@/app/(auth)/ingresar/actions/setBuyCourseRedirection';
 
 /* Types */
-import type { PropsWithClassName, CourseStudentStatus } from '@/lib/types';
+import type { PropsWithClassName } from '@/lib/types';
 import type { Course } from '@/payload/payload-types';
 
 interface CourseMobileSubscriptionStickyFooterProps extends PropsWithClassName {
 	course: Course;
-	courseStudentStatus: CourseStudentStatus;
 	tryAddPendingPayment?: (studentId: number, courseId: number) => Promise<boolean>;
 	studentId?: number;
 }

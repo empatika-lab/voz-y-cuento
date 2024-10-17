@@ -1,6 +1,5 @@
 /* Types */
 import type { Course } from '@/payload/payload-types';
-import type { CourseStudentStatus } from '@/lib/types/student';
 
 /* Components */
 import Breadcrumbs from '@/components/Breadcrumbs';
@@ -17,7 +16,6 @@ interface CourseMobileViewProps {
 		href: string;
 	}[];
 	course: Course;
-	courseStudentStatus: CourseStudentStatus;
 	features: {
 		id: number;
 		label: string;
@@ -32,7 +30,6 @@ export default function CourseMobileView({
 	breacrumbItems,
 	course,
 	features,
-	courseStudentStatus = 'unsubscribed',
 	isAcademy = false,
 	tryAddPendingPayment,
 	studentId,
@@ -69,7 +66,6 @@ export default function CourseMobileView({
 			{/* Footer Sticky con Precio del Curso */}
 			<CourseMobileSubscriptionStickyFooter
 				course={course}
-				courseStudentStatus={courseStudentStatus}
 				tryAddPendingPayment={tryAddPendingPayment}
 				studentId={studentId}
 			/>

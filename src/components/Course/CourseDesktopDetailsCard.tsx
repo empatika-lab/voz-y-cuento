@@ -7,7 +7,6 @@ import NextImage from 'next/image';
 import Button from '@/components/Button';
 
 /* Types */
-import type { CourseStudentStatus } from '@/lib/types';
 import type { Course } from '@/payload/payload-types';
 
 /* Utils */
@@ -20,7 +19,6 @@ import { useState } from 'react';
 interface CourseDesktopDetailsCardProps {
 	course: Course;
 	features: { id: number; label: string; icon: string }[];
-	courseStudentStatus: CourseStudentStatus;
 	tryAddPendingPayment?: (studentId: number, courseId: number) => Promise<boolean>;
 	studentId?: number;
 }

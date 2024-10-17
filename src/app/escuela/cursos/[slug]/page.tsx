@@ -121,7 +121,6 @@ export default async function CourseDetailsPage({ params }: CourseDetailsPagePro
 				<CourseMobileView
 					breacrumbItems={breadcrumbItems}
 					course={course}
-					courseStudentStatus="unsubscribed"
 					features={features}
 					isAcademy
 					tryAddPendingPayment={tryAddPendingPayment}
@@ -130,7 +129,6 @@ export default async function CourseDetailsPage({ params }: CourseDetailsPagePro
 				<CourseDesktopView
 					breacrumbItems={breadcrumbItems}
 					course={course}
-					courseStudentStatus="unsubscribed"
 					features={features}
 					isAcademy
 					tryAddPendingPayment={tryAddPendingPayment}

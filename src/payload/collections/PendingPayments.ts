@@ -1,9 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import type { CollectionConfig } from 'payload';
 import sendgrid, { type ClientResponse } from '@sendgrid/mail';
+import type { Course } from '../payload-types';
 
 export const PendingPayments: CollectionConfig = {
 	slug: 'pending',
+	admin: {
+		useAsTitle: 'student',
+	},
 	labels: {
 		singular: 'Pago Pendiente',
 		plural: 'Pagos Pendientes',
@@ -94,7 +98,10 @@ export const PendingPayments: CollectionConfig = {
 						}
 
 						// Create a Set from existing courses to remove duplicates
-						const uniqueCourses = new Set(studentData.courses ?? []);
+						const uniqueCourses = new Set(
+							studentData?.courses?.map((course) => (course as Course).id) ?? [],
+						);
+
 						// Add the new course only if it doesn't already exist
 						uniqueCourses.add(originalDoc.course as number);
 
@@ -104,6 +111,24 @@ export const PendingPayments: CollectionConfig = {
 							data: {
 								courses: Array.from(uniqueCourses),
 							},
+						});
+
+						const courseData = await req.payload.findByID({
+							collection: 'courses',
+							id: originalDoc.course,
+						});
+
+						// Send email notification to user
+						sendgrid.setApiKey(process.env.SENDGRID_API_KEY!);
+						await sendgrid.send({
+							from: 'vozycuento@gmail.com',
+							templateId: 'd-47df7a9622424b22bbfa94409a15ba83',
+							dynamicTemplateData: {
+								user_name: studentData.name,
+								course_name: courseData.name,
+								course_url: `${process.env.NEXT_PUBLIC_WEB_URL}/escuela/cursos/${courseData.slug}`,
+							},
+							to: studentData.email,
 						});
 					}
 				} catch (error) {

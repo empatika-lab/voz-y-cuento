@@ -8,7 +8,6 @@ import BeAPartSectionDesktop from './BeAPartSectionDesktop';
 
 /* Types */
 import type { Course } from '@/payload/payload-types';
-import type { CourseStudentStatus } from '@/lib/types';
 
 interface CourseDesktopViewProps {
 	breacrumbItems: {
@@ -17,7 +16,6 @@ interface CourseDesktopViewProps {
 	}[];
 	course: Course;
 	features: { id: number; label: string; icon: string }[];
-	courseStudentStatus: CourseStudentStatus;
 	isAcademy?: boolean;
 	tryAddPendingPayment?: (studentId: number, courseId: number) => Promise<boolean>;
 	studentId?: number;
@@ -27,7 +25,6 @@ export default function CourseDesktopView({
 	breacrumbItems,
 	course,
 	features,
-	courseStudentStatus,
 	isAcademy = false,
 	tryAddPendingPayment,
 	studentId,
@@ -65,7 +62,6 @@ export default function CourseDesktopView({
 					<div className="w-[360px]" id="course-detail-right-col ">
 						<CourseDesktopDetailsCard
 							course={course}
-							courseStudentStatus={courseStudentStatus}
 							features={features}
 							tryAddPendingPayment={tryAddPendingPayment}
 							studentId={studentId}
