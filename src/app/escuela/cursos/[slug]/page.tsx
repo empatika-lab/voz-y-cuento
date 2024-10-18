@@ -16,7 +16,7 @@ import CourseMobileView from '@/components/Course/CourseMobileView';
 import CourseDesktopView from '@/components/Course/CourseDesktopView';
 
 /* Actions */
-import tryAddPendingPayment from '@/app/(auth)/actions/tryAddPendingPayment';
+import tryAddPendingPayment from './comprar/actions/tryAddPendingPayment';
 
 const features = [
 	{
