@@ -7,6 +7,9 @@ import '@lib/styles/globals.css';
 import localFont from 'next/font/local';
 import { Raleway } from 'next/font/google';
 
+/* Contexts */
+import ProgressBarProvider from '@/contexts/ProgressBarProvider';
+
 const raleway = Raleway({
 	subsets: ['latin'],
 	weight: ['300', '400', '500', '700'],
@@ -36,7 +39,7 @@ export default function RootLayout({
 			<body
 				className={`${raleway.variable} ${busther.variable} h-full bg-cyan-50 font-sans antialiased`}
 			>
-				{children}
+				<ProgressBarProvider>{children}</ProgressBarProvider>
 			</body>
 		</html>
 	);
