@@ -222,7 +222,7 @@ export interface Event {
   id: number;
   title: string;
   description: string;
-  category: 'Maternal' | 'Infantil' | 'Familiar' | 'Adultos';
+  category: 'Maternal' | 'Infantil' | 'Familiar' | 'Adultos' | 'Personalizado';
   image: number | Media;
   updatedAt: string;
   createdAt: string;

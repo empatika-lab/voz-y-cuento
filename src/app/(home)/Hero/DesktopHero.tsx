@@ -22,7 +22,7 @@ export default function DesktopHero() {
 
 				<div
 					aria-hidden
-					className="absolute bottom-0 right-0 overflow-hidden xl:right-[32px] 2xl:right-[302px]"
+					className="absolute bottom-0 right-0 overflow-hidden xl:right-[96px] 2xl:right-[364px]"
 				>
 					<NextImage alt="" className="h-auto w-[472px]" src={Emilce} />
 				</div>
