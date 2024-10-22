@@ -37,7 +37,7 @@ export default function HireMeCard({ event }: HireMeCardProps) {
 						</h2>
 						<p className="font-medium">{event.description}</p>
 						<div className="mt-4 px-4 rounded-full py-2 font-bold text-black transition-colors ml-auto bg-red-50">
-							{event.level}
+							{event.category}
 						</div>
 					</div>
 				</div>

@@ -222,8 +222,7 @@ export interface Event {
   id: number;
   title: string;
   description: string;
-  category: 'Familiar' | 'Maternal' | 'Infantil' | 'Institucion';
-  level?: ('Inicial' | 'Primario' | 'Secundario') | null;
+  category: 'Maternal' | 'Infantil' | 'Familiar' | 'Adultos';
   image: number | Media;
   updatedAt: string;
   createdAt: string;

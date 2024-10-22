@@ -2,6 +2,7 @@ import configPromise from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 
 /* Utils */
+import { prettyPrint } from '@/lib/utils/dev';
 import { getCachedPayload } from '@/lib/utils/localApi';
 
 /* Components */
@@ -21,13 +22,22 @@ const breadcrumbItems = [
 	},
 ];
 
-export default async function HireMe() {
+async function fetchEvents() {
 	const payload = await getPayloadHMR({
 		config: configPromise,
 	});
 	const cachedPayload = getCachedPayload(payload);
 
-	const events = await cachedPayload.find({ collection: 'events' });
+	const events = cachedPayload.find({ collection: 'events', limit: 1000 }).catch((e) => {
+		prettyPrint(e);
+	});
+
+	return events;
+}
+
+export default async function HireMe() {
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	const events = await fetchEvents();
 
 	if (!events) {
 		return null;

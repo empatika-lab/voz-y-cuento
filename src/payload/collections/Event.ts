@@ -42,27 +42,12 @@ export const Event: CollectionConfig = {
 			label: 'Categoría',
 			required: true,
 			options: [
-				{ label: 'Familiar', value: 'Familiar' },
 				{ label: 'Maternal', value: 'Maternal' },
 				{ label: 'Infantil', value: 'Infantil' },
-				{ label: 'Institución Educativa', value: 'Institucion' },
+				{ label: 'Familiar', value: 'Familiar' },
+				{ label: 'Adultos', value: 'Adultos' },
 			],
 			defaultValue: 'Familiar',
-		},
-		{
-			type: 'select',
-			name: 'level',
-			label: 'Nivel',
-			required: true,
-			options: [
-				{ label: 'Inicial', value: 'Inicial' },
-				{ label: 'Primario', value: 'Primario' },
-				{ label: 'Secundario', value: 'Secundario' },
-			],
-			// Only show if Category is equal to "Institución Educativa"
-			admin: {
-				condition: (_data, siblingData) => siblingData.category === 'Institucion',
-			},
 		},
 		{
 			name: 'image',
