@@ -19,7 +19,7 @@ export const navItems = [
 		href: ROUTES.ABOUT,
 	},
 	{
-		label: 'Contrataciones',
+		label: 'Espectáculos',
 		href: ROUTES.HIRE,
 	},
 ];

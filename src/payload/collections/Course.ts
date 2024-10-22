@@ -1,5 +1,10 @@
 import type { CollectionConfig } from 'payload';
+
+/* Fields */
 import { slugField } from '../fields/slug';
+
+/* Blocks */
+import { CourseContentBlock } from './CourseBlock';
 
 export const Course: CollectionConfig = {
 	slug: 'courses',
@@ -145,6 +150,7 @@ export const Course: CollectionConfig = {
 								},
 							],
 						},
+						{ ...CourseContentBlock },
 					],
 				},
 			],

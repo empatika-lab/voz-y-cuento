@@ -29,7 +29,7 @@ export const Event: CollectionConfig = {
 			maxLength: 220,
 			admin: {
 				description:
-					'De qué trata el evento. Se ve en la tarjeta del evento en la página de Contrataciones.',
+					'De qué trata el evento. Se ve en la tarjeta del evento en la página de Espectáculos.',
 				width: '100%',
 			},
 		},

@@ -17,8 +17,8 @@ import Button from '@/components/Button';
 
 const breadcrumbItems = [
 	{
-		text: 'Contrataciones',
-		href: '/contrataciones',
+		text: 'Espectáculos',
+		href: '/espectaculos',
 	},
 ];
 
@@ -49,7 +49,7 @@ export default async function HireMe() {
 			<Hero>
 				<div className="container pt-32">
 					<h1 className="font-display relative text-4xl font-normal text-white lg:text-8xl">
-						Espectáculos y talleres itinerantes
+						Espectáculos
 					</h1>
 				</div>
 			</Hero>

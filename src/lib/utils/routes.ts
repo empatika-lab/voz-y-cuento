@@ -6,7 +6,7 @@ const ROUTES = {
 		MY_COURSES: '/escuela/mis-cursos',
 	},
 	ABOUT: '/mi-historia',
-	HIRE: '/contrataciones',
+	HIRE: '/espectaculos',
 	EXPLORE: '/cursos',
 	RESET_PASSWORD: '/recuperar-clave',
 	LOGIN: '/ingresar',

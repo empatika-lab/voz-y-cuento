@@ -20,7 +20,7 @@ const footerLinks = [
 				href: ROUTES.EXPLORE,
 			},
 			{
-				label: 'Contrataciones',
+				label: 'Espectáculos',
 				href: ROUTES.HIRE,
 			},
 		],

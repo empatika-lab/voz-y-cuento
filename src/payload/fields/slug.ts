@@ -12,6 +12,7 @@ export const slugField: Slug = (fieldToUse = 'title', overrides = {}) =>
 			type: 'text',
 			admin: {
 				readOnly: true,
+				hidden: true,
 			},
 			hooks: {
 				beforeValidate: [formatSlug(fieldToUse)],

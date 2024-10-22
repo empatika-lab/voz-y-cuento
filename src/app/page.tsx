@@ -6,7 +6,7 @@ import { LandingNavbar } from '@/components/Layout/Navbar';
 /* Sections */
 import Benefits from './(home)/Benefits';
 import About from './(home)/About';
-import Hire from './(home)/Hire/Hire';
+import Shows from './(home)/Shows';
 import Testimonials from './(home)/Testimonials';
 
 export default function Home() {
@@ -17,7 +17,7 @@ export default function Home() {
 				<Hero />
 				<Benefits />
 				<About />
-				<Hire />
+				<Shows />
 				<Testimonials />
 			</main>
 			<Footer />
