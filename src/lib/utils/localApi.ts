@@ -4,10 +4,11 @@ import { revalidateTag, unstable_cache } from 'next/cache';
 export const { cachedPayloadPlugin, getCachedPayload } = buildCachedPayload({
 	collections: [
 		{
-			findOneFields: ['slug'],
+			findOneFields: ['id', 'slug'],
 			slug: 'courses',
 		},
 		{
+			findOneFields: ['id', 'slug'],
 			slug: 'events',
 		},
 	],
