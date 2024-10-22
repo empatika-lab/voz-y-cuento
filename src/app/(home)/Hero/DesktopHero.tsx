@@ -5,10 +5,6 @@ import Button from '@/components/Button';
 
 /* Assets */
 import Emilce from '@images/emilce-photo-big.png';
-import Bird1 from '@images/bird-1-big.svg';
-import Bird2 from '@images/bird-2-big.svg';
-import Books from '@images/books-big.svg';
-import Book from '@images/book-big.svg';
 
 /* Utils */
 import ROUTES from '@/lib/utils/routes';
@@ -30,26 +26,6 @@ export default function DesktopHero() {
 				>
 					<NextImage alt="" className="h-auto w-[472px]" src={Emilce} />
 				</div>
-
-				<NextImage alt="" className="absolute right-[40%] top-[20%]" src={Bird1} priority />
-				<NextImage
-					alt=""
-					className="absolute right-[3%] top-[5%] 2xl:right-[17%]"
-					src={Bird2}
-					priority
-				/>
-				<NextImage
-					alt=""
-					className="absolute right-[3%] top-[30%] 2xl:right-[17%]"
-					src={Book}
-					priority
-				/>
-				<NextImage
-					alt=""
-					className="absolute -bottom-12 right-[33%] xl:right-[25%] 2xl:right-[33%] "
-					src={Books}
-					priority
-				/>
 
 				<Button
 					className="relative top-16 text-center text-base"

@@ -46,6 +46,7 @@ export const Event: CollectionConfig = {
 				{ label: 'Infantil', value: 'Infantil' },
 				{ label: 'Familiar', value: 'Familiar' },
 				{ label: 'Adultos', value: 'Adultos' },
+				{ label: 'Personalizado', value: 'Personalizado' },
 			],
 			defaultValue: 'Familiar',
 		},
