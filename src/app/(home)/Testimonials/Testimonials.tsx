@@ -9,17 +9,17 @@ import Avatar3 from '@images/placeholder-avatar-3.png';
 const testimonials = [
 	{
 		text: 'Genial! Gracias. Me encantó cada idea, los autores que nos presentaste en el Bloque. Gracias, gracias, gracias.',
-		name: 'Natalia Perez',
+		name: 'Natalia',
 		image: Avatar1,
 	},
 	{
 		text: 'Emilce, destaco mucho lo clara que sos en los videos.',
-		name: 'Agustina Perez',
+		name: 'Agustina',
 		image: Avatar2,
 	},
 	{
 		text: 'Gracias por cada propuesta. Estoy fascinada.',
-		name: 'Marcela Perez',
+		name: 'Marcela',
 		image: Avatar3,
 	},
 ];

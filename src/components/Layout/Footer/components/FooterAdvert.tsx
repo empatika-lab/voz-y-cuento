@@ -12,7 +12,7 @@ export default function FooterAdvert() {
 						href="https://www.instagram.com/libreriavozycuento"
 						target="_blank"
 					>
-						Librería Voz y Cuento
+						Librería Nómada Voz y Cuento
 					</a>{' '}
 					y conoce nuestra selección de libros.
 				</p>

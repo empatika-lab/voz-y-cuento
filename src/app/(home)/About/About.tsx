@@ -33,8 +33,8 @@ export default function About() {
 					</div>
 
 					<p className="text-left text-base text-gray-900 lg:mt-12 lg:text-right lg:text-xl">
-						Te invito a conocer mi historia narrativa. Desde mi trayectoria como docente de nivel
-						inicial a convertirme en narradora oral escénica profesional con más de diez años de
+						Te invito a conocer mi historia. Desde mi trayectoria como docente de nivel inicial a
+						convertirme en narradora oral escénica profesional con más de quince años de
 						experiencia.
 					</p>
 

@@ -16,7 +16,7 @@ export default function Shows() {
 			<div className="container">
 				<h1 className="relative font-display text-4xl leading-[1.2] lg:text-7xl ">Espectáculos</h1>
 				<p className="relative my-6 text-black lg:my-12 lg:max-w-2xl lg:text-2xl">
-					Opciones de espectáculos, charlas y talleres para tu evento o proyecto escolar.
+					Opciones de espectáculos presenciales y/o virtuales para tu evento o proyecto escolar.
 				</p>
 
 				<Button
