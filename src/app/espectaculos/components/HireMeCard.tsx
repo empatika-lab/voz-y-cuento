@@ -29,6 +29,11 @@ export default function HireMeCard({ event }: HireMeCardProps) {
 				<h2 className="absolute top-4 w-[90%]  text-lg font-semibold mb-2 bg-black/70 left-[50%] translate-x-[-50%] text-white text-center lg:text-2xl">
 					{event.title}
 				</h2>
+
+				<div className="absolute mt-4 px-4 rounded-full py-2 font-bold text-black transition-colors ml-auto bg-white bottom-4 right-4">
+					{event.category}
+				</div>
+
 				{/* Back */}
 				<div className="flip-card-back absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-[20px]">
 					<div className="border-gray-900 border shadow-[0_8px_24px_0_rgba(9,76,77,0.3)] p-4 w-full h-full flex flex-col items-center justify-between bg-cyan-100 rounded-[20px]">
@@ -36,7 +41,7 @@ export default function HireMeCard({ event }: HireMeCardProps) {
 							{event.title}
 						</h2>
 						<p className="font-medium">{event.description}</p>
-						<div className="mt-4 px-4 rounded-full py-2 font-bold text-black transition-colors ml-auto bg-red-50">
+						<div className="mt-4 px-4 rounded-full py-2 font-bold text-black transition-colors ml-auto bg-white">
 							{event.category}
 						</div>
 					</div>

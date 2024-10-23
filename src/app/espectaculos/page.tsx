@@ -9,11 +9,9 @@ import { getCachedPayload } from '@/lib/utils/localApi';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import Footer from '@/components/Layout/Footer';
 import Hero from '@/components/Layout/Hero';
-import { LandingNavbar } from '@/components/Layout/Navbar';
 import HireMeCard from './components/HireMeCard';
 import Button from '@/components/Button';
-
-/* Icons */
+import { LandingNavbar } from '@/components/Layout/Navbar';
 
 const breadcrumbItems = [
 	{
@@ -26,17 +24,19 @@ async function fetchEvents() {
 	const payload = await getPayloadHMR({
 		config: configPromise,
 	});
+
 	const cachedPayload = getCachedPayload(payload);
 
-	const events = cachedPayload.find({ collection: 'events', limit: 1000 }).catch((e) => {
-		prettyPrint(e);
-	});
+	const events = cachedPayload
+		.find({ collection: 'events', limit: 1000, sort: 'category' })
+		.catch((e) => {
+			prettyPrint(e);
+		});
 
 	return events;
 }
 
 export default async function HireMe() {
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const events = await fetchEvents();
 
 	if (!events) {
