@@ -102,13 +102,13 @@ export default async function CourseDetailsPage({ params }: CourseDetailsPagePro
 		<>
 			<LandingNavbar />
 			<Hero>
-				<div className="container pt-24">
+				<div className="container pt-20 lg:pt-[148px]">
 					<h1 className="font-display relative text-4xl font-normal text-white lg:text-8xl">
 						{course.name.replaceAll('.', '')}
 					</h1>
 				</div>
 			</Hero>
-			<main>
+			<main className="pt-8 lg:pt-16">
 				<CourseMobileView breacrumbItems={breadcrumbItems} course={course} features={features} />
 				<CourseDesktopView breacrumbItems={breadcrumbItems} course={course} features={features} />
 			</main>

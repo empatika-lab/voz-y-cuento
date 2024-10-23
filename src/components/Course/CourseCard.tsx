@@ -24,7 +24,7 @@ export default function CourseCard({ course, isAcademy = false }: CardCoursesPro
 		>
 			<NextLink href={isAcademy ? `/escuela/cursos/${course.slug}` : `/cursos/${course.slug}`}>
 				{/* Card Image */}
-				<div className="relative h-[180px] w-full lg:h-[200px] lg:w-[356px]">
+				<div className="relative h-[180px] w-full lg:h-[200px] lg:w-[354px] mx-auto">
 					{course.image && typeof course.image !== 'number' && (
 						<NextImage
 							alt={course.image.alt}
