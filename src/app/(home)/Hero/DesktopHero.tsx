@@ -11,7 +11,7 @@ import ROUTES from '@/lib/utils/routes';
 
 export default function DesktopHero() {
 	return (
-		<header className="relative hidden bg-gradient-2 py-[120px] lg:flex">
+		<header className="relative hidden bg-gradient-2 pt-[200px] pb-[120px] lg:flex">
 			<div className="container pb-20">
 				<h1 className="max-w-[50%] pt-2 font-display text-8xl font-normal">
 					Explora el arte de contar historias

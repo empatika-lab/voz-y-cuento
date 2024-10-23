@@ -18,10 +18,10 @@ export default function DesktopLandingNavbar({
 }) {
 	return (
 		<nav
-			className="relative z-10 hidden h-[96px] items-center justify-between lg:flex"
+			className="fixed w-full top-0 z-10 hidden h-[96px] items-center justify-between lg:flex shadow-pink"
 			style={{
 				background:
-					'linear-gradient(0deg, rgba(248, 253, 253, 0.30) 0%, rgba(248, 253, 253, 0.30) 100%), linear-gradient(103deg, #B6E8E9 11.95%, #EADACA 53.96%, #F9C7CA 97.05%)',
+					'linear-gradient(0deg, rgba(248, 253, 253, 0.30) 0%, rgba(248, 253, 253, 0.30) 100%), linear-gradient(103deg, #B6E8E9 11.95%, #FEF4F4 53.96%, #F9C7CA 97.05%)',
 			}}
 		>
 			<div className="container flex w-full items-center justify-between ">
