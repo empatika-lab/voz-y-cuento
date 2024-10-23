@@ -128,7 +128,7 @@ export const Course: CollectionConfig = {
 								{ label: 'Laboratorio', value: 'Laboratorio' },
 								{ label: 'Seminario', value: 'Seminario' },
 							],
-							defaultValue: 'Temático',
+							defaultValue: 'Taller',
 						},
 						{
 							type: 'array',
