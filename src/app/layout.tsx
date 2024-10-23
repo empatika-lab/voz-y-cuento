@@ -16,8 +16,8 @@ const raleway = Raleway({
 	variable: '--font-sans',
 });
 
-const busther = localFont({
-	src: '../../public/fonts/Busther.ttf',
+const hallein = localFont({
+	src: '../../public/fonts/Hallein.ttf',
 	display: 'swap',
 	variable: '--font-display',
 });
@@ -37,7 +37,7 @@ export default function RootLayout({
 	return (
 		<html className="h-full" lang="es">
 			<body
-				className={`${raleway.variable} ${busther.variable} h-full bg-cyan-50 font-sans antialiased`}
+				className={`${raleway.variable} ${hallein.variable} h-full bg-cyan-50 font-sans antialiased`}
 			>
 				<ProgressBarProvider>{children}</ProgressBarProvider>
 			</body>
