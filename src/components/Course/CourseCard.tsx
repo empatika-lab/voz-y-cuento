@@ -43,13 +43,6 @@ export default function CourseCard({ course, isAcademy = false }: CardCoursesPro
 						</div>
 					)}
 
-					{/* Category Badge */}
-					{course.category && (
-						<aside className="absolute right-2 top-2 rounded-full bg-cyan-100 px-4 py-2 font-bold text-black">
-							{course.category}
-						</aside>
-					)}
-
 					{/* Free Course Badge */}
 					{course.isFree && (
 						<aside className="absolute bottom-2 right-2 rounded-full bg-gray-700/75 px-4 py-2 text-sm font-bold text-white">

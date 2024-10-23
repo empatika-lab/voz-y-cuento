@@ -101,7 +101,7 @@ export interface Course {
   shortDescription: string;
   longDescription: string;
   image: number | Media;
-  category?: ('Taller' | 'Laboratorio' | 'Seminario') | null;
+  category: 'Taller' | 'Laboratorio' | 'Seminario';
   syllabus?:
     | {
         unit?: string | null;

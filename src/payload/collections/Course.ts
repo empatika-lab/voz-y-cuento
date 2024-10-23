@@ -120,6 +120,7 @@ export const Course: CollectionConfig = {
 							type: 'select',
 							label: 'Categoría',
 							name: 'category',
+							required: true,
 							admin: {
 								description: 'Elegir el tipo de curso.',
 							},
