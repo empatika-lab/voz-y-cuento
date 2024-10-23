@@ -17,7 +17,7 @@ export default function MyHistory() {
 		<>
 			<LandingNavbar />
 			<Hero>
-				<div className="container pt-20">
+				<div className="container pt-20 lg:pt-[148px">
 					<h1 className="font-display relative text-4xl font-normal text-white lg:text-8xl">
 						Te cuento mi camino
 					</h1>

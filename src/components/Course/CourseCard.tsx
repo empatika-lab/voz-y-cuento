@@ -18,13 +18,13 @@ export default function CourseCard({ course, isAcademy = false }: CardCoursesPro
 		<li
 			key={course.id}
 			className={cn(
-				'flex w-[320px] flex-col rounded-2xl border border-solid border-gray-900 bg-white shadow-lg transition-transform ease-in-out will-change-transform hover:scale-[1.03] active:border-cyan-600 lg:w-[356px]',
+				'flex w-[320px] flex-col rounded-2xl border border-solid border-gray-900 bg-white shadow-lg transition-transform ease-in-out will-change-transform hover:scale-[1.03] active:border-cyan-600 lg:w-[356px] lg:h-[445px]',
 				{ 'pointer-events-none': course.isPending },
 			)}
 		>
 			<NextLink href={isAcademy ? `/escuela/cursos/${course.slug}` : `/cursos/${course.slug}`}>
 				{/* Card Image */}
-				<div className="relative h-[180px] w-full lg:h-[200px]">
+				<div className="relative h-[180px] w-full lg:h-[200px] lg:w-[356px]">
 					{course.image && typeof course.image !== 'number' && (
 						<NextImage
 							alt={course.image.alt}
@@ -67,7 +67,7 @@ export default function CourseCard({ course, isAcademy = false }: CardCoursesPro
 
 				{/* Card Footer */}
 				{!course.isPending && (
-					<footer className="w-full px-4 py-2 lg:py-4">
+					<footer className="w-full px-4 py-2 lg:py-4 mb-10">
 						<NextImage
 							alt="Ver detalle de Curso"
 							className="ml-auto h-[20px] w-[20px]"

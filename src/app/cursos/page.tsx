@@ -43,7 +43,7 @@ export default async function CoursesPage() {
 		<>
 			<LandingNavbar />
 			<Hero>
-				<div className="container pt-20">
+				<div className="container pt-20 lg:pt-[148px]">
 					<h1 className="font-display relative text-4xl font-normal text-white lg:text-8xl">
 						Cursos disponibles
 					</h1>
@@ -52,7 +52,7 @@ export default async function CoursesPage() {
 					</p>
 				</div>
 			</Hero>
-			<main className="container py-20">
+			<main className="container py-32">
 				<Breadcrumbs items={breacrumbItems} />
 				<CourseCards courses={courses.docs} />
 			</main>

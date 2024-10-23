@@ -47,14 +47,14 @@ export default async function HireMe() {
 		<>
 			<LandingNavbar />
 			<Hero>
-				<div className="container pt-32">
+				<div className="container pt-20 lg:pt-[148px">
 					<h1 className="font-display relative text-4xl font-normal text-white lg:text-8xl">
 						Espectáculos
 					</h1>
 				</div>
 			</Hero>
 
-			<main className="container pt-32 pb-16 w-full flex flex-col gap-10">
+			<main className="container pt-48 pb-16 w-full flex flex-col gap-10">
 				<Breadcrumbs items={breadcrumbItems} />
 				<ul className="flex flex-wrap gap-10 justify-center lg:justify-start">
 					{events.docs.map((event) => {
