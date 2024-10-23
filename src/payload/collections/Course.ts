@@ -124,8 +124,7 @@ export const Course: CollectionConfig = {
 								description: 'Elegir el tipo de curso.',
 							},
 							options: [
-								{ label: 'Introductorio', value: 'Introductorio' },
-								{ label: 'Temático', value: 'Temático' },
+								{ label: 'Taller', value: 'Taller' },
 								{ label: 'Laboratorio', value: 'Laboratorio' },
 								{ label: 'Seminario', value: 'Seminario' },
 							],

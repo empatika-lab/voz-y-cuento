@@ -20,7 +20,7 @@ export interface TestimonialCardProps extends PropsWithClassName {
 export default function TestimonialCard({
 	className,
 	testimonial,
-	profileImage,
+	// profileImage,
 	name,
 }: TestimonialCardProps) {
 	return (
@@ -45,9 +45,9 @@ export default function TestimonialCard({
 
 			{/* Profile Image and Name */}
 			<div className="flex w-full items-center gap-3 pt-4 lg:mt-2 lg:pt-5">
-				<div className="rounded-full">
+				{/* <div className="rounded-full">
 					<Image alt="Profile Image" className="h-12 w-12 lg:h-16 lg:w-16" src={profileImage} />
-				</div>
+				</div> */}
 				<p className="font-semibold text-grey-950">{name}</p>
 			</div>
 		</li>
