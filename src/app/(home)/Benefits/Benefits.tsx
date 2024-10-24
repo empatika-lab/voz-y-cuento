@@ -33,7 +33,7 @@ const benefits = [
 export default function Benefits() {
 	return (
 		<section className="container pb-16 pt-24">
-			<h2 className="font-display text-center text-4xl lg:text-7xl">Asi son mis cursos</h2>
+			<h2 className="font-display text-center text-4xl lg:text-7xl">Así son mis cursos</h2>
 
 			<ul className="relative mt-1 flex snap-x snap-mandatory gap-5 overflow-scroll px-[24px] py-10 lg:-mx-4 lg:mt-12 lg:justify-between lg:gap-8">
 				{benefits.map((benefit) => (

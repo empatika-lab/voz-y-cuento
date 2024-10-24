@@ -7,6 +7,7 @@ import { LandingNavbar } from '@/components/Layout/Navbar';
 import Benefits from './(home)/Benefits';
 import About from './(home)/About';
 import Shows from './(home)/Shows';
+import OnPremises from './(home)/OnPremises';
 import Testimonials from './(home)/Testimonials';
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
 				<Benefits />
 				<About />
 				<Shows />
+				<OnPremises />
 				<Testimonials />
 			</main>
 			<Footer />
