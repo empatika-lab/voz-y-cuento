@@ -47,7 +47,7 @@ export default async function HireMe() {
 		<>
 			<LandingNavbar />
 			<Hero>
-				<div className="container pt-20 lg:pt-[148px">
+				<div className="container pt-20 lg:pt-[148px]">
 					<h1 className="font-display relative text-4xl font-normal text-white lg:text-8xl">
 						Espectáculos
 					</h1>
