@@ -23,7 +23,7 @@ const button = tv({
 		'leading-6',
 		'disabled:opacity-30',
 		'disabled:pointer-events-none',
-		'px-3 py-2 min-w-[139px] text-base',
+		'px-6 py-2 min-w-[139px] text-base',
 		'lg:px-8 lg:min-w-[288px] lg:py-3 lg:text-[20px]',
 	],
 	variants: {

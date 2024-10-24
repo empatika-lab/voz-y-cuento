@@ -3,6 +3,10 @@ module.exports = {
 	content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
 	theme: {
 		extend: {
+			text: {
+				'main-title': 'text-[48px] lg:text-[96px] leading-[130%] tracking-[2%] lg:tracking-[4%]',
+				'emphasized-md': 'text-[64px] leading-[120%] tracking-[3%]',
+			},
 			boxShadow: {
 				'3xl': '2px 2px 0 0 #031926;',
 				'4xl': '0px 2px 6px 0px rgba(9, 76, 77, 0.20);',

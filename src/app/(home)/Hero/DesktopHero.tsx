@@ -13,10 +13,10 @@ export default function DesktopHero() {
 	return (
 		<header className="relative hidden bg-gradient-2 pt-[200px] pb-[120px] lg:flex">
 			<div className="container pb-20">
-				<h1 className="max-w-[50%] pt-2 font-display text-8xl font-normal">
+				<h1 className="max-w-[50%] pt-2 font-display main-title">
 					Explora el arte de contar historias
 				</h1>
-				<p className="mt-10 max-w-[50%] text-xl">
+				<p className="mt-12 max-w-[50%] text-xl">
 					Encuentra tu voz narradora con los cursos online de Voz y Cuento.
 				</p>
 
@@ -27,11 +27,7 @@ export default function DesktopHero() {
 					<NextImage alt="" className="h-auto w-[472px]" src={Emilce} />
 				</div>
 
-				<Button
-					className="relative top-16 text-center text-base"
-					href={ROUTES.EXPLORE}
-					type="button"
-				>
+				<Button className="relative top-16 text-center" href={ROUTES.EXPLORE} type="button">
 					Ver Cursos
 				</Button>
 			</div>
