@@ -13,7 +13,7 @@ export default function OnPremises() {
 					¡Voz y cuento también sale de viaje!
 				</h2>
 
-				<div className="flex flex-col-reverse lg:flex-row mt-6 lg:mt-20 gap-6 lg:gap-14">
+				<div className="flex flex-col-reverse sm:flex-row mt-6 lg:mt-20 gap-6 lg:gap-14">
 					<div className="flex flex-col lg:text-2xl text-pretty">
 						<p>
 							La Escuela de Narración Oral no sólo ofrece cursos virtuales, sino que también
@@ -33,7 +33,7 @@ export default function OnPremises() {
 					<NextImage
 						src={Suitcase}
 						alt="Valija de viaje"
-						className="w-[164px] h-[164px] lg:w-[542px] lg:h-[373px]"
+						className="w-[164px] h-[164px] lg:w-[542px] lg:h-[373px] mx-auto sm:mx-0"
 					/>
 				</div>
 			</div>

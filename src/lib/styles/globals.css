@@ -15,9 +15,9 @@ ul {
 }
 
 .main-title {
-	@apply text-[48px] lg:text-[96px] leading-[130%] tracking-[2%] lg:tracking-[4%];
+	@apply text-[48px] lg:text-[96px] leading-[130%] tracking-[0.02em] lg:tracking-[0.04em];
 }
 
 .subtitle {
-	@apply text-[36px] leading-[130%] tracking-[2%] lg:text-[64px] lg:leading-[120%] lg:tracking-[3%];
+	@apply text-[36px] leading-[130%] tracking-[0.02em] lg:text-[64px] lg:leading-[120%] lg:tracking-[0.03em];
 }
