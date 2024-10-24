@@ -19,8 +19,8 @@ export default function Home() {
 				<Benefits />
 				<About />
 				<Shows />
-				<OnPremises />
 				<Testimonials />
+				<OnPremises />
 			</main>
 			<Footer />
 		</>

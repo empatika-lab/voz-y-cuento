@@ -32,7 +32,7 @@ const benefits = [
 
 export default function Benefits() {
 	return (
-		<section className="container py-16">
+		<section className="container py-12">
 			<h2 className="font-display text-center subtitle">Así son mis cursos</h2>
 
 			<ul className="relative mt-5 flex snap-x snap-mandatory gap-5 overflow-scroll px-[24px] py-10 lg:-mx-4 lg:mt-12 lg:justify-between lg:gap-8">

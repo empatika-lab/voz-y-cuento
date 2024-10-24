@@ -27,8 +27,8 @@ const testimonials = [
 export default function Testimonials() {
 	return (
 		<section className="bg-gradient-2">
-			<div className="container py-16 pr-0 lg:py-[112px]">
-				<h2 className="ml-[-20px] text-center font-display text-4xl lg:ml-[0px] lg:text-7xl">
+			<div className="container py-12 pr-0 lg:py-[112px]">
+				<h2 className="ml-[-20px] text-center font-display lg:ml-[0px] subtitle">
 					Testimonios de estudiantes
 				</h2>
 
