@@ -1,0 +1,25 @@
+{
+	"editor.formatOnSave": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "always"
+	},
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[javascriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"workbench.editor.customLabels.patterns": {
+		"**/app/**/page.tsx": "${dirname} - Page",
+		"**/app/**/layout.tsx": "${dirname} - Layout",
+		"**/components/**": "${filename} - Component",
+		"**/actions/**": "${filename} - Action"
+	}
+}

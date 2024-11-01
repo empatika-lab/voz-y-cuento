@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	color: rgb(var(--foreground-rgb));
+	background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
+		rgb(var(--background-start-rgb));
+}
+
+ul {
+	margin-block-start: 0;
+	padding-inline-start: 0;
+	margin-block-end: 0;
+}
+
+.main-title {
+	@apply text-[48px] leading-[130%] tracking-[0.02em] lg:text-[96px] lg:tracking-[0.04em];
+}
+
+.subtitle {
+	@apply text-[36px] leading-[130%] tracking-[0.02em] lg:text-[64px] lg:leading-[120%] lg:tracking-[0.03em];
+}
