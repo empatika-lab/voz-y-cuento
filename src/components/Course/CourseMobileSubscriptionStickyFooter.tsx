@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils/classNames';
 import ROUTES from '@/lib/utils/routes';
 
 /* Actions */
-// import { setBuyCourseRedirection } from '@/app/(auth)/ingresar/actions/setBuyCourseRedirection';
+import { setBuyCourseRedirection } from '@/app/(auth)/ingresar/actions/setBuyCourseRedirection';
 
 /* Types */
 import type { PropsWithClassName } from '@/lib/types';
@@ -28,9 +28,9 @@ export default function CourseMobileSubscriptionStickyFooter({
 	className,
 	course,
 	tryAddPendingPayment,
-	// studentId,
+	studentId,
 }: CourseMobileSubscriptionStickyFooterProps) {
-	const [isPendingPayment /* setIsPendingPayment */] = useState(false);
+	const [isPendingPayment, setIsPendingPayment] = useState(false);
 
 	/* Hooks */
 	const router = useRouter();
@@ -72,19 +72,19 @@ export default function CourseMobileSubscriptionStickyFooter({
 						disabled={isPendingPayment}
 						type="submit"
 						onClick={async () => {
-							// if (course.slug) {
-							// 	if (studentId && tryAddPendingPayment) {
-							// 		setIsPendingPayment(true);
-							// 		const success = await tryAddPendingPayment(studentId, course.id);
-							// 		if (success) {
-							// 			await setBuyCourseRedirection(course.slug);
-							// 			router.push(ctLink);
-							// 			setIsPendingPayment(false);
-							// 			return;
-							// 		}
-							// 		return;
-							// 	}
-							// }
+							if (course.slug) {
+								if (studentId && tryAddPendingPayment) {
+									setIsPendingPayment(true);
+									const success = await tryAddPendingPayment(studentId, course.id);
+									if (success) {
+										await setBuyCourseRedirection(course.slug);
+										router.push(ctLink);
+										setIsPendingPayment(false);
+										return;
+									}
+									return;
+								}
+							}
 						}}
 					>
 						{isPendingPayment ? 'Enviando...' : ctaText}
@@ -97,8 +97,7 @@ export default function CourseMobileSubscriptionStickyFooter({
 						href={ROUTES.LOGIN}
 						onClick={() => {
 							if (course.slug) {
-								// TODO: Implement this
-								// void setBuyCourseRedirection(course.slug);
+								void setBuyCourseRedirection(course.slug);
 							}
 							router.push(ctLink);
 						}}

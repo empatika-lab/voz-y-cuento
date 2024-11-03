@@ -1,4 +1,4 @@
-import { Course } from '@/payload-types';
+import type { Course } from '@/payload-types';
 
 interface CourseSyllbusProps {
 	syllabus: Course['syllabus'];

@@ -4,8 +4,8 @@ import { sha256 } from 'oslo/crypto';
 import { encodeHex } from 'oslo/encoding';
 import { parseJWT, validateJWT } from 'oslo/jwt';
 
-/* Payload */
-// import type { Course } from '@/payload/payload-types';
+/* Types */
+import type { Course } from '@/payload-types';
 
 export async function getPayloadSecret(): Promise<string> {
 	const data = new TextEncoder().encode(process.env.PAYLOAD_SECRET);
@@ -31,14 +31,14 @@ export function getUserFromJWT(jwt: string) {
 		id: string;
 		email: string;
 		name: string;
-		//	courses: Course['id'][];
+		courses: Course['id'][];
 	};
 
 	return {
 		id: payload.id,
 		email: payload.email,
 		name: payload.name,
-		//	courses: payload.courses,
+		courses: payload.courses,
 	};
 }
 

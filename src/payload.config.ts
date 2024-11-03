@@ -10,6 +10,8 @@ import { Admin } from './payload/collections/Admin';
 import { Media } from './payload/collections/Media';
 import { Event } from './payload/collections/Event';
 import { Course } from './payload/collections/Course';
+import { Student } from './payload/collections/Student';
+import { PendingPayments } from './payload/collections/PendingPayments';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -28,7 +30,7 @@ export default buildConfig({
 			baseDir: path.resolve(dirname),
 		},
 	},
-	collections: [Admin, Course, Media, Event],
+	collections: [Admin, Course, Media, Event, Student, PendingPayments],
 	cookiePrefix: 'vycadmin',
 	editor: lexicalEditor(),
 	i18n: {

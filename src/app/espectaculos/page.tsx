@@ -18,6 +18,7 @@ const breadcrumbItems = [
 		href: '/espectaculos',
 	},
 ];
+export const dynamic = 'force-dynamic';
 
 async function fetchEvents() {
 	const payload = await getPayloadHMR({

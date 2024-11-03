@@ -1,2 +1,2 @@
 export { LandingNavbar } from './LandingNavbar';
-// export { AcademyNavbar } from './AcademyNavbar';
+export { AcademyNavbar } from './AcademyNavbar';

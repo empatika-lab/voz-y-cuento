@@ -1,5 +1,5 @@
 /* Types */
-import { Course } from '@/payload-types';
+import type { Course } from '@/payload-types';
 
 /* Components */
 import Breadcrumbs from '@/components/Breadcrumbs';

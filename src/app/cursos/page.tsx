@@ -11,6 +11,8 @@ import { CourseCards } from '@/components/Course/CourseCards';
 /* Utils */
 import { prettyPrint } from '@/lib/utils/dev';
 
+export const dynamic = 'force-dynamic';
+
 const breacrumbItems = [
 	{
 		text: 'Cursos',

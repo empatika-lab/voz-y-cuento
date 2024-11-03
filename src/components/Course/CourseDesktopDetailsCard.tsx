@@ -1,4 +1,6 @@
 'use client';
+
+import { useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
 import NextImage from 'next/image';
@@ -7,14 +9,13 @@ import NextImage from 'next/image';
 import Button from '@/components/Button';
 
 /* Types */
-import { Course } from '@/payload-types';
+import type { Course } from '@/payload-types';
 
 /* Utils */
 import ROUTES from '@/lib/utils/routes';
 
 /* Actions */
-// import { setBuyCourseRedirection } from '@/app/(auth)/ingresar/actions/setBuyCourseRedirection';
-import { useState } from 'react';
+import { setBuyCourseRedirection } from '@/app/(auth)/ingresar/actions/setBuyCourseRedirection';
 
 interface CourseDesktopDetailsCardProps {
 	course: Course;
@@ -101,7 +102,7 @@ export default function CourseDesktopDetailsCard({
 										}
 										return;
 									}
-									//void setBuyCourseRedirection(course.slug);
+									void setBuyCourseRedirection(course.slug);
 									router.push(ctLink);
 								}
 							}}
@@ -115,7 +116,7 @@ export default function CourseDesktopDetailsCard({
 						href={ROUTES.LOGIN}
 						onClick={() => {
 							if (course.slug) {
-								// void setBuyCourseRedirection(course.slug);
+								void setBuyCourseRedirection(course.slug);
 							}
 							router.push(ctLink);
 						}}
