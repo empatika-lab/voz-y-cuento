@@ -15,6 +15,10 @@ export default function CourseSyllbus({ syllabus }: CourseSyllbusProps) {
 
 			<ul className="flex flex-col gap-5 pl-4 lg:gap-10">
 				{syllabus.map(({ id, unit }) => {
+					if (!unit) {
+						return null;
+					}
+
 					return (
 						<li key={id} className="list-[square] text-xl marker:text-cyan-700 lg:text-xl">
 							{unit}
