@@ -10,10 +10,14 @@ import Logo from '@images/logo.png';
 import LogoInWhite from '@images/logo-white.png';
 import BurgerOpenIcon from '@images/icons/burger-open.svg';
 import BurgerCloseIcon from '@images/icons/burger-close.svg';
+import MortarboardIcon from '@images/icons/mortarboard.svg';
 
 /* Utils */
 import { cn } from '@lib/utils/classNames';
 import ROUTES from '@/lib/utils/routes';
+
+/* Components */
+import Button from '@/components/Button';
 
 export default function MobileLandingNavbar({
 	navItems,
@@ -102,6 +106,16 @@ export default function MobileLandingNavbar({
 						<Link href={href}>{label}</Link>
 					</li>
 				))}
+
+				{isOpen && (
+					<Button
+						variant="outline"
+						className="absolute bottom-12 flex w-fit items-center gap-1 font-bold"
+						href={ROUTES.LOGIN}
+					>
+						Ingresar a la Escuela <NextImage alt="Ingresar a la Escuela" src={MortarboardIcon} />
+					</Button>
+				)}
 			</ul>
 		</nav>
 	);

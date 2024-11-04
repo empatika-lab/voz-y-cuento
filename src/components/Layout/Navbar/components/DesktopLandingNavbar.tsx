@@ -18,7 +18,7 @@ export default function DesktopLandingNavbar({
 }) {
 	return (
 		<nav
-			className="shadow-pink fixed top-0 z-10 hidden h-[96px] w-full items-center justify-between lg:flex"
+			className="fixed top-0 z-10 hidden h-[96px] w-full items-center justify-between shadow-pink lg:flex"
 			style={{
 				background:
 					'linear-gradient(0deg, rgba(248, 253, 253, 0.30) 0%, rgba(248, 253, 253, 0.30) 100%), linear-gradient(103deg, #B6E8E9 11.95%, #FEF4F4 53.96%, #F9C7CA 97.05%)',
