@@ -28,6 +28,8 @@ declare global {
 				elementId: string,
 				config: {
 					videoId: string;
+					width?: string;
+					height?: string;
 					events?: {
 						onStateChange?: (event: { data: number }) => void;
 					};
@@ -78,29 +80,41 @@ export default function YouTubeEmbed({ youtubeUrl }: YouTubeEmbedProps) {
 	};
 
 	useEffect(() => {
-		// Load the YouTube API script
-		const tag = document.createElement('script');
-		tag.src = 'https://www.youtube.com/iframe_api';
-		document.body.appendChild(tag);
+		let tag: HTMLScriptElement | null = null;
 
-		// This function initializes the player once the API is ready
-		window.onYouTubeIframeAPIReady = () => {
-			playerRef.current = new window.YT.Player('youtube-player', {
-				videoId,
-				events: {
-					onStateChange: onPlayerStateChange,
-				},
-			});
-		};
+		if (!window.YT) {
+			tag = document.createElement('script');
+			tag.src = 'https://www.youtube.com/iframe_api';
+			document.body.appendChild(tag);
+		} else {
+			initializePlayer();
+		}
+
+		window.onYouTubeIframeAPIReady = initializePlayer;
+
+		function initializePlayer() {
+			if (!playerRef.current) {
+				playerRef.current = new window.YT.Player('youtube-player', {
+					videoId,
+					width: '100%',
+					height: '100%',
+					events: {
+						onStateChange: onPlayerStateChange,
+					},
+				});
+			}
+		}
 
 		return () => {
-			document.body.removeChild(tag); // Clean up script tag when component unmounts
+			if (tag) {
+				document.body.removeChild(tag);
+			}
 		};
 	}, [onPlayerStateChange, videoId]);
 
 	return (
-		<article className="w-full bg-cyan-50 pb-3">
-			<div id="youtube-player" className="aspect-video w-full" />
-		</article>
+		<div className="w-full bg-cyan-50 pb-3">
+			<div id="youtube-player" className="aspect-video w-full" /> {/* Ensure full width */}
+		</div>
 	);
 }

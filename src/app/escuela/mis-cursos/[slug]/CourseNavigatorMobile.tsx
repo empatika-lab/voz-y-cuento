@@ -19,18 +19,29 @@ export default function CourseNavigatorMobile({
 	const tabs = [
 		{
 			label: 'Clase',
-			Component: <div>Clase</div>,
+			Component: (
+				<CourseItem block={course.blocks[currentBlock]} key={course.blocks[currentBlock].id} />
+			),
+			isEnabled: true,
 		},
 		{
 			label: 'Comentarios',
-			Component: <div>Comentarios</div>,
+			Component: <p>Comentarios</p>,
+			isEnabled: true,
+		},
+		{
+			label: 'Archivo',
+			Component: <p>Archivo</p>,
+			isEnabled: false,
 		},
 	];
 
 	return (
-		<div className="lg:hidden">
+		<div className="bg-cyan-100 lg:hidden">
+			<header className="container py-3">
+				<h1 className="text-xl font-bold text-gray-800">{course.name}</h1>
+			</header>
 			<div className="flex flex-col items-center justify-center">
-				<CourseItem block={course.blocks[currentBlock]} key={course.blocks[currentBlock].id} />
 				<CourseViewerMobileTabs tabs={tabs} />
 			</div>
 		</div>

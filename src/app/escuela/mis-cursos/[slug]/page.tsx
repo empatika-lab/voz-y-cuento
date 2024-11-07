@@ -10,7 +10,6 @@ import ROUTES from '@/lib/utils/routes';
 
 /* Components */
 import { AcademyNavbar } from '@/components/Layout/Navbar';
-import Hero from '@/components/Layout/Hero';
 import CourseNavigatorMobile from './CourseNavigatorMobile';
 
 async function fetchCourse(slug: string) {
@@ -80,15 +79,8 @@ export default async function SchoolCoursePage({ params }: SchoolCoursePageProps
 	return (
 		<>
 			<AcademyNavbar userName={user.name} />
-			<Hero>
-				<div className="container pt-24">
-					<h1 className="relative font-display text-4xl font-normal text-white lg:text-8xl">
-						{course.name.replaceAll('.', '')}
-					</h1>
-				</div>
-			</Hero>
 
-			<main className="mt-24 pb-16">
+			<main className="mt-[62px]">
 				<CourseNavigatorMobile course={course} currentBlock={currentBlock} />
 				{/* <CourseNavigatorDesktop course={course} /> */}
 			</main>
