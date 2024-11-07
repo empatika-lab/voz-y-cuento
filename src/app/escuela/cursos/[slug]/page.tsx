@@ -5,7 +5,6 @@ import { cookies } from 'next/headers';
 /* Utils */
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { prettyPrint } from '@/lib/utils/dev';
-import { getCachedPayload } from '@/lib/utils/localApi';
 import { getUserFromJWT, SESSION_COOKIE_NAME } from '@/lib/utils/auth';
 
 /* Components */
@@ -51,20 +50,20 @@ async function fetchCourse(slug: string) {
 		const payload = await getPayloadHMR({
 			config: configPromise,
 		});
-		const cachedPayload = getCachedPayload(payload);
 
-		const course = await cachedPayload
-			.findOne({
+		const course = await payload
+			.find({
 				collection: 'courses',
-				field: 'slug',
-				value: slug,
+				where: {
+					slug: { equals: slug },
+				},
 			})
 			.catch((e) => {
 				prettyPrint(e);
 				return null;
 			});
 
-		return course;
+		return course?.docs[0];
 	} catch (error) {
 		// eslint-disable-next-line no-console
 		console.error('Error inesperado al traer datos del curso.', error);
@@ -112,7 +111,7 @@ export default async function CourseDetailsPage({ params }: CourseDetailsPagePro
 			<AcademyNavbar userName={user.name} />
 			<Hero>
 				<div className="container pt-24">
-					<h1 className="font-display relative text-4xl font-normal text-white lg:text-8xl">
+					<h1 className="relative font-display text-4xl font-normal text-white lg:text-8xl">
 						{course.name.replaceAll('.', '')}
 					</h1>
 				</div>
