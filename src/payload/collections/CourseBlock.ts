@@ -23,7 +23,7 @@ export const CourseContentBlock: CollectionConfig['fields'][0] = {
 				{
 					name: 'description',
 					label: 'Descripción',
-					type: 'textarea',
+					type: 'richText',
 					required: false,
 					admin: { description: 'Un texto para acompañar el video' },
 				},
