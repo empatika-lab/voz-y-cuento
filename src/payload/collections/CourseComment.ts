@@ -35,6 +35,7 @@ export const CourseComment: CollectionConfig = {
 		},
 		{
 			name: 'author',
+			label: 'Autor',
 			admin: {
 				description: 'El nombre del autor del comentario.',
 			},
@@ -51,6 +52,11 @@ export const CourseComment: CollectionConfig = {
 		{
 			name: 'responses',
 			type: 'array',
+			label: 'Respuestas',
+			labels: {
+				singular: 'Respuesta',
+				plural: 'Respuestas',
+			},
 			fields: [
 				{
 					name: 'response',

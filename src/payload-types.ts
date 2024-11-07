@@ -18,6 +18,7 @@ export interface Config {
     events: Event;
     students: Student;
     pending: Pending;
+    comment: Comment;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -29,6 +30,7 @@ export interface Config {
     events: EventsSelect<false> | EventsSelect<true>;
     students: StudentsSelect<false> | StudentsSelect<true>;
     pending: PendingSelect<false> | PendingSelect<true>;
+    comment: CommentSelect<false> | CommentSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -251,6 +253,28 @@ export interface Pending {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "comment".
+ */
+export interface Comment {
+  id: number;
+  comment?: string | null;
+  course?: (number | Course)[] | null;
+  block?: number | null;
+  author?: string | null;
+  highlighted?: boolean | null;
+  responses?:
+    | {
+        response?: string | null;
+        highlighted?: boolean | null;
+        author?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -279,6 +303,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pending';
         value: number | Pending;
+      } | null)
+    | ({
+        relationTo: 'comment';
+        value: number | Comment;
       } | null);
   globalSlug?: string | null;
   user:
@@ -458,6 +486,27 @@ export interface PendingSelect<T extends boolean = true> {
   course?: T;
   student?: T;
   isPaid?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "comment_select".
+ */
+export interface CommentSelect<T extends boolean = true> {
+  comment?: T;
+  course?: T;
+  block?: T;
+  author?: T;
+  highlighted?: T;
+  responses?:
+    | T
+    | {
+        response?: T;
+        highlighted?: T;
+        author?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
