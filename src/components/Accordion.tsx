@@ -35,13 +35,13 @@ export function AccordionItem({
 			value={id}
 			key={id}
 		>
-			<RadixAccordion.Header className="flex bg-cyan-25 px-8">
+			<RadixAccordion.Header className="flex bg-cyan-25">
 				<RadixAccordion.Trigger className="group relative flex flex-1 cursor-default items-center justify-between outline-none">
 					{header}
 				</RadixAccordion.Trigger>
 			</RadixAccordion.Header>
 
-			<RadixAccordion.Content className="bg-[#F3F5F5] px-8 data-[state=closed]:animate-slideUp data-[state=open]:animate-slideDown">
+			<RadixAccordion.Content className="bg-[#F3F5F5] data-[state=closed]:animate-slideUp data-[state=open]:animate-slideDown">
 				{content}
 			</RadixAccordion.Content>
 		</RadixAccordion.Item>

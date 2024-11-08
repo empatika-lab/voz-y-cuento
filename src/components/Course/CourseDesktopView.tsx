@@ -53,7 +53,7 @@ export default function CourseDesktopView({
 							<>
 								{/* Separador */}
 								<div className="mt-16 h-[1px] w-full bg-[#0C0E0E]" />
-								<CourseContentAccordeon />
+								<CourseContentAccordeon blocks={course.blocks} />
 							</>
 						)}
 					</div>

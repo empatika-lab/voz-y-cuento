@@ -56,7 +56,7 @@ export default function CourseMobileView({
 
 				{/* Bloques de contenido del curso */}
 				{course.category !== 'Seminario' && course.category !== 'Laboratorio' && (
-					<CourseContentAccordion />
+					<CourseContentAccordion blocks={course.blocks} />
 				)}
 			</div>
 

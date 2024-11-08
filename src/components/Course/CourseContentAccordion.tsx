@@ -9,43 +9,146 @@ import { cn } from '@/lib/utils/classNames';
 /* Icons */
 import plusIcon from '@images/icons/plus.svg';
 import minusIcon from '@images/icons/minus.svg';
+import videoIcon from '@images/icons/video.svg';
+import pencilIcon from '@images/icons/pencil.svg';
+/* Types */
+import type { Course } from '@/payload-types';
 
-const items = [
-	{
-		title: 'Block number 1',
-	},
-	{
-		title: 'Block number 2',
-	},
-	{
-		title: 'Block number 3',
-	},
-	{
-		title: 'Block number 4',
-	},
-	{
-		title: 'Block number 5',
-	},
-];
+interface CourseContentAccordionProps {
+	blocks?: Course['blocks'];
+}
 
-export default function CourseContentAccordion() {
+interface AccordionItemContentProps {
+	content?:
+		| (
+				| {
+						link: string;
+						content?: {
+							root: {
+								type: string;
+								children: {
+									type: string;
+									version: number;
+									[k: string]: unknown;
+								}[];
+								direction: ('ltr' | 'rtl') | null;
+								format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+								indent: number;
+								version: number;
+							};
+							[k: string]: unknown;
+						} | null;
+						id?: string | null;
+						blockName?: string | null;
+						blockType: 'video';
+				  }
+				| {
+						content: {
+							root: {
+								type: string;
+								children: {
+									type: string;
+									version: number;
+									[k: string]: unknown;
+								}[];
+								direction: ('ltr' | 'rtl') | null;
+								format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+								indent: number;
+								version: number;
+							};
+							[k: string]: unknown;
+						};
+						id?: string | null;
+						blockName?: string | null;
+						blockType: 'exercise';
+				  }
+				| {
+						material: {
+							root: {
+								type: string;
+								children: {
+									type: string;
+									version: number;
+									[k: string]: unknown;
+								}[];
+								direction: ('ltr' | 'rtl') | null;
+								format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+								indent: number;
+								version: number;
+							};
+							[k: string]: unknown;
+						};
+						id?: string | null;
+						blockName?: string | null;
+						blockType: 'additional-material';
+				  }
+		  )[]
+		| null;
+}
+
+function AccordionItemContent({ content }: AccordionItemContentProps) {
+	if (!content) {
+		return null;
+	}
+
+	function getIcon(blockType: string) {
+		if (blockType === 'video') {
+			return <NextImage alt="Video" height={16} src={videoIcon as string} width={16} />;
+		}
+
+		if (blockType === 'exercise') {
+			return <NextImage alt="Ejercicio" height={16} src={pencilIcon as string} width={16} />;
+		}
+
+		return null;
+	}
+
+	return (
+		<ul className="bg-gray-50">
+			{content.map((item) => {
+				console.log(item);
+				return (
+					<li key={item.id} className="flex items-center rounded-lg px-[52px] py-4">
+						{getIcon(item.blockType)}
+						{item.blockName && <p className="pl-4">{item.blockName}</p>}
+					</li>
+				);
+			})}
+		</ul>
+	);
+}
+
+export default function CourseContentAccordion({ blocks }: CourseContentAccordionProps) {
+	if (!blocks?.length) {
+		return null;
+	}
+
 	return (
 		<>
 			<h2 className="py-7 text-2xl font-bold leading-8">Tabla de Contenido</h2>
 			<Accordion>
-				{items.map((item) => {
+				{blocks.map((block, index) => {
+					const key = block.name ?? `block-${index}`;
+
 					return (
 						<AccordionItem
-							key={item.title}
-							id={item.title}
-							content={<p className="px-2 py-4">Yes, it is.</p>}
+							key={key}
+							id={key}
+							content={<AccordionItemContent content={block.content} />}
 							header={
-								<header key={item.title} className="flex w-full items-center justify-between">
-									<p className="px-2 py-4"> Is it accessible?</p>
+								<header
+									key={key}
+									className="flex w-full items-center justify-between bg-cyan-25 px-2 lg:px-8"
+								>
+									<p className="py-4 pr-2 font-bold">
+										Bl {index + 1}
+										{block.name && ':'}
+										{block.name && <span className="pl-3 font-normal">{block.name}</span>}
+									</p>
 									<NextImage
 										alt="Ver detalles"
 										className={cn(
-											'opacity-1 absolute right-2 transition-opacity duration-200 ease-linear group-data-[state=open]:opacity-0',
+											'opacity-1 absolute right-2 transition-opacity duration-200 ease-linear group-data-[state=open]:opacity-0 lg:right-8',
 										)}
 										height={16}
 										src={plusIcon}
@@ -54,7 +157,7 @@ export default function CourseContentAccordion() {
 									<NextImage
 										alt="Esconder detalles"
 										className={cn(
-											'absolute right-2 opacity-0 transition-opacity duration-200 ease-linear group-data-[state=open]:opacity-100',
+											'absolute right-2 opacity-0 transition-opacity duration-200 ease-linear group-data-[state=open]:opacity-100 lg:right-8',
 										)}
 										height={16}
 										src={minusIcon}
