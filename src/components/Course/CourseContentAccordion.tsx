@@ -106,9 +106,8 @@ function AccordionItemContent({ content }: AccordionItemContentProps) {
 	return (
 		<ul className="bg-gray-50">
 			{content.map((item) => {
-				console.log(item);
 				return (
-					<li key={item.id} className="flex items-center rounded-lg px-[52px] py-4">
+					<li key={item.id} className="flex items-center rounded-lg px-2 py-4 lg:px-[152px]">
 						{getIcon(item.blockType)}
 						{item.blockName && <p className="pl-4">{item.blockName}</p>}
 					</li>
@@ -140,9 +139,16 @@ export default function CourseContentAccordion({ blocks }: CourseContentAccordio
 									key={key}
 									className="flex w-full items-center justify-between bg-cyan-25 px-2 lg:px-8"
 								>
-									<p className="py-4 pr-2 font-bold">
+									{/* Mobile */}
+									<p className="py-4 pr-2 font-bold lg:hidden">
 										Bl {index + 1}
 										{block.name && ':'}
+										{block.name && <span className="pl-3 font-normal">{block.name}</span>}
+									</p>
+
+									{/* Desktop */}
+									<p className="hidden py-4 pr-2 font-bold lg:block">
+										<span className="pr-10">Bloque {index + 1}</span>
 										{block.name && <span className="pl-3 font-normal">{block.name}</span>}
 									</p>
 									<NextImage
