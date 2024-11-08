@@ -3,10 +3,10 @@ import type { CollectionConfig } from 'payload';
 export const CourseContentBlock: CollectionConfig['fields'][0] = {
 	type: 'blocks',
 	name: 'content',
-	label: 'Bloque de Contenido',
-	labels: { singular: 'Bloque', plural: 'Bloques' },
+	label: 'Listado de Clases',
+	labels: { singular: 'Clase', plural: 'Clases' },
 	admin: {
-		description: 'Bloque de contenido del curso.',
+		description: 'Agregar clases: videos, ejercicios y materiales adicionales.',
 	},
 	blocks: [
 		{
@@ -21,8 +21,8 @@ export const CourseContentBlock: CollectionConfig['fields'][0] = {
 					required: true,
 				},
 				{
-					name: 'description',
-					label: 'Descripción',
+					name: 'content',
+					label: 'Texto Adicional',
 					type: 'richText',
 					required: false,
 					admin: { description: 'Un texto para acompañar el video' },

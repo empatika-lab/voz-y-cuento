@@ -154,10 +154,21 @@ export const Course: CollectionConfig = {
 							type: 'array',
 							name: 'blocks',
 							admin: {
-								description: 'Los bloques de contenido del curso.',
+								description: 'Los bloques del curso.',
 							},
 							label: 'Bloques de Contenido',
-							fields: [CourseContentBlock],
+							labels: { singular: 'Bloque', plural: 'Bloques' },
+							fields: [
+								{
+									type: 'text',
+									label: 'Nombre del Bloque',
+									name: 'name',
+									// admin: {
+									// 	description: 'Nombre del Bloque',
+									// },
+								},
+								CourseContentBlock,
+							],
 						},
 					],
 				},

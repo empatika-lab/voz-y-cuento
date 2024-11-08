@@ -25,6 +25,8 @@ const breacrumbItems = [
 	},
 ];
 
+export const dynamic = 'force-dynamic';
+
 async function fetchCourses(userId: number) {
 	const payload = await getPayloadHMR({
 		config: configPromise,
@@ -38,6 +40,9 @@ async function fetchCourses(userId: number) {
 			id: {
 				equals: userId,
 			},
+		},
+		select: {
+			courses: true,
 		},
 	});
 

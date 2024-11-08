@@ -38,7 +38,6 @@ export const Student: CollectionConfig = {
 			relationTo: 'courses',
 			name: 'courses',
 			hasMany: true,
-			saveToJWT: true,
 			label: 'Cursos',
 			admin: {
 				description: 'Cursos a los que el alumno pertenece.',
