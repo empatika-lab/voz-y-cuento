@@ -21,3 +21,9 @@ ul {
 .subtitle {
 	@apply text-[36px] leading-[130%] tracking-[0.02em] lg:text-[64px] lg:leading-[120%] lg:tracking-[0.03em];
 }
+
+@layer payload-default {
+	@tailwind base;
+	@tailwind components;
+	@tailwind utilities;
+}

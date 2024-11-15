@@ -1,3 +1,4 @@
+import RichText from '../RichText/RichText';
 import YoutubeViewer from './YoutubeViewer';
 
 interface CourseItemProps {
@@ -61,6 +62,14 @@ export default function CourseItem({ block }: CourseItemProps) {
 		return block.content.map((item) => {
 			if (item.blockType === 'video' && item.link) {
 				return <YoutubeViewer key={item.id} youtubeUrl={item.link} />;
+			}
+
+			if (item.blockType === 'exercise' && item.content) {
+				return <RichText key={item.id} content={item.content} />;
+			}
+
+			if (item.blockType === 'additional-material' && item.material) {
+				return <RichText key={item.id} content={item.material} />;
 			}
 
 			return null;

@@ -12,6 +12,9 @@ import ROUTES from '@/lib/utils/routes';
 import { AcademyNavbar } from '@/components/Layout/Navbar';
 import CourseNavigatorMobile from './CourseNavigatorMobile';
 
+/* Types */
+import type { Course } from '@/payload-types';
+
 async function fetchCourse(slug: string) {
 	try {
 		const payload = await getPayloadHMR({
@@ -45,9 +48,15 @@ interface SchoolCoursePageProps {
 	}>;
 }
 
+export const dynamic = 'force-dynamic';
+
 export default async function SchoolCoursePage({ params }: SchoolCoursePageProps) {
 	const slug = (await params).slug;
 	const currentBlock = (await params).block ?? 0;
+
+	const payload = await getPayloadHMR({
+		config: configPromise,
+	});
 
 	if (!slug) {
 		return notFound();
@@ -67,9 +76,24 @@ export default async function SchoolCoursePage({ params }: SchoolCoursePageProps
 		return redirect(ROUTES.LOGIN);
 	}
 
+	const studentData = await payload
+		.findByID({
+			collection: 'students',
+			id: user.id,
+			select: {
+				id: true,
+				courses: true,
+			},
+		})
+		.catch((e) => {
+			prettyPrint(e);
+		});
+
+	const studentCourses = (studentData?.courses?.filter(Boolean) ?? []) as Course[];
+
 	// Check if the user is enrolled in the course
-	const isEnrolled = user.courses?.some((courseId) => {
-		return courseId === course.id;
+	const isEnrolled = studentCourses?.some((studentCourse) => {
+		return studentCourse.id === course.id;
 	});
 
 	if (!isEnrolled) {
