@@ -49,7 +49,7 @@ export default function CourseCard({
 					)}
 					{course.image && typeof course.image !== 'number' && (
 						<NextImage
-							alt={course.image.alt}
+							alt={course.image.alt ?? ''}
 							className="rounded-t-2xl object-cover"
 							fill
 							src={`${process.env.NEXT_PUBLIC_WEB_URL}${course.image.url!}`}
