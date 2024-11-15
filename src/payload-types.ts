@@ -23,7 +23,8 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsSelect?: {
+  collectionsJoins: {};
+  collectionsSelect: {
     admins: AdminsSelect<false> | AdminsSelect<true>;
     courses: CoursesSelect<false> | CoursesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
@@ -39,7 +40,7 @@ export interface Config {
     defaultIDType: number;
   };
   globals: {};
-  globalsSelect?: {};
+  globalsSelect: {};
   locale: null;
   user:
     | (Admin & {
@@ -207,7 +208,7 @@ export interface Course {
  */
 export interface Media {
   id: number;
-  alt: string;
+  alt?: string | null;
   _key?: string | null;
   updatedAt: string;
   createdAt: string;

@@ -16,10 +16,10 @@ export const Media: CollectionConfig = {
 				description: 'Una descripción para el usuario por si la imágen falla en su carga.',
 			},
 			type: 'text',
-			required: true,
+			required: false,
 		},
 	],
 	upload: {
-		mimeTypes: ['image/*'],
+		mimeTypes: ['image/*', 'application/pdf'],
 	},
 };

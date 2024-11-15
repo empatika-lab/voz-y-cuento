@@ -1,4 +1,3 @@
-// storage-adapter-import-placeholder
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import path from 'path';
@@ -58,6 +57,7 @@ export default buildConfig({
 			collections: {
 				[Media.slug]: true,
 			},
+
 			options: {
 				apiKey: process.env.UPLOADTHING_SECRET,
 				acl: 'public-read',
