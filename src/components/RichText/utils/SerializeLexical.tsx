@@ -18,7 +18,7 @@ import {
 } from './NodeFormat';
 import type { DefaultNodeTypes, SerializedBlockNode } from '@payloadcms/richtext-lexical';
 
-export type NodeTypes = DefaultNodeTypes | SerializedBlockNode<MediaBlockProps>;
+export type NodeTypes = DefaultNodeTypes | SerializedBlockNode;
 
 interface Props {
 	nodes: NodeTypes[];
