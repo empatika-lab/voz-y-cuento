@@ -2,7 +2,7 @@ import React from 'react';
 
 /* Utils */
 import { cn } from '@/lib/utils/classNames';
-import { SerializeLexical, type NodeTypes } from './utils/SerializeLexical';
+import { SerializeLexical, type NodeTypes } from './utils';
 
 interface Props {
 	className?: string;
