@@ -1,9 +1,6 @@
 import configPromise from '@payload-config';
 import { notFound } from 'next/navigation';
-
-/* Utils */
-import { getPayloadHMR } from '@payloadcms/next/utilities';
-//import { prettyPrint } from '@/lib/utils/dev';
+import { getPayload } from 'payload';
 
 /* Components */
 import { LandingNavbar } from '@/components/Layout/Navbar/LandingNavbar';
@@ -42,7 +39,7 @@ const features = [
 
 async function fetchCourse(slug: string) {
 	try {
-		const payload = await getPayloadHMR({
+		const payload = await getPayload({
 			config: configPromise,
 		});
 

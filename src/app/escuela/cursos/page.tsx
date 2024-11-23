@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { getPayload } from 'payload';
 import configPromise from '@payload-config';
 
 /* Utils */
@@ -28,7 +28,7 @@ const breacrumbItems = [
 export const dynamic = 'force-dynamic';
 
 async function fetchCourses(userId: number) {
-	const payload = await getPayloadHMR({
+	const payload = await getPayload({
 		config: configPromise,
 	});
 

@@ -1,9 +1,9 @@
 import configPromise from '@payload-config';
 import { notFound } from 'next/navigation';
 import { cookies } from 'next/headers';
+import { getPayload } from 'payload';
 
 /* Utils */
-import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { prettyPrint } from '@/lib/utils/dev';
 import { getUserFromJWT, SESSION_COOKIE_NAME } from '@/lib/utils/auth';
 
@@ -47,7 +47,7 @@ const features = [
 
 async function fetchCourse(slug: string) {
 	try {
-		const payload = await getPayloadHMR({
+		const payload = await getPayload({
 			config: configPromise,
 		});
 

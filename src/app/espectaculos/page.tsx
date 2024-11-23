@@ -1,5 +1,5 @@
 import configPromise from '@payload-config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { getPayload } from 'payload';
 
 /* Utils */
 import { prettyPrint } from '@/lib/utils/dev';
@@ -21,7 +21,7 @@ const breadcrumbItems = [
 export const dynamic = 'force-dynamic';
 
 async function fetchEvents() {
-	const payload = await getPayloadHMR({
+	const payload = await getPayload({
 		config: configPromise,
 	});
 

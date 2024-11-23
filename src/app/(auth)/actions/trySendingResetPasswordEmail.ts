@@ -3,7 +3,7 @@
 import 'server-only';
 
 import configPromise from '@payload-config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { getPayload } from 'payload';
 import sendgrid, { type ClientResponse } from '@sendgrid/mail';
 
 /* Types */
@@ -20,7 +20,7 @@ export async function trySendingResetPasswordEmail(
 	_prevState: ServerActionResponse<RecoverPasswordData> | null,
 	formData: FormData,
 ): Promise<ServerActionResponse<RecoverPasswordData>> {
-	const payload = await getPayloadHMR({
+	const payload = await getPayload({
 		config: configPromise,
 	});
 

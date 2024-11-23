@@ -59,7 +59,7 @@ export default buildConfig({
 			},
 
 			options: {
-				apiKey: process.env.UPLOADTHING_SECRET,
+				token: process.env.UPLOADTHING_SECRET ?? '',
 				acl: 'public-read',
 			},
 		}),

@@ -1,5 +1,5 @@
 import configPromise from '@payload-config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { getPayload } from 'payload';
 import { cookies } from 'next/headers';
 import { notFound, redirect } from 'next/navigation';
 
@@ -10,14 +10,14 @@ import ROUTES from '@/lib/utils/routes';
 
 /* Components */
 import { AcademyNavbar } from '@/components/Layout/Navbar';
-import CourseNavigatorMobile from './CourseNavigatorMobile';
+import CourseNavigatorMobile from './components/CourseNavigatorMobile';
 
 /* Types */
 import type { Course } from '@/payload-types';
 
 async function fetchCourse(slug: string) {
 	try {
-		const payload = await getPayloadHMR({
+		const payload = await getPayload({
 			config: configPromise,
 		});
 
@@ -42,19 +42,24 @@ async function fetchCourse(slug: string) {
 }
 
 interface SchoolCoursePageProps {
+	searchParams: Promise<{
+		slug: string;
+		block: string;
+		lesson: string;
+	}>;
 	params: Promise<{
 		slug: string;
-		block: number;
 	}>;
 }
 
 export const dynamic = 'force-dynamic';
 
-export default async function SchoolCoursePage({ params }: SchoolCoursePageProps) {
+export default async function SchoolCoursePage({ searchParams, params }: SchoolCoursePageProps) {
 	const slug = (await params).slug;
-	const currentBlock = (await params).block ?? 0;
+	const currentBlock = (await searchParams).block ?? 0;
+	const currentLesson = (await searchParams).lesson ?? 0;
 
-	const payload = await getPayloadHMR({
+	const payload = await getPayload({
 		config: configPromise,
 	});
 
@@ -100,12 +105,21 @@ export default async function SchoolCoursePage({ params }: SchoolCoursePageProps
 		return null;
 	}
 
+	const totalBlocks = course.blocks?.length ?? 0;
+	const totalLessons = course.blocks?.[parseInt(currentBlock, 10)]?.content?.length ?? 0;
+
 	return (
 		<>
 			<AcademyNavbar userName={user.name} />
 
 			<main className="mt-[62px]">
-				<CourseNavigatorMobile course={course} currentBlock={currentBlock} />
+				<CourseNavigatorMobile
+					course={course}
+					currentBlock={parseInt(currentBlock, 10)}
+					currentLesson={parseInt(currentLesson, 10)}
+					totalBlocks={totalBlocks}
+					totalLessons={totalLessons}
+				/>
 				{/* <CourseNavigatorDesktop course={course} /> */}
 			</main>
 		</>

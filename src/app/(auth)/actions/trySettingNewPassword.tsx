@@ -1,7 +1,7 @@
 'use server';
 
 import configPromise from '@payload-config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { getPayload } from 'payload';
 
 /* Types */
 import type { ServerActionResponse } from '@/lib/types';
@@ -15,7 +15,7 @@ export async function trySettingNewPassword(
 	_prevState: ServerActionResponse<TrySettingNewPasswordData> | null,
 	formData: FormData,
 ): Promise<ServerActionResponse<TrySettingNewPasswordData>> {
-	const payload = await getPayloadHMR({
+	const payload = await getPayload({
 		config: configPromise,
 	});
 

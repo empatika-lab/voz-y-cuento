@@ -1,7 +1,8 @@
 'use server';
 
 import configPromise from '@payload-config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { getPayload } from 'payload';
+
 import { cookies } from 'next/headers';
 
 /* Types */
@@ -18,7 +19,7 @@ export async function tryLogin(
 	_prevState: ServerActionResponse<PayloadLoginResponse> | null,
 	formData: FormData,
 ): Promise<ServerActionResponse<PayloadLoginResponse>> {
-	const payload = await getPayloadHMR({
+	const payload = await getPayload({
 		config: configPromise,
 	});
 

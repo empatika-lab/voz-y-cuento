@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface YouTubeEmbedProps {
 	youtubeUrl: string;
@@ -46,7 +46,7 @@ export default function YouTubeEmbed({ youtubeUrl }: YouTubeEmbedProps) {
 
 	const videoId = youtubeUrl.split('v=')[1];
 
-	const onPlayerStateChange = (event: { data: number }) => {
+	const onPlayerStateChange = useCallback((event: { data: number }) => {
 		switch (event.data) {
 			case window.YT.PlayerState.PLAYING:
 				// Video is playing
@@ -65,7 +65,8 @@ export default function YouTubeEmbed({ youtubeUrl }: YouTubeEmbedProps) {
 			default:
 				break;
 		}
-	};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	let elapsedInterval: NodeJS.Timeout;
 	const trackElapsedTime = () => {
@@ -114,7 +115,7 @@ export default function YouTubeEmbed({ youtubeUrl }: YouTubeEmbedProps) {
 
 	return (
 		<div className="w-full bg-cyan-50 pb-3">
-			<div id="youtube-player" className="aspect-video w-full" /> {/* Ensure full width */}
+			<div id="youtube-player" className="aspect-video w-full" />
 		</div>
 	);
 }

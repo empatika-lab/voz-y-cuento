@@ -49,9 +49,9 @@ export interface Config {
     | (Student & {
         collection: 'students';
       });
-  jobs?: {
+  jobs: {
     tasks: unknown;
-    workflows?: unknown;
+    workflows: unknown;
   };
 }
 export interface AdminAuthOperations {

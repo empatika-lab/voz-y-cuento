@@ -1,5 +1,5 @@
 import configPromise from '@payload-config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { getPayload } from 'payload';
 
 /* Components */
 import { LandingNavbar } from '@/components/Layout/Navbar';
@@ -21,7 +21,7 @@ const breacrumbItems = [
 ];
 
 async function fetchCourses() {
-	const payload = await getPayloadHMR({
+	const payload = await getPayload({
 		config: configPromise,
 	});
 

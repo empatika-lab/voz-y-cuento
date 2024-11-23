@@ -2,10 +2,10 @@
 
 import configPromise from '@payload-config';
 import sendgrid from '@sendgrid/mail';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { getPayload } from 'payload';
 
 export default async function sendPaymentMethodsEmail(courseId: number, studentId: number) {
-	const payload = await getPayloadHMR({
+	const payload = await getPayload({
 		config: configPromise,
 	});
 

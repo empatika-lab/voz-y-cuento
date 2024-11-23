@@ -1,10 +1,10 @@
 'use server';
 
 import configPromise from '@payload-config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { getPayload } from 'payload';
 
 export default async function tryAddPendingPayment(studentId: number, courseId: number) {
-	const payload = await getPayloadHMR({
+	const payload = await getPayload({
 		config: configPromise,
 	});
 

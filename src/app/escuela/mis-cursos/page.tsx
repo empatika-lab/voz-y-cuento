@@ -2,7 +2,7 @@ import configPromise from '@payload-config';
 import NextLink from 'next/link';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { getPayload } from 'payload';
 
 /* Utils */
 import ROUTES from '@/lib/utils/routes';
@@ -18,7 +18,7 @@ import { AcademyNavbar } from '@/components/Layout/Navbar';
 import { CourseCards } from '@/components/Course/CourseCards';
 
 async function fetchMyCourses(studentId: string) {
-	const payload = await getPayloadHMR({
+	const payload = await getPayload({
 		config: configPromise,
 	});
 

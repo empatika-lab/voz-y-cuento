@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { cookies } from 'next/headers';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { getPayload } from 'payload';
 import configPromise from '@payload-config';
 
 /* Utils */
@@ -24,7 +24,7 @@ interface BuyCoursePageProps {
 
 async function fetchCourse(slug: string) {
 	try {
-		const payload = await getPayloadHMR({
+		const payload = await getPayload({
 			config: configPromise,
 		});
 
