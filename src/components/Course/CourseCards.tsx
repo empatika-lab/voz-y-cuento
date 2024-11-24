@@ -37,7 +37,7 @@ export function CourseCards({ courses, isAcademy = false, isOwned = false }: Cou
 			</p>
 
 			{talleres.length > 0 && (
-				<ul className="mt-6 flex flex-wrap justify-center gap-[20px] lg:mt-12 lg:justify-start lg:gap-8">
+				<ul className="flex flex-wrap justify-center gap-[20px] pt-6 lg:justify-start lg:gap-8 lg:pt-12">
 					{talleres.map((course) => (
 						<CourseCard key={course.id} course={course} isAcademy={isAcademy} isOwned={isOwned} />
 					))}
@@ -50,7 +50,7 @@ export function CourseCards({ courses, isAcademy = false, isOwned = false }: Cou
 			</p>
 
 			{seminarios.length > 0 && (
-				<ul className="mt-6 flex flex-wrap justify-center gap-[20px] lg:mt-12 lg:justify-start lg:gap-8">
+				<ul className="pg:pt-12 flex flex-wrap justify-center gap-[20px] pt-6 lg:justify-start lg:gap-8">
 					{seminarios.map((course) => (
 						<CourseCard key={course.id} course={course} isAcademy={isAcademy} />
 					))}
@@ -64,7 +64,7 @@ export function CourseCards({ courses, isAcademy = false, isOwned = false }: Cou
 			</p>
 
 			{laboratorios.length > 0 && (
-				<ul className="mt-6 flex flex-wrap justify-center gap-[20px] lg:mt-12 lg:justify-start lg:gap-8">
+				<ul className="flex flex-wrap justify-center gap-[20px] pt-6 lg:justify-start lg:gap-8 lg:pt-12">
 					{laboratorios.map((course) => (
 						<CourseCard key={course.id} course={course} isAcademy={isAcademy} />
 					))}

@@ -84,7 +84,7 @@ export default async function AcademyMyCoursesPage() {
 			<AcademyNavbar userName={user.name} />
 			<Hero>
 				<div className="container pt-20">
-					<h1 className="relative font-display text-4xl font-normal text-white lg:text-8xl">
+					<h1 className="relative font-display text-4xl font-bold tracking-wide text-white lg:text-8xl">
 						Mis Cursos
 					</h1>
 				</div>

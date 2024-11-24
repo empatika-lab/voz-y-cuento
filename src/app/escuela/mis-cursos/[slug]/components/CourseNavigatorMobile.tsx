@@ -84,8 +84,8 @@ export default function CourseNavigatorMobile({
 	};
 
 	return (
-		<div className="bg-cyan-100 lg:hidden">
-			<header className="container py-3">
+		<div className="h-full bg-cyan-25 lg:hidden">
+			<header className="container bg-cyan-100 pt-3">
 				<h1 className="text-xl font-bold text-gray-800">{course.name}</h1>
 			</header>
 			<div className="flex flex-col items-center justify-center">

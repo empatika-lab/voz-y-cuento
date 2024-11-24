@@ -8,6 +8,7 @@ export default function CourseItem({ lesson }: { lesson: any }) {
 			<>
 				<YoutubeViewer youtubeUrl={lesson.link} />
 				<article className="py-5">
+					<h2 className="mb-5 pl-5 text-lg font-bold">{lesson.blockName}</h2>
 					<RichText content={lesson.content} enableGutter />
 				</article>
 			</>
