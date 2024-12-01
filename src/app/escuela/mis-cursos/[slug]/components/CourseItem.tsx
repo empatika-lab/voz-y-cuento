@@ -1,3 +1,4 @@
+/* Components */
 import RichText from '@/components/RichText/RichText';
 import YoutubeViewer from './YoutubeViewer';
 
@@ -7,7 +8,7 @@ export default function CourseItem({ lesson }: { lesson: any }) {
 		return (
 			<>
 				<YoutubeViewer youtubeUrl={lesson.link} />
-				<article className="py-5">
+				<article className="pb-16 pt-5">
 					<h2 className="mb-5 pl-5 text-lg font-bold">{lesson.blockName}</h2>
 					<RichText content={lesson.content} enableGutter />
 				</article>
@@ -16,11 +17,21 @@ export default function CourseItem({ lesson }: { lesson: any }) {
 	}
 
 	if (lesson.blockType === 'exercise' && lesson.content) {
-		return <RichText key={lesson.id} content={lesson.content} />;
+		return (
+			<article className="pb-32 pt-5">
+				<h2 className="mb-5 pl-5 text-lg font-bold">{lesson.blockName}</h2>
+				<RichText key={lesson.id} content={lesson.content} />
+			</article>
+		);
 	}
 
 	if (lesson.blockType === 'additional-material' && lesson.material) {
-		return <RichText key={lesson.id} content={lesson.material} />;
+		return (
+			<article className="pb-32 pt-5">
+				<h2 className="mb-5 pl-5 text-lg font-bold">{lesson.blockName}</h2>
+				<RichText key={lesson.id} content={lesson.material} />
+			</article>
+		);
 	}
 
 	return null;

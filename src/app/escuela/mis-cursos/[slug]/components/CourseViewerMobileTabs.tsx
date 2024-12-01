@@ -26,9 +26,9 @@ export default function CourseViewerMobileTabs({ tabs }: CourseViewerMobileTabsP
 					<button
 						key={index}
 						className={cn(
-							'bg-cyan-10 w-[108px] rounded-t-xl border-grey-900 px-[10px] py-1 text-sm font-bold text-grey-900',
+							'w-[108px] rounded-t-xl border-grey-900 bg-cyan-100 px-[10px] py-1 text-sm font-bold text-grey-900',
 							currentTabIndex === index &&
-								'text-primary border-l border-r-2 border-t bg-cyan-50 text-opacity-100',
+								'text-primary border-l border-r-2 border-t bg-cyan-25 text-opacity-100',
 							{ 'pointer-events-none border-none bg-transparent text-opacity-50': !tab.isEnabled },
 						)}
 						onClick={() => {

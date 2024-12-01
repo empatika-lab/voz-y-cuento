@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import NextImage from 'next/image';
 
 /* Assets */
@@ -25,9 +26,22 @@ export default function CourseNavigatorMobileFooter({
 	onGoBack,
 	onGoForward,
 }: CourseNavigatorMobileFooterProps) {
+	// Hooks
+	const router = useRouter();
+
 	return (
 		<footer className="container fixed bottom-0 left-0 right-0 flex flex-nowrap justify-between border-t border-black bg-cyan-50 py-[10px]">
-			<Button className="flex min-w-4 max-w-fit flex-nowrap items-center justify-center gap-[6px] rounded-md border !bg-cyan-200 px-2 py-1 shadow-none">
+			<Button
+				className="flex min-w-4 max-w-fit flex-nowrap items-center justify-center gap-[6px] rounded-md border !bg-cyan-200 px-2 py-1 shadow-none"
+				onClick={() => {
+					// Add search params to current url
+					const currentUrl = new URL(window.location.href);
+					currentUrl.searchParams.set('index', 'true');
+					router.push(currentUrl.toString());
+					// Lock body scroll
+					//	document.body.style.overflow = 'hidden';
+				}}
+			>
 				Índice <NextImage src={IndexIcon as string} alt="Índice" />
 			</Button>
 			<div className="flex gap-2">

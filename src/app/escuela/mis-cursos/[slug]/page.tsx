@@ -46,6 +46,7 @@ interface SchoolCoursePageProps {
 		slug: string;
 		block: string;
 		lesson: string;
+		index: string;
 	}>;
 	params: Promise<{
 		slug: string;
@@ -58,6 +59,7 @@ export default async function SchoolCoursePage({ searchParams, params }: SchoolC
 	const slug = (await params).slug;
 	const currentBlock = (await searchParams).block ?? 0;
 	const currentLesson = (await searchParams).lesson ?? 0;
+	const isShowingIndex = (await searchParams).index === 'true';
 
 	const payload = await getPayload({
 		config: configPromise,
@@ -110,7 +112,7 @@ export default async function SchoolCoursePage({ searchParams, params }: SchoolC
 
 	return (
 		<>
-			<AcademyNavbar userName={user.name} />
+			<AcademyNavbar userName={user.name} isHidden={isShowingIndex} />
 
 			<main className="bg-cyan-2521 mt-[62px] h-full">
 				<CourseNavigatorMobile
@@ -119,6 +121,7 @@ export default async function SchoolCoursePage({ searchParams, params }: SchoolC
 					currentLesson={parseInt(currentLesson, 10)}
 					totalBlocks={totalBlocks}
 					totalLessons={totalLessons}
+					isShowingIndex={isShowingIndex}
 				/>
 				{/* <CourseNavigatorDesktop course={course} /> */}
 			</main>

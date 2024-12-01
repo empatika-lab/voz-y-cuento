@@ -21,9 +21,14 @@ export const navItems = [
 
 interface AcademyNavbarProps {
 	userName: string;
+	isHidden?: boolean;
 }
 
-export function AcademyNavbar({ userName }: AcademyNavbarProps) {
+export function AcademyNavbar({ userName, isHidden }: AcademyNavbarProps) {
+	if (isHidden) {
+		return null;
+	}
+
 	return (
 		<>
 			<MobileAcademyNavbar navItems={navItems} userName={userName} tryLogout={tryLogout} />
