@@ -168,7 +168,7 @@ export default function CourseNavigatorMobile({
 						<ul>
 							{course.blocks.map((block, index) => {
 								return (
-									<li key={block.id} className="ml-5 mt-4">
+									<li key={block.id} className="ml-4 mt-4">
 										<header>
 											<span className="text-sm font-medium">Bloque {index + 1}</span>
 											<span className="text-sm"> - {block.name}</span>
@@ -177,17 +177,22 @@ export default function CourseNavigatorMobile({
 										{block.content && (
 											<ul>
 												{block.content.map((lesson, number) => {
-													console.log(lesson);
+													const isCurrentLesson =
+														currentBlock === index && currentLesson === number;
+
 													return (
 														<NextLink
 															href={`/escuela/mis-cursos/${slug as string}?block=${index}&lesson=${number}`}
 															key={lesson.id}
-															className="mt-1 flex pt-3"
+															className={cn(
+																'mt-1 flex items-center justify-center p-3',
+																isCurrentLesson && 'bg-[#D8DEDF]',
+															)}
 														>
-															<div className="mr-2 flex items-center gap-2">
+															<div className="mr-2 flex items-center justify-center gap-2">
 																{getLessonIcon(lesson)}
 
-																<span className="justify-start font-bold text-gray-700">
+																<span className="font-bold text-gray-700">
 																	{getLessonType(lesson)}
 																</span>
 															</div>
