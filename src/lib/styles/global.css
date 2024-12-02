@@ -27,3 +27,9 @@ ul {
 	@tailwind components;
 	@tailwind utilities;
 }
+
+.rich-text {
+	p {
+		margin-top: 1rem;
+	}
+}
