@@ -167,6 +167,7 @@ export default function CourseNavigatorMobile({
 					<div className="pt-3">
 						<ul>
 							{course.blocks.map((block, index) => {
+								// console.log(block);
 								return (
 									<li key={block.id} className="ml-4 mt-4">
 										<header>

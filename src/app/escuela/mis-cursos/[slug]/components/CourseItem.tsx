@@ -9,7 +9,7 @@ export default function CourseItem({ lesson }: { lesson: any }) {
 			<>
 				<YoutubeViewer youtubeUrl={lesson.link} />
 				<article className="pb-16 pt-5">
-					<h2 className="mb-5 pl-5 text-lg font-bold">{lesson.blockName}</h2>
+					{lesson.blockName && <h2 className="mb-5 px-5 text-lg font-bold">{lesson.blockName}</h2>}
 					<RichText content={lesson.content} enableGutter />
 				</article>
 			</>
@@ -19,7 +19,7 @@ export default function CourseItem({ lesson }: { lesson: any }) {
 	if (lesson.blockType === 'exercise' && lesson.content) {
 		return (
 			<article className="pb-32 pt-5">
-				<h2 className="mb-5 pl-5 text-lg font-bold">{lesson.blockName}</h2>
+				{lesson.blockName && <h2 className="mb-5 px-5 text-lg font-bold">{lesson.blockName}</h2>}
 				<RichText key={lesson.id} content={lesson.content} />
 			</article>
 		);
@@ -28,7 +28,7 @@ export default function CourseItem({ lesson }: { lesson: any }) {
 	if (lesson.blockType === 'additional-material' && lesson.material) {
 		return (
 			<article className="pb-32 pt-5">
-				<h2 className="mb-5 pl-5 text-lg font-bold">{lesson.blockName}</h2>
+				<h2 className="mb-5 px-5 text-lg font-bold">{lesson.blockName}</h2>
 				<RichText key={lesson.id} content={lesson.material} />
 			</article>
 		);
