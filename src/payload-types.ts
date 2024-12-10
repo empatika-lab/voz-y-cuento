@@ -19,6 +19,7 @@ export interface Config {
     students: Student;
     pending: Pending;
     comment: Comment;
+    'course-lesson-views': CourseLessonView;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -32,6 +33,7 @@ export interface Config {
     students: StudentsSelect<false> | StudentsSelect<true>;
     pending: PendingSelect<false> | PendingSelect<true>;
     comment: CommentSelect<false> | CommentSelect<true>;
+    'course-lesson-views': CourseLessonViewsSelect<false> | CourseLessonViewsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -291,6 +293,25 @@ export interface Comment {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "course-lesson-views".
+ */
+export interface CourseLessonView {
+  id: number;
+  course?: (number | Course)[] | null;
+  data?: {
+    /**
+     * @minItems 1
+     *
+     * This interface was referenced by `undefined`'s JSON-Schema definition
+     * via the `patternProperty` "^[0-9]+$".
+     */
+    [k: string]: [number, ...number[]];
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -323,6 +344,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'comment';
         value: number | Comment;
+      } | null)
+    | ({
+        relationTo: 'course-lesson-views';
+        value: number | CourseLessonView;
       } | null);
   globalSlug?: string | null;
   user:
@@ -524,6 +549,16 @@ export interface CommentSelect<T extends boolean = true> {
         author?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "course-lesson-views_select".
+ */
+export interface CourseLessonViewsSelect<T extends boolean = true> {
+  course?: T;
+  data?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -1,11 +1,6 @@
-// import { BannerBlock } from '@/blocks/Banner/Component';
-// import { CallToActionBlock } from '@/blocks/CallToAction/Component';
-// import { CodeBlock, CodeBlockProps } from '@/blocks/Code/Component';
-// import { MediaBlock } from '@/blocks/MediaBlock/Component';
 import React, { Fragment } from 'react';
 import NextLink from 'next/link';
-
-import type { JSX } from 'react';
+import NextImage from 'next/image';
 
 import {
 	IS_BOLD,
@@ -16,9 +11,19 @@ import {
 	IS_SUPERSCRIPT,
 	IS_UNDERLINE,
 } from './NodeFormat';
-import type { DefaultNodeTypes, SerializedBlockNode } from '@payloadcms/richtext-lexical';
+import type {
+	DefaultNodeTypes,
+	SerializedBlockNode,
+	SerializedUploadNode,
+} from '@payloadcms/richtext-lexical';
 
-export type NodeTypes = DefaultNodeTypes | SerializedBlockNode;
+/* Icons */
+import DownloadIcon from 'public/images/icons/download.svg';
+
+/* Types */
+import type { JSX } from 'react';
+import type { Media } from '@/payload-types';
+export type NodeTypes = DefaultNodeTypes | SerializedBlockNode | SerializedUploadNode;
 
 interface Props {
 	nodes: NodeTypes[];
@@ -67,6 +72,30 @@ export function SerializeLexical({ nodes }: Props): JSX.Element {
 					return text;
 				}
 
+				if (node.type === 'upload') {
+					return (
+						<article key={index}>
+							{/* @ts-expect-error */}
+							{node.value?.url && (
+								<NextLink
+									href={(node.value as Media).url!}
+									target="_blank"
+									className="my-5 flex max-w-96 items-center border bg-white p-4"
+									key={index}
+									rel="noreferrer"
+								>
+									{/* @ts-expect-error */}
+									{(node.value?.mimeType as string).includes('pdf') && (
+										<NextImage src={DownloadIcon as string} alt="PDF" width={16} height={16} />
+									)}
+									{/* @ts-expect-error */}
+									{node.value?.alt && <div className="m-0 text-pretty pl-4">{node.value.alt}</div>}
+								</NextLink>
+							)}
+						</article>
+					);
+				}
+
 				// NOTE: Hacky fix for
 				// https://github.com/facebook/lexical/blob/d10c4e6e55261b2fdd7d1845aed46151d0f06a8c/packages/lexical-list/src/LexicalListItemNode.ts#L133
 				// which does not return checked: false (only true - i.e. there is no prop for false)
@@ -101,22 +130,6 @@ export function SerializeLexical({ nodes }: Props): JSX.Element {
 					}
 
 					switch (blockType) {
-						// case 'mediaBlock':
-						// 	return (
-						// 		<MediaBlock
-						// 			className="col-span-3 col-start-1"
-						// 			imgClassName="m-0"
-						// 			key={index}
-						// 			{...block}
-						// 			captionClassName="mx-auto max-w-[48rem]"
-						// 			enableGutter={false}
-						// 			disableInnerContainer={true}
-						// 		/>
-						// 	);
-						// case 'banner':
-						// 	return <BannerBlock className="col-start-2 mb-4" key={index} {...block} />;
-						// case 'code':
-						// 	return <CodeBlock className="col-start-2" key={index} {...block} />;
 						default:
 							return null;
 					}

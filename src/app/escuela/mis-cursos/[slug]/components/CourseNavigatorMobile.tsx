@@ -154,14 +154,14 @@ export default function CourseNavigatorMobile({
 			</div>
 			<nav
 				className={cn(
-					'container fixed inset-0 bottom-0 z-50 h-full overflow-scroll py-5 transition-all duration-300',
+					'fixed inset-0 bottom-0 z-50 h-full overflow-scroll py-5 transition-all duration-300',
 					isShowingIndex ? 'h-full bg-cyan-50' : 'hidden h-0',
 				)}
 			>
 				<button onClick={openIndex} className="absolute right-5 top-5">
 					<NextImage src={CloseIcon as string} alt="Cerrar" />
 				</button>
-				<div className="mt-16">
+				<div className="mt-16 p-5">
 					<p className="text-xl font-bold text-gray-800">{course.name}</p>
 
 					<div className="pt-3">
@@ -169,8 +169,8 @@ export default function CourseNavigatorMobile({
 							{course.blocks.map((block, index) => {
 								// console.log(block);
 								return (
-									<li key={block.id} className="ml-4 mt-4">
-										<header>
+									<li key={block.id} className="mt-4">
+										<header className="pl-5">
 											<span className="text-sm font-medium">Bloque {index + 1}</span>
 											<span className="text-sm"> - {block.name}</span>
 										</header>
@@ -186,7 +186,7 @@ export default function CourseNavigatorMobile({
 															href={`/escuela/mis-cursos/${slug as string}?block=${index}&lesson=${number}`}
 															key={lesson.id}
 															className={cn(
-																'mt-1 flex items-center justify-center p-3',
+																'mt-1 flex items-center p-3 pl-5',
 																isCurrentLesson && 'bg-[#D8DEDF]',
 															)}
 														>

@@ -114,7 +114,7 @@ export default async function SchoolCoursePage({ searchParams, params }: SchoolC
 		<>
 			<AcademyNavbar userName={user.name} isHidden={isShowingIndex} />
 
-			<main className="bg-cyan-2521 mt-[62px] h-full">
+			<main className="mt-[62px] h-full">
 				<CourseNavigatorMobile
 					course={course}
 					currentBlock={parseInt(currentBlock, 10)}
