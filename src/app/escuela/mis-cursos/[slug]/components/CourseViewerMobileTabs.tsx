@@ -21,7 +21,7 @@ export default function CourseViewerMobileTabs({ tabs }: CourseViewerMobileTabsP
 
 	return (
 		<>
-			<nav className="flex w-full items-center gap-3 bg-cyan-100 pl-5 pt-2">
+			<nav className="container flex w-full items-center gap-3 bg-cyan-100 pl-5 pt-2">
 				{tabs.map((tab, index) => (
 					<button
 						key={index}

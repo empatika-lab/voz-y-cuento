@@ -46,7 +46,7 @@ export function CourseCards({ courses, isAcademy = false, isOwned = false }: Cou
 
 			<h2 className="mt-14 text-2xl font-medium lg:text-[32px]">Seminarios</h2>
 			<p className="mt-2 text-pretty text-sm lg:text-xl">
-				Clases intensivas donde profundizarás sobre temas en especifico dentro de la narración oral.
+				Clases intensivas donde profundizarás sobre temas en específico dentro de la narración oral.
 			</p>
 
 			{seminarios.length > 0 && (

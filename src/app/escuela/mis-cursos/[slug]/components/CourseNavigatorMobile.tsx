@@ -138,10 +138,10 @@ export default function CourseNavigatorMobile({
 
 	return (
 		<div className="relative h-full bg-cyan-25 lg:hidden">
-			<header className="container bg-cyan-100 pt-3">
-				<h1 className="text-xl font-bold text-gray-800">{course.name}</h1>
+			<header className="bg-cyan-100 pt-3">
+				<h1 className="container text-xl font-bold text-gray-800">{course.name}</h1>
 			</header>
-			<div className="flex flex-col items-center justify-center">
+			<div className="flex flex-col items-center justify-center bg-cyan-100">
 				<CourseViewerMobileTabs tabs={tabs} />
 				{!isShowingIndex && (
 					<CourseNavigatorMobileFooter
