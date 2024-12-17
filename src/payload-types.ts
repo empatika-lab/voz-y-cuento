@@ -156,6 +156,27 @@ export interface Course {
                   blockType: 'video';
                 }
               | {
+                  file: number | Media;
+                  content?: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: string;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  } | null;
+                  id?: string | null;
+                  blockName?: string | null;
+                  blockType: 'presentation';
+                }
+              | {
                   content: {
                     root: {
                       type: string;
@@ -447,6 +468,14 @@ export interface CoursesSelect<T extends boolean = true> {
                 | T
                 | {
                     link?: T;
+                    content?: T;
+                    id?: T;
+                    blockName?: T;
+                  };
+              presentation?:
+                | T
+                | {
+                    file?: T;
                     content?: T;
                     id?: T;
                     blockName?: T;

@@ -30,6 +30,27 @@ export const CourseContentBlock: CollectionConfig['fields'][0] = {
 			],
 		},
 		{
+			slug: 'presentation',
+			labels: { singular: 'Presentación', plural: 'Presentaciones' },
+			fields: [
+				{
+					name: 'file',
+					label: 'Archivo',
+					type: 'upload',
+					relationTo: 'media',
+					admin: { description: 'Archivo de presentación' },
+					required: true,
+				},
+				{
+					name: 'content',
+					label: 'Texto Adicional',
+					type: 'richText',
+					required: false,
+					admin: { description: 'Un texto para acompañar la presentación' },
+				},
+			],
+		},
+		{
 			slug: 'exercise',
 			labels: { singular: 'Ejercicio', plural: 'Ejercicios' },
 			fields: [
