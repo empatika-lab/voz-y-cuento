@@ -1,11 +1,14 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 interface YouTubeEmbedProps {
 	youtubeUrl: string;
 	width?: string;
 	height?: string;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	markCourseLessonAsViewed: (lessonId: string) => void;
+	lessonId: string;
 }
 
 // Add YouTube Player type definitions
@@ -40,45 +43,21 @@ declare global {
 	}
 }
 
-export default function YouTubeEmbed({ youtubeUrl }: YouTubeEmbedProps) {
+export default function YoutubeEmbed({
+	youtubeUrl,
+	lessonId,
+	markCourseLessonAsViewed,
+}: YouTubeEmbedProps) {
 	const playerRef = useRef<YTPlayer | null>(null);
-	const [elapsedTime, setElapsedTime] = useState<number>(0);
 
 	const videoId = youtubeUrl.split('v=')[1];
 
 	const onPlayerStateChange = useCallback((event: { data: number }) => {
-		switch (event.data) {
-			case window.YT.PlayerState.PLAYING:
-				// Video is playing
-				trackElapsedTime();
-				break;
-			case window.YT.PlayerState.PAUSED:
-				// Video is paused
-				clearInterval(elapsedInterval);
-				break;
-			case window.YT.PlayerState.ENDED:
-				// Video has finished
-				clearInterval(elapsedInterval);
-				// eslint-disable-next-line no-console
-				console.log('Video finished');
-				break;
-			default:
-				break;
+		if (event.data === window.YT.PlayerState.ENDED) {
+			markCourseLessonAsViewed(lessonId);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
-
-	let elapsedInterval: NodeJS.Timeout;
-	const trackElapsedTime = () => {
-		elapsedInterval = setInterval(() => {
-			if (playerRef.current) {
-				const currentTime = playerRef.current.getCurrentTime();
-				setElapsedTime(currentTime);
-				// eslint-disable-next-line no-console
-				console.log(`Elapsed time: ${elapsedTime}`);
-			}
-		}, 1000);
-	};
 
 	useEffect(() => {
 		let tag: HTMLScriptElement | null = null;

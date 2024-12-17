@@ -297,7 +297,8 @@ export interface Comment {
  */
 export interface CourseLessonView {
   id: number;
-  course?: (number | Course)[] | null;
+  course?: (number | null) | Course;
+  student?: (number | null) | Student;
   data?: {
     /**
      * @minItems 1
@@ -305,7 +306,7 @@ export interface CourseLessonView {
      * This interface was referenced by `undefined`'s JSON-Schema definition
      * via the `patternProperty` "^[0-9]+$".
      */
-    [k: string]: [number, ...number[]];
+    [k: string]: [string, ...string[]];
   };
   updatedAt: string;
   createdAt: string;
@@ -558,6 +559,7 @@ export interface CommentSelect<T extends boolean = true> {
  */
 export interface CourseLessonViewsSelect<T extends boolean = true> {
   course?: T;
+  student?: T;
   data?: T;
   updatedAt?: T;
   createdAt?: T;

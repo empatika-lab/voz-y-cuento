@@ -28,6 +28,7 @@ interface CourseNavigatorMobileProps {
 	totalBlocks: number;
 	totalLessons: number;
 	isShowingIndex: boolean;
+	studentId: number;
 }
 
 export default function CourseNavigatorMobile({
@@ -36,6 +37,7 @@ export default function CourseNavigatorMobile({
 	currentLesson,
 	totalBlocks,
 	totalLessons,
+	studentId,
 	isShowingIndex,
 }: CourseNavigatorMobileProps) {
 	// Hooks
@@ -54,6 +56,9 @@ export default function CourseNavigatorMobile({
 				<CourseItem
 					lesson={course.blocks[currentBlock].content[currentLesson]}
 					key={course.blocks[currentBlock].id}
+					blockId={parseInt(course.blocks[currentBlock].id!)}
+					studentId={studentId}
+					courseId={course.id}
 				/>
 			),
 			isEnabled: true,
@@ -167,7 +172,6 @@ export default function CourseNavigatorMobile({
 					<div className="pt-3">
 						<ul>
 							{course.blocks.map((block, index) => {
-								// console.log(block);
 								return (
 									<li key={block.id} className="mt-4">
 										<header className="pl-5">

@@ -103,7 +103,7 @@ export default async function SchoolCoursePage({ searchParams, params }: SchoolC
 		return studentCourse.id === course.id;
 	});
 
-	if (!isEnrolled) {
+	if (!isEnrolled || !studentData?.id) {
 		return null;
 	}
 
@@ -122,6 +122,7 @@ export default async function SchoolCoursePage({ searchParams, params }: SchoolC
 					totalBlocks={totalBlocks}
 					totalLessons={totalLessons}
 					isShowingIndex={isShowingIndex}
+					studentId={studentData.id}
 				/>
 				{/* <CourseNavigatorDesktop course={course} /> */}
 			</main>

@@ -2,6 +2,10 @@ import type { CollectionConfig } from 'payload';
 
 export const CourseLessonViews: CollectionConfig = {
 	slug: 'course-lesson-views',
+	labels: {
+		plural: 'Vistas de lecciones',
+		singular: 'Vista de lección',
+	},
 	admin: {
 		useAsTitle: 'course',
 		// hidden: true,
@@ -11,7 +15,13 @@ export const CourseLessonViews: CollectionConfig = {
 			name: 'course',
 			type: 'relationship',
 			relationTo: 'courses',
-			hasMany: true,
+			hasMany: false,
+		},
+		{
+			name: 'student',
+			type: 'relationship',
+			relationTo: 'students',
+			hasMany: false,
 		},
 		{
 			name: 'data',
@@ -25,7 +35,7 @@ export const CourseLessonViews: CollectionConfig = {
 						'^[0-9]+$': {
 							type: 'array',
 							items: {
-								type: 'integer',
+								type: 'string',
 							},
 							minItems: 1,
 						},
