@@ -2,13 +2,16 @@ import type { CollectionConfig } from 'payload';
 
 export const CourseLessonViews: CollectionConfig = {
 	slug: 'course-lesson-views',
+	access: {
+		read: () => true,
+	},
 	labels: {
 		plural: 'Vistas de lecciones',
 		singular: 'Vista de lección',
 	},
 	admin: {
 		useAsTitle: 'course',
-		// hidden: true,
+		hidden: true,
 	},
 	fields: [
 		{
@@ -32,12 +35,11 @@ export const CourseLessonViews: CollectionConfig = {
 				schema: {
 					type: 'object',
 					patternProperties: {
-						'^[0-9]+$': {
+						'^[a-zA-Z0-9]+$': {
 							type: 'array',
 							items: {
 								type: 'string',
 							},
-							minItems: 1,
 						},
 					},
 					additionalProperties: false,

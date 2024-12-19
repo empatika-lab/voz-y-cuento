@@ -7,7 +7,7 @@ interface YouTubeEmbedProps {
 	width?: string;
 	height?: string;
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	markCourseLessonAsViewed: (lessonId: string) => void;
+	markCourseLessonAsViewed: (lessonId: string) => Promise<any>;
 	lessonId: string;
 }
 
@@ -48,13 +48,14 @@ export default function YoutubeEmbed({
 	lessonId,
 	markCourseLessonAsViewed,
 }: YouTubeEmbedProps) {
+	/* Refs */
 	const playerRef = useRef<YTPlayer | null>(null);
 
 	const videoId = youtubeUrl.split('v=')[1];
 
-	const onPlayerStateChange = useCallback((event: { data: number }) => {
+	const onPlayerStateChange = useCallback(async (event: { data: number }) => {
 		if (event.data === window.YT.PlayerState.ENDED) {
-			markCourseLessonAsViewed(lessonId);
+			await markCourseLessonAsViewed(lessonId);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);

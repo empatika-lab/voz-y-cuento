@@ -1,5 +1,6 @@
 'use client';
 
+import { use, useEffect } from 'react';
 import NextImage from 'next/image';
 import NextLink from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
@@ -20,6 +21,11 @@ import CloseIcon from '@images/icons/close.svg';
 import VideoIcon from '@images/icons/video.svg';
 import PencilIcon from '@images/icons/pencil.svg';
 import BookIcon from '@images/icons/book.svg';
+import CheckedIcon from '@images/icons/checked-circle.svg';
+import UncheckedIcon from '@images/icons/unchecked-circle.svg';
+
+/* Context */
+import { WatchedLessonContext } from '../context/WatchedLessonContext';
 
 interface CourseNavigatorMobileProps {
 	course: Course;
@@ -40,15 +46,25 @@ export default function CourseNavigatorMobile({
 	studentId,
 	isShowingIndex,
 }: CourseNavigatorMobileProps) {
-	// Hooks
+	/* Hooks */
 	const { slug } = useParams();
 	const router = useRouter();
+
+	/* Effects */
+	useEffect(() => {
+		if (course.id && studentId) {
+			void fetchWatchedLessons(studentId, course.id);
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [course.id, studentId, currentBlock, currentLesson]);
 
 	if (!slug || !course.blocks?.[currentBlock]?.content?.[currentLesson]) {
 		return null;
 	}
 
-	// Helpers
+	const { watchedLessons, fetchWatchedLessons } = use(WatchedLessonContext);
+
+	/* Helpers */
 	const tabs = [
 		{
 			label: 'Clase',
@@ -56,7 +72,7 @@ export default function CourseNavigatorMobile({
 				<CourseItem
 					lesson={course.blocks[currentBlock].content[currentLesson]}
 					key={course.blocks[currentBlock].id}
-					blockId={parseInt(course.blocks[currentBlock].id!)}
+					blockId={course.blocks[currentBlock].id!}
 					studentId={studentId}
 					courseId={course.id}
 				/>
@@ -105,8 +121,6 @@ export default function CourseNavigatorMobile({
 		const currentUrl = new URL(window.location.href);
 		currentUrl.searchParams.set('index', 'false');
 		router.push(currentUrl.toString());
-		// Unlock body scroll
-		// document.body.style.overflow = 'auto';
 	};
 
 	const getLessonIcon = (lesson: { blockType: string }) => {
@@ -154,6 +168,8 @@ export default function CourseNavigatorMobile({
 						canGoForward={canGoForward}
 						onGoBack={goToPreviousLesson}
 						onGoForward={goToNextLesson}
+						courseId={course.id}
+						studentId={studentId}
 					/>
 				)}
 			</div>
@@ -203,6 +219,16 @@ export default function CourseNavigatorMobile({
 															</div>
 
 															<span className="ml-1 w-64 truncate">{lesson.blockName}</span>
+
+															<div key={lesson.id} className="ml-auto">
+																{watchedLessons.some((watched) => {
+																	return block.id && watched.data?.[block.id]?.includes(lesson.id!);
+																}) ? (
+																	<NextImage src={CheckedIcon as string} alt="Visto" />
+																) : (
+																	<NextImage src={UncheckedIcon as string} alt="No visto" />
+																)}
+															</div>
 														</NextLink>
 													);
 												})}

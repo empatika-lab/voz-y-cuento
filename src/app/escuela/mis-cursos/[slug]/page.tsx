@@ -15,6 +15,9 @@ import CourseNavigatorMobile from './components/CourseNavigatorMobile';
 /* Types */
 import type { Course } from '@/payload-types';
 
+/* Context */
+import { WatchedLessonProvider } from './context/WatchedLessonContext';
+
 async function fetchCourse(slug: string) {
 	try {
 		const payload = await getPayload({
@@ -115,15 +118,17 @@ export default async function SchoolCoursePage({ searchParams, params }: SchoolC
 			<AcademyNavbar userName={user.name} isHidden={isShowingIndex} />
 
 			<main className="mt-[62px] h-full">
-				<CourseNavigatorMobile
-					course={course}
-					currentBlock={parseInt(currentBlock, 10)}
-					currentLesson={parseInt(currentLesson, 10)}
-					totalBlocks={totalBlocks}
-					totalLessons={totalLessons}
-					isShowingIndex={isShowingIndex}
-					studentId={studentData.id}
-				/>
+				<WatchedLessonProvider>
+					<CourseNavigatorMobile
+						course={course}
+						currentBlock={parseInt(currentBlock, 10)}
+						currentLesson={parseInt(currentLesson, 10)}
+						totalBlocks={totalBlocks}
+						totalLessons={totalLessons}
+						isShowingIndex={isShowingIndex}
+						studentId={studentData.id}
+					/>
+				</WatchedLessonProvider>
 				{/* <CourseNavigatorDesktop course={course} /> */}
 			</main>
 		</>

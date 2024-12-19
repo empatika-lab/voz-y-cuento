@@ -12,7 +12,7 @@ import minusIcon from '@images/icons/minus.svg';
 import videoIcon from '@images/icons/video.svg';
 import pencilIcon from '@images/icons/pencil.svg';
 /* Types */
-import type { Course } from '@/payload-types';
+import type { Course, Media } from '@/payload-types';
 
 interface CourseContentAccordionProps {
 	blocks?: Course['blocks'];
@@ -41,6 +41,27 @@ interface AccordionItemContentProps {
 						id?: string | null;
 						blockName?: string | null;
 						blockType: 'video';
+				  }
+				| {
+						file: number | Media;
+						content?: {
+							root: {
+								type: string;
+								children: {
+									type: string;
+									version: number;
+									[k: string]: unknown;
+								}[];
+								direction: ('ltr' | 'rtl') | null;
+								format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+								indent: number;
+								version: number;
+							};
+							[k: string]: unknown;
+						} | null;
+						id?: string | null;
+						blockName?: string | null;
+						blockType: 'presentation';
 				  }
 				| {
 						content: {

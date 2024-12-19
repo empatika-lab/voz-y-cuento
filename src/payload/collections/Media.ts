@@ -20,6 +20,6 @@ export const Media: CollectionConfig = {
 		},
 	],
 	upload: {
-		mimeTypes: ['image/*', 'application/pdf', 'application/vnd.ms-powerpoint'],
+		mimeTypes: ['image/*', 'application/pdf', 'application/vnd.ms-powerpoint', 'audio/mpeg'],
 	},
 };

@@ -54,13 +54,13 @@ export default function CourseDesktopDetailsCard({
 
 	return (
 		<article className="sticky top-4">
-			<div className="rounded-t-2xl bg-cyan-25 shadow-xl">
-				<h2 className="text-pretty px-8 pt-8 text-center text-2xl font-bold">
+			<div className="p4 rounded-t-2xl bg-cyan-25 px-8 pt-8 shadow-xl">
+				<h2 className="text-pretty text-center text-2xl font-bold">
 					{getCourseLabel(course.category)} <br /> {course.name}
 				</h2>
 
 				{/* Características de los cursos */}
-				<ul className="mt-8 px-8 pb-8">
+				<ul className="p-8">
 					{features.map((feature) => {
 						return (
 							<li key={feature.id} className="mt-4 flex gap-4 font-medium [&:first-of-type]:mt-0">

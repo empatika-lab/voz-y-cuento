@@ -6,7 +6,7 @@ import config from '@payload-config';
 export const markCourseLessonAsViewed = async (
 	courseId: number,
 	studentId: number,
-	blockId: number,
+	blockId: string,
 	lessonId: string,
 ) => {
 	const payload = await getPayload({
@@ -66,22 +66,26 @@ export const markCourseLessonAsViewed = async (
 
 	// Third case: the student has views for this block but not for this lesson
 	if (courseLessonStudentViews.totalDocs > 0 && courseLessonStudentViews.docs[0].data?.[blockId]) {
-		const updatedStudentViews = {
-			...courseLessonStudentViews.docs[0].data,
-			[blockId]: [...courseLessonStudentViews.docs[0].data[blockId], lessonId],
-		};
+		const existingLessons = courseLessonStudentViews.docs[0].data[blockId];
+		// Only add the lesson if it's not already in the array
+		if (!existingLessons.includes(lessonId)) {
+			const updatedStudentViews = {
+				...courseLessonStudentViews.docs[0].data,
+				[blockId]: [...existingLessons, lessonId],
+			};
 
-		await payload
-			.update({
-				collection: 'course-lesson-views',
-				data: {
-					data: updatedStudentViews,
-				},
-				id: courseLessonStudentViews.docs[0].id,
-			})
-			.catch((error) => {
-				// eslint-disable-next-line no-console
-				console.log('Error updating course lesson views - Case 3', error);
-			});
+			await payload
+				.update({
+					collection: 'course-lesson-views',
+					data: {
+						data: updatedStudentViews,
+					},
+					id: courseLessonStudentViews.docs[0].id,
+				})
+				.catch((error) => {
+					// eslint-disable-next-line no-console
+					console.log('Error updating course lesson views - Case 3', error);
+				});
+		}
 	}
 };

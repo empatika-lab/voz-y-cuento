@@ -156,7 +156,6 @@ export interface Course {
                   blockType: 'video';
                 }
               | {
-                  file: number | Media;
                   content?: {
                     root: {
                       type: string;
@@ -322,12 +321,10 @@ export interface CourseLessonView {
   student?: (number | null) | Student;
   data?: {
     /**
-     * @minItems 1
-     *
      * This interface was referenced by `undefined`'s JSON-Schema definition
-     * via the `patternProperty` "^[0-9]+$".
+     * via the `patternProperty` "^[a-zA-Z0-9]+$".
      */
-    [k: string]: [string, ...string[]];
+    [k: string]: string[];
   };
   updatedAt: string;
   createdAt: string;
@@ -475,7 +472,6 @@ export interface CoursesSelect<T extends boolean = true> {
               presentation?:
                 | T
                 | {
-                    file?: T;
                     content?: T;
                     id?: T;
                     blockName?: T;

@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import NextImage from 'next/image';
+import { use, useEffect } from 'react';
 
 /* Assets */
 import IndexIcon from '@images/icons/index.svg';
@@ -11,6 +12,7 @@ import ForwardIcon from '@images/icons/forward.svg';
 import Button from '@/components/Button';
 
 /* Utils */
+import { WatchedLessonContext } from '../context/WatchedLessonContext';
 import { cn } from '@/lib/utils/classNames';
 
 interface CourseNavigatorMobileFooterProps {
@@ -18,6 +20,8 @@ interface CourseNavigatorMobileFooterProps {
 	canGoForward: boolean;
 	onGoBack: () => void;
 	onGoForward: () => void;
+	courseId: number;
+	studentId: number;
 }
 
 export default function CourseNavigatorMobileFooter({
@@ -25,9 +29,19 @@ export default function CourseNavigatorMobileFooter({
 	canGoForward = true,
 	onGoBack,
 	onGoForward,
+	courseId,
+	studentId,
 }: CourseNavigatorMobileFooterProps) {
-	// Hooks
+	/* Context */
+	const { fetchWatchedLessons } = use(WatchedLessonContext);
+
+	/* Hooks */
 	const router = useRouter();
+
+	/* Effects */
+	useEffect(() => {
+		void fetchWatchedLessons(studentId, courseId);
+	}, [courseId, studentId, fetchWatchedLessons]);
 
 	return (
 		<footer className="fixed bottom-0 left-0 right-0 border-t border-black bg-cyan-50 py-[10px]">
@@ -39,8 +53,6 @@ export default function CourseNavigatorMobileFooter({
 						const currentUrl = new URL(window.location.href);
 						currentUrl.searchParams.set('index', 'true');
 						router.push(currentUrl.toString());
-						// Lock body scroll
-						//	document.body.style.overflow = 'hidden';
 					}}
 				>
 					Índice <NextImage src={IndexIcon as string} alt="Índice" />

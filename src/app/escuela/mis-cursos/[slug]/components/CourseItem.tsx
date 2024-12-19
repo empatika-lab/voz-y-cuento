@@ -1,9 +1,14 @@
+import { use } from 'react';
+
 /* Components */
 import RichText from '@/components/RichText/RichText';
 import YoutubeViewer from './YoutubeViewer';
-import { markCourseLessonAsViewed } from '@/lib/utils/course';
+
+/* Context */
+import { WatchedLessonContext } from '../context/WatchedLessonContext';
 
 /* Utils */
+import { markCourseLessonAsViewed } from '@/lib/utils/course';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function CourseItem({
@@ -14,12 +19,15 @@ export default function CourseItem({
 }: {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	lesson: any;
-	blockId: number;
+	blockId: string;
 	studentId: number;
 	courseId: number;
 }) {
-	function handleLessonView(lessonId: string) {
-		void markCourseLessonAsViewed(courseId, studentId, blockId, lessonId);
+	const { fetchWatchedLessons } = use(WatchedLessonContext);
+
+	async function handleLessonView(lessonId: string) {
+		await markCourseLessonAsViewed(courseId, studentId, blockId, lessonId);
+		await fetchWatchedLessons(studentId, courseId);
 	}
 
 	if (lesson.blockType === 'video' && lesson.link) {
