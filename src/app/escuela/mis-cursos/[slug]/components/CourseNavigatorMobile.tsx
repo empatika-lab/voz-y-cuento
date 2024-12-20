@@ -27,6 +27,9 @@ import UncheckedIcon from '@images/icons/unchecked-circle.svg';
 /* Context */
 import { WatchedLessonContext } from '../context/WatchedLessonContext';
 
+/* Utils */
+import { markCourseLessonAsViewed } from '@/lib/utils/course';
+
 interface CourseNavigatorMobileProps {
 	course: Course;
 	currentBlock: number;
@@ -49,6 +52,7 @@ export default function CourseNavigatorMobile({
 	/* Hooks */
 	const { slug } = useParams();
 	const router = useRouter();
+	const { watchedLessons, fetchWatchedLessons } = use(WatchedLessonContext);
 
 	/* Effects */
 	useEffect(() => {
@@ -58,11 +62,40 @@ export default function CourseNavigatorMobile({
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [course.id, studentId, currentBlock, currentLesson]);
 
+	useEffect(() => {
+		const lesson = course.blocks?.[currentBlock]?.content?.[currentLesson];
+
+		if (!lesson) {
+			return;
+		}
+
+		const lessonType = lesson?.blockType;
+
+		if (lessonType !== 'video') {
+			setTimeout(() => {
+				markCourseLessonAsViewed(course.id, studentId, course.blocks![currentBlock].id!, lesson.id!)
+					.then(() => {
+						void fetchWatchedLessons(studentId, course.id);
+					})
+					.catch((error) => {
+						// eslint-disable-next-line no-console
+						console.error('Error marking lesson as viewed:', error);
+					});
+			}, 5000);
+		}
+	}, [
+		course.blocks,
+		course.id,
+		currentBlock,
+		currentLesson,
+		fetchWatchedLessons,
+		studentId,
+		watchedLessons,
+	]);
+
 	if (!slug || !course.blocks?.[currentBlock]?.content?.[currentLesson]) {
 		return null;
 	}
-
-	const { watchedLessons, fetchWatchedLessons } = use(WatchedLessonContext);
 
 	/* Helpers */
 	const tabs = [
@@ -220,7 +253,7 @@ export default function CourseNavigatorMobile({
 
 															<span className="ml-1 w-64 truncate">{lesson.blockName}</span>
 
-															<div key={lesson.id} className="ml-auto">
+															<div key={lesson.id} className="ml-auto pl-2">
 																{watchedLessons.some((watched) => {
 																	return block.id && watched.data?.[block.id]?.includes(lesson.id!);
 																}) ? (
