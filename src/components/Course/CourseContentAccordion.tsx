@@ -11,8 +11,9 @@ import plusIcon from '@images/icons/plus.svg';
 import minusIcon from '@images/icons/minus.svg';
 import videoIcon from '@images/icons/video.svg';
 import pencilIcon from '@images/icons/pencil.svg';
+
 /* Types */
-import type { Course, Media } from '@/payload-types';
+import type { Course } from '@/payload-types';
 
 interface CourseContentAccordionProps {
 	blocks?: Course['blocks'];
@@ -43,7 +44,6 @@ interface AccordionItemContentProps {
 						blockType: 'video';
 				  }
 				| {
-						file: number | Media;
 						content?: {
 							root: {
 								type: string;
