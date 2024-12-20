@@ -28,7 +28,7 @@ import UncheckedIcon from '@images/icons/unchecked-circle.svg';
 import { WatchedLessonContext } from '../context/WatchedLessonContext';
 
 /* Utils */
-import { markCourseLessonAsViewed } from '@/lib/utils/course';
+import { markCourseLessonAsViewed, unmarkCourseLessonAsViewed } from '@/lib/utils/course';
 
 interface CourseNavigatorMobileProps {
 	course: Course;
@@ -174,18 +174,40 @@ export default function CourseNavigatorMobile({
 
 	const getLessonType = (lesson: { blockType: string }) => {
 		if (lesson.blockType === 'video') {
-			return 'Video:';
+			return 'Video';
 		}
 
 		if (lesson.blockType === 'exercise') {
-			return 'Ejercicio:';
+			return 'Ejercicio';
 		}
 
 		if (lesson.blockType === 'additional-material') {
-			return 'Recursos:';
+			return 'Recursos';
 		}
 
 		return null;
+	};
+
+	const handleLessonViewedClick = (isViewed: boolean, lessonId: string) => {
+		if (isViewed) {
+			unmarkCourseLessonAsViewed(course.id, studentId, course.blocks![currentBlock].id!, lessonId)
+				.then(() => {
+					void fetchWatchedLessons(studentId, course.id);
+				})
+				.catch((error) => {
+					// eslint-disable-next-line no-console
+					console.error('Error unmarking lesson as viewed:', error);
+				});
+		} else {
+			markCourseLessonAsViewed(course.id, studentId, course.blocks![currentBlock].id!, lessonId)
+				.then(() => {
+					void fetchWatchedLessons(studentId, course.id);
+				})
+				.catch((error) => {
+					// eslint-disable-next-line no-console
+					console.error('Error marking lesson as viewed:', error);
+				});
+		}
 	};
 
 	return (
@@ -223,7 +245,7 @@ export default function CourseNavigatorMobile({
 							{course.blocks.map((block, index) => {
 								return (
 									<li key={block.id} className="mt-4">
-										<header className="pl-5">
+										<header className="mb-2 pl-5">
 											<span className="text-sm font-medium">Bloque {index + 1}</span>
 											<span className="text-sm"> - {block.name}</span>
 										</header>
@@ -248,6 +270,7 @@ export default function CourseNavigatorMobile({
 
 																<span className="font-bold text-gray-700">
 																	{getLessonType(lesson)}
+																	{lesson.blockName && ':'}
 																</span>
 															</div>
 
@@ -257,9 +280,33 @@ export default function CourseNavigatorMobile({
 																{watchedLessons.some((watched) => {
 																	return block.id && watched.data?.[block.id]?.includes(lesson.id!);
 																}) ? (
-																	<NextImage src={CheckedIcon as string} alt="Visto" />
+																	<NextImage
+																		src={CheckedIcon as string}
+																		alt="Visto"
+																		onClick={(e) => {
+																			e.preventDefault();
+																			e.stopPropagation();
+																			handleLessonViewedClick(true, lesson.id!);
+																		}}
+																		onMouseDown={(e) => {
+																			e.preventDefault();
+																			e.stopPropagation();
+																		}}
+																	/>
 																) : (
-																	<NextImage src={UncheckedIcon as string} alt="No visto" />
+																	<NextImage
+																		src={UncheckedIcon as string}
+																		alt="No visto"
+																		onClick={(e) => {
+																			e.preventDefault();
+																			e.stopPropagation();
+																			handleLessonViewedClick(false, lesson.id!);
+																		}}
+																		onMouseDown={(e) => {
+																			e.preventDefault();
+																			e.stopPropagation();
+																		}}
+																	/>
 																)}
 															</div>
 														</NextLink>
