@@ -1,6 +1,6 @@
 'use client';
 
-import { use, useEffect } from 'react';
+import { use, useEffect, useRef } from 'react';
 import NextImage from 'next/image';
 import NextLink from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
@@ -54,6 +54,9 @@ export default function CourseNavigatorMobile({
 	const router = useRouter();
 	const { watchedLessons, fetchWatchedLessons } = use(WatchedLessonContext);
 
+	/* Refs */
+	const canMarkLessonAsViewed = useRef(false);
+
 	/* Effects */
 	useEffect(() => {
 		if (course.id && studentId) {
@@ -63,35 +66,10 @@ export default function CourseNavigatorMobile({
 	}, [course.id, studentId, currentBlock, currentLesson]);
 
 	useEffect(() => {
-		const lesson = course.blocks?.[currentBlock]?.content?.[currentLesson];
-
-		if (!lesson) {
-			return;
-		}
-
-		const lessonType = lesson?.blockType;
-
-		if (lessonType !== 'video') {
-			setTimeout(() => {
-				markCourseLessonAsViewed(course.id, studentId, course.blocks![currentBlock].id!, lesson.id!)
-					.then(() => {
-						void fetchWatchedLessons(studentId, course.id);
-					})
-					.catch((error) => {
-						// eslint-disable-next-line no-console
-						console.error('Error marking lesson as viewed:', error);
-					});
-			}, 5000);
-		}
-	}, [
-		course.blocks,
-		course.id,
-		currentBlock,
-		currentLesson,
-		fetchWatchedLessons,
-		studentId,
-		watchedLessons,
-	]);
+		setTimeout(() => {
+			canMarkLessonAsViewed.current = true;
+		}, 5000);
+	}, [course.blocks, course.id, currentBlock, currentLesson, studentId]);
 
 	if (!slug || !course.blocks?.[currentBlock]?.content?.[currentLesson]) {
 		return null;
@@ -129,6 +107,24 @@ export default function CourseNavigatorMobile({
 
 	/* Handlers */
 	const goToNextLesson = () => {
+		const lesson = course.blocks?.[currentBlock]?.content?.[currentLesson];
+
+		if (!lesson) {
+			return;
+		}
+
+		if (!canMarkLessonAsViewed.current) {
+			return;
+		}
+
+		markCourseLessonAsViewed(course.id, studentId, course.blocks![currentBlock].id!, lesson.id!)
+			.then(() => {
+				void fetchWatchedLessons(studentId, course.id);
+			})
+			.catch((error) => {
+				// eslint-disable-next-line no-console
+				console.error('Error marking lesson as viewed:', error);
+			});
 		if (currentLesson < totalLessons - 1) {
 			router.push(
 				`/escuela/mis-cursos/${slug as string}?block=${currentBlock}&lesson=${currentLesson + 1}`,
@@ -139,6 +135,25 @@ export default function CourseNavigatorMobile({
 	};
 
 	const goToPreviousLesson = () => {
+		const lesson = course.blocks?.[currentBlock]?.content?.[currentLesson];
+
+		if (!lesson) {
+			return;
+		}
+
+		if (!canMarkLessonAsViewed.current) {
+			return;
+		}
+
+		markCourseLessonAsViewed(course.id, studentId, course.blocks![currentBlock].id!, lesson.id!)
+			.then(() => {
+				void fetchWatchedLessons(studentId, course.id);
+			})
+			.catch((error) => {
+				// eslint-disable-next-line no-console
+				console.error('Error marking lesson as viewed:', error);
+			});
+
 		if (currentLesson > 0) {
 			router.push(
 				`/escuela/mis-cursos/${slug as string}?block=${currentBlock}&lesson=${currentLesson - 1}`,
