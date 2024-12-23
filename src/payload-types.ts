@@ -20,6 +20,7 @@ export interface Config {
     pending: Pending;
     comment: Comment;
     'course-lesson-views': CourseLessonView;
+    'course-lesson-comments': CourseLessonComment;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -34,6 +35,7 @@ export interface Config {
     pending: PendingSelect<false> | PendingSelect<true>;
     comment: CommentSelect<false> | CommentSelect<true>;
     'course-lesson-views': CourseLessonViewsSelect<false> | CourseLessonViewsSelect<true>;
+    'course-lesson-comments': CourseLessonCommentsSelect<false> | CourseLessonCommentsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -352,6 +354,41 @@ export interface CourseLessonView {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "course-lesson-comments".
+ */
+export interface CourseLessonComment {
+  id: number;
+  course?: (number | null) | Course;
+  student?: (number | null) | Student;
+  comments?: {
+    /**
+     * This interface was referenced by `undefined`'s JSON-Schema definition
+     * via the `patternProperty` "^[a-zA-Z0-9]+$".
+     */
+    [k: string]: {
+      /**
+       * This interface was referenced by `undefined`'s JSON-Schema definition
+       * via the `patternProperty` "^[a-zA-Z0-9]+$".
+       */
+      [k: string]: {
+        comment: string;
+        author: string;
+        isHighlighted: boolean;
+        replies: {
+          comment: string;
+          author: string;
+          isHighlighted: boolean;
+          [k: string]: unknown;
+        }[];
+        [k: string]: unknown;
+      }[];
+    };
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -388,6 +425,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'course-lesson-views';
         value: number | CourseLessonView;
+      } | null)
+    | ({
+        relationTo: 'course-lesson-comments';
+        value: number | CourseLessonComment;
       } | null);
   globalSlug?: string | null;
   user:
@@ -615,6 +656,17 @@ export interface CourseLessonViewsSelect<T extends boolean = true> {
   course?: T;
   student?: T;
   data?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "course-lesson-comments_select".
+ */
+export interface CourseLessonCommentsSelect<T extends boolean = true> {
+  course?: T;
+  student?: T;
+  comments?: T;
   updatedAt?: T;
   createdAt?: T;
 }

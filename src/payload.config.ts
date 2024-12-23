@@ -13,6 +13,7 @@ import { Student } from './payload/collections/Student';
 import { PendingPayments } from './payload/collections/PendingPayments';
 import { CourseComment } from './payload/collections/CourseComment';
 import { CourseLessonViews } from './payload/collections/CourseLessonViews';
+import { CourseLessonComments } from './payload/collections/CourseLessonComments';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -40,6 +41,7 @@ export default buildConfig({
 		PendingPayments,
 		CourseComment,
 		CourseLessonViews,
+		CourseLessonComments,
 	],
 	cookiePrefix: 'vycadmin',
 	editor: lexicalEditor(),
