@@ -163,9 +163,6 @@ export const Course: CollectionConfig = {
 									type: 'text',
 									label: 'Nombre del Bloque',
 									name: 'name',
-									// admin: {
-									// 	description: 'Nombre del Bloque',
-									// },
 								},
 								CourseContentBlock,
 							],

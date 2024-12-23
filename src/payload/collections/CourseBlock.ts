@@ -66,6 +66,24 @@ export const CourseContentBlock: CollectionConfig['fields'][0] = {
 				},
 			],
 		},
+		{
+			slug: 'archive',
+			labels: { singular: 'Video de Alumno', plural: 'Videos de Alumnos' },
+			fields: [
+				{
+					name: 'title',
+					label: 'Título',
+					type: 'text',
+					required: true,
+				},
+				{
+					name: 'content',
+					label: 'Contenido',
+					type: 'richText',
+					required: true,
+				},
+			],
+		},
 	],
 };
 
