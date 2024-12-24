@@ -167,7 +167,7 @@ function AccordionItemContent({ content }: AccordionItemContentProps) {
 				return (
 					<li
 						key={item.id}
-						className="line-clamp-1 flex items-center truncate rounded-lg px-2 py-4 lg:px-[152px]"
+						className="line-clamp-1 flex items-center truncate rounded-lg py-4 pl-[60px] lg:px-[152px]"
 					>
 						{getIcon(item.blockType)}
 						{item.blockName && <p className="pl-4">{title}</p>}
@@ -198,24 +198,24 @@ export default function CourseContentAccordion({ blocks }: CourseContentAccordio
 							header={
 								<header
 									key={key}
-									className="flex w-full items-center justify-between bg-cyan-25 px-2 lg:px-8"
+									className="flex w-full items-center justify-between bg-cyan-25 px-4 lg:px-8"
 								>
 									{/* Mobile */}
-									<p className="py-4 pr-2 font-bold lg:hidden">
+									<p className="max-w-[85%] py-4 text-left font-bold lg:hidden">
 										Bl {index + 1}
 										{block.name && ':'}
 										{block.name && <span className="pl-3 font-normal">{block.name}</span>}
 									</p>
 
 									{/* Desktop */}
-									<p className="hidden truncate py-4 pr-2 font-bold lg:block lg:max-w-[85%]">
+									<p className="hidden truncate py-4 font-bold lg:block lg:max-w-[85%]">
 										<span className="pr-10">Bloque {index + 1}</span>
 										{block.name && <span className="pl-3 font-normal">{block.name}</span>}
 									</p>
 									<NextImage
 										alt="Ver detalles"
 										className={cn(
-											'opacity-1 absolute right-2 transition-opacity duration-200 ease-linear group-data-[state=open]:opacity-0 lg:right-8',
+											'opacity-1 absolute right-4 transition-opacity duration-200 ease-linear group-data-[state=open]:opacity-0 lg:right-8',
 										)}
 										height={16}
 										src={plusIcon}
@@ -224,7 +224,7 @@ export default function CourseContentAccordion({ blocks }: CourseContentAccordio
 									<NextImage
 										alt="Esconder detalles"
 										className={cn(
-											'absolute right-2 opacity-0 transition-opacity duration-200 ease-linear group-data-[state=open]:opacity-100 lg:right-8',
+											'absolute right-4 opacity-0 transition-opacity duration-200 ease-linear group-data-[state=open]:opacity-100 lg:right-8',
 										)}
 										height={16}
 										src={minusIcon}
