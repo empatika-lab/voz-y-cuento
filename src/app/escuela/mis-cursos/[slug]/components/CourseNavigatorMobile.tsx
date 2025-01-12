@@ -12,6 +12,7 @@ import type { Course } from '@/payload-types';
 import CourseItem from './CourseItem';
 import CourseViewerMobileTabs from './CourseViewerMobileTabs';
 import CourseNavigatorMobileFooter from './CourseNavigatorMobileFooter';
+import CourseLessonComments from './CouseLessonComments';
 
 /* Utils */
 import { cn } from '@/lib/utils/classNames';
@@ -38,6 +39,7 @@ interface CourseNavigatorMobileProps {
 	totalLessons: number;
 	isShowingIndex: boolean;
 	studentId: number;
+	user: { id: string; email: string; name: string; courses: number[] };
 }
 
 export default function CourseNavigatorMobile({
@@ -48,6 +50,7 @@ export default function CourseNavigatorMobile({
 	totalLessons,
 	studentId,
 	isShowingIndex,
+	user,
 }: CourseNavigatorMobileProps) {
 	/* Hooks */
 	const { slug } = useParams();
@@ -92,7 +95,14 @@ export default function CourseNavigatorMobile({
 		},
 		{
 			label: 'Comentarios',
-			Component: <p>Comentarios</p>,
+			Component: (
+				<CourseLessonComments
+					courseId={course.id.toString()}
+					blockId={course.blocks[currentBlock].id!}
+					lessonId={course.blocks[currentBlock].content[currentLesson].id!}
+					author={user.name}
+				/>
+			),
 			isEnabled: true,
 		},
 		{

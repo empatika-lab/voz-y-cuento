@@ -2,12 +2,15 @@ import type { CollectionConfig } from 'payload';
 
 export const CourseComment: CollectionConfig = {
 	slug: 'comment',
+	access: {
+		read: () => true,
+	},
 	labels: {
 		singular: 'Comentario',
 		plural: 'Comentarios',
 	},
 	admin: {
-		description: 'Comentarios de un bloque de un Curso.',
+		description: 'Comentarios de un lección dentro de un bloque de un Curso.',
 	},
 	fields: [
 		{
@@ -20,17 +23,26 @@ export const CourseComment: CollectionConfig = {
 			label: 'Curso',
 			type: 'relationship',
 			relationTo: 'courses',
-			hasMany: true,
 			admin: {
 				description: 'El curso al que pertenece el comentario.',
 			},
 		},
 		{
-			name: 'block',
+			name: 'blockId',
 			label: 'Bloque del Curso',
-			type: 'number',
+			required: true,
+			type: 'text',
 			admin: {
 				description: 'El bloque del curso al que pertenece el comentario.',
+			},
+		},
+		{
+			name: 'lessonId',
+			label: 'Lección del Curso',
+			required: true,
+			type: 'text',
+			admin: {
+				description: 'La lección del curso al que pertenece el comentario.',
 			},
 		},
 		{

@@ -110,6 +110,7 @@ export default async function SchoolCoursePage({ searchParams, params }: SchoolC
 		return null;
 	}
 
+	/* Derived data */
 	const totalBlocks = course.blocks?.length ?? 0;
 	const totalLessons = course.blocks?.[parseInt(currentBlock, 10)]?.content?.length ?? 0;
 
@@ -127,6 +128,7 @@ export default async function SchoolCoursePage({ searchParams, params }: SchoolC
 						totalLessons={totalLessons}
 						isShowingIndex={isShowingIndex}
 						studentId={studentData.id}
+						user={user}
 					/>
 				</WatchedLessonProvider>
 				{/* <CourseNavigatorDesktop course={course} /> */}

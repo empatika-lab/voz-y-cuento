@@ -13,14 +13,17 @@ export default function CourseSyllbus({ syllabus }: CourseSyllbusProps) {
 		<article>
 			<h2 className="py-8 text-2xl font-bold lg:py-8">¿Qué te propongo?</h2>
 
-			<ul className="flex flex-col gap-5 pl-4 lg:gap-10">
+			<ul className="gap-pl-4 flex flex-col lg:gap-10">
 				{syllabus.map(({ id, unit }) => {
 					if (!unit) {
 						return null;
 					}
 
 					return (
-						<li key={id} className="list-[square] text-xl marker:text-cyan-700 lg:text-xl">
+						<li
+							key={id}
+							className="ml-5 list-[square] text-xl marker:text-cyan-700 lg:ml-0 lg:text-xl"
+						>
 							{unit}
 						</li>
 					);
