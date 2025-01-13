@@ -43,22 +43,54 @@ declare global {
 	}
 }
 
-export default function YoutubeEmbed({
+export default function YoutubeViewer({
 	youtubeUrl,
 	lessonId,
 	markCourseLessonAsViewed,
 }: YouTubeEmbedProps) {
 	/* Refs */
 	const playerRef = useRef<YTPlayer | null>(null);
+	const containerRef = useRef<HTMLDivElement>(null);
 
 	const videoId = youtubeUrl.split('v=')[1];
 
-	const onPlayerStateChange = useCallback(async (event: { data: number }) => {
-		if (event.data === window.YT.PlayerState.ENDED) {
-			await markCourseLessonAsViewed(lessonId);
+	const onPlayerStateChange = useCallback(
+		async (event: { data: number }) => {
+			if (event.data === window.YT.PlayerState.ENDED) {
+				await markCourseLessonAsViewed(lessonId);
+			}
+		},
+		[lessonId, markCourseLessonAsViewed],
+	);
+
+	const initializePlayer = useCallback(() => {
+		if (!playerRef.current && window.YT) {
+			playerRef.current = new window.YT.Player('youtube-player', {
+				videoId,
+				width: '100%',
+				height: '100%',
+				events: {
+					onStateChange: onPlayerStateChange,
+				},
+			});
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [onPlayerStateChange, videoId]);
+
+	// Reset player when URL changes
+	useEffect(() => {
+		if (playerRef.current) {
+			// Destroy existing player
+			playerRef.current = null;
+			if (containerRef.current) {
+				containerRef.current.innerHTML = '<div id="youtube-player"></div>';
+			}
+		}
+
+		// Initialize new player
+		if (window.YT) {
+			initializePlayer();
+		}
+	}, [youtubeUrl, initializePlayer]);
 
 	useEffect(() => {
 		let tag: HTMLScriptElement | null = null;
@@ -73,29 +105,18 @@ export default function YoutubeEmbed({
 
 		window.onYouTubeIframeAPIReady = initializePlayer;
 
-		function initializePlayer() {
-			if (!playerRef.current) {
-				playerRef.current = new window.YT.Player('youtube-player', {
-					videoId,
-					width: '100%',
-					height: '100%',
-					events: {
-						onStateChange: onPlayerStateChange,
-					},
-				});
-			}
-		}
-
 		return () => {
 			if (tag) {
 				document.body.removeChild(tag);
 			}
 		};
-	}, [onPlayerStateChange, videoId]);
+	}, [initializePlayer]);
 
 	return (
 		<div className="w-full bg-cyan-50 pb-3">
-			<div id="youtube-player" className="aspect-video w-full" />
+			<div ref={containerRef} className="aspect-video w-full">
+				<div id="youtube-player" className="aspect-video w-full" />
+			</div>
 		</div>
 	);
 }

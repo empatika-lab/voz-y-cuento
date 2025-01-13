@@ -93,6 +93,8 @@ export interface StudentAuthOperations {
   };
 }
 /**
+ * Los usuarios con permisos para administrar el contenido del sitio web y la Escuela.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "admins".
  */
@@ -110,32 +112,70 @@ export interface Admin {
   password?: string | null;
 }
 /**
+ * Los cursos de Voz y Cuento.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "courses".
  */
 export interface Course {
   id: number;
+  /**
+   * El nombre del curso
+   */
   name: string;
   isFree?: boolean | null;
+  /**
+   * El precio para alumnos dentro de Argentina.
+   */
   arsPrice: number;
+  /**
+   * El precio para alumnos fuera de Argentina.
+   */
   usdPrice: number;
+  /**
+   * Pequeña introducción al curso. Se muestra en la tarjeta del curso. Máximo 100 caracteres.
+   */
   shortDescription: string;
+  /**
+   * Descipción detallada del curso. Se muestra en la página de detalle del curso
+   */
   longDescription: string;
+  /**
+   * Esta imágen se muestra en la tarjeta del Curso.
+   */
   image: number | Media;
+  /**
+   * Elegir el tipo de curso.
+   */
   category: 'Taller' | 'Laboratorio' | 'Seminario';
+  /**
+   * Un punteo de los temas que se ven en el curso (no van los títulos del los videos, sólo de qué trata cada curso). Se muestra en el detalle del Curso.
+   */
   syllabus?:
     | {
         unit?: string | null;
         id?: string | null;
       }[]
     | null;
+  /**
+   * Los bloques del curso.
+   */
   blocks?:
     | {
         name?: string | null;
+        /**
+         * Agregar clases: videos, ejercicios y materiales adicionales.
+         */
         content?:
           | (
               | {
+                  /**
+                   * Link al video de Youtube
+                   */
                   link: string;
+                  /**
+                   * Un texto para acompañar el video
+                   */
                   content?: {
                     root: {
                       type: string;
@@ -156,6 +196,9 @@ export interface Course {
                   blockType: 'video';
                 }
               | {
+                  /**
+                   * Un texto para acompañar la presentación
+                   */
                   content?: {
                     root: {
                       type: string;
@@ -251,6 +294,9 @@ export interface Course {
  */
 export interface Media {
   id: number;
+  /**
+   * Una descripción para el usuario por si la imágen falla en su carga.
+   */
   alt?: string | null;
   _key?: string | null;
   updatedAt: string;
@@ -271,21 +317,38 @@ export interface Media {
  */
 export interface Event {
   id: number;
+  /**
+   * El nombre del Evento para contratar.
+   */
   title: string;
+  /**
+   * De qué trata el evento. Se ve en la tarjeta del evento en la página de Espectáculos.
+   */
   description: string;
   category: 'Maternal' | 'Infantil' | 'Familiar' | 'Adultos' | 'Personalizado';
+  /**
+   * Esta imágen se muestra en la tarjeta del Evento.
+   */
   image: number | Media;
   updatedAt: string;
   createdAt: string;
 }
 /**
+ * Estos son las personas registradas en la aplicación.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "students".
  */
 export interface Student {
   id: number;
   name?: string | null;
+  /**
+   * Número de Whatsapp para contactar.
+   */
   whatsapp?: string | null;
+  /**
+   * Cursos a los que el alumno pertenece.
+   */
   courses?: (number | Course)[] | null;
   updatedAt: string;
   createdAt: string;
@@ -311,21 +374,47 @@ export interface Pending {
   createdAt: string;
 }
 /**
+ * Comentarios de un lección dentro de un bloque de un Curso.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "comment".
  */
 export interface Comment {
   id: number;
   comment?: string | null;
+  /**
+   * El curso al que pertenece el comentario.
+   */
   course?: (number | null) | Course;
+  /**
+   * El bloque del curso al que pertenece el comentario.
+   */
   blockId: string;
+  /**
+   * La lección del curso al que pertenece el comentario.
+   */
   lessonId: string;
+  /**
+   * El nombre del autor del comentario.
+   */
   author?: string | null;
+  /**
+   * Indica si el comentario es resaltado.
+   */
   highlighted?: boolean | null;
+  /**
+   * Respuestas a este comentario.
+   */
   responses?:
     | {
         response?: string | null;
+        /**
+         * Indica si la respuesta al comentario es resaltada.
+         */
         highlighted?: boolean | null;
+        /**
+         * El nombre del autor de la respuesta.
+         */
         author?: string | null;
         id?: string | null;
       }[]

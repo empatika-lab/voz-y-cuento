@@ -123,18 +123,17 @@ export default function CourseNavigatorMobile({
 			return;
 		}
 
-		if (!canMarkLessonAsViewed.current) {
-			return;
+		if (canMarkLessonAsViewed.current) {
+			markCourseLessonAsViewed(course.id, studentId, course.blocks![currentBlock].id!, lesson.id!)
+				.then(() => {
+					void fetchWatchedLessons(studentId, course.id);
+				})
+				.catch((error) => {
+					// eslint-disable-next-line no-console
+					console.error('Error marking lesson as viewed:', error);
+				});
 		}
 
-		markCourseLessonAsViewed(course.id, studentId, course.blocks![currentBlock].id!, lesson.id!)
-			.then(() => {
-				void fetchWatchedLessons(studentId, course.id);
-			})
-			.catch((error) => {
-				// eslint-disable-next-line no-console
-				console.error('Error marking lesson as viewed:', error);
-			});
 		if (currentLesson < totalLessons - 1) {
 			router.push(
 				`/escuela/mis-cursos/${slug as string}?block=${currentBlock}&lesson=${currentLesson + 1}`,
