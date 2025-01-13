@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useMemo } from 'react';
 
 interface YouTubeEmbedProps {
 	youtubeUrl: string;
@@ -52,7 +52,18 @@ export default function YoutubeViewer({
 	const playerRef = useRef<YTPlayer | null>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
 
-	const videoId = youtubeUrl.split('v=')[1];
+	// Memoize videoId extraction
+	const videoId = useMemo(() => youtubeUrl.split('v=')[1], [youtubeUrl]);
+
+	// Memoize player configuration
+	const playerConfig = useMemo(
+		() => ({
+			videoId,
+			width: '100%',
+			height: '100%',
+		}),
+		[videoId],
+	);
 
 	const onPlayerStateChange = useCallback(
 		async (event: { data: number }) => {
@@ -66,15 +77,13 @@ export default function YoutubeViewer({
 	const initializePlayer = useCallback(() => {
 		if (!playerRef.current && window.YT) {
 			playerRef.current = new window.YT.Player('youtube-player', {
-				videoId,
-				width: '100%',
-				height: '100%',
+				...playerConfig,
 				events: {
 					onStateChange: onPlayerStateChange,
 				},
 			});
 		}
-	}, [onPlayerStateChange, videoId]);
+	}, [onPlayerStateChange, playerConfig]);
 
 	// Reset player when URL changes
 	useEffect(() => {
