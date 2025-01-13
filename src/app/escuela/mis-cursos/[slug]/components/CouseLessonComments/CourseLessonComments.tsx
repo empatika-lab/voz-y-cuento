@@ -1,9 +1,7 @@
 'use client';
+
 import { useEffect, useState } from 'react';
 import { stringify } from 'qs-esm';
-
-/* Payload */
-import { Admin } from '@/payload/collections/Admin';
 
 /* Components */
 import CourseLessonCommentsMobile from './CourseLessonCommentsMobile';
@@ -34,17 +32,30 @@ export default function CourseLessonComments({
 		lessonId: string,
 	): Promise<void> => {
 		const queryObject: Where = {
-			course: { equals: courseId },
-			blockId: { equals: blockId },
-			lessonId: { equals: lessonId },
-		} as const;
+			and: [
+				{
+					course: {
+						equals: courseId,
+					},
+				},
+				{
+					blockId: {
+						equals: blockId,
+					},
+				},
+				{
+					lessonId: {
+						equals: lessonId,
+					},
+				},
+			],
+		};
 
-		const stringifiedQuery = stringify(queryObject, { addQueryPrefix: true });
+		const stringifiedQuery = stringify({ where: queryObject }, { addQueryPrefix: true });
 		const response = await fetch(
 			`${process.env.NEXT_PUBLIC_PAYLOAD_API_URL}/comment${stringifiedQuery}`,
 			{
 				headers: {
-					Authorization: `${Admin.slug} API-Key ${process.env.NEXT_PUBLIC_PAYLOAD_API_URL}`,
 					Accept: 'application/json',
 					'Content-Type': 'application/json',
 				},

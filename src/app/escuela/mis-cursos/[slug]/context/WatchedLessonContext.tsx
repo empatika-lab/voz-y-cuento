@@ -6,9 +6,6 @@ import { stringify } from 'qs-esm';
 /* Types */
 import type { Where } from 'payload';
 
-/* Collections */
-import { Admin } from '@/payload/collections/Admin';
-
 interface WatchedLessonContextType {
 	watchedLessons: { id: number; data: Record<string, string[]> }[];
 	fetchWatchedLessons: (studentId: number, courseId: number) => Promise<void>;
@@ -33,17 +30,14 @@ export const WatchedLessonProvider = ({ children }: { children: React.ReactNode 
 				};
 
 				const query: Where = {
-					student: { equals: Number(studentId) },
-					course: { equals: Number(courseId) },
+					and: [
+						{ student: { equals: Number(studentId) } },
+						{ course: { equals: Number(courseId) } },
+					],
 				};
 				const stringifiedQuery = stringify({ where: query, select }, { addQueryPrefix: true });
 				const response = await fetch(
 					`${process.env.NEXT_PUBLIC_PAYLOAD_API_URL}/course-lesson-views${stringifiedQuery}`,
-					{
-						headers: {
-							Authorization: `${Admin.slug} API-Key ${process.env.NEXT_PUBLIC_PAYLOAD_API_URL}`,
-						},
-					},
 				);
 				const data = (await response.json()) as {
 					docs: { id: number; data: Record<string, string[]> }[];
