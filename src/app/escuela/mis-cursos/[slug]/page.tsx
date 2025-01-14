@@ -17,6 +17,7 @@ import type { Course } from '@/payload-types';
 
 /* Context */
 import { WatchedLessonProvider } from './context/WatchedLessonContext';
+import { CourseTabsIndexProvider } from './context/CourseTabsIndexContext';
 
 async function fetchCourse(slug: string) {
 	try {
@@ -120,16 +121,18 @@ export default async function SchoolCoursePage({ searchParams, params }: SchoolC
 
 			<main className="mt-[62px] h-full">
 				<WatchedLessonProvider>
-					<CourseNavigatorMobile
-						course={course}
-						currentBlock={parseInt(currentBlock, 10)}
-						currentLesson={parseInt(currentLesson, 10)}
-						totalBlocks={totalBlocks}
-						totalLessons={totalLessons}
-						isShowingIndex={isShowingIndex}
-						studentId={studentData.id}
-						user={user}
-					/>
+					<CourseTabsIndexProvider>
+						<CourseNavigatorMobile
+							course={course}
+							currentBlock={parseInt(currentBlock, 10)}
+							currentLesson={parseInt(currentLesson, 10)}
+							totalBlocks={totalBlocks}
+							totalLessons={totalLessons}
+							isShowingIndex={isShowingIndex}
+							studentId={studentData.id}
+							user={user}
+						/>
+					</CourseTabsIndexProvider>
 				</WatchedLessonProvider>
 				{/* <CourseNavigatorDesktop course={course} /> */}
 			</main>

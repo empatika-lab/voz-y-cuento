@@ -1,4 +1,4 @@
-import { use } from 'react';
+import { use, useCallback } from 'react';
 
 /* Components */
 import RichText from '@/components/RichText/RichText';
@@ -25,10 +25,13 @@ export default function CourseItem({
 }) {
 	const { fetchWatchedLessons } = use(WatchedLessonContext);
 
-	async function handleLessonView(lessonId: string) {
-		await markCourseLessonAsViewed(courseId, studentId, blockId, lessonId);
-		await fetchWatchedLessons(studentId, courseId);
-	}
+	const handleLessonView = useCallback(
+		async (lessonId: string) => {
+			await markCourseLessonAsViewed(courseId, studentId, blockId, lessonId);
+			await fetchWatchedLessons(studentId, courseId);
+		},
+		[courseId, studentId, blockId, fetchWatchedLessons],
+	);
 
 	if (lesson.blockType === 'video' && lesson.link) {
 		return (

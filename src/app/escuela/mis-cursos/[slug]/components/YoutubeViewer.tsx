@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useMemo } from 'react';
+import { useCallback, useEffect, useRef, useMemo, memo } from 'react';
 
 interface YouTubeEmbedProps {
 	youtubeUrl: string;
@@ -43,11 +43,7 @@ declare global {
 	}
 }
 
-export default function YoutubeViewer({
-	youtubeUrl,
-	lessonId,
-	markCourseLessonAsViewed,
-}: YouTubeEmbedProps) {
+function YoutubeViewer({ youtubeUrl, lessonId, markCourseLessonAsViewed }: YouTubeEmbedProps) {
 	/* Refs */
 	const playerRef = useRef<YTPlayer | null>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
@@ -129,3 +125,5 @@ export default function YoutubeViewer({
 		</div>
 	);
 }
+
+export default memo(YoutubeViewer);

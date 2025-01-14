@@ -1,12 +1,13 @@
 'use client';
 
-import { useState } from 'react';
-
 /* Types */
 import { type ReactNode } from 'react';
 
 /* Utils */
 import { cn } from '@/lib/utils/classNames';
+
+/* Context */
+import { useCourseTabsIndexContext } from '../context/CourseTabsIndexContext';
 
 interface CourseViewerMobileTabsProps {
 	tabs: {
@@ -17,7 +18,7 @@ interface CourseViewerMobileTabsProps {
 }
 
 export default function CourseViewerMobileTabs({ tabs }: CourseViewerMobileTabsProps) {
-	const [currentTabIndex, setCurrentTabIndex] = useState(0);
+	const { currentTabIndex, setCurrentTabIndex } = useCourseTabsIndexContext();
 
 	return (
 		<>

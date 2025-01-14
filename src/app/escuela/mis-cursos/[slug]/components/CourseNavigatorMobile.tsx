@@ -30,6 +30,7 @@ import { WatchedLessonContext } from '../context/WatchedLessonContext';
 
 /* Utils */
 import { markCourseLessonAsViewed, unmarkCourseLessonAsViewed } from '@/lib/utils/course';
+import { useCourseTabsIndexContext } from '../context/CourseTabsIndexContext';
 
 interface CourseNavigatorMobileProps {
 	course: Course;
@@ -55,8 +56,10 @@ export default function CourseNavigatorMobile({
 	/* Hooks */
 	const { slug } = useParams();
 	const router = useRouter();
-	const { watchedLessons, fetchWatchedLessons } = use(WatchedLessonContext);
 
+	/* Context */
+	const { watchedLessons, fetchWatchedLessons } = use(WatchedLessonContext);
+	const { currentTabIndex, setCurrentTabIndex } = useCourseTabsIndexContext();
 	/* Refs */
 	const canMarkLessonAsViewed = useRef(false);
 
@@ -141,6 +144,10 @@ export default function CourseNavigatorMobile({
 		} else if (currentBlock < totalBlocks - 1) {
 			router.push(`/escuela/mis-cursos/${slug as string}?block=${currentBlock + 1}&lesson=${1}`);
 		}
+
+		if (currentTabIndex > 0) {
+			setCurrentTabIndex(0);
+		}
 	};
 
 	const goToPreviousLesson = () => {
@@ -171,6 +178,10 @@ export default function CourseNavigatorMobile({
 			router.push(
 				`/escuela/mis-cursos/${slug as string}?block=${currentBlock}&lesson=${totalLessons - 1}`,
 			);
+		}
+
+		if (currentTabIndex > 0) {
+			setCurrentTabIndex(0);
 		}
 	};
 

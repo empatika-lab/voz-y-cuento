@@ -68,7 +68,7 @@ export default function CourseLessonCommentsMobile({
 					value={comment}
 					onChange={(e) => setComment(e.target.value)}
 					placeholder={isSending ? 'Enviando...' : 'Escribe tu comentario aquí'}
-					className="h-[40px] min-h-12 w-full max-w-[400px] appearance-none border-b-2 border-[#373F3F] bg-[#FFFCEE] p-2 px-14 text-gray-900 ring-0 placeholder:text-gray-600 focus:outline-[#E5CD4A]"
+					className="h-[40px] min-h-12 w-full appearance-none border-b-2 border-[#373F3F] bg-[#FFFCEE] p-2 px-14 text-gray-900 ring-0 placeholder:text-gray-600 focus:outline-[#E5CD4A]"
 				/>
 
 				<NextImage
