@@ -46,12 +46,15 @@ export default function CourseLessonCommentsMobile({
 	/* Handlers */
 	async function handleSendComment() {
 		setIsSending(true);
+		const isHighlighted = author === 'Emilce Brusa';
 
-		await sendComment(comment, courseId, blockId, lessonId, author, false).catch((error) => {
-			// eslint-disable-next-line no-console
-			console.error(error);
-			toast.error('Error al enviar el comentario. Por favor, intenta nuevamente más tarde.');
-		});
+		await sendComment(comment, courseId, blockId, lessonId, author, isHighlighted).catch(
+			(error) => {
+				// eslint-disable-next-line no-console
+				console.error(error);
+				toast.error('Error al enviar el comentario. Por favor, intenta nuevamente más tarde.');
+			},
+		);
 
 		setComment('');
 		setIsSending(false);
@@ -115,7 +118,7 @@ export default function CourseLessonCommentsMobile({
 					<Spinner className="text-cyan-600" size="sm" />
 					<span className="text-gray-600">Cargando comentarios...</span>
 				</div>
-			) : (
+			) : comments.length > 0 ? (
 				<ul className="relative flex w-full flex-col justify-self-center">
 					{comments.map((comment) => (
 						<li
@@ -123,7 +126,7 @@ export default function CourseLessonCommentsMobile({
 							className={cn(
 								'flex w-full flex-col border-b-2 border-b-gray-500 px-5 first-of-type:pt-8',
 								{
-									'bg-cyan-50': comment.highlighted,
+									'bg-pink-50': comment.highlighted,
 								},
 							)}
 						>
@@ -141,6 +144,11 @@ export default function CourseLessonCommentsMobile({
 						</li>
 					))}
 				</ul>
+			) : (
+				<div className="mt-10 flex h-full w-full flex-col items-center justify-center gap-2">
+					<p className="text-gray-600">Aún nadie ha comentado esta clase.</p>
+					<div className="h-px w-full bg-gray-500" role="separator" />
+				</div>
 			)}
 		</div>
 	);

@@ -35,7 +35,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html className="h-full" lang="es">
+		<html className="h-full" lang="en">
 			<body
 				className={`${raleway.variable} ${stickyPops.variable} h-full bg-cyan-50 font-sans antialiased`}
 			>
