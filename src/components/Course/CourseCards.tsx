@@ -30,45 +30,50 @@ export function CourseCards({ courses, isAcademy = false, isOwned = false }: Cou
 
 	return (
 		<>
-			<h2 className="mt-14 text-2xl font-medium lg:text-[32px]">Talleres</h2>
-			<p className="mt-2 text-pretty text-sm lg:text-xl">
-				Aprenderás los fundamentos teóricos de manera estructurada y al mismo tiempo pondrás en
-				práctica tus conocimientos a través de ejercicios prácticos.
-			</p>
-
 			{talleres.length > 0 && (
-				<ul className="flex flex-wrap justify-center gap-[20px] pt-6 lg:justify-start lg:gap-8 lg:pt-12">
-					{talleres.map((course) => (
-						<CourseCard key={course.id} course={course} isAcademy={isAcademy} isOwned={isOwned} />
-					))}
-				</ul>
+				<>
+					<ul className="flex flex-wrap justify-center gap-[20px] pt-6 lg:justify-start lg:gap-8 lg:pt-12">
+						<h2 className="mt-14 text-2xl font-medium lg:text-[32px]">Talleres</h2>
+						<p className="mt-2 text-pretty text-sm lg:text-xl">
+							Aprenderás los fundamentos teóricos de manera estructurada y al mismo tiempo pondrás
+							en práctica tus conocimientos a través de ejercicios prácticos.
+						</p>
+						{talleres.map((course) => (
+							<CourseCard key={course.id} course={course} isAcademy={isAcademy} isOwned={isOwned} />
+						))}
+					</ul>
+				</>
 			)}
-
-			<h2 className="mt-14 text-2xl font-medium lg:text-[32px]">Seminarios</h2>
-			<p className="mt-2 text-pretty text-sm lg:text-xl">
-				Clases intensivas donde profundizarás sobre temas en específico dentro de la narración oral.
-			</p>
 
 			{seminarios.length > 0 && (
-				<ul className="pg:pt-12 flex flex-wrap justify-center gap-[20px] pt-6 lg:justify-start lg:gap-8">
-					{seminarios.map((course) => (
-						<CourseCard key={course.id} course={course} isAcademy={isAcademy} />
-					))}
-				</ul>
+				<>
+					<h2 className="mt-14 text-2xl font-medium lg:text-[32px]">Seminarios</h2>
+					<p className="mt-2 text-pretty text-sm lg:text-xl">
+						Clases intensivas donde profundizarás sobre temas en específico dentro de la narración
+						oral.
+					</p>
+
+					<ul className="flex flex-wrap justify-center gap-[20px] pt-6 lg:justify-start lg:gap-8">
+						{seminarios.map((course) => (
+							<CourseCard key={course.id} course={course} isAcademy={isAcademy} />
+						))}
+					</ul>
+				</>
 			)}
 
-			<h2 className="mt-14 text-2xl font-medium lg:text-[32px]">Laboratorios</h2>
-			<p className="mt-2 text-pretty text-sm lg:text-xl">
-				Espacio de experimetación libre donde podrás mejorar tu práctica con el acompañamiento de la
-				profesora.
-			</p>
-
 			{laboratorios.length > 0 && (
-				<ul className="flex flex-wrap justify-center gap-[20px] pt-6 lg:justify-start lg:gap-8 lg:pt-12">
-					{laboratorios.map((course) => (
-						<CourseCard key={course.id} course={course} isAcademy={isAcademy} />
-					))}
-				</ul>
+				<>
+					<h2 className="mt-14 text-2xl font-medium lg:text-[32px]">Laboratorios</h2>
+					<p className="mt-2 text-pretty text-sm lg:text-xl">
+						Espacio de experimetación libre donde podrás mejorar tu práctica con el acompañamiento
+						de la profesora.
+					</p>
+					<ul className="flex flex-wrap justify-center gap-[20px] pt-6 lg:justify-start lg:gap-8 lg:pt-12">
+						{laboratorios.map((course) => (
+							<CourseCard key={course.id} course={course} isAcademy={isAcademy} />
+						))}
+					</ul>
+				</>
 			)}
 		</>
 	);
