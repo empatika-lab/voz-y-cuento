@@ -52,6 +52,25 @@ export default async function HireMe() {
 
 			<main className="container flex w-full flex-col gap-10 pb-16 pt-48">
 				<Breadcrumbs items={breadcrumbItems} />
+
+				<article className="flex flex-col gap-2 rounded-lg bg-pink-50 p-4">
+					<p>
+						<span className="font-bold">Maternal: </span>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+					</p>
+					<p>
+						<span className="font-bold">Infantil: </span>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+					</p>
+					<p>
+						<span className="font-bold">Familiar: </span>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+					</p>
+					<p>
+						<span className="font-bold">Adultos: </span>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+					</p>
+				</article>
 				<ul className="flex flex-wrap justify-center gap-10 lg:justify-start">
 					{events.docs.map((event) => {
 						return <HireMeCard event={event} key={event.id} />;
