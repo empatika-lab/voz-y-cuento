@@ -32,9 +32,9 @@ export function CourseCards({ courses, isAcademy = false, isOwned = false }: Cou
 		<>
 			{talleres.length > 0 && (
 				<>
-					<ul className="flex flex-wrap justify-center gap-[20px] pt-6 lg:justify-start lg:gap-8 lg:pt-12">
-						<h2 className="mt-14 text-2xl font-medium lg:text-[32px]">Talleres</h2>
-						<p className="mt-2 text-pretty text-sm lg:text-xl">
+					<ul className="flex flex-wrap justify-center gap-[20px] pt-6 md:justify-start md:gap-8 md:pt-12">
+						<h2 className="mt-14 text-2xl font-medium md:text-[32px]">Talleres</h2>
+						<p className="mt-2 text-pretty text-sm md:text-xl">
 							Aprenderás los fundamentos teóricos de manera estructurada y al mismo tiempo pondrás
 							en práctica tus conocimientos a través de ejercicios prácticos.
 						</p>
@@ -53,7 +53,7 @@ export function CourseCards({ courses, isAcademy = false, isOwned = false }: Cou
 						oral.
 					</p>
 
-					<ul className="flex flex-wrap justify-center gap-[20px] pt-6 lg:justify-start lg:gap-8">
+					<ul className="flex flex-wrap justify-center gap-[20px] pt-6 md:justify-start md:gap-8">
 						{seminarios.map((course) => (
 							<CourseCard key={course.id} course={course} isAcademy={isAcademy} />
 						))}
@@ -68,7 +68,7 @@ export function CourseCards({ courses, isAcademy = false, isOwned = false }: Cou
 						Espacio de experimetación libre donde podrás mejorar tu práctica con el acompañamiento
 						de la profesora.
 					</p>
-					<ul className="flex flex-wrap justify-center gap-[20px] pt-6 lg:justify-start lg:gap-8 lg:pt-12">
+					<ul className="flex flex-wrap justify-center gap-[20px] pt-6 md:justify-start md:gap-8 md:pt-12">
 						{laboratorios.map((course) => (
 							<CourseCard key={course.id} course={course} isAcademy={isAcademy} />
 						))}
