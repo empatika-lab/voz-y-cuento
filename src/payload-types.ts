@@ -124,6 +124,14 @@ export interface Course {
    * El nombre del curso
    */
   name: string;
+  /**
+   * Si está seleccionado, el curso se mostrará en la lista de cursos.
+   */
+  isPublished?: boolean | null;
+  /**
+   * Si está seleccionado, el curso se mostrará como "Próximamente" en la lista de Cursos.
+   */
+  isComingSoon?: boolean | null;
   isFree?: boolean | null;
   /**
    * El precio para alumnos dentro de Argentina.
@@ -554,6 +562,8 @@ export interface AdminsSelect<T extends boolean = true> {
  */
 export interface CoursesSelect<T extends boolean = true> {
   name?: T;
+  isPublished?: T;
+  isComingSoon?: T;
   isFree?: T;
   arsPrice?: T;
   usdPrice?: T;

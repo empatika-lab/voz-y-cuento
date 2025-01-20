@@ -27,6 +27,10 @@ export default function CourseCard({
 
 	/* Helpers */
 	function getLink() {
+		if (course.isComingSoon) {
+			return '';
+		}
+
 		if (!isAcademy) {
 			return `/cursos/${course.slug}`;
 		}
@@ -38,10 +42,13 @@ export default function CourseCard({
 			key={course.id}
 			className={cn(
 				'flex w-[320px] flex-col rounded-2xl border border-solid border-gray-900 bg-white shadow-lg transition-transform ease-in-out will-change-transform hover:scale-[1.03] active:border-cyan-600 lg:h-[445px] lg:w-[356px]',
-				{ 'pointer-events-none': course.isPending },
+				{ 'pointer-events-none': course.isPending, 'hover:scale-1': course.isComingSoon },
 			)}
 		>
-			<NextLink href={getLink()}>
+			<NextLink
+				href={course.isComingSoon ? '' : getLink()}
+				className={cn({ 'pointer-events-none': course.isComingSoon })}
+			>
 				{/* Card Image */}
 				<div className="relative mx-auto h-[180px] w-full lg:h-[200px] lg:w-[354px]">
 					{imageLoading && (
@@ -88,13 +95,22 @@ export default function CourseCard({
 					<div className="absolute inset-0 h-full w-full rounded-2xl bg-black/60 p-4" aria-hidden />
 				)}
 
+				{course.isComingSoon && (
+					<div
+						className="absolute left-0 top-0 flex w-full justify-center rounded-t-2xl bg-yellow-500/80 p-4 text-center font-bold tracking-wide text-black"
+						aria-hidden
+					>
+						PRÓXIMAMENTE
+					</div>
+				)}
+
 				{/* Card Footer */}
-				{!course.isPending && (
+				{!course.isPending && !course.isComingSoon && (
 					<footer className="mb-10 w-full px-4 py-2 lg:py-4">
 						<NextImage
 							alt="Ver detalle de Curso"
 							className="ml-auto h-[20px] w-[20px]"
-							src={arrowRight}
+							src={arrowRight as string}
 						/>
 					</footer>
 				)}

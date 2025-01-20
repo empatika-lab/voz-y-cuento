@@ -25,9 +25,19 @@ async function fetchCourses() {
 		config: configPromise,
 	});
 
-	const courses = payload.find({ collection: 'courses', limit: 1000 }).catch((e) => {
-		prettyPrint(e);
-	});
+	const courses = payload
+		.find({
+			collection: 'courses',
+			limit: 1000,
+			where: {
+				isPublished: {
+					equals: true,
+				},
+			},
+		})
+		.catch((e) => {
+			prettyPrint(e);
+		});
 
 	return courses;
 }

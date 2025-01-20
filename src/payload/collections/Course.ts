@@ -36,6 +36,27 @@ export const Course: CollectionConfig = {
 							unique: true,
 						},
 						{
+							label: 'Está publicado',
+							name: 'isPublished',
+							required: false,
+							defaultValue: false,
+							type: 'checkbox',
+							admin: {
+								description: 'Si está seleccionado, el curso se mostrará en la lista de cursos.',
+							},
+						},
+						{
+							label: 'Mostrar como "Próximamente"',
+							name: 'isComingSoon',
+							required: false,
+							defaultValue: false,
+							type: 'checkbox',
+							admin: {
+								description:
+									'Si está seleccionado, el curso se mostrará como "Próximamente" en la lista de Cursos.',
+							},
+						},
+						{
 							label: 'Es gratuito',
 							name: 'isFree',
 							required: false,
