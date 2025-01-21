@@ -60,6 +60,7 @@ export default function CourseNavigatorMobile({
 	/* Context */
 	const { watchedLessons, fetchWatchedLessons } = use(WatchedLessonContext);
 	const { currentTabIndex, setCurrentTabIndex } = useCourseTabsIndexContext();
+
 	/* Refs */
 	const canMarkLessonAsViewed = useRef(false);
 
@@ -107,11 +108,6 @@ export default function CourseNavigatorMobile({
 				/>
 			),
 			isEnabled: true,
-		},
-		{
-			label: 'Archivo',
-			Component: <p>Archivo</p>,
-			isEnabled: false,
 		},
 	];
 
@@ -223,9 +219,14 @@ export default function CourseNavigatorMobile({
 		return null;
 	};
 
-	const handleLessonViewedClick = (isViewed: boolean, lessonId: string) => {
+	const handleLessonViewedClick = (
+		isViewed: boolean,
+		studentId: number,
+		blockId: string,
+		lessonId: string,
+	) => {
 		if (isViewed) {
-			unmarkCourseLessonAsViewed(course.id, studentId, course.blocks![currentBlock].id!, lessonId)
+			unmarkCourseLessonAsViewed(course.id, studentId, blockId, lessonId)
 				.then(() => {
 					void fetchWatchedLessons(studentId, course.id);
 				})
@@ -234,7 +235,7 @@ export default function CourseNavigatorMobile({
 					console.error('Error unmarking lesson as viewed:', error);
 				});
 		} else {
-			markCourseLessonAsViewed(course.id, studentId, course.blocks![currentBlock].id!, lessonId)
+			markCourseLessonAsViewed(course.id, studentId, blockId, lessonId)
 				.then(() => {
 					void fetchWatchedLessons(studentId, course.id);
 				})
@@ -321,7 +322,12 @@ export default function CourseNavigatorMobile({
 																		onClick={(e) => {
 																			e.preventDefault();
 																			e.stopPropagation();
-																			handleLessonViewedClick(true, lesson.id!);
+																			handleLessonViewedClick(
+																				true,
+																				studentId,
+																				block.id!,
+																				lesson.id!,
+																			);
 																		}}
 																		onMouseDown={(e) => {
 																			e.preventDefault();
@@ -335,7 +341,12 @@ export default function CourseNavigatorMobile({
 																		onClick={(e) => {
 																			e.preventDefault();
 																			e.stopPropagation();
-																			handleLessonViewedClick(false, lesson.id!);
+																			handleLessonViewedClick(
+																				false,
+																				studentId,
+																				block.id!,
+																				lesson.id!,
+																			);
 																		}}
 																		onMouseDown={(e) => {
 																			e.preventDefault();
