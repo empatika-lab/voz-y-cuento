@@ -3,7 +3,7 @@ import AcademyDesktopNavbar from '@/components/Layout/Navbar/components/DesktopA
 import MobileAcademyNavbar from './components/MobileAcademyNavbar';
 
 /* Actions */
-import { tryLogout } from '@/app/(auth)/actions/tryLogout';
+import { tryLogout } from '@/app/(frontend)/(auth)/actions/tryLogout';
 
 /* Utils */
 import ROUTES from '@/lib/utils/routes';

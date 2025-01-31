@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 
 /* Actions */
-import { unsetBuyCourseRedirection } from '@/app/(auth)/ingresar/actions/setBuyCourseRedirection';
+import { unsetBuyCourseRedirection } from '@/app/(frontend)/(auth)/ingresar/actions/setBuyCourseRedirection';
 import tryAddPendingPayment from '../actions/tryAddPendingPayment';
 import sendPaymentMethodsEmail from '../actions/sendPaymentMethodsEmail';
 

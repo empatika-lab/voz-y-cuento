@@ -17,7 +17,7 @@ const raleway = Raleway({
 });
 
 const stickyPops = localFont({
-	src: '../../public/fonts/StickyPops.otf',
+	src: '../../../public/fonts/StickyPops.otf',
 	display: 'swap',
 	variable: '--font-display',
 });

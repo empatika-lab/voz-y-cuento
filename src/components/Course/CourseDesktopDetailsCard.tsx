@@ -15,7 +15,7 @@ import type { Course } from '@/payload-types';
 import ROUTES from '@/lib/utils/routes';
 
 /* Actions */
-import { setBuyCourseRedirection } from '@/app/(auth)/ingresar/actions/setBuyCourseRedirection';
+import { setBuyCourseRedirection } from '@/app/(frontend)/(auth)/ingresar/actions/setBuyCourseRedirection';
 
 interface CourseDesktopDetailsCardProps {
 	course: Course;

@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils/classNames';
 import ROUTES from '@/lib/utils/routes';
 
 /* Actions */
-import { setBuyCourseRedirection } from '@/app/(auth)/ingresar/actions/setBuyCourseRedirection';
+import { setBuyCourseRedirection } from '@/app/(frontend)/(auth)/ingresar/actions/setBuyCourseRedirection';
 
 /* Types */
 import type { PropsWithClassName } from '@/lib/types';
