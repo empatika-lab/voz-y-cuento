@@ -188,10 +188,6 @@ export default function CourseNavigatorMobile({
 	};
 
 	const getLessonIcon = (lesson: { blockType: string }) => {
-		if (lesson.blockType === 'video') {
-			return <NextImage src={VideoIcon as string} alt="Video" width={16} height={16} />;
-		}
-
 		if (lesson.blockType === 'exercise') {
 			return <NextImage src={PencilIcon as string} alt="Ejercicio" width={16} height={16} />;
 		}
@@ -200,7 +196,7 @@ export default function CourseNavigatorMobile({
 			return <NextImage src={BookIcon as string} alt="Recurso" width={16} height={16} />;
 		}
 
-		return null;
+		return <NextImage src={VideoIcon as string} alt="Video" width={16} height={16} />;
 	};
 
 	const getLessonType = (lesson: { blockType: string }) => {
@@ -214,6 +210,10 @@ export default function CourseNavigatorMobile({
 
 		if (lesson.blockType === 'additional-material') {
 			return 'Recursos';
+		}
+
+		if (lesson.blockType === 'archive') {
+			return 'Ejemplos';
 		}
 
 		return null;
@@ -293,69 +293,72 @@ export default function CourseNavigatorMobile({
 														currentBlock === index && currentLesson === number;
 
 													return (
-														<NextLink
-															href={`/escuela/mis-cursos/${slug as string}?block=${index}&lesson=${number}`}
-															key={lesson.id}
-															className={cn(
-																'mt-1 flex items-center p-3 pl-5',
-																isCurrentLesson && 'bg-[#D8DEDF]',
-															)}
-														>
-															<div className="mr-2 flex items-center justify-center gap-2">
-																{getLessonIcon(lesson)}
-
-																<span className="font-bold text-gray-700">
-																	{getLessonType(lesson)}
-																	{lesson.blockName && ':'}
-																</span>
-															</div>
-
-															<span className="ml-1 w-64 truncate">{lesson.blockName}</span>
-
-															<div key={lesson.id} className="ml-auto pl-2">
-																{watchedLessons.some((watched) => {
-																	return block.id && watched.data?.[block.id]?.includes(lesson.id!);
-																}) ? (
-																	<NextImage
-																		src={CheckedIcon as string}
-																		alt="Visto"
-																		onClick={(e) => {
-																			e.preventDefault();
-																			e.stopPropagation();
-																			handleLessonViewedClick(
-																				true,
-																				studentId,
-																				block.id!,
-																				lesson.id!,
-																			);
-																		}}
-																		onMouseDown={(e) => {
-																			e.preventDefault();
-																			e.stopPropagation();
-																		}}
-																	/>
-																) : (
-																	<NextImage
-																		src={UncheckedIcon as string}
-																		alt="No visto"
-																		onClick={(e) => {
-																			e.preventDefault();
-																			e.stopPropagation();
-																			handleLessonViewedClick(
-																				false,
-																				studentId,
-																				block.id!,
-																				lesson.id!,
-																			);
-																		}}
-																		onMouseDown={(e) => {
-																			e.preventDefault();
-																			e.stopPropagation();
-																		}}
-																	/>
+														<li key={lesson.id}>
+															<NextLink
+																href={`/escuela/mis-cursos/${slug as string}?block=${index}&lesson=${number}`}
+																className={cn(
+																	'mt-1 flex flex-1 items-center p-3 pl-5',
+																	isCurrentLesson && 'bg-[#D8DEDF]',
 																)}
-															</div>
-														</NextLink>
+															>
+																<div className="flex-0 mr-2 flex items-center justify-between gap-2">
+																	{getLessonIcon(lesson)}
+
+																	<p className="flex-1 font-bold text-gray-700">
+																		{getLessonType(lesson)}
+																		{lesson.blockName && ':'}
+																	</p>
+																</div>
+
+																<span className="ml-1 w-64 truncate">{lesson.blockName}</span>
+
+																<div key={lesson.id} className="ml-auto pl-2">
+																	{watchedLessons.some((watched) => {
+																		return (
+																			block.id && watched.data?.[block.id]?.includes(lesson.id!)
+																		);
+																	}) ? (
+																		<NextImage
+																			src={CheckedIcon as string}
+																			alt="Visto"
+																			onClick={(e) => {
+																				e.preventDefault();
+																				e.stopPropagation();
+																				handleLessonViewedClick(
+																					true,
+																					studentId,
+																					block.id!,
+																					lesson.id!,
+																				);
+																			}}
+																			onMouseDown={(e) => {
+																				e.preventDefault();
+																				e.stopPropagation();
+																			}}
+																		/>
+																	) : (
+																		<NextImage
+																			src={UncheckedIcon as string}
+																			alt="No visto"
+																			onClick={(e) => {
+																				e.preventDefault();
+																				e.stopPropagation();
+																				handleLessonViewedClick(
+																					false,
+																					studentId,
+																					block.id!,
+																					lesson.id!,
+																				);
+																			}}
+																			onMouseDown={(e) => {
+																				e.preventDefault();
+																				e.stopPropagation();
+																			}}
+																		/>
+																	)}
+																</div>
+															</NextLink>
+														</li>
 													);
 												})}
 											</ul>

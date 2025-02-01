@@ -1,9 +1,10 @@
+/* Types */
 import type { Metadata } from 'next';
 
-/* Styles */
+/* STYLES */
 import '@lib/styles/global.css';
 
-/* Fonts */
+/* FONTS */
 import localFont from 'next/font/local';
 import { Raleway } from 'next/font/google';
 

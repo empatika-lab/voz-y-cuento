@@ -67,5 +67,16 @@ export default function CourseItem({
 		);
 	}
 
+	if (lesson.blockType === 'archive' && lesson.content) {
+		return (
+			<article className="pb-32 pt-5">
+				<h2 className="mb-2 px-5 text-lg font-bold">{lesson.blockName ?? 'Ejemplos'}</h2>
+				<p className="px-5 text-lg text-gray-600">
+					Archivo de videos de alumnos que han terminado esta clase.
+				</p>
+				<RichText key={lesson.id} content={lesson.content} />
+			</article>
+		);
+	}
 	return null;
 }

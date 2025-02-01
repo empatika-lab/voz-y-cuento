@@ -194,7 +194,13 @@ export function SerializeLexical({ nodes }: Props): JSX.Element {
 							const fields = node.fields;
 
 							return (
-								<NextLink key={index} href={fields.url} target="_blank" rel="noreferrer">
+								<NextLink
+									key={index}
+									href={fields.url}
+									target="_blank"
+									rel="noreferrer"
+									className="text-cyan-800 underline hover:text-cyan-900"
+								>
 									{serializedChildren}
 								</NextLink>
 							);

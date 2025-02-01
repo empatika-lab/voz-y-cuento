@@ -268,7 +268,6 @@ export interface Course {
                   blockType: 'additional-material';
                 }
               | {
-                  title: string;
                   content: {
                     root: {
                       type: string;
@@ -616,7 +615,6 @@ export interface CoursesSelect<T extends boolean = true> {
               archive?:
                 | T
                 | {
-                    title?: T;
                     content?: T;
                     id?: T;
                     blockName?: T;
