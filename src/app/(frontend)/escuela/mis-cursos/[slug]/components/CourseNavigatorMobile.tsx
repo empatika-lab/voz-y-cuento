@@ -138,7 +138,7 @@ export default function CourseNavigatorMobile({
 				`/escuela/mis-cursos/${slug as string}?block=${currentBlock}&lesson=${currentLesson + 1}`,
 			);
 		} else if (currentBlock < totalBlocks - 1) {
-			router.push(`/escuela/mis-cursos/${slug as string}?block=${currentBlock + 1}&lesson=${1}`);
+			router.push(`/escuela/mis-cursos/${slug as string}?block=${currentBlock + 1}&lesson=${0}`);
 		}
 
 		if (currentTabIndex > 0) {

@@ -13,6 +13,7 @@ import videoIcon from '@images/icons/video.svg';
 import pencilIcon from '@images/icons/pencil.svg';
 import archiveIcon from '@images/icons/archive.svg';
 import presentationIcon from '@images/icons/presentation.svg';
+
 /* Types */
 import type { Course } from '@/payload-types';
 
@@ -21,112 +22,7 @@ interface CourseContentAccordionProps {
 }
 
 interface AccordionItemContentProps {
-	content?:
-		| (
-				| {
-						link: string;
-						content?: {
-							root: {
-								type: string;
-								children: {
-									type: string;
-									version: number;
-									[k: string]: unknown;
-								}[];
-								direction: ('ltr' | 'rtl') | null;
-								format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-								indent: number;
-								version: number;
-							};
-							[k: string]: unknown;
-						} | null;
-						id?: string | null;
-						blockName?: string | null;
-						blockType: 'video';
-				  }
-				| {
-						content?: {
-							root: {
-								type: string;
-								children: {
-									type: string;
-									version: number;
-									[k: string]: unknown;
-								}[];
-								direction: ('ltr' | 'rtl') | null;
-								format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-								indent: number;
-								version: number;
-							};
-							[k: string]: unknown;
-						} | null;
-						id?: string | null;
-						blockName?: string | null;
-						blockType: 'presentation';
-				  }
-				| {
-						content: {
-							root: {
-								type: string;
-								children: {
-									type: string;
-									version: number;
-									[k: string]: unknown;
-								}[];
-								direction: ('ltr' | 'rtl') | null;
-								format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-								indent: number;
-								version: number;
-							};
-							[k: string]: unknown;
-						};
-						id?: string | null;
-						blockName?: string | null;
-						blockType: 'exercise';
-				  }
-				| {
-						title: string;
-						content: {
-							root: {
-								type: string;
-								children: {
-									type: string;
-									version: number;
-									[k: string]: unknown;
-								}[];
-								direction: ('ltr' | 'rtl') | null;
-								format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-								indent: number;
-								version: number;
-							};
-							[k: string]: unknown;
-						};
-						id?: string | null;
-						blockName?: string | null;
-						blockType: 'archive';
-				  }
-				| {
-						material: {
-							root: {
-								type: string;
-								children: {
-									type: string;
-									version: number;
-									[k: string]: unknown;
-								}[];
-								direction: ('ltr' | 'rtl') | null;
-								format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-								indent: number;
-								version: number;
-							};
-							[k: string]: unknown;
-						};
-						id?: string | null;
-						blockName?: string | null;
-						blockType: 'additional-material';
-				  }
-		  )[]
-		| null;
+	content?: NonNullable<NonNullable<Course['blocks']>[number]['content']>;
 }
 
 function AccordionItemContent({ content }: AccordionItemContentProps) {
@@ -135,7 +31,7 @@ function AccordionItemContent({ content }: AccordionItemContentProps) {
 	}
 
 	function getIcon(blockType: string) {
-		if (blockType === 'video') {
+		if (blockType === 'video' || blockType === 'archive') {
 			return <NextImage alt="Video" height={16} src={videoIcon as string} width={16} />;
 		}
 
@@ -194,7 +90,7 @@ export default function CourseContentAccordion({ blocks }: CourseContentAccordio
 						<AccordionItem
 							key={key}
 							id={key}
-							content={<AccordionItemContent content={block.content} />}
+							content={<AccordionItemContent content={block.content ?? []} />}
 							header={
 								<header
 									key={key}
