@@ -300,6 +300,11 @@ export default function CourseNavigatorMobile({
 																	'mt-1 flex flex-1 items-center p-3 pl-5',
 																	isCurrentLesson && 'bg-[#D8DEDF]',
 																)}
+																onClick={() => {
+																	if (currentTabIndex > 0) {
+																		setCurrentTabIndex(0);
+																	}
+																}}
 															>
 																<div className="flex-0 mr-2 flex items-center justify-between gap-2">
 																	{getLessonIcon(lesson)}
