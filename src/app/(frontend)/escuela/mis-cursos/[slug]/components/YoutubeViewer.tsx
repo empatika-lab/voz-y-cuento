@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useMemo, memo } from 'react';
+import { useCallback, useEffect, useRef, useMemo } from 'react';
 
 interface YouTubeEmbedProps {
 	youtubeUrl: string;
@@ -43,23 +43,15 @@ declare global {
 	}
 }
 
-function YoutubeViewer({ youtubeUrl, lessonId, markCourseLessonAsViewed }: YouTubeEmbedProps) {
-	/* Refs */
+export default function YoutubeViewer({
+	youtubeUrl,
+	lessonId,
+	markCourseLessonAsViewed,
+}: YouTubeEmbedProps) {
 	const playerRef = useRef<YTPlayer | null>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
-
-	// Memoize videoId extraction
+	const playerId = useMemo(() => `youtube-player-${lessonId}`, [lessonId]);
 	const videoId = useMemo(() => youtubeUrl.split('v=')[1], [youtubeUrl]);
-
-	// Memoize player configuration
-	const playerConfig = useMemo(
-		() => ({
-			videoId,
-			width: '100%',
-			height: '100%',
-		}),
-		[videoId],
-	);
 
 	const onPlayerStateChange = useCallback(
 		async (event: { data: number }) => {
@@ -71,59 +63,64 @@ function YoutubeViewer({ youtubeUrl, lessonId, markCourseLessonAsViewed }: YouTu
 	);
 
 	const initializePlayer = useCallback(() => {
-		if (!playerRef.current && window.YT) {
-			playerRef.current = new window.YT.Player('youtube-player', {
-				...playerConfig,
+		if (!playerRef.current && window.YT && containerRef.current) {
+			// Clear any existing content
+			containerRef.current.innerHTML = `<div id="${playerId}"></div>`;
+
+			playerRef.current = new window.YT.Player(playerId, {
+				videoId,
+				width: '100%',
+				height: '100%',
 				events: {
 					onStateChange: onPlayerStateChange,
 				},
 			});
 		}
-	}, [onPlayerStateChange, playerConfig]);
+	}, [onPlayerStateChange, videoId, playerId]);
 
-	// Reset player when URL changes
 	useEffect(() => {
+		// Clean up previous player instance
 		if (playerRef.current) {
-			// Destroy existing player
 			playerRef.current = null;
-			if (containerRef.current) {
-				containerRef.current.innerHTML = '<div id="youtube-player"></div>';
-			}
 		}
 
-		// Initialize new player
-		if (window.YT) {
-			initializePlayer();
-		}
-	}, [youtubeUrl, initializePlayer]);
-
-	useEffect(() => {
-		let tag: HTMLScriptElement | null = null;
-
+		// Load YouTube API if not already loaded
 		if (!window.YT) {
-			tag = document.createElement('script');
+			const tag = document.createElement('script');
 			tag.src = 'https://www.youtube.com/iframe_api';
 			document.body.appendChild(tag);
+
+			window.onYouTubeIframeAPIReady = initializePlayer;
 		} else {
 			initializePlayer();
 		}
 
-		window.onYouTubeIframeAPIReady = initializePlayer;
-
+		// Cleanup on unmount
 		return () => {
-			if (tag) {
-				document.body.removeChild(tag);
+			if (playerRef.current) {
+				playerRef.current = null;
+			}
+			if (containerRef.current) {
+				containerRef.current.innerHTML = '';
 			}
 		};
-	}, [initializePlayer]);
+	}, [youtubeUrl, initializePlayer]);
 
 	return (
-		<div className="w-full bg-cyan-50 pb-3">
-			<div ref={containerRef} className="aspect-video w-full">
-				<div id="youtube-player" className="aspect-video w-full" />
+		<>
+			{/* Mobile View */}
+			<div className="w-full bg-cyan-50 pb-3 lg:hidden">
+				<div ref={containerRef} className="aspect-video w-full">
+					<div id={playerId} className="aspect-video w-full" />
+				</div>
 			</div>
-		</div>
+
+			{/* Desktop View */}
+			<div className="hidden w-full bg-cyan-50 pb-3 lg:block">
+				<div ref={containerRef} className="aspect-video w-full">
+					<div id={playerId} className="aspect-video w-full" />
+				</div>
+			</div>
+		</>
 	);
 }
-
-export default memo(YoutubeViewer);
