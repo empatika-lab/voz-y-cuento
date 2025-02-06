@@ -1,6 +1,9 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useMemo } from 'react';
+import dynamic from 'next/dynamic';
+
+const ClientOnly = dynamic(() => import('@/components/ClientOnly'), { ssr: false });
 
 interface YouTubeEmbedProps {
 	youtubeUrl: string;
@@ -43,14 +46,14 @@ declare global {
 	}
 }
 
-export default function YoutubeViewer({
+function YouTubePlayerInstance({
 	youtubeUrl,
 	lessonId,
 	markCourseLessonAsViewed,
-}: YouTubeEmbedProps) {
+	playerId,
+}: YouTubeEmbedProps & { playerId: string }) {
 	const playerRef = useRef<YTPlayer | null>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
-	const playerId = useMemo(() => `youtube-player-${lessonId}`, [lessonId]);
 	const videoId = useMemo(() => youtubeUrl.split('v=')[1], [youtubeUrl]);
 
 	const onPlayerStateChange = useCallback(
@@ -107,19 +110,33 @@ export default function YoutubeViewer({
 	}, [youtubeUrl, initializePlayer]);
 
 	return (
+		<div ref={containerRef} className="aspect-video w-full">
+			<div id={playerId} className="aspect-video w-full" />
+		</div>
+	);
+}
+
+export default function YoutubeViewer(props: YouTubeEmbedProps) {
+	const mobilePlayerId = useMemo(() => `youtube-player-mobile-${props.lessonId}`, [props.lessonId]);
+	const desktopPlayerId = useMemo(
+		() => `youtube-player-desktop-${props.lessonId}-${Math.random() * 1000000}`,
+		[props.lessonId],
+	);
+
+	return (
 		<>
 			{/* Mobile View */}
 			<div className="w-full bg-cyan-50 pb-3 lg:hidden">
-				<div ref={containerRef} className="aspect-video w-full">
-					<div id={playerId} className="aspect-video w-full" />
-				</div>
+				<ClientOnly>
+					<YouTubePlayerInstance {...props} playerId={mobilePlayerId} />
+				</ClientOnly>
 			</div>
 
 			{/* Desktop View */}
 			<div className="hidden w-full bg-cyan-50 pb-3 lg:block">
-				<div ref={containerRef} className="aspect-video w-full">
-					<div id={playerId} className="aspect-video w-full" />
-				</div>
+				<ClientOnly>
+					<YouTubePlayerInstance {...props} playerId={desktopPlayerId} />
+				</ClientOnly>
 			</div>
 		</>
 	);
