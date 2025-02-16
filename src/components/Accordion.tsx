@@ -24,18 +24,23 @@ export function AccordionItem({
 	header,
 	content,
 	id,
+	className,
 }: {
 	header: ReactNode;
 	content: ReactNode;
 	id: string;
+	className?: string;
 }) {
 	return (
 		<RadixAccordion.Item
-			className="focus-within:shadow-[0px 2px 6px 0px] border-b-grey mt-px overflow-hidden first:mt-0 first:rounded-t last:rounded-b focus-within:relative focus-within:z-10"
+			className={cn(
+				'focus-within:shadow-[0px 2px 6px 0px] border-b-grey mt-px overflow-hidden bg-cyan-25 first:mt-0 first:rounded-t last:rounded-b focus-within:relative focus-within:z-10',
+				className,
+			)}
 			value={id}
 			key={id}
 		>
-			<RadixAccordion.Header className="flex bg-cyan-25">
+			<RadixAccordion.Header className={cn('flex', className)}>
 				<RadixAccordion.Trigger className="group relative flex flex-1 cursor-default items-center justify-between outline-none">
 					{header}
 				</RadixAccordion.Trigger>

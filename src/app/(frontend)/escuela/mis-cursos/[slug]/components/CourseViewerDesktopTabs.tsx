@@ -22,14 +22,14 @@ export default function CourseViewerDesktopTabs({ tabs }: CourseViewerDesktopTab
 
 	return (
 		<>
-			<nav className="container flex w-full items-center gap-3 bg-cyan-100 pl-5 pt-2">
+			<nav className="container flex w-full items-center gap-3 border-b-[1px] border-grey-900 bg-cyan-100 pl-5 pt-2">
 				{tabs.map((tab, index) => (
 					<button
 						key={index}
 						className={cn(
 							'w-[108px] rounded-t-xl border-grey-900 bg-cyan-100 px-[10px] py-1 text-sm font-bold text-grey-900',
 							currentTabIndex === index &&
-								'text-primary border-l border-r-2 border-t bg-cyan-25 text-opacity-100',
+								'text-primary -my-[1px] border-b border-l border-r-2 border-t border-b-cyan-50 border-t-grey-900 bg-cyan-50 text-opacity-100',
 							{ 'pointer-events-none border-none bg-transparent text-opacity-50': !tab.isEnabled },
 						)}
 						onClick={() => {
@@ -40,7 +40,9 @@ export default function CourseViewerDesktopTabs({ tabs }: CourseViewerDesktopTab
 					</button>
 				))}
 			</nav>
-			<article className="w-full bg-cyan-25 pt-[20px]">{tabs[currentTabIndex].Component}</article>
+			<article className="w-full bg-cyan-50 pt-[20px] lg:pt-[40px]">
+				{tabs[currentTabIndex].Component}
+			</article>
 		</>
 	);
 }
