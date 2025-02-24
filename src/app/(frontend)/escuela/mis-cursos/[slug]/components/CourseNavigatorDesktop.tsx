@@ -1,9 +1,9 @@
 'use client';
 
-import { use, useEffect } from 'react';
+import { use, useEffect, useRef } from 'react';
 import NextImage from 'next/image';
 import NextLink from 'next/link';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 
 /* Types */
 import type { Course, Media } from '@/payload-types';
@@ -11,8 +11,9 @@ import type { Course, Media } from '@/payload-types';
 /* Components */
 import Hero from '@/components/Layout/Hero';
 import CourseItem from './CourseItem';
-import CourseViewerDesktopTabs from './CourseViewerDesktopTabs';
 import CourseLessonComments from './CouseLessonComments';
+import CourseViewerDesktopNavHeader from './CourseViewerDesktopNavHeader';
+import CourseViewerDesktopTabs from './CourseViewerDesktopTabs';
 import { Accordion, AccordionItem } from '@/components/Accordion';
 
 /* Utils */
@@ -48,15 +49,21 @@ export default function CourseNavigatorDesktop({
 	course,
 	currentBlock,
 	currentLesson,
+	totalBlocks,
+	totalLessons,
 	studentId,
 	user,
 }: CourseNavigatorDesktopProps) {
 	/* Hooks */
 	const { slug } = useParams();
+	const router = useRouter();
 
 	/* Context */
 	const { watchedLessons, fetchWatchedLessons } = use(WatchedLessonContext);
 	const { currentTabIndex, setCurrentTabIndex } = useCourseTabsIndexContext();
+
+	/* Refs */
+	const canMarkLessonAsViewed = useRef(false);
 
 	/* Effects */
 	useEffect(() => {
@@ -65,6 +72,16 @@ export default function CourseNavigatorDesktop({
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [course.id, studentId, currentBlock, currentLesson]);
+
+	useEffect(() => {
+		setTimeout(() => {
+			canMarkLessonAsViewed.current = true;
+		}, 5000);
+	}, [course.blocks, course.id, currentBlock, currentLesson, studentId]);
+
+	if (!slug || !course.blocks?.[currentBlock]?.content?.[currentLesson]) {
+		return null;
+	}
 
 	if (!slug || !course.blocks?.[currentBlock]?.content?.[currentLesson]) {
 		return null;
@@ -131,6 +148,77 @@ export default function CourseNavigatorDesktop({
 		return null;
 	};
 
+	const canGoForward = currentLesson < totalLessons - 1 || currentBlock < totalBlocks - 1;
+	const canGoBack = currentLesson > 0 || currentBlock > 0;
+
+	/* Handlers */
+
+	const goToNextLesson = () => {
+		const lesson = course.blocks?.[currentBlock]?.content?.[currentLesson];
+
+		if (!lesson) {
+			return;
+		}
+
+		if (canMarkLessonAsViewed.current) {
+			markCourseLessonAsViewed(course.id, studentId, course.blocks![currentBlock].id!, lesson.id!)
+				.then(() => {
+					void fetchWatchedLessons(studentId, course.id);
+				})
+				.catch((error) => {
+					// eslint-disable-next-line no-console
+					console.error('Error marking lesson as viewed:', error);
+				});
+		}
+
+		if (currentLesson < totalLessons - 1) {
+			router.push(
+				`/escuela/mis-cursos/${slug as string}?block=${currentBlock}&lesson=${currentLesson + 1}`,
+			);
+		} else if (currentBlock < totalBlocks - 1) {
+			router.push(`/escuela/mis-cursos/${slug as string}?block=${currentBlock + 1}&lesson=${0}`);
+		}
+
+		if (currentTabIndex > 0) {
+			setCurrentTabIndex(0);
+		}
+	};
+
+	const goToPreviousLesson = () => {
+		const lesson = course.blocks?.[currentBlock]?.content?.[currentLesson];
+
+		if (!lesson) {
+			return;
+		}
+
+		if (!canMarkLessonAsViewed.current) {
+			return;
+		}
+
+		markCourseLessonAsViewed(course.id, studentId, course.blocks![currentBlock].id!, lesson.id!)
+			.then(() => {
+				void fetchWatchedLessons(studentId, course.id);
+			})
+			.catch((error) => {
+				// eslint-disable-next-line no-console
+				console.error('Error marking lesson as viewed:', error);
+			});
+
+		if (currentLesson > 0) {
+			router.push(
+				`/escuela/mis-cursos/${slug as string}?block=${currentBlock}&lesson=${currentLesson - 1}`,
+			);
+		} else if (currentBlock > 0) {
+			router.push(
+				`/escuela/mis-cursos/${slug as string}?block=${currentBlock}&lesson=${totalLessons - 1}`,
+			);
+		}
+
+		if (currentTabIndex > 0) {
+			setCurrentTabIndex(0);
+		}
+	};
+
 	const handleLessonViewedClick = (
 		isViewed: boolean,
 		studentId: number,
@@ -160,7 +248,7 @@ export default function CourseNavigatorDesktop({
 
 	return (
 		<div className="bg-cyan-50">
-			<Hero className="hidden lg:block">
+			<Hero className="hidden pb-[100px] lg:block">
 				<div className="container">
 					<h1 className="relative font-display text-8xl font-normal text-white">
 						Escuela de Narración
@@ -170,9 +258,20 @@ export default function CourseNavigatorDesktop({
 					</p>
 				</div>
 			</Hero>
-			<div className="container mt-[200px] hidden h-full justify-between bg-cyan-50 lg:flex">
+			<CourseViewerDesktopNavHeader
+				canGoBack={canGoBack}
+				canGoForward={canGoForward}
+				onGoBack={goToPreviousLesson}
+				onGoForward={goToNextLesson}
+				courseId={course.id}
+				studentId={studentId}
+				blockId={course.blocks[currentBlock].id!}
+				lessonId={course.blocks[currentBlock].content[currentLesson].id!}
+				watchedLessons={watchedLessons}
+			/>
+			<div className="container mt-10 hidden h-full justify-between bg-cyan-50 lg:flex">
 				<div>
-					<div className="relative h-[259px] w-[259px]">
+					<div className="relative h-[260px] w-[260px] xl:h-[320px] xl:w-[320px]">
 						<NextImage
 							src={(course.image as Media).url!}
 							alt={course.name}
@@ -188,7 +287,7 @@ export default function CourseNavigatorDesktop({
 								key={block.id}
 								id={block.id!}
 								header={
-									<header className="mb-2 flex w-[260px] items-center justify-between gap-2 px-3 text-left">
+									<header className="mb-2 flex w-[260px] items-center justify-between gap-2 px-3 text-left xl:w-[320px]">
 										<div className="flex w-[90%] flex-1 flex-col items-start gap-1">
 											<span className="text-base font-medium">Bloque {index + 1}</span>
 											<span className="text-sm text-gray-600">{block.name}</span>
@@ -202,7 +301,7 @@ export default function CourseNavigatorDesktop({
 									</header>
 								}
 								content={
-									<ul className="max-w-[260px]">
+									<ul className="max-w-[260px] xl:max-w-[320px]">
 										{block?.content?.map((lesson, number) => {
 											const isCurrentLesson = currentBlock === index && currentLesson === number;
 
@@ -281,7 +380,7 @@ export default function CourseNavigatorDesktop({
 						))}
 					</Accordion>
 				</div>
-				<div className="mx-auto max-w-[744px] flex-1">
+				<div className="ml-auto max-w-[744px] flex-1">
 					<header className="bg-cyan-100 pb-1 pt-3">
 						<h1 className="container pl-[20px] text-xl font-bold text-gray-800">{course.name}</h1>
 					</header>

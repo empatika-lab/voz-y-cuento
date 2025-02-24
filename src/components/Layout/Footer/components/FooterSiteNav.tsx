@@ -43,7 +43,7 @@ const footerLinks = [
 export default function FooterSideNav() {
 	return (
 		<section className="container flex flex-wrap gap-4 pt-6">
-			<header className="w-[152px] lg:w-[259px]">
+			<header className="w-[152px] lg:w-[260px] xl:w-[320px]">
 				<figure>
 					<NextImage alt="Logo de Voz y Cuento" className="h-auto w-[105px]" src={Logo} />
 					<figcaption className="mt-1 max-w-[80%] text-sm lg:mt-10">
@@ -55,7 +55,7 @@ export default function FooterSideNav() {
 			{footerLinks.map((section) => (
 				<nav
 					key={section.title}
-					className="w-[152px] md:w-auto md:max-w-[152px] lg:w-[259px] lg:max-w-none"
+					className="w-[152px] md:w-auto md:max-w-[152px] lg:w-[260px] xl:w-[320px]"
 				>
 					<strong className="font-bold lg:text-2xl">{section.title}</strong>
 

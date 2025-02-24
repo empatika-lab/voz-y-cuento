@@ -56,7 +56,7 @@ export default function Button({
 	if ('href' in props) {
 		return (
 			<NextLink
-				className={cn([button({ color, variant }), className])}
+				className={cn([button({ color, variant }), className], className)}
 				{...props}
 				href={(props as LinkProps).href}
 			>
