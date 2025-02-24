@@ -137,7 +137,7 @@ export default function CourseLessonCommentsMobile({
 									) : (
 										<NextImage src={UserIcon as string} alt="User" width={24} height={24} />
 									)}
-									{comment.author ? comment.author : 'Anónimo'}
+									{comment.author ?? 'Anónimo'}
 								</span>
 								<span className="text-gray-600">{comment.comment}</span>
 							</p>
