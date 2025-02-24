@@ -78,7 +78,7 @@ export function SerializeLexical({ nodes }: Props): JSX.Element {
 							{/* @ts-expect-error */}
 							{node.value?.url && (
 								<NextLink
-									href={(node.value as Media).url!}
+									href={(node.value as unknown as Media).url!}
 									target="_blank"
 									className="my-5 flex max-w-96 items-center border bg-white p-4"
 									key={index}
@@ -196,7 +196,7 @@ export function SerializeLexical({ nodes }: Props): JSX.Element {
 							return (
 								<NextLink
 									key={index}
-									href={fields.url}
+									href={fields.url ?? ''}
 									target="_blank"
 									rel="noreferrer"
 									className="text-cyan-800 underline hover:text-cyan-900"
