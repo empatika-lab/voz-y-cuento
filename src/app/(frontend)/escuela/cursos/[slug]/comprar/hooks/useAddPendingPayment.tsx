@@ -1,11 +1,10 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 /* Actions */
 import { unsetBuyCourseRedirection } from '@/app/(frontend)/(auth)/ingresar/actions/setBuyCourseRedirection';
 import tryAddPendingPayment from '../actions/tryAddPendingPayment';
-import sendPaymentMethodsEmail from '../actions/sendPaymentMethodsEmail';
 
 interface Props {
 	courseId: number;
@@ -13,10 +12,19 @@ interface Props {
 }
 
 export default function useAddPendingPayment({ courseId, studentId }: Props) {
+	const hasRun = useRef(false);
+
 	useEffect(() => {
-		void tryAddPendingPayment(studentId, courseId);
-		void unsetBuyCourseRedirection();
-		void sendPaymentMethodsEmail(courseId, studentId);
+		if (hasRun.current) return;
+
+		void (async () => {
+			const success = await tryAddPendingPayment(studentId, courseId);
+			if (success) {
+				await unsetBuyCourseRedirection();
+			}
+		})();
+
+		hasRun.current = true;
 	}, [courseId, studentId]);
 
 	return <></>;

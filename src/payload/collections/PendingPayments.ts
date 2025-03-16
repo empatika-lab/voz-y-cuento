@@ -4,6 +4,7 @@ import sendgrid, { type ClientResponse } from '@sendgrid/mail';
 
 /* Types */
 import type { Course } from '@/payload-types';
+import EMAIL_TEMPLATES from '@/lib/utils/emailTemplates';
 
 export const PendingPayments: CollectionConfig = {
 	slug: 'pending',
@@ -49,17 +50,17 @@ export const PendingPayments: CollectionConfig = {
 			async ({ operation, doc, req }) => {
 				try {
 					if (operation === 'create' && doc.isPaid === false) {
-						// Send email to admin
 						sendgrid.setApiKey(process.env.SENDGRID_API_KEY!);
 						const studentData = await req.payload.findByID({
 							collection: 'students',
-							id: doc.student.id,
+							id: doc.student.id as string,
 						});
 						const courseData = await req.payload.findByID({
 							collection: 'courses',
-							id: doc.course.id,
+							id: doc.course.id as string,
 						});
 
+						// Send email to admin about a new student on a course
 						const sengridResponse = await sendgrid.send({
 							dynamicTemplateData: {
 								student_name: studentData.name,
@@ -67,10 +68,29 @@ export const PendingPayments: CollectionConfig = {
 								course_name: courseData.name,
 							},
 							from: 'vozycuento@gmail.com',
-							subject: 'Voz y Cuento - Contraseña olvidada',
-							templateId: 'd-ff6b4efaebc0424ea2711095392d1464',
-							to: 'vozycuento@gmail.com',
+							subject: 'Voz y Cuento - Nuevo Estudiante',
+							templateId: EMAIL_TEMPLATES.newStudentAlert,
+							to: process.env.ADMIN_EMAIL,
 						});
+
+						// Send payment methods email to student
+						await sendgrid
+							.send({
+								from: 'vozycuento@gmail.com',
+								templateId: EMAIL_TEMPLATES.paymentMethods,
+								dynamicTemplateData: {
+									user_name: studentData.name,
+									course_name: courseData.name,
+								},
+								to: studentData.email,
+							})
+							.catch((error) => {
+								// eslint-disable-next-line no-console
+								console.error(
+									'[PendingPayments][afterChange] Error sending payment methods email:',
+									error,
+								);
+							});
 
 						if (
 							sengridResponse.at(0) &&
@@ -120,12 +140,12 @@ export const PendingPayments: CollectionConfig = {
 							id: originalDoc.course,
 						});
 
-						// Send email notification to user
+						// Send email notification to user with course unlocked notification
 						sendgrid.setApiKey(process.env.SENDGRID_API_KEY!);
 						await sendgrid
 							.send({
 								from: 'vozycuento@gmail.com',
-								templateId: 'd-47df7a9622424b22bbfa94409a15ba83',
+								templateId: EMAIL_TEMPLATES.courseUnlocked,
 								dynamicTemplateData: {
 									user_name: studentData.name,
 									course_name: courseData.name,
