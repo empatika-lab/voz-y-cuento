@@ -24,7 +24,7 @@ const stickyPops = localFont({
 });
 
 export const metadata: Metadata = {
-	metadataBase: new URL('https://vozycuento.com'),
+	metadataBase: new URL(process.env.NEXT_PUBLIC_URL ?? ''),
 	title: 'Voz y Cuento | El arte al narrar',
 	description:
 		'Plataforma para el aprendizaje del arte de narraración con cursos gratuitos y premiums por Emilce Brusa, narradora profesional.',
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
 	openGraph: {
 		images: [
 			{
-				url: '/images/emilce-lg.png',
+				url: `${process.env.NEXT_PUBLIC_URL}/images/emilce-lg.png`,
 				width: 1200,
 				height: 630,
 				alt: 'Voz y Cuento | El arte al narrar',
@@ -59,14 +59,14 @@ export const metadata: Metadata = {
 		title: 'Voz y Cuento | El arte al narrar',
 		description:
 			'Plataforma para el aprendizaje del arte de narraración con cursos gratuitos y premiums por Emilce Brusa, narradora profesional.',
-		url: '/',
+		url: process.env.NEXT_PUBLIC_URL,
 	},
 	twitter: {
 		card: 'summary_large_image',
 		title: 'Voz y Cuento | El arte al narrar',
 		description:
 			'Plataforma para el aprendizaje del arte de narraración con cursos gratuitos y premiums por Emilce Brusa, narradora profesional.',
-		images: ['/images/emilce-lg.png'],
+		images: [`${process.env.NEXT_PUBLIC_URL}/images/emilce-lg.png`],
 		creator: '@vozycuento',
 		site: '@vozycuento',
 	},
