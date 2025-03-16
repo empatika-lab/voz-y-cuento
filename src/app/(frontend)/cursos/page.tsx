@@ -53,7 +53,7 @@ export default async function CoursesPage() {
 		<>
 			<LandingNavbar />
 			<Hero>
-				<div className="container pt-20 lg:pt-[148px]">
+				<div className="container pt-20 lg:pt-[128px]">
 					<h1 className="relative font-display text-4xl font-normal text-white lg:text-8xl">
 						Cursos disponibles
 					</h1>

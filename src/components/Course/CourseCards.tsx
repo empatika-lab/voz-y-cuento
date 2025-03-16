@@ -32,7 +32,7 @@ export function CourseCards({ courses, isAcademy = false, isOwned = false }: Cou
 		<>
 			{talleres.length > 0 && (
 				<>
-					<ul className="flex flex-wrap justify-center gap-[20px] pt-6 md:justify-start md:gap-8 md:pt-12">
+					<ul className="flex flex-wrap justify-center gap-[20px] md:justify-start md:gap-8 md:pt-12">
 						<h2 className="mt-14 text-2xl font-medium md:text-[32px]">Talleres</h2>
 						<p className="mt-2 text-pretty text-sm md:text-xl">
 							Aprenderás los fundamentos teóricos de manera estructurada y al mismo tiempo pondrás

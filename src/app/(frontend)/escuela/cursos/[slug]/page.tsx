@@ -110,7 +110,7 @@ export default async function CourseDetailsPage({ params }: CourseDetailsPagePro
 		<>
 			<AcademyNavbar userName={user.name} />
 			<Hero>
-				<div className="container pt-24">
+				<div className="container pt-24 lg:pt-8">
 					<h1 className="relative font-display text-4xl font-normal text-white lg:text-8xl">
 						{course.name.replaceAll('.', '')}
 					</h1>

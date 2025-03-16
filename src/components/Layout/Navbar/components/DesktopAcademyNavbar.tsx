@@ -64,9 +64,9 @@ export default function DesktopAcademyNavbar({
 
 				<div className="relative flex min-w-fit flex-1 items-center gap-3" ref={dropdownRef}>
 					<div className="flex cursor-pointer items-center gap-3" onClick={toggleDropdown}>
-						<NextImage alt="Tu Avatar" src={UserAvatar} />
+						<NextImage alt="Tu Avatar" src={UserAvatar as string} />
 						<p>{userName}</p>
-						<NextImage alt="Menú de opciones" src={ChevronDownIcon} />
+						<NextImage alt="Menú de opciones" src={ChevronDownIcon as string} />
 					</div>
 					{isDropdownOpen && (
 						<div className="absolute right-0 top-full mt-2 w-full rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">

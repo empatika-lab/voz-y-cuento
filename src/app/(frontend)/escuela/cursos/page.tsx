@@ -108,7 +108,7 @@ export default async function AcademyPage() {
 		<>
 			<AcademyNavbar userName={user.name} />
 			<Hero>
-				<div className="container pt-20">
+				<div className="container pt-20 lg:pt-8">
 					<h1 className="relative font-display text-4xl font-normal text-white lg:text-8xl">
 						Cursos disponibles
 					</h1>

@@ -22,7 +22,7 @@ export default function Hero({ children, className }: PropsWithClassName) {
 			<NextImage
 				alt=""
 				aria-hidden
-				className="absolute left-0 top-0 h-[220px] w-full lg:block lg:h-[400px]"
+				className="absolute left-0 top-0 h-[220px] w-full lg:block lg:h-[330px]"
 				height={330}
 				priority
 				src="/images/desktop-header-path.png"

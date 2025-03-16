@@ -120,7 +120,7 @@ export default async function SchoolCoursePage({ searchParams, params }: SchoolC
 		<>
 			<AcademyNavbar userName={user.name} isHidden={isShowingIndex} />
 
-			<main className="mt-[62px] h-full">
+			<main className="mt-[62px] h-full lg:mt-6">
 				<WatchedLessonProvider>
 					<CourseTabsIndexProvider>
 						<CourseNavigatorMobile

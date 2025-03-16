@@ -83,13 +83,13 @@ export default async function AcademyMyCoursesPage() {
 		<>
 			<AcademyNavbar userName={user.name} />
 			<Hero>
-				<div className="container pt-20">
-					<h1 className="relative font-display text-4xl font-bold tracking-wide text-white lg:text-8xl">
+				<div className="container pt-20 lg:pt-10">
+					<h1 className="relative font-display text-4xl tracking-wide text-white lg:text-8xl">
 						Mis Cursos
 					</h1>
 				</div>
 			</Hero>
-			<main className="container mt-48 pb-16">
+			<main className="container mt-16 pb-16 lg:mt-48">
 				{courses.length ? (
 					<CourseCards courses={courses} isAcademy isOwned />
 				) : (
