@@ -136,7 +136,7 @@ export const unmarkCourseLessonAsViewed = async (
 		// If this was the last lesson in the block, remove the entire block
 		const updatedStudentViews = {
 			...courseLessonStudentViews.docs[0].data,
-			[blockId]: updatedLessons.length > 0 ? updatedLessons : undefined,
+			[blockId]: updatedLessons.length > 0 ? updatedLessons : [],
 		};
 
 		await payload
