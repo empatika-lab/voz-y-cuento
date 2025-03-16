@@ -17,8 +17,8 @@ import { cn } from '@/lib/utils/classNames';
 
 export default function PaymentMethods() {
 	return (
-		<article className="flex flex-col gap-4 mt-12">
-			<h2 className="text-xl font-bold">Medios de pago</h2>
+		<article className="mt-12 flex flex-col gap-4">
+			<h2 className="text-xl font-bold lg:mb-10">Medios de pago</h2>
 
 			{/* Payment Methods - Mobile */}
 			<Accordion className="lg:hidden">
@@ -40,7 +40,7 @@ export default function PaymentMethods() {
 						</dl>
 					}
 					header={
-						<header className="flex items-center w-full justify-between">
+						<header className="flex w-full items-center justify-between">
 							<div className="flex gap-2">
 								<NextImage src={Bank} alt="Transferencia Bancaria" width={32} height={32} />
 								<p className="px-2 py-4">Transferencia Bancaria</p>
@@ -48,7 +48,7 @@ export default function PaymentMethods() {
 							<NextImage
 								alt="Ver detalles"
 								className={cn(
-									'absolute opacity-1 right-2 transition-opacity duration-200 ease-linear group-data-[state=open]:opacity-0',
+									'opacity-1 absolute right-2 transition-opacity duration-200 ease-linear group-data-[state=open]:opacity-0',
 								)}
 								height={16}
 								src={plusIcon}
@@ -85,7 +85,7 @@ export default function PaymentMethods() {
 						</dl>
 					}
 					header={
-						<header className="flex items-center w-full justify-between">
+						<header className="flex w-full items-center justify-between">
 							<div className="flex gap-2">
 								<NextImage src={MercadoPago} alt="Mercado Pago" width={32} height={32} />
 								<p className="px-2 py-4">Mercado Pago</p>
@@ -93,7 +93,7 @@ export default function PaymentMethods() {
 							<NextImage
 								alt="Ver detalles"
 								className={cn(
-									'absolute opacity-1 right-2 transition-opacity duration-200 ease-linear group-data-[state=open]:opacity-0',
+									'opacity-1 absolute right-2 transition-opacity duration-200 ease-linear group-data-[state=open]:opacity-0',
 								)}
 								height={16}
 								src={plusIcon}
@@ -130,7 +130,7 @@ export default function PaymentMethods() {
 						</dl>
 					}
 					header={
-						<header className="flex items-center w-full justify-between">
+						<header className="flex w-full items-center justify-between">
 							<div className="flex gap-2">
 								<NextImage src={PayPal} alt="PayPal" width={32} height={32} />
 								<p className="px-2 py-4">PayPal</p>
@@ -138,7 +138,7 @@ export default function PaymentMethods() {
 							<NextImage
 								alt="Ver detalles"
 								className={cn(
-									'absolute opacity-1 right-2 transition-opacity duration-200 ease-linear group-data-[state=open]:opacity-0',
+									'opacity-1 absolute right-2 transition-opacity duration-200 ease-linear group-data-[state=open]:opacity-0',
 								)}
 								height={16}
 								src={plusIcon}
@@ -159,13 +159,13 @@ export default function PaymentMethods() {
 			</Accordion>
 
 			{/* Payment Methods - Desktop */}
-			<ul className="gap-4 mt-12 hidden lg:flex">
-				<li className="px-4 pb-9 pt-12 w-[358px] bg-white rounded-lg relative">
-					<div className="absolute top-0 left-[50%] -translate-x-1/2 -translate-y-1/2 w-[76px] h-[76px] bg-white rounded-full flex items-center justify-center">
+			<ul className="mt-12 hidden gap-4 lg:flex">
+				<li className="relative w-[358px] rounded-lg bg-white px-4 pb-9 pt-12">
+					<div className="absolute left-[50%] top-0 flex h-[76px] w-[76px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white">
 						<NextImage src={Bank} alt="Transferencia bancaria" width={32} height={32} />
 					</div>
 
-					<p className="font-bold text-2xl text-center">Transferencia bancaria</p>
+					<p className="text-center text-2xl font-bold">Transferencia bancaria</p>
 
 					<p className="mt-7">Banco de la Provincia de Buenos Aires</p>
 					<dl>
@@ -180,12 +180,12 @@ export default function PaymentMethods() {
 					</dl>
 				</li>
 
-				<li className="px-4 pb-9 pt-12 w-[358px] bg-white rounded-lg relative">
-					<div className="absolute top-0 left-[50%] -translate-x-1/2 -translate-y-1/2 w-[76px] h-[76px] bg-white rounded-full flex items-center justify-center">
+				<li className="relative w-[358px] rounded-lg bg-white px-4 pb-9 pt-12">
+					<div className="absolute left-[50%] top-0 flex h-[76px] w-[76px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white">
 						<NextImage src={MercadoPago} alt="Mercado Pago" width={32} height={32} />
 					</div>
 
-					<p className="font-bold text-2xl text-center">Mercado Pago</p>
+					<p className="text-center text-2xl font-bold">Mercado Pago</p>
 
 					<dl className="mt-7">
 						<dt className="inline-block">Titular:</dt>
@@ -199,12 +199,12 @@ export default function PaymentMethods() {
 					</dl>
 				</li>
 
-				<li className="px-4 pb-9 pt-12 w-[358px] bg-white rounded-lg relative">
-					<div className="absolute top-0 left-[50%] -translate-x-1/2 -translate-y-1/2 w-[76px] h-[76px] bg-white rounded-full flex items-center justify-center">
+				<li className="relative w-[358px] rounded-lg bg-white px-4 pb-9 pt-12">
+					<div className="absolute left-[50%] top-0 flex h-[76px] w-[76px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white">
 						<NextImage src={PayPal} alt="PayPal" width={32} height={32} />
 					</div>
 
-					<p className="font-bold text-2xl text-center">PayPal</p>
+					<p className="text-center text-2xl font-bold">PayPal</p>
 
 					<p className="mt-7">Banco de la Provincia de Buenos Aires</p>
 					<dl>
