@@ -50,10 +50,10 @@ export default async function HireMe() {
 				</div>
 			</Hero>
 
-			<main className="container flex w-full flex-col gap-10 pb-16 pt-48">
+			<main className="container flex w-full flex-col gap-10 pb-16 pt-32">
 				<Breadcrumbs items={breadcrumbItems} />
 
-				<article className="flex flex-col gap-2 rounded-lg bg-pink-50 p-4">
+				<article className="flex flex-col gap-2 rounded-lg bg-yellow-50 p-4">
 					<p>
 						<span className="font-bold">Maternal: </span>
 						Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
@@ -77,7 +77,7 @@ export default async function HireMe() {
 					})}
 				</ul>
 
-				<Button className="mx-auto mt-8 py-16 text-center" href="https://wa.me/5492215677747">
+				<Button className="mx-auto mt-8 text-center" href="https://wa.me/5492215677747">
 					Contactame
 				</Button>
 			</main>
