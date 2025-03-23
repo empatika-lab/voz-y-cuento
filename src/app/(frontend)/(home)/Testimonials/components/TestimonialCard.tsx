@@ -33,13 +33,25 @@ export default function TestimonialCard({
 			{/* Testimonial */}
 			<div className="relative w-full flex-1 py-3">
 				<div className="absolute left-0 top-0">
-					<Image alt="Opening Quote" className="w-auto" height={24} src={QuoteLeft} width={24} />
+					<Image
+						alt="Opening Quote"
+						className="w-auto"
+						height={24}
+						src={QuoteLeft as StaticImageData}
+						width={24}
+					/>
 				</div>
-				<p className="mt-5 leading-6 text-gray-950 lg:mb-6 lg:mt-8 lg:text-xl lg:leading-7">
+				<p className="mt-5 font-medium leading-6 text-gray-950 lg:mb-6 lg:mt-8 lg:text-xl lg:leading-7">
 					{testimonial}
 				</p>
 				<div className="absolute bottom-0 right-0">
-					<Image alt="Closing Quote" className="w-auto" height={24} src={QuoteRight} width={24} />
+					<Image
+						alt="Closing Quote"
+						className="w-auto"
+						height={24}
+						src={QuoteRight as StaticImageData}
+						width={24}
+					/>
 				</div>
 			</div>
 

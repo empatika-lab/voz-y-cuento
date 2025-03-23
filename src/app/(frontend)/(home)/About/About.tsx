@@ -23,9 +23,9 @@ export default function About() {
 				</div>
 
 				<div className="w-full text-center lg:w-[592px] lg:text-right">
-					<h2 className="font-display subtitle text-gray-800 lg:-mt-6">Soy Emilce Brusa</h2>
+					<h2 className="subtitle font-display text-gray-800 lg:-mt-6">Soy Emilce Brusa</h2>
 
-					<div className="mx-auto my-3 w-[200px] h-[200px] relative -top-5 lg:hidden">
+					<div className="relative -top-5 mx-auto my-3 h-[200px] w-[200px] lg:hidden">
 						<NextImage
 							alt="Emilce"
 							className="h-full w-full rounded-full object-cover"
@@ -33,7 +33,7 @@ export default function About() {
 						/>
 					</div>
 
-					<p className="relative -top-10 lg:top-0 text-center text-base text-gray-900 lg:mt-16 lg:text-right lg:text-xl">
+					<p className="relative -top-10 text-center text-base font-medium text-gray-900 lg:top-0 lg:mt-16 lg:text-right lg:text-xl">
 						Te invito a conocer mi historia. Desde mi trayectoria como docente de nivel inicial a
 						convertirme en narradora oral escénica profesional con más de quince años de
 						experiencia.

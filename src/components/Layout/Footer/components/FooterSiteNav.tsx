@@ -46,7 +46,7 @@ export default function FooterSideNav() {
 			<header className="w-[152px] lg:w-[260px] xl:w-[320px]">
 				<figure>
 					<NextImage alt="Logo de Voz y Cuento" className="h-auto w-[105px]" src={Logo} />
-					<figcaption className="mt-1 max-w-[80%] text-sm lg:mt-10">
+					<figcaption className="max-w-[80%] pt-2 text-sm font-medium lg:mt-5 lg:pt-0">
 						Escuela de narración oral escénica.
 					</figcaption>
 				</figure>
@@ -59,14 +59,14 @@ export default function FooterSideNav() {
 				>
 					<strong className="font-bold lg:text-2xl">{section.title}</strong>
 
-					<ul className="mt-[20px] flex flex-col gap-[16px]">
+					<ul className="flex flex-col gap-[16px] pt-[20px]">
 						{section.items.map((item) =>
 							item.href ? (
-								<li key={item.label} className="text-sm lg:text-base">
+								<li key={item.label} className="text-sm font-medium lg:text-base">
 									<NextLink href={item.href}>{item.label}</NextLink>
 								</li>
 							) : (
-								<li key={item.label} className="text-sm lg:text-base">
+								<li key={item.label} className="text-sm font-medium lg:text-base">
 									{item.label}
 								</li>
 							),

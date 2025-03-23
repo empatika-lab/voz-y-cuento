@@ -18,16 +18,16 @@ export default function Shows() {
 				<NextImage alt="Espectáculos" className="h-full w-full object-cover" fill src={ShowsLg} />
 			</div>
 
-			<div className="absolute inset-0 gradient-4" />
+			<div className="gradient-4 absolute inset-0" />
 
-			<div className="relative container">
-				<h2 className="font-display subtitle">Espectáculos</h2>
-				<p className="mt-6 mb-12 text-black lg:mt-12 lg:max-w-2xl lg:text-2xl max-w-[75%]">
+			<div className="container relative">
+				<h2 className="subtitle font-display">Espectáculos</h2>
+				<p className="mb-12 mt-6 max-w-[75%] font-medium text-black lg:mt-12 lg:max-w-2xl lg:text-2xl">
 					Opciones de espectáculos presenciales y/o virtuales para tu evento o proyecto escolar.
 				</p>
 
 				<Button
-					className="mr-auto lg:mx-auto text-center hover:bg-cyan-500 active:bg-cyan-500 lg:ml-0"
+					className="mr-auto text-center hover:bg-cyan-500 active:bg-cyan-500 lg:mx-auto lg:ml-0"
 					href="/espectaculos"
 					variant="outline"
 				>

@@ -31,7 +31,7 @@ export default function DesktopLandingNavbar({
 
 				<ul className="mx-auto flex flex-1 items-center justify-center gap-8 xl:gap-10">
 					{navItems.map(({ label, href }) => (
-						<li key={label} className="text-sm font-bold text-gray-900 xl:text-base">
+						<li key={label} className="text-sm font-bold text-gray-900 lg:text-xl">
 							<NextLink className="hover:text-cyan-800" href={href}>
 								{label}
 							</NextLink>

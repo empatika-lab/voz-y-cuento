@@ -16,7 +16,7 @@ export default function DesktopHero() {
 				<h1 className="main-title max-w-[50%] pt-2 font-display">
 					Explora el arte de contar historias
 				</h1>
-				<p className="mt-12 max-w-[50%] text-xl">
+				<p className="mt-12 max-w-[50%] text-xl font-medium">
 					Encuentra tu voz narradora con los cursos online de Voz y Cuento.
 				</p>
 

@@ -11,10 +11,10 @@ import ROUTES from '@/lib/utils/routes';
 
 export default function MobileHero() {
 	return (
-		<header className="relative bg-gradient-2 lg:hidden pt-[86px] pb-[64px]">
+		<header className="relative bg-gradient-2 pb-[64px] pt-[86px] lg:hidden">
 			<div className="container">
-				<h1 className="main-title font-display max-w-[60%]">Explora el arte de contar historias</h1>
-				<p className="max-w-[55%] mt-4 mb-12">
+				<h1 className="main-title max-w-[60%] font-display">Explora el arte de contar historias</h1>
+				<p className="mb-12 mt-4 max-w-[55%] font-medium">
 					Encuentra tu voz narradora con los cursos online de Voz y Cuento.
 				</p>
 

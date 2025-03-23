@@ -7,6 +7,9 @@ import Chatbox from '@images/chatbox-circle.svg';
 /* Components */
 import BenefitsCards from './components/BenefitsCard';
 
+/* Types */
+import type { StaticImageData } from 'next/image';
+
 const benefits = [
 	{
 		title: 'Guiados',
@@ -33,14 +36,14 @@ const benefits = [
 export default function Benefits() {
 	return (
 		<section className="container py-12">
-			<h2 className="font-display text-center subtitle">Así son mis cursos</h2>
+			<h2 className="subtitle text-center font-display">Así son mis cursos</h2>
 
 			<ul className="relative mt-5 flex snap-x snap-mandatory gap-5 overflow-scroll px-[24px] py-10 lg:-mx-4 lg:mt-12 lg:justify-between lg:gap-8">
 				{benefits.map((benefit) => (
 					<BenefitsCards
 						key={benefit.title}
 						description={benefit.description}
-						icon={benefit.icon}
+						icon={benefit.icon as StaticImageData}
 						title={benefit.title}
 					/>
 				))}

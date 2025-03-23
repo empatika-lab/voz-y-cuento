@@ -33,7 +33,7 @@ function BenefitsCard({ className, title, description, icon }: BenefitsCardProps
 			<strong className="block text-center text-xl font-semibold uppercase lg:text-2xl">
 				{title}
 			</strong>
-			<p className=" mt-7 text-center text-base lg:text-xl">{description}</p>
+			<p className="mt-7 text-center text-base font-medium lg:text-xl">{description}</p>
 		</li>
 	);
 }
