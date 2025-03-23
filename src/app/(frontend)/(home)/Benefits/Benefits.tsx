@@ -35,7 +35,7 @@ const benefits = [
 
 export default function Benefits() {
 	return (
-		<section className="container relative py-12">
+		<section className="container relative py-12 lg:py-[112px]">
 			<h2 className="subtitle relative text-center font-display">Así son mis cursos</h2>
 
 			<div className="mt-10">

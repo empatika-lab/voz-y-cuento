@@ -28,17 +28,16 @@ export default function Testimonials() {
 	return (
 		<section className="bg-gradient-2">
 			<div className="container py-12 pr-0 lg:py-[112px]">
-				<h2 className="ml-[-20px] text-center font-display lg:ml-[0px] subtitle">
+				<h2 className="subtitle ml-[-20px] text-center font-display lg:ml-[0px]">
 					Testimonios de estudiantes
 				</h2>
 
-				<ul className="relative -ml-4 mt-4 flex snap-x snap-mandatory gap-2 overflow-scroll p-5 lg:ml-0 lg:mt-8 lg:gap-8 lg:px-4 xl:-mx-4">
+				<ul className="relative mt-4 flex snap-x snap-mandatory gap-2 overflow-hidden py-5 !pl-1 !pr-2 lg:mt-7 lg:gap-8">
 					{testimonials.map((testimony) => (
 						<TestimonialCard
 							key={testimony.name}
 							className="snap-center"
 							name={testimony.name}
-							profileImage={testimony.image}
 							testimonial={testimony.text}
 						/>
 					))}

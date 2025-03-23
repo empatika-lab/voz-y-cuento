@@ -13,20 +13,14 @@ import { cn } from '@/lib/utils/classNames';
 
 export interface TestimonialCardProps extends PropsWithClassName {
 	testimonial: string;
-	profileImage: string | StaticImageData;
 	name: string;
 }
 
-export default function TestimonialCard({
-	className,
-	testimonial,
-	// profileImage,
-	name,
-}: TestimonialCardProps) {
+export default function TestimonialCard({ className, testimonial, name }: TestimonialCardProps) {
 	return (
 		<li
 			className={cn(
-				'flex min-w-[320px] flex-col rounded-2xl bg-white p-8 shadow-lg lg:h-[322px] lg:w-[356px] lg:px-10 lg:py-5',
+				'flex h-[212px] min-w-[320px] flex-col rounded-2xl bg-white p-5 shadow-lg lg:h-[304px] lg:w-[356px]',
 				className,
 			)}
 		>
