@@ -25,9 +25,14 @@ export default function DesktopLandingNavbar({
 			}}
 		>
 			<div className="container flex w-full items-center justify-between">
-				<div className="w-fit">
-					<NextImage alt="Volver al Inicio" className="h-9 w-auto" priority src={Logo} />
-				</div>
+				<NextImage
+					alt="Volver al Inicio"
+					className="h-auto w-[142px]"
+					priority
+					src={Logo}
+					width={142}
+					height={48}
+				/>
 
 				<ul className="mx-auto flex flex-1 items-center justify-center gap-8 xl:gap-10">
 					{navItems.map(({ label, href }) => (

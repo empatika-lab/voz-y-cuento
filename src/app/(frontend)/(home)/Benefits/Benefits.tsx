@@ -35,19 +35,30 @@ const benefits = [
 
 export default function Benefits() {
 	return (
-		<section className="container py-12">
-			<h2 className="subtitle text-center font-display">Así son mis cursos</h2>
+		<section className="container relative py-12">
+			<h2 className="subtitle relative text-center font-display">Así son mis cursos</h2>
 
-			<ul className="relative mt-5 flex snap-x snap-mandatory gap-5 overflow-scroll px-[24px] py-10 lg:-mx-4 lg:mt-12 lg:justify-between lg:gap-8">
-				{benefits.map((benefit) => (
-					<BenefitsCards
-						key={benefit.title}
-						description={benefit.description}
-						icon={benefit.icon as StaticImageData}
-						title={benefit.title}
-					/>
-				))}
-			</ul>
+			<div className="mt-10">
+				<div
+					className="relative -mx-6 overflow-auto px-6"
+					style={{
+						msOverflowStyle: 'none',
+						scrollbarWidth: 'none',
+					}}
+				>
+					<ul className="flex w-max gap-6 py-10 lg:w-full lg:justify-between">
+						{benefits.map((benefit) => (
+							<BenefitsCards
+								key={benefit.title}
+								description={benefit.description}
+								icon={benefit.icon as StaticImageData}
+								title={benefit.title}
+								className="mx-2"
+							/>
+						))}
+					</ul>
+				</div>
+			</div>
 		</section>
 	);
 }
