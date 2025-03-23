@@ -11,9 +11,9 @@ interface MyHistoryDesktopProps {
 export default function MyHistoryDesktop({ breadcrumbItems }: MyHistoryDesktopProps) {
 	return (
 		<div className="hidden lg:block">
-			<header className="container pb-10 pt-48">
+			<header className="container pb-10 pt-48 lg:pt-32">
 				<Breadcrumbs items={breadcrumbItems} />
-				<h1 className="font-display mt-16 text-5xl">Soy Emilce Brusa</h1>
+				<h1 className="mt-16 font-display text-5xl">Soy Emilce Brusa</h1>
 			</header>
 
 			<div className="container flex h-full justify-between gap-[125px]">

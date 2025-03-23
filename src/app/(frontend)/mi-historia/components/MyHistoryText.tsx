@@ -1,7 +1,7 @@
 export default function MyHistoryText() {
 	return (
 		<article className="container my-10 flex-1 lg:my-0 lg:text-xl">
-			<p>
+			<p className="md:mt-4">
 				Soy una docente con una amplia trayectoria en el nivel inicial (mi público favorito) y
 				narradora oral escénica profesional desde el año 2010.
 			</p>
