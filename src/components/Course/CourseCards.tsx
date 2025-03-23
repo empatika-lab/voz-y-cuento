@@ -29,7 +29,7 @@ export function CourseCards({ courses, isAcademy = false, isOwned = false }: Cou
 	);
 
 	return (
-		<>
+		<div className="flex flex-col gap-12">
 			{talleres.length > 0 && (
 				<ul className="flex flex-wrap md:flex-col md:justify-start md:gap-4">
 					<h2 className="mt-6 text-2xl font-medium md:text-[32px]">Talleres</h2>
@@ -46,7 +46,7 @@ export function CourseCards({ courses, isAcademy = false, isOwned = false }: Cou
 			)}
 
 			{seminarios.length > 0 && (
-				<ul className="flex flex-wrap md:flex-col md:justify-start md:gap-4 md:pt-12">
+				<ul className="flex flex-wrap md:flex-col md:justify-start md:gap-4">
 					<h2 className="mt-6 text-2xl font-medium md:text-[32px]">Seminarios</h2>
 					<p className="mb-6 mt-2 text-pretty text-sm font-medium md:text-xl lg:mt-0">
 						Clases intensivas donde profundizarás sobre temas en específico dentro de la narración
@@ -61,7 +61,7 @@ export function CourseCards({ courses, isAcademy = false, isOwned = false }: Cou
 			)}
 
 			{laboratorios.length > 0 && (
-				<ul className="flex flex-wrap md:justify-start md:gap-4 md:pt-12">
+				<ul className="flex flex-wrap md:justify-start md:gap-4">
 					<h2 className="mt-6 text-2xl font-medium md:text-[32px]">Laboratorios</h2>
 					<p className="mb-6 mt-2 text-pretty text-sm font-medium md:text-xl lg:mt-0">
 						Espacio de experimetación libre donde podrás mejorar tu práctica con el acompañamiento
@@ -74,6 +74,6 @@ export function CourseCards({ courses, isAcademy = false, isOwned = false }: Cou
 					</ul>
 				</ul>
 			)}
-		</>
+		</div>
 	);
 }

@@ -83,13 +83,17 @@ export default async function AcademyMyCoursesPage() {
 		<>
 			<AcademyNavbar userName={user.name} />
 			<Hero>
-				<div className="container pt-20 lg:pt-10">
-					<h1 className="relative font-display text-4xl tracking-wide text-white lg:text-8xl">
-						Mis Cursos
+				<div className="container pt-20 lg:pt-4">
+					<h1 className="relative font-display text-4xl font-normal tracking-wide text-white lg:text-8xl">
+						<span>Mis C</span>
+						<span className="ml-3 lg:ml-4">ursos</span>
 					</h1>
+					<p className="relative mt-4 font-medium tracking-wide text-white lg:mt-12 lg:text-2xl lg:font-bold">
+						Explora los cursos a los que te has inscripto
+					</p>
 				</div>
 			</Hero>
-			<main className="container mt-16 pb-16 lg:mt-48">
+			<main className="container mt-16 pb-16 lg:mt-24">
 				{courses.length ? (
 					<CourseCards courses={courses} isAcademy isOwned />
 				) : (

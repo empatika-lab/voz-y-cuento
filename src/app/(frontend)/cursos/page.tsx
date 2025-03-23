@@ -53,13 +53,13 @@ export default async function CoursesPage() {
 		<>
 			<LandingNavbar />
 			<Hero>
-				<div className="container pt-20 lg:pt-[128px]">
+				<div className="container pt-20 lg:pt-[116px]">
 					<h1 className="relative font-display text-4xl font-normal tracking-wide text-white lg:text-8xl">
 						<span className="pr-2">C</span>
 						<span>ursos disponibles</span>
 					</h1>
-					<p className="relative mt-4 font-medium text-white lg:mt-12 lg:font-bold">
-						Aprende el arte de contar historias.
+					<p className="relative mt-4 font-medium tracking-wide text-white lg:mt-12 lg:text-2xl lg:font-bold">
+						Aprende el arte de contar historias
 					</p>
 				</div>
 			</Hero>

@@ -253,8 +253,8 @@ export default function CourseNavigatorDesktop({
 					<h1 className="relative font-display text-8xl font-normal text-white">
 						Escuela de Narración
 					</h1>
-					<p className="relative mt-12 font-bold text-white">
-						Aprende el arte de contar historias.
+					<p className="relative mt-4 font-medium tracking-wide text-white lg:mt-10 lg:text-2xl lg:font-bold">
+						Aprende el arte de contar historias
 					</p>
 				</div>
 			</Hero>

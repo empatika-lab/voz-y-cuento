@@ -48,13 +48,20 @@ export default function DesktopAcademyNavbar({
 	}, []);
 
 	return (
-		<nav className="relative z-10 hidden h-[96px] items-center justify-between bg-cyan-50 lg:flex">
+		<nav className="relative z-10 hidden h-[96px] w-full items-center justify-between bg-cyan-50 lg:flex">
 			<div className="container flex w-full items-center justify-between">
-				<NextImage alt="Volver al Inicio" className="h-9 w-auto" priority src={Logo} />
+				<NextImage
+					alt="Volver al Inicio"
+					className="h-12 w-[142px] flex-1"
+					priority
+					src={Logo}
+					width={142}
+					height={48}
+				/>
 
-				<ul className="mx-8 flex w-full items-center justify-center gap-8 xl:gap-10">
+				<ul className="flex-0 mx-8 flex w-full items-center justify-center gap-8 xl:gap-10">
 					{navItems.map(({ label, href }) => (
-						<li key={label} className="text-sm font-bold text-gray-900 xl:text-base">
+						<li key={label} className="text-sm font-bold text-gray-900 lg:text-xl">
 							<NextLink className="hover:text-cyan-800" href={href}>
 								{label}
 							</NextLink>
@@ -65,7 +72,7 @@ export default function DesktopAcademyNavbar({
 				<div className="relative flex min-w-fit flex-1 items-center gap-3" ref={dropdownRef}>
 					<div className="flex cursor-pointer items-center gap-3" onClick={toggleDropdown}>
 						<NextImage alt="Tu Avatar" src={UserAvatar as string} />
-						<p>{userName}</p>
+						<p className="font-bold">{userName}</p>
 						<NextImage alt="Menú de opciones" src={ChevronDownIcon as string} />
 					</div>
 					{isDropdownOpen && (
@@ -78,7 +85,7 @@ export default function DesktopAcademyNavbar({
 							>
 								<button
 									onClick={handleLogout}
-									className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+									className="block w-full px-4 py-2 text-left text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900"
 									role="menuitem"
 								>
 									Cerrar sesión
