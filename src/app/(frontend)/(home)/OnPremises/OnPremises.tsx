@@ -19,7 +19,7 @@ export default function OnPremises() {
 							La Escuela de Narración Oral no sólo ofrece cursos virtuales, sino que también
 							organiza
 							<strong> talleres presenciales</strong> coordinando con tu biblioteca, Institución
-							educativa u oraganización.
+							educativa u organización.
 						</p>
 						<p className="mt-6">Escríbeme para recibir más detalles.</p>
 
