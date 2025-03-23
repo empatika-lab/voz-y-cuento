@@ -41,13 +41,13 @@ export default function CourseCard({
 		<li
 			key={course.id}
 			className={cn(
-				'flex w-[320px] flex-col rounded-2xl border border-solid border-gray-900 bg-white shadow-lg transition-transform ease-in-out will-change-transform hover:scale-[1.03] active:border-cyan-600 lg:h-[445px] lg:w-[356px]',
+				'flex h-[372px] w-[320px] flex-col rounded-2xl border border-solid border-gray-900 bg-white shadow-lg transition-transform ease-in-out will-change-transform hover:scale-[1.03] active:border-cyan-600 lg:h-[445px] lg:w-[356px]',
 				{ 'pointer-events-none': course.isPending, 'hover:scale-1': course.isComingSoon },
 			)}
 		>
 			<NextLink
 				href={course.isComingSoon ? '' : getLink()}
-				className={cn({ 'pointer-events-none': course.isComingSoon })}
+				className={cn('h-full', { 'pointer-events-none': course.isComingSoon })}
 			>
 				{/* Card Image */}
 				<div className="relative mx-auto h-[180px] w-full lg:h-[200px] lg:w-[354px]">
@@ -87,7 +87,7 @@ export default function CourseCard({
 						<strong className="text-[20px]">{course.name}</strong>
 					</header>
 					{course.shortDescription && (
-						<p className="mt-2 line-clamp-3 text-ellipsis">{course.shortDescription}</p>
+						<p className="mt-2 line-clamp-3 text-ellipsis font-medium">{course.shortDescription}</p>
 					)}
 				</div>
 
@@ -97,7 +97,7 @@ export default function CourseCard({
 
 				{course.isComingSoon && (
 					<div
-						className="absolute left-0 top-0 flex w-full justify-center rounded-t-2xl bg-yellow-500/80 p-4 text-center font-bold tracking-wide text-black"
+						className="absolute left-0 top-0 flex w-full justify-center rounded-t-2xl bg-yellow-50/80 p-4 text-center font-bold tracking-wide text-black"
 						aria-hidden
 					>
 						PRÓXIMAMENTE

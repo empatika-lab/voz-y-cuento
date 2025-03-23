@@ -56,6 +56,9 @@ export default {
 					600: '#D44545',
 					700: '#A53636',
 				},
+				yellow: {
+					50: '#FFFCEE',
+				},
 			},
 			container: {
 				center: true,

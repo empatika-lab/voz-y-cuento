@@ -109,8 +109,9 @@ export default async function AcademyPage() {
 			<AcademyNavbar userName={user.name} />
 			<Hero>
 				<div className="container pt-20 lg:pt-8">
-					<h1 className="relative font-display text-4xl font-normal text-white lg:text-8xl">
-						Cursos disponibles
+					<h1 className="relative font-display text-4xl font-normal tracking-wide text-white lg:text-8xl">
+						<span className="pr-2">C</span>
+						<span>ursos disponibles</span>
 					</h1>
 					<p className="relative mt-4 font-medium text-white lg:mt-12 lg:font-bold">
 						Aprende el arte de contar historias.

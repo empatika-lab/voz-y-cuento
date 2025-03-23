@@ -33,8 +33,9 @@ export default function Breadcrumbs({ items, isAcademy = false }: BreadcrumbsPro
 				{items.map((item, index, array) => (
 					<li key={item.text} className="flex">
 						<NextLink
-							className={cn('font-medium max-w-[200px] lg:max-w-none', {
+							className={cn('max-w-[200px] font-medium lg:max-w-none', {
 								'line-clamp-1': index === array.length - 1,
+								'font-bold': index === array.length - 1,
 							})}
 							href={isAcademy ? `/escuela${item.href}` : item.href}
 						>
