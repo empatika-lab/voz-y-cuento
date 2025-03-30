@@ -1,8 +1,8 @@
 const EMAIL_TEMPLATES = {
-	paymentMethods: 'd-d9060a149956470c8f933018b868cf9a',
-	passwordReset: 'd-61f19b818b9f4b31a5f878aae103c54b',
-	courseUnlocked: 'd-47df7a9622424b22bbfa94409a15ba83',
-	newStudentAlert: 'd-ff6b4efaebc0424ea2711095392d1464',
+	paymentMethods: 'd-e6f365ef1618444fa4d6399b402f0574',
+	passwordReset: 'd-eb8b73203bd14dc49662a1bd23600b07',
+	courseUnlocked: 'd-1d61d7e839c440ed8bad79e4dc817aaf',
+	newStudentAlert: 'd-5615c39f2e944a8e8411acd1fe4c433e',
 };
 
 export default EMAIL_TEMPLATES;
