@@ -128,26 +128,6 @@ export default function CourseNavigatorDesktop({
 		return <NextImage src={VideoIcon as string} alt="Video" width={16} height={16} />;
 	};
 
-	const getLessonType = (lesson: { blockType: string }) => {
-		if (lesson.blockType === 'video') {
-			return 'Video';
-		}
-
-		if (lesson.blockType === 'exercise') {
-			return 'Ejercicio';
-		}
-
-		if (lesson.blockType === 'additional-material') {
-			return 'Recursos';
-		}
-
-		if (lesson.blockType === 'archive') {
-			return 'Ejemplos';
-		}
-
-		return null;
-	};
-
 	const canGoForward = currentLesson < totalLessons - 1 || currentBlock < totalBlocks - 1;
 	const canGoBack = currentLesson > 0 || currentBlock > 0;
 
@@ -218,6 +198,34 @@ export default function CourseNavigatorDesktop({
 			setCurrentTabIndex(0);
 		}
 	};
+
+	function getBlockTypeName(blockType: string) {
+		if (blockType === 'video') {
+			return 'Video';
+		}
+
+		if (blockType === 'exercise') {
+			return 'Ejercicio';
+		}
+
+		if (blockType === 'additional-material') {
+			return 'Material Adicional';
+		}
+
+		if (blockType === 'presentation') {
+			return 'Presentación';
+		}
+
+		if (blockType === 'text') {
+			return 'Texto';
+		}
+
+		if (blockType === 'archive') {
+			return 'Prácticas de alumnos anteriores';
+		}
+
+		return blockType;
+	}
 
 	const handleLessonViewedClick = (
 		isViewed: boolean,
@@ -321,15 +329,11 @@ export default function CourseNavigatorDesktop({
 													>
 														<div className="flex-0 mr-2 flex items-center justify-between gap-2">
 															{getLessonIcon(lesson)}
-
-															<p className="flex-1 font-bold text-gray-700">
-																{getLessonType(lesson)}
-																{lesson.blockName && ':'}
-															</p>
 														</div>
 
 														<span className="ml-3 w-64 truncate" title={lesson.blockName ?? ''}>
-															{lesson.blockName}
+															{/* eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing */}
+															{lesson.blockName || getBlockTypeName(lesson.blockType)}
 														</span>
 
 														<div key={lesson.id} className="ml-auto pl-2">

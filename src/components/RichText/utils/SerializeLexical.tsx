@@ -73,6 +73,8 @@ export function SerializeLexical({ nodes }: Props): JSX.Element {
 				}
 
 				if (node.type === 'upload') {
+					// @ts-expect-error
+					const isPdf = (node.value?.mimeType as string).includes('pdf');
 					return (
 						<article key={index}>
 							{/* @ts-expect-error */}
@@ -80,16 +82,50 @@ export function SerializeLexical({ nodes }: Props): JSX.Element {
 								<NextLink
 									href={(node.value as unknown as Media).url!}
 									target="_blank"
-									className="my-5 flex max-w-96 items-center border bg-white p-4"
+									className={`relative my-5 flex max-w-96 flex-col items-center border bg-white ${isPdf ? 'p-4' : ''}`}
 									key={index}
 									rel="noreferrer"
 								>
-									{/* @ts-expect-error */}
-									{(node.value?.mimeType as string).includes('pdf') && (
-										<NextImage src={DownloadIcon as string} alt="PDF" width={16} height={16} />
+									{isPdf && (
+										<NextImage
+											src={DownloadIcon as string}
+											alt={node.value.alt}
+											width={16}
+											height={16}
+											className="mr-4"
+										/>
 									)}
 									{/* @ts-expect-error */}
-									{node.value?.alt && <div className="m-0 text-pretty pl-4">{node.value.alt}</div>}
+									{(node.value?.mimeType as string).includes('jpg') && (
+										<NextImage
+											src={node.value.url}
+											alt={node.value.al}
+											width={node.value.width}
+											height={node.value.height}
+											className="rounded-md object-cover"
+										/>
+									)}
+									{/* @ts-expect-error */}
+									{(node.value?.mimeType as string).includes('jpeg') && (
+										<NextImage
+											src={node.value.url}
+											alt={node.value.alt}
+											width={node.value.width}
+											height={node.value.height}
+											className="rounded-md object-cover"
+										/>
+									)}
+									{/* @ts-expect-error */}
+									{(node.value?.mimeType as string).includes('png') && (
+										<NextImage
+											src={node.value.url}
+											alt={node.value.alt}
+											width={16}
+											className="rounded-md object-cover"
+										/>
+									)}
+									{/* @ts-expect-error */}
+									{node.value?.alt && <div className="m-0 text-pretty">{node.value.alt}</div>}
 								</NextLink>
 							)}
 						</article>
@@ -199,7 +235,7 @@ export function SerializeLexical({ nodes }: Props): JSX.Element {
 									href={fields.url ?? ''}
 									target="_blank"
 									rel="noreferrer"
-									className="text-cyan-800 underline hover:text-cyan-900"
+									className="font-bold text-cyan-800 underline hover:text-cyan-900"
 								>
 									{serializedChildren}
 								</NextLink>
