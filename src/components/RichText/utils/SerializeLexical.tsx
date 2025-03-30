@@ -89,6 +89,7 @@ export function SerializeLexical({ nodes }: Props): JSX.Element {
 									{isPdf && (
 										<NextImage
 											src={DownloadIcon as string}
+											// @ts-expect-error
 											alt={node.value.alt}
 											width={16}
 											height={16}
@@ -98,9 +99,13 @@ export function SerializeLexical({ nodes }: Props): JSX.Element {
 									{/* @ts-expect-error */}
 									{(node.value?.mimeType as string).includes('jpg') && (
 										<NextImage
+											// @ts-expect-error
 											src={node.value.url}
-											alt={node.value.al}
+											// @ts-expect-error
+											alt={node.value.alt}
+											// @ts-expect-error
 											width={node.value.width}
+											// @ts-expect-error
 											height={node.value.height}
 											className="rounded-md object-cover"
 										/>
@@ -108,9 +113,13 @@ export function SerializeLexical({ nodes }: Props): JSX.Element {
 									{/* @ts-expect-error */}
 									{(node.value?.mimeType as string).includes('jpeg') && (
 										<NextImage
+											// @ts-expect-error
 											src={node.value.url}
+											// @ts-expect-error
 											alt={node.value.alt}
+											// @ts-expect-error
 											width={node.value.width}
+											// @ts-expect-error
 											height={node.value.height}
 											className="rounded-md object-cover"
 										/>
@@ -118,9 +127,12 @@ export function SerializeLexical({ nodes }: Props): JSX.Element {
 									{/* @ts-expect-error */}
 									{(node.value?.mimeType as string).includes('png') && (
 										<NextImage
+											// @ts-expect-error
 											src={node.value.url}
+											// @ts-expect-error
 											alt={node.value.alt}
 											width={16}
+											height={16}
 											className="rounded-md object-cover"
 										/>
 									)}
