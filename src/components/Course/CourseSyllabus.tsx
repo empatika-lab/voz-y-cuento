@@ -22,7 +22,7 @@ export default function CourseSyllbus({ syllabus }: CourseSyllbusProps) {
 					return (
 						<li
 							key={id}
-							className="ml-5 list-[square] text-xl marker:text-cyan-700 lg:ml-0 lg:text-xl"
+							className="ml-5 list-[square] text-xl marker:text-cyan-700 lg:ml-0 lg:text-xl [&:not(:last-of-type)]:pb-4"
 						>
 							{unit}
 						</li>

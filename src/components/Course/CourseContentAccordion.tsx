@@ -54,19 +54,44 @@ function AccordionItemContent({ content }: AccordionItemContentProps) {
 		return null;
 	}
 
+	function getBlockTypeName(blockType: string) {
+		if (blockType === 'video') {
+			return 'Video';
+		}
+
+		if (blockType === 'exercise') {
+			return 'Ejercicio';
+		}
+
+		if (blockType === 'additional-material') {
+			return 'Material Adicional';
+		}
+
+		if (blockType === 'presentation') {
+			return 'Presentación';
+		}
+
+		if (blockType === 'text') {
+			return 'Texto';
+		}
+
+		if (blockType === 'archive') {
+			return 'Prácticas de alumnos anteriores';
+		}
+
+		return blockType;
+	}
+
 	return (
 		<ul className="bg-gray-50">
 			{content.map((item) => {
-				const title =
-					item.blockType === 'additional-material' ? 'Recursos Adicionales' : item.blockName;
+				// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+				const title = item.blockName ? item.blockName : getBlockTypeName(item.blockType);
 
 				return (
-					<li
-						key={item.id}
-						className="line-clamp-1 flex items-center truncate rounded-lg py-4 pl-[60px] lg:px-[152px]"
-					>
+					<li key={item.id} className="flex items-center rounded-lg py-4 pl-5 lg:px-[152px]">
 						{getIcon(item.blockType)}
-						{item.blockName && <p className="pl-4">{title}</p>}
+						<p className="pl-4">{title}</p>
 					</li>
 				);
 			})}

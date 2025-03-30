@@ -19,6 +19,7 @@ interface CourseDesktopViewProps {
 	isAcademy?: boolean;
 	tryAddPendingPayment?: (studentId: number, courseId: number) => Promise<boolean>;
 	studentId?: number;
+	shouldShowBlockName?: boolean;
 }
 
 export default function CourseDesktopView({

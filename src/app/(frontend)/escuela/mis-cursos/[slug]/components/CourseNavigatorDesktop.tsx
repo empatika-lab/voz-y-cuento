@@ -247,7 +247,7 @@ export default function CourseNavigatorDesktop({
 	};
 
 	return (
-		<div className="bg-cyan-50">
+		<div className="bg-cyan-50 pb-10">
 			<Hero className="hidden pb-[100px] lg:block lg:pb-[64px]">
 				<div className="container">
 					<h1 className="relative font-display text-8xl font-normal text-white">
