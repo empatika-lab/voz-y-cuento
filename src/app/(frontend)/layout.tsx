@@ -1,5 +1,5 @@
 /* Types */
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 
 /* STYLES */
 import '@lib/styles/global.css';
@@ -22,6 +22,12 @@ const stickyPops = localFont({
 	display: 'swap',
 	variable: '--font-display',
 });
+
+export const viewport: Viewport = {
+	width: 'device-width',
+	initialScale: 1,
+	maximumScale: 1,
+};
 
 export const metadata: Metadata = {
 	metadataBase: new URL(process.env.NEXT_PUBLIC_WEB_URL ?? ''),
@@ -72,11 +78,6 @@ export const metadata: Metadata = {
 	},
 	alternates: {
 		canonical: '/',
-	},
-	viewport: {
-		width: 'device-width',
-		initialScale: 1,
-		maximumScale: 1,
 	},
 	verification: {
 		google: 'add-your-google-site-verification-here',
