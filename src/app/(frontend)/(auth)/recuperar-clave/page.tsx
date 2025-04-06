@@ -34,21 +34,23 @@ export default function RecoverPassword({
 	const currentStep = getCurrentStep();
 
 	return (
-		<article className="container mx-auto flex h-screen max-w-sm flex-col items-center justify-center bg-cyan-50">
-			<NextImage
-				alt="Logo de Voz y Cuento"
-				className="mx-auto mb-10 h-[48px] w-[140px] rounded-2xl"
-				priority
-				src={Logo}
-			/>
+		<article className="mx-auto flex h-screen flex-col items-center justify-center bg-cyan-50">
+			<div className="container mx-auto flex h-full w-full max-w-sm flex-col items-center justify-center">
+				<NextImage
+					alt="Logo de Voz y Cuento"
+					className="mx-auto mb-10 h-[48px] w-[140px] rounded-2xl"
+					priority
+					src={Logo}
+				/>
 
-			<h1 className="mx-auto mt-8 text-center text-2xl font-bold">Recupera tu contraseña</h1>
+				<h1 className="mx-auto mt-8 text-center text-2xl font-bold">Recupera tu contraseña</h1>
 
-			{currentStep === 'initial' && <ResetPasswordInitialStep />}
+				{currentStep === 'initial' && <ResetPasswordInitialStep />}
 
-			{currentStep === 'new-password' && code && email && (
-				<ResetPasswordCreateNewPassword code={code} email={email} />
-			)}
+				{currentStep === 'new-password' && code && email && (
+					<ResetPasswordCreateNewPassword code={code} email={email} />
+				)}
+			</div>
 		</article>
 	);
 }

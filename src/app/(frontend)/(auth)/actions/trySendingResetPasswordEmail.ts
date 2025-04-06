@@ -11,6 +11,7 @@ import type { ServerActionResponse } from '@/lib/types';
 
 /* Utils */
 import { isPayloadErrorResponse } from '@/lib/utils/error';
+import EMAIL_TEMPLATES from '@/lib/utils/emailTemplates';
 
 interface RecoverPasswordData {
 	email: string;
@@ -47,11 +48,12 @@ export async function trySendingResetPasswordEmail(
 		sendgrid.setApiKey(process.env.SENDGRID_API_KEY!);
 		const sengridResponse = await sendgrid.send({
 			dynamicTemplateData: {
+				admin_whatsapp: process.env.ADMIN_WHATSAPP,
 				reset_url: `${process.env.NEXT_PUBLIC_WEB_URL}/recuperar-clave?step=new-password&code=${resetToken}&email=${email}`,
 			},
 			from: 'vozycuento@gmail.com',
 			subject: 'Voz y Cuento - Contraseña olvidada',
-			templateId: 'd-61f19b818b9f4b31a5f878aae103c54b',
+			templateId: EMAIL_TEMPLATES.passwordReset,
 			to: email,
 		});
 
