@@ -147,7 +147,7 @@ export const PendingPayments: CollectionConfig = {
 
 						await req.payload.update({
 							collection: 'students',
-							id: originalDoc.student,
+							id: originalDoc.student as string,
 							data: {
 								courses: Array.from(uniqueCourses),
 							},
@@ -155,7 +155,7 @@ export const PendingPayments: CollectionConfig = {
 
 						const courseData = await req.payload.findByID({
 							collection: 'courses',
-							id: originalDoc.course,
+							id: originalDoc.course as string,
 						});
 
 						// Send email notification to user with course unlocked notification
@@ -165,7 +165,7 @@ export const PendingPayments: CollectionConfig = {
 								from: 'vozycuento@gmail.com',
 								templateId: EMAIL_TEMPLATES.courseUnlocked,
 								dynamicTemplateData: {
-									user_name: studentData.name,
+									student_name: studentData.name,
 									course_name: courseData.name,
 									course_url: `${process.env.NEXT_PUBLIC_WEB_URL}/escuela/mis-cursos/${courseData.slug}`,
 								},
