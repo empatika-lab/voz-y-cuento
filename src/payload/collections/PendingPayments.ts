@@ -66,6 +66,12 @@ export const PendingPayments: CollectionConfig = {
 								student_name: studentData.name,
 								student_email: studentData.email,
 								course_name: courseData.name,
+								date: new Date().toLocaleDateString('es-AR', {
+									day: '2-digit',
+									month: '2-digit',
+									year: 'numeric',
+								}),
+								cta_url: `${process.env.NEXT_PUBLIC_WEB_URL}/admin`,
 							},
 							from: 'vozycuento@gmail.com',
 							subject: 'Voz y Cuento - Nuevo Estudiante',
@@ -79,8 +85,20 @@ export const PendingPayments: CollectionConfig = {
 								from: 'vozycuento@gmail.com',
 								templateId: EMAIL_TEMPLATES.paymentMethods,
 								dynamicTemplateData: {
-									user_name: studentData.name,
+									student_name: studentData.name,
 									course_name: courseData.name,
+									course_price_arg: courseData.arsPrice.toLocaleString('es-AR', {
+										style: 'currency',
+										currency: 'ARS',
+										maximumFractionDigits: 0,
+									}),
+									course_price_usd: courseData.usdPrice.toLocaleString('en-US', {
+										style: 'currency',
+										currency: 'USD',
+										maximumFractionDigits: 0,
+									}),
+									admin_whatsapp: process.env.ADMIN_WHATSAPP,
+									admin_email: process.env.ADMIN_EMAIL,
 								},
 								to: studentData.email,
 							})
