@@ -73,7 +73,7 @@ export const PendingPayments: CollectionConfig = {
 								}),
 								cta_url: `${process.env.NEXT_PUBLIC_WEB_URL}/admin`,
 							},
-							from: 'vozycuento@gmail.com',
+							from: 'Escuela de Narración Oral Voz y Cuento <vozycuento@gmail.com>',
 							subject: 'Voz y Cuento - Nuevo Estudiante',
 							templateId: EMAIL_TEMPLATES.newStudentAlert,
 							to: process.env.ADMIN_EMAIL,
@@ -82,7 +82,7 @@ export const PendingPayments: CollectionConfig = {
 						// Send payment methods email to student
 						await sendgrid
 							.send({
-								from: 'vozycuento@gmail.com',
+								from: 'Escuela de Narración Oral Voz y Cuento <vozycuento@gmail.com>',
 								templateId: EMAIL_TEMPLATES.paymentMethods,
 								dynamicTemplateData: {
 									student_name: studentData.name,
@@ -162,7 +162,7 @@ export const PendingPayments: CollectionConfig = {
 						sendgrid.setApiKey(process.env.SENDGRID_API_KEY!);
 						await sendgrid
 							.send({
-								from: 'vozycuento@gmail.com',
+								from: 'Escuela de Narración Oral Voz y Cuento <vozycuento@gmail.com>',
 								templateId: EMAIL_TEMPLATES.courseUnlocked,
 								dynamicTemplateData: {
 									student_name: studentData.name,

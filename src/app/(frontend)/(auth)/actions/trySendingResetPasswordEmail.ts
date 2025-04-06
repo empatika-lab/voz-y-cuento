@@ -51,7 +51,7 @@ export async function trySendingResetPasswordEmail(
 				admin_whatsapp: process.env.ADMIN_WHATSAPP,
 				reset_url: `${process.env.NEXT_PUBLIC_WEB_URL}/recuperar-clave?step=new-password&code=${resetToken}&email=${email}`,
 			},
-			from: 'vozycuento@gmail.com',
+			from: 'Escuela de Narración Oral Voz y Cuento <vozycuento@gmail.com>',
 			subject: 'Voz y Cuento - Contraseña olvidada',
 			templateId: EMAIL_TEMPLATES.passwordReset,
 			to: email,
