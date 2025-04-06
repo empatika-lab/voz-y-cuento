@@ -79,7 +79,6 @@ export default function CourseMobileSubscriptionStickyFooter({
 									if (success) {
 										await setBuyCourseRedirection(course.slug);
 										router.push(ctLink);
-										setIsPendingPayment(false);
 										return;
 									}
 									return;

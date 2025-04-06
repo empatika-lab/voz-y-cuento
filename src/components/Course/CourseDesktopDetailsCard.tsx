@@ -97,7 +97,6 @@ export default function CourseDesktopDetailsCard({
 										const success = await tryAddPendingPayment(studentId, course.id);
 										if (success) {
 											router.push(ctLink);
-											setIsPendingPayment(false);
 											return;
 										}
 										return;
