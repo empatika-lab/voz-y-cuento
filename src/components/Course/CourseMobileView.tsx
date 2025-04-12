@@ -40,7 +40,7 @@ export default function CourseMobileView({
 				<Breadcrumbs items={breacrumbItems} isAcademy={isAcademy} />
 
 				{/* Descripción del curso */}
-				<CourseLongDescription description={course.longDescription} />
+				{course.longDescription && <CourseLongDescription description={course.longDescription} />}
 
 				{/* Bloques de características de los cursos */}
 				{<CourseMobileFeatures features={features} />}
@@ -55,8 +55,8 @@ export default function CourseMobileView({
 				<div className="mt-16 h-[1px] w-full bg-[#0C0E0E]" />
 
 				{/* Bloques de contenido del curso */}
-				{course.category !== 'Seminario' && course.category !== 'Laboratorio' && (
-					<CourseContentAccordion blocks={course.blocks} />
+				{course.category !== 'Laboratorio' && (
+					<CourseContentAccordion blocks={course.blocks} courseCategory={course.category} />
 				)}
 			</div>
 

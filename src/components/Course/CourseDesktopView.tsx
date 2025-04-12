@@ -38,7 +38,9 @@ export default function CourseDesktopView({
 				<div className="flex justify-between">
 					<div className="w-[60%]" id="course-detail-left-col">
 						{/* Descripción del curso */}
-						<CourseLongDescription description={course.longDescription} />
+						{course.longDescription && (
+							<CourseLongDescription description={course.longDescription} />
+						)}
 
 						{/* Temario del curso */}
 						{course.syllabus?.length ? (
@@ -50,11 +52,11 @@ export default function CourseDesktopView({
 						) : null}
 
 						{/* Bloques de contenido del curso */}
-						{course.category !== 'Seminario' && course.category !== 'Laboratorio' && (
+						{course.category !== 'Laboratorio' && (
 							<>
 								{/* Separador */}
 								<div className="mt-16 h-[1px] w-full bg-[#0C0E0E]" />
-								<CourseContentAccordeon blocks={course.blocks} />
+								<CourseContentAccordeon blocks={course.blocks} courseCategory={course.category} />
 							</>
 						)}
 					</div>

@@ -19,6 +19,7 @@ import type { Course } from '@/payload-types';
 
 interface CourseContentAccordionProps {
 	blocks?: Course['blocks'];
+	courseCategory: 'Seminario' | 'Laboratorio' | 'Taller';
 }
 
 interface AccordionItemContentProps {
@@ -99,7 +100,10 @@ function AccordionItemContent({ content }: AccordionItemContentProps) {
 	);
 }
 
-export default function CourseContentAccordion({ blocks }: CourseContentAccordionProps) {
+export default function CourseContentAccordion({
+	blocks,
+	courseCategory,
+}: CourseContentAccordionProps) {
 	if (!blocks?.length) {
 		return null;
 	}
@@ -130,7 +134,9 @@ export default function CourseContentAccordion({ blocks }: CourseContentAccordio
 
 									{/* Desktop */}
 									<p className="hidden truncate py-4 font-bold lg:block lg:max-w-[85%]">
-										<span className="pr-10">Bloque {index + 1}</span>
+										<span className="pr-10">
+											{courseCategory === 'Seminario' ? 'Parte' : 'Bloque'} {index + 1}
+										</span>
 										{block.name && <span className="pl-3 font-normal">{block.name}</span>}
 									</p>
 									<NextImage
