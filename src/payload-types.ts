@@ -54,6 +54,7 @@ export type SupportedTimezones =
   | 'Asia/Singapore'
   | 'Asia/Tokyo'
   | 'Asia/Seoul'
+  | 'Australia/Brisbane'
   | 'Australia/Sydney'
   | 'Pacific/Guam'
   | 'Pacific/Noumea'
@@ -203,7 +204,7 @@ export interface Course {
   /**
    * Descipción detallada del curso. Se muestra en la página de detalle del curso
    */
-  longDescription: string;
+  longDescription?: string | null;
   /**
    * Esta imágen se muestra en la tarjeta del Curso.
    */

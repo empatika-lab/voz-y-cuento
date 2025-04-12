@@ -116,6 +116,9 @@ export const Course: CollectionConfig = {
 										style: {
 											marginTop: '2rem',
 										},
+										condition: (_data, sibling) => {
+											return sibling.category !== 'Seminario';
+										},
 									},
 									label: 'Descripción Larga',
 									name: 'longDescription',
@@ -146,7 +149,7 @@ export const Course: CollectionConfig = {
 								description: 'Elegir el tipo de curso.',
 							},
 							options: [
-								{ label: 'Taller', value: 'Taller' },
+								{ label: 'Curso', value: 'Taller' },
 								{ label: 'Laboratorio', value: 'Laboratorio' },
 								{ label: 'Seminario', value: 'Seminario' },
 							],
