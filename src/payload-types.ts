@@ -343,6 +343,28 @@ export interface Course {
                   blockName?: string | null;
                   blockType: 'archive';
                 }
+              | {
+                  title: string;
+                  /**
+                   * Un texto para acompañar el cuadernillo
+                   */
+                  content?: string | null;
+                  file: number | Media;
+                  id?: string | null;
+                  blockName?: string | null;
+                  blockType: 'dossier';
+                }
+              | {
+                  title: string;
+                  /**
+                   * Un texto para acompañar el cuadernillo
+                   */
+                  content?: string | null;
+                  file: number | Media;
+                  id?: string | null;
+                  blockName?: string | null;
+                  blockType: 'exercises';
+                }
             )[]
           | null;
         id?: string | null;
@@ -672,6 +694,24 @@ export interface CoursesSelect<T extends boolean = true> {
                 | T
                 | {
                     content?: T;
+                    id?: T;
+                    blockName?: T;
+                  };
+              dossier?:
+                | T
+                | {
+                    title?: T;
+                    content?: T;
+                    file?: T;
+                    id?: T;
+                    blockName?: T;
+                  };
+              exercises?:
+                | T
+                | {
+                    title?: T;
+                    content?: T;
+                    file?: T;
                     id?: T;
                     blockName?: T;
                   };

@@ -290,7 +290,10 @@ export default function CourseNavigatorMobile({
 								return (
 									<li key={block.id} className="mt-4">
 										<header className="mb-2 pl-5">
-											<span className="text-sm font-bold">Bloque {index + 1}</span>
+											<span className="text-sm font-bold">
+												{course.category === 'Seminario' ? 'Parte' : 'Bloque'} {index + 1}
+												{index + 1}
+											</span>
 											<span className="text-sm"> - {block.name}</span>
 										</header>
 

@@ -81,6 +81,64 @@ export const CourseContentBlock: CollectionConfig['fields'][0] = {
 				},
 			],
 		},
+		{
+			slug: 'dossier',
+			labels: {
+				singular: 'Cuadernillo de Lectura',
+				plural: 'Cuadernillos de Lectura',
+			},
+			fields: [
+				{
+					name: 'title',
+					label: 'Título',
+					type: 'text',
+					required: true,
+				},
+				{
+					name: 'content',
+					label: 'Texto Adicional',
+					type: 'textarea',
+					required: false,
+					admin: { description: 'Un texto para acompañar el cuadernillo' },
+				},
+				{
+					name: 'file',
+					label: 'Archivo',
+					type: 'upload',
+					required: true,
+					relationTo: 'media',
+				},
+			],
+		},
+		{
+			slug: 'exercises',
+			labels: {
+				singular: 'Cuadernillo de Ejercicios',
+				plural: 'Cuadernillos de Ejercicios',
+			},
+			fields: [
+				{
+					name: 'title',
+					label: 'Título',
+					type: 'text',
+					required: true,
+				},
+				{
+					name: 'content',
+					label: 'Texto Adicional',
+					type: 'textarea',
+					required: false,
+					admin: { description: 'Un texto para acompañar el cuadernillo' },
+				},
+				{
+					name: 'file',
+					label: 'Archivo',
+					type: 'upload',
+					required: true,
+					relationTo: 'media',
+				},
+			],
+		},
 	],
 };
 

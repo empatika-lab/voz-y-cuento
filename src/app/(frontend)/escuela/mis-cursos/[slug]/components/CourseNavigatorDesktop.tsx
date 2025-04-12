@@ -297,7 +297,9 @@ export default function CourseNavigatorDesktop({
 								header={
 									<header className="mb-2 flex w-[260px] items-center justify-between gap-2 px-3 text-left xl:w-[320px]">
 										<div className="flex w-[90%] flex-1 flex-col items-start gap-1">
-											<span className="text-base font-medium">Bloque {index + 1}</span>
+											<span className="text-base font-medium">
+												{course.category === 'Seminario' ? 'Parte' : 'Bloque'} {index + 1}
+											</span>
 											<span className="text-sm text-gray-600">{block.name}</span>
 										</div>
 										<NextImage
