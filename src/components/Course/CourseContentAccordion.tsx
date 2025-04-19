@@ -5,11 +5,13 @@ import { Accordion, AccordionItem } from '@/components/Accordion';
 
 /* Utils */
 import { cn } from '@/lib/utils/classNames';
+import { getBlockTypeName } from '@/lib/utils/blocks';
 
 /* Icons */
 import plusIcon from '@images/icons/plus.svg';
 import minusIcon from '@images/icons/minus.svg';
 import videoIcon from '@images/icons/video.svg';
+import bookIcon from '@images/icons/book.svg';
 import pencilIcon from '@images/icons/pencil.svg';
 import archiveIcon from '@images/icons/archive.svg';
 import presentationIcon from '@images/icons/presentation.svg';
@@ -40,6 +42,10 @@ function AccordionItemContent({ content }: AccordionItemContentProps) {
 			return <NextImage alt="Ejercicio" height={16} src={pencilIcon as string} width={16} />;
 		}
 
+		if (blockType === 'dossier') {
+			return <NextImage alt="Cuadernillo" height={16} src={bookIcon as string} width={16} />;
+		}
+
 		if (blockType === 'additional-material') {
 			return (
 				<NextImage alt="Material Adicional" height={16} src={archiveIcon as string} width={16} />
@@ -55,44 +61,22 @@ function AccordionItemContent({ content }: AccordionItemContentProps) {
 		return null;
 	}
 
-	function getBlockTypeName(blockType: string) {
-		if (blockType === 'video') {
-			return 'Video';
-		}
-
-		if (blockType === 'exercise') {
-			return 'Ejercicio';
-		}
-
-		if (blockType === 'additional-material') {
-			return 'Material Adicional';
-		}
-
-		if (blockType === 'presentation') {
-			return 'Presentación';
-		}
-
-		if (blockType === 'text') {
-			return 'Texto';
-		}
-
-		if (blockType === 'archive') {
-			return 'Prácticas de alumnos anteriores';
-		}
-
-		return blockType;
-	}
-
 	return (
-		<ul className="bg-gray-50">
+		<ul className="bg-gray-50 lg:-ml-4">
 			{content.map((item) => {
-				// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-				const title = item.blockName ? item.blockName : getBlockTypeName(item.blockType);
+				function getTitle() {
+					if (item.blockType === 'dossier' || item.blockType === 'exercises') {
+						return getBlockTypeName(item.blockType);
+					}
+
+					// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+					return item.blockName ? item.blockName : getBlockTypeName(item.blockType);
+				}
 
 				return (
-					<li key={item.id} className="flex items-center rounded-lg py-4 pl-5 lg:px-[152px]">
+					<li key={item.id} className="flex rounded-lg py-4 pl-5 lg:px-[152px]">
 						{getIcon(item.blockType)}
-						<p className="pl-4">{title}</p>
+						<p className="pl-4">{getTitle()}</p>
 					</li>
 				);
 			})}
@@ -145,7 +129,7 @@ export default function CourseContentAccordion({
 											'opacity-1 absolute right-4 transition-opacity duration-200 ease-linear group-data-[state=open]:opacity-0 lg:right-8',
 										)}
 										height={16}
-										src={plusIcon}
+										src={plusIcon as string}
 										width={16}
 									/>
 									<NextImage
@@ -154,7 +138,7 @@ export default function CourseContentAccordion({
 											'absolute right-4 opacity-0 transition-opacity duration-200 ease-linear group-data-[state=open]:opacity-100 lg:right-8',
 										)}
 										height={16}
-										src={minusIcon}
+										src={minusIcon as string}
 										width={16}
 									/>
 								</header>

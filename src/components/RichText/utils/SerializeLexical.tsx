@@ -131,13 +131,15 @@ export function SerializeLexical({ nodes }: Props): JSX.Element {
 											src={node.value.url}
 											// @ts-expect-error
 											alt={node.value.alt}
-											width={16}
-											height={16}
+											// @ts-expect-error
+											width={node.value.width}
+											// @ts-expect-error
+											height={node.value.height}
 											className="rounded-md object-cover"
 										/>
 									)}
 									{/* @ts-expect-error */}
-									{node.value?.alt && <div className="m-0 text-pretty">{node.value.alt}</div>}
+									{node.value?.alt && <div className="my-2 text-pretty">{node.value.alt}</div>}
 								</NextLink>
 							)}
 						</article>

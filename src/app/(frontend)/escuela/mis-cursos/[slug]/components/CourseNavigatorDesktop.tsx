@@ -18,6 +18,7 @@ import { Accordion, AccordionItem } from '@/components/Accordion';
 
 /* Utils */
 import { cn } from '@/lib/utils/classNames';
+import { getBlockTypeName } from '@/lib/utils/blocks';
 
 /* Assets */
 import VideoIcon from '@images/icons/video.svg';
@@ -198,34 +199,6 @@ export default function CourseNavigatorDesktop({
 			setCurrentTabIndex(0);
 		}
 	};
-
-	function getBlockTypeName(blockType: string) {
-		if (blockType === 'video') {
-			return 'Video';
-		}
-
-		if (blockType === 'exercise') {
-			return 'Ejercicio';
-		}
-
-		if (blockType === 'additional-material') {
-			return 'Material Adicional';
-		}
-
-		if (blockType === 'presentation') {
-			return 'Presentación';
-		}
-
-		if (blockType === 'text') {
-			return 'Texto';
-		}
-
-		if (blockType === 'archive') {
-			return 'Prácticas de alumnos anteriores';
-		}
-
-		return blockType;
-	}
 
 	const handleLessonViewedClick = (
 		isViewed: boolean,

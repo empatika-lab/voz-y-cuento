@@ -60,6 +60,15 @@ export default function CourseItem({
 		);
 	}
 
+	if (lesson.blockType === 'dossier' && lesson.content) {
+		return (
+			<article className="pb-32 pt-5">
+				{lesson.blockName && <h2 className="mb-5 px-5 text-lg font-bold">{lesson.blockName}</h2>}
+				<RichText key={lesson.id} content={lesson.content} />
+			</article>
+		);
+	}
+
 	if (lesson.blockType === 'additional-material' && lesson.material) {
 		return (
 			<article className="pb-32 pt-5 [&>a]:font-bold">

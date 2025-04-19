@@ -16,6 +16,7 @@ import CourseLessonComments from './CouseLessonComments';
 
 /* Utils */
 import { cn } from '@/lib/utils/classNames';
+import { getBlockTypeName } from '@/lib/utils/blocks';
 
 /* Assets */
 import CloseIcon from '@images/icons/close.svg';
@@ -198,34 +199,6 @@ export default function CourseNavigatorMobile({
 
 		return <NextImage src={VideoIcon as string} alt="Video" width={16} height={16} />;
 	};
-
-	function getBlockTypeName(blockType: string) {
-		if (blockType === 'video') {
-			return 'Video';
-		}
-
-		if (blockType === 'exercise') {
-			return 'Ejercicio';
-		}
-
-		if (blockType === 'additional-material') {
-			return 'Material Adicional';
-		}
-
-		if (blockType === 'presentation') {
-			return 'Presentación';
-		}
-
-		if (blockType === 'text') {
-			return 'Texto';
-		}
-
-		if (blockType === 'archive') {
-			return 'Prácticas de alumnos anteriores';
-		}
-
-		return blockType;
-	}
 
 	const handleLessonViewedClick = (
 		isViewed: boolean,
