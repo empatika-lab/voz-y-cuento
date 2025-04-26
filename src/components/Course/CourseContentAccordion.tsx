@@ -38,7 +38,7 @@ function AccordionItemContent({ content }: AccordionItemContentProps) {
 			return <NextImage alt="Video" height={16} src={videoIcon as string} width={16} />;
 		}
 
-		if (blockType === 'exercise') {
+		if (blockType === 'exercise' || blockType === 'exercises') {
 			return <NextImage alt="Ejercicio" height={16} src={pencilIcon as string} width={16} />;
 		}
 

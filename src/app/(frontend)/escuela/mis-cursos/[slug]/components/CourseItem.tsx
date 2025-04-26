@@ -3,12 +3,14 @@ import { use, useCallback } from 'react';
 /* Components */
 import RichText from '@/components/RichText/RichText';
 import YoutubeViewer from './YoutubeViewer';
+import PDFViewer from '@/components/PdfViwer';
 
 /* Context */
 import { WatchedLessonContext } from '../context/WatchedLessonContext';
 
 /* Utils */
 import { markCourseLessonAsViewed } from '@/lib/utils/course';
+import ClientOnly from '@/components/ClientOnly';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function CourseItem({
@@ -41,11 +43,9 @@ export default function CourseItem({
 					markCourseLessonAsViewed={handleLessonView}
 					lessonId={lesson.id}
 				/>
-				<article className="pb-16 pt-5">
-					{lesson.blockName && (
-						<h2 className="mb-5 px-5 text-lg font-bold lg:px-0">{lesson.blockName}</h2>
-					)}
-					<RichText content={lesson.content} enableGutter />
+				<article className="px-5 pb-16 pt-5 lg:px-0">
+					{lesson.blockName && <h2 className="mb-5 text-lg font-bold">{lesson.blockName}</h2>}
+					<RichText content={lesson.content} enableGutter={false} />
 				</article>
 			</>
 		);
@@ -53,8 +53,10 @@ export default function CourseItem({
 
 	if (lesson.blockType === 'exercise' && lesson.content) {
 		return (
-			<article className="pb-32 pt-5">
-				{lesson.blockName && <h2 className="mb-5 px-5 text-lg font-bold">{lesson.blockName}</h2>}
+			<article className="px-5 pb-32 pt-5">
+				{lesson.blockName && (
+					<h2 className="mb-5 px-5 text-lg font-bold lg:px-0">{lesson.blockName}</h2>
+				)}
 				<RichText key={lesson.id} content={lesson.content} />
 			</article>
 		);
@@ -62,17 +64,26 @@ export default function CourseItem({
 
 	if (lesson.blockType === 'dossier' && lesson.content) {
 		return (
-			<article className="pb-32 pt-5">
-				{lesson.blockName && <h2 className="mb-5 px-5 text-lg font-bold">{lesson.blockName}</h2>}
-				<RichText key={lesson.id} content={lesson.content} />
+			<article className="px-5 pb-32 pt-5">
+				{lesson.blockName && (
+					<h2 className="mb-5 px-5 text-lg font-bold lg:px-0">{lesson.blockName}</h2>
+				)}
+				<div>{lesson.content}</div>
+				{lesson.file && lesson.file.mimeType === 'application/pdf' && (
+					<div className="mt-4">
+						<ClientOnly>
+							<PDFViewer file={lesson.file.url} />
+						</ClientOnly>
+					</div>
+				)}
 			</article>
 		);
 	}
 
 	if (lesson.blockType === 'additional-material' && lesson.material) {
 		return (
-			<article className="pb-32 pt-5 [&>a]:font-bold">
-				<h2 className="mb-5 px-5 text-lg font-bold">{lesson.blockName}</h2>
+			<article className="px-5 pb-32 pt-5 [&>a]:font-bold">
+				<h2 className="mb-5 px-5 text-lg font-bold lg:px-0">{lesson.blockName}</h2>
 				<RichText key={lesson.id} content={lesson.material} />
 			</article>
 		);
@@ -81,7 +92,7 @@ export default function CourseItem({
 	if (lesson.blockType === 'archive' && lesson.content) {
 		return (
 			<article className="pb-32 pt-5">
-				<h2 className="mb-2 px-5 text-lg font-bold lg:px-0">
+				<h2 className="mb-5 px-5 text-lg font-bold lg:px-0">
 					{lesson.blockName ?? 'Prácticas de alumnos anteriores'}
 				</h2>
 				<p className="px-5 text-lg text-gray-600 lg:px-0">

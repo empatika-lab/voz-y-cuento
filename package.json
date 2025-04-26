@@ -35,6 +35,7 @@
 		"react": "19.0.0",
 		"react-dom": "19.0.0",
 		"react-hot-toast": "^2.5.2",
+		"react-pdf": "^9.2.1",
 		"sharp": "0.32.6",
 		"tailwind-merge": "^2.6.0",
 		"tailwind-variants": "^0.2.1",

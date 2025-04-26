@@ -2,6 +2,11 @@ import { withPayload } from '@payloadcms/next/withPayload';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+	turbopack: {
+		resolveAlias: {
+			canvas: './empty-module.ts',
+		},
+	},
 	logging: {
 		fetches: { fullUrl: true },
 	},

@@ -122,7 +122,11 @@ export default function CourseNavigatorDesktop({
 			return <NextImage src={PencilIcon as string} alt="Ejercicio" width={16} height={16} />;
 		}
 
-		if (lesson.blockType === 'additional-material') {
+		if (
+			lesson.blockType === 'additional-material' ||
+			lesson.blockType === 'exercises' ||
+			lesson.blockType === 'dossier'
+		) {
 			return <NextImage src={BookIcon as string} alt="Recurso" width={16} height={16} />;
 		}
 
