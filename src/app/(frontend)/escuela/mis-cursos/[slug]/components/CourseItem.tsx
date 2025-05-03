@@ -11,6 +11,7 @@ import { WatchedLessonContext } from '../context/WatchedLessonContext';
 /* Utils */
 import { markCourseLessonAsViewed } from '@/lib/utils/course';
 import ClientOnly from '@/components/ClientOnly';
+import { getBlockTypeName } from '@/lib/utils/blocks';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function CourseItem({
@@ -65,12 +66,14 @@ export default function CourseItem({
 	if (lesson.blockType === 'dossier' && lesson.content) {
 		return (
 			<article className="px-5 pb-32 pt-5">
-				{lesson.blockName && (
-					<h2 className="mb-5 px-5 text-lg font-bold lg:px-0">{lesson.blockName}</h2>
+				{lesson.blockType && (
+					<h2 className="mb-5 text-lg font-bold lg:px-0">
+						{getBlockTypeName(lesson.blockType as string)}
+					</h2>
 				)}
 				<div>{lesson.content}</div>
 				{lesson.file && lesson.file.mimeType === 'application/pdf' && (
-					<div className="mt-4">
+					<div className="mt-10">
 						<ClientOnly>
 							<PDFViewer file={lesson.file.url} />
 						</ClientOnly>
