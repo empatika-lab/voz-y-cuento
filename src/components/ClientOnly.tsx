@@ -6,10 +6,17 @@ export default function ClientOnly({ children }: { children: ReactNode }) {
 	const [hasMounted, setHasMounted] = useState(false);
 
 	useEffect(() => {
-		setHasMounted(true);
+		// Use requestAnimationFrame to ensure DOM is fully rendered
+		const frame = requestAnimationFrame(() => {
+			setHasMounted(true);
+		});
+
+		return () => {
+			cancelAnimationFrame(frame);
+		};
 	}, []);
 
-	if (!hasMounted) return null;
+	if (!hasMounted) return <div style={{ height: '100%', minHeight: '200px' }} />;
 
 	return <>{children}</>;
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useMemo } from 'react';
+import { useCallback, useEffect, useRef, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
 
 const ClientOnly = dynamic(() => import('@/components/ClientOnly'), { ssr: false });
@@ -374,19 +374,60 @@ function YouTubePlayerInstance({
 			playerRef.current = null;
 		}
 
+		// Track loading status
+		let isComponentMounted = true;
+
 		// Load YouTube API if not already loaded
 		if (!window.YT) {
 			const tag = document.createElement('script');
 			tag.src = 'https://www.youtube.com/iframe_api';
-			document.body.appendChild(tag);
+			const firstScriptTag = document.getElementsByTagName('script')[0];
+			firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
 
-			window.onYouTubeIframeAPIReady = initializePlayer;
+			// Set up global callback if not already set
+			if (!window.onYouTubeIframeAPIReady) {
+				window.onYouTubeIframeAPIReady = () => {
+					if (isComponentMounted) {
+						initializePlayer();
+					}
+				};
+			} else {
+				// If already defined, create a chain to call both the existing and our function
+				const originalCallback = window.onYouTubeIframeAPIReady;
+				window.onYouTubeIframeAPIReady = () => {
+					originalCallback();
+					if (isComponentMounted) {
+						initializePlayer();
+					}
+				};
+			}
+		} else if (window.YT.Player) {
+			// API already loaded and ready
+			setTimeout(() => {
+				if (isComponentMounted) {
+					initializePlayer();
+				}
+			}, 0);
 		} else {
-			initializePlayer();
+			// API script loaded but not initialized yet
+			const originalCallback =
+				window.onYouTubeIframeAPIReady ||
+				(() => {
+					// Default empty callback for when no previous handler exists
+					return true;
+				});
+			window.onYouTubeIframeAPIReady = () => {
+				originalCallback();
+				if (isComponentMounted) {
+					initializePlayer();
+				}
+			};
 		}
 
 		// Cleanup on unmount
 		return () => {
+			isComponentMounted = false;
+
 			if (playerRef.current) {
 				playerRef.current = null;
 			}
@@ -413,25 +454,27 @@ function YouTubePlayerInstance({
 }
 
 export default function YoutubeViewer(props: YouTubeEmbedProps) {
-	const mobilePlayerId = useMemo(() => `youtube-player-mobile-${props.lessonId}`, [props.lessonId]);
-	const desktopPlayerId = useMemo(
-		() => `youtube-player-desktop-${props.lessonId}-${Math.random() * 1000000}`,
-		[props.lessonId],
-	);
+	const [playerId] = useState(() => {
+		const baseId = `youtube-player-${props.lessonId}`;
+		return {
+			mobile: `${baseId}-mobile`,
+			desktop: `${baseId}-desktop-${Math.floor(Math.random() * 1000000)}`,
+		};
+	});
 
 	return (
 		<>
 			{/* Mobile View */}
 			<div className="w-full bg-cyan-50 pb-3 lg:hidden">
 				<ClientOnly>
-					<YouTubePlayerInstance {...props} playerId={mobilePlayerId} />
+					<YouTubePlayerInstance {...props} playerId={playerId.mobile} />
 				</ClientOnly>
 			</div>
 
 			{/* Desktop View */}
 			<div className="hidden w-full bg-cyan-50 pb-3 lg:block">
 				<ClientOnly>
-					<YouTubePlayerInstance {...props} playerId={desktopPlayerId} />
+					<YouTubePlayerInstance {...props} playerId={playerId.desktop} />
 				</ClientOnly>
 			</div>
 		</>
