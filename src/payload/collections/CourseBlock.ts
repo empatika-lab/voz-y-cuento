@@ -118,12 +118,6 @@ export const CourseContentBlock: CollectionConfig['fields'][0] = {
 			},
 			fields: [
 				{
-					name: 'title',
-					label: 'Título',
-					type: 'text',
-					required: true,
-				},
-				{
 					name: 'content',
 					label: 'Texto Adicional',
 					type: 'textarea',

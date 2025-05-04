@@ -63,7 +63,7 @@ export default function CourseItem({
 		);
 	}
 
-	if (lesson.blockType === 'dossier' && lesson.content) {
+	if (lesson.blockType === 'dossier') {
 		return (
 			<article className="px-5 pb-32 pt-5">
 				{lesson.blockType && (
@@ -71,7 +71,27 @@ export default function CourseItem({
 						{getBlockTypeName(lesson.blockType as string)}
 					</h2>
 				)}
-				<div>{lesson.content}</div>
+				{lesson.content && <div>{lesson.content}</div>}
+				{lesson.file && lesson.file.mimeType === 'application/pdf' && (
+					<div className="mt-10">
+						<ClientOnly>
+							<PDFViewer file={lesson.file.url} />
+						</ClientOnly>
+					</div>
+				)}
+			</article>
+		);
+	}
+
+	if (lesson.blockType === 'exercises') {
+		return (
+			<article className="px-5 pb-32 pt-5">
+				{lesson.blockType && (
+					<h2 className="mb-5 text-lg font-bold lg:px-0">
+						{getBlockTypeName(lesson.blockType as string)}
+					</h2>
+				)}
+				{lesson.content && <div>{lesson.content}</div>}
 				{lesson.file && lesson.file.mimeType === 'application/pdf' && (
 					<div className="mt-10">
 						<ClientOnly>

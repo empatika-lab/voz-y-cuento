@@ -355,7 +355,6 @@ export interface Course {
                   blockType: 'dossier';
                 }
               | {
-                  title: string;
                   /**
                    * Un texto para acompañar el cuadernillo
                    */
@@ -709,7 +708,6 @@ export interface CoursesSelect<T extends boolean = true> {
               exercises?:
                 | T
                 | {
-                    title?: T;
                     content?: T;
                     file?: T;
                     id?: T;
