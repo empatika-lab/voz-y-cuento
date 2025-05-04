@@ -348,7 +348,21 @@ export interface Course {
                   /**
                    * Un texto para acompañar el cuadernillo
                    */
-                  content?: string | null;
+                  content?: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: string;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  } | null;
                   file: number | Media;
                   id?: string | null;
                   blockName?: string | null;
@@ -358,7 +372,21 @@ export interface Course {
                   /**
                    * Un texto para acompañar el cuadernillo
                    */
-                  content?: string | null;
+                  content?: {
+                    root: {
+                      type: string;
+                      children: {
+                        type: string;
+                        version: number;
+                        [k: string]: unknown;
+                      }[];
+                      direction: ('ltr' | 'rtl') | null;
+                      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                      indent: number;
+                      version: number;
+                    };
+                    [k: string]: unknown;
+                  } | null;
                   file: number | Media;
                   id?: string | null;
                   blockName?: string | null;

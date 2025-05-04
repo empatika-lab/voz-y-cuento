@@ -71,7 +71,7 @@ export default function CourseItem({
 						{getBlockTypeName(lesson.blockType as string)}
 					</h2>
 				)}
-				{lesson.content && <div>{lesson.content}</div>}
+				{lesson.content && <RichText content={lesson.content} />}
 				{lesson.file && lesson.file.mimeType === 'application/pdf' && (
 					<div className="mt-10">
 						<ClientOnly>
@@ -91,7 +91,7 @@ export default function CourseItem({
 						{getBlockTypeName(lesson.blockType as string)}
 					</h2>
 				)}
-				{lesson.content && <div>{lesson.content}</div>}
+				{lesson.content && <RichText content={lesson.content} />}
 				{lesson.file && lesson.file.mimeType === 'application/pdf' && (
 					<div className="mt-10">
 						<ClientOnly>

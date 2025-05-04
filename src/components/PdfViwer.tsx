@@ -62,12 +62,13 @@ export default function PDFViewer({ file }: { file: string }) {
 									<p className="text-gray-600">Cargando...</p>
 								</div>
 							}
+							externalLinkTarget="_blank"
 						>
 							<Page
 								pageNumber={pageNumber}
 								width={containerWidth ?? undefined}
 								renderTextLayer={false}
-								renderAnnotationLayer={false}
+								renderAnnotationLayer={true}
 								className="h-full w-full"
 							/>
 						</Document>
