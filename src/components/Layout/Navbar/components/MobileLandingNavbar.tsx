@@ -11,6 +11,7 @@ import LogoInWhite from '@images/logo-white.png';
 import BurgerOpenIcon from '@images/icons/burger-open.svg';
 import BurgerCloseIcon from '@images/icons/burger-close.svg';
 import MortarboardIcon from '@images/icons/mortarboard.svg';
+import MortarboardIconInWhite from '@images/icons/mortarboard-light.svg';
 
 /* Utils */
 import { cn } from '@lib/utils/classNames';
@@ -30,6 +31,8 @@ export default function MobileLandingNavbar({
 	const path = usePathname();
 
 	/* Helpers */
+	const isHomePage = path === '/';
+	/* Handlers */
 	function toggleMenu() {
 		setIsOpen((current) => !current);
 	}
@@ -100,6 +103,7 @@ export default function MobileLandingNavbar({
 							'pt-12 font-bold text-gray-900 opacity-0 transition-opacity duration-500',
 							{
 								'opacity-100': isOpen,
+								'text-white': !isHomePage,
 							},
 						)}
 					>
@@ -110,11 +114,17 @@ export default function MobileLandingNavbar({
 				{isOpen && (
 					<Button
 						variant="outline"
-						className="absolute bottom-16 flex w-fit items-center gap-1 font-bold"
+						className={cn('absolute bottom-16 flex w-fit items-center gap-1 font-bold', {
+							'border-white text-white shadow-white': !isHomePage,
+						})}
 						href={ROUTES.LOGIN}
 					>
 						Ingresar a la Escuela
-						<NextImage alt="Ingresar a la Escuela" src={MortarboardIcon as string} />
+						{isHomePage ? (
+							<NextImage alt="Ingresar a la Escuela" src={MortarboardIcon as string} />
+						) : (
+							<NextImage alt="Ingresar a la Escuela" src={MortarboardIconInWhite as string} />
+						)}
 					</Button>
 				)}
 			</ul>
