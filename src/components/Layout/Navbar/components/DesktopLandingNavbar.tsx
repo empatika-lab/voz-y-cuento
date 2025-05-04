@@ -49,7 +49,8 @@ export default function DesktopLandingNavbar({
 					className="flex w-fit items-center gap-1 font-bold"
 					href={ROUTES.LOGIN}
 				>
-					Ingresar a la Escuela <NextImage alt="Ingresar a la Escuela" src={MortarboardIcon} />
+					Ingresar a la Escuela
+					<NextImage alt="Ingresar a la Escuela" src={MortarboardIcon as string} />
 				</Button>
 			</div>
 		</nav>

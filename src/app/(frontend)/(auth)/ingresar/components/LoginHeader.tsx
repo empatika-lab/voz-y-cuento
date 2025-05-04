@@ -13,9 +13,9 @@ export default function LoginHeader() {
 				src={Logo}
 			/>
 
-			<h1 className="mt-8 text-2xl font-bold text-center">Ingresar a la Escuela</h1>
+			<h1 className="mt-8 text-center text-2xl font-bold">Ingresar a la Escuela</h1>
 
-			<p className="tex-base mt-6 lg:mt-8 lg:text-xl text-pretty mx-auto text-center">
+			<p className="tex-base mx-auto mt-6 text-pretty text-center lg:mt-8 lg:text-xl">
 				Para continuar ingresa tu correo electrónico y contraseña.
 			</p>
 		</header>

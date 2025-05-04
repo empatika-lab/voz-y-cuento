@@ -110,10 +110,11 @@ export default function MobileLandingNavbar({
 				{isOpen && (
 					<Button
 						variant="outline"
-						className="absolute bottom-10 flex w-fit items-center gap-1 font-bold"
+						className="absolute bottom-16 flex w-fit items-center gap-1 font-bold"
 						href={ROUTES.LOGIN}
 					>
-						Ingresar a la Escuela <NextImage alt="Ingresar a la Escuela" src={MortarboardIcon} />
+						Ingresar a la Escuela
+						<NextImage alt="Ingresar a la Escuela" src={MortarboardIcon as string} />
 					</Button>
 				)}
 			</ul>
