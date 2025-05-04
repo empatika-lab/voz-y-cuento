@@ -60,6 +60,8 @@ declare global {
 						fs?: number;
 						playsinline?: number;
 						enablejsapi?: number;
+						autohide?: number;
+						cc_load_policy?: number;
 					};
 				},
 			) => YTPlayer;
@@ -87,6 +89,7 @@ function YouTubePlayerInstance({
 		zIndex?: string;
 	}>({});
 	const clickTimeRef = useRef<number>(0);
+	const [isPlaying, setIsPlaying] = useState(false);
 	const videoId = useMemo(() => {
 		const url = new URL(youtubeUrl);
 		const urlParams = new URLSearchParams(url.search);
@@ -97,6 +100,7 @@ function YouTubePlayerInstance({
 		async (event: YTPlayerEvent) => {
 			if (event.data === window.YT.PlayerState.ENDED) {
 				await markCourseLessonAsViewed(lessonId);
+				setIsPlaying(false);
 
 				// Show end overlay when video ends
 				const endOverlay = document.getElementById(`end-overlay-${playerId}`);
@@ -104,15 +108,29 @@ function YouTubePlayerInstance({
 					endOverlay.style.display = 'flex';
 				}
 			} else if (event.data === window.YT.PlayerState.PLAYING) {
+				setIsPlaying(true);
 				// Hide end overlay when video plays
 				const endOverlay = document.getElementById(`end-overlay-${playerId}`);
 				if (endOverlay) {
 					endOverlay.style.display = 'none';
 				}
+			} else if (event.data === window.YT.PlayerState.PAUSED) {
+				setIsPlaying(false);
 			}
 		},
 		[lessonId, markCourseLessonAsViewed, playerId],
 	);
+
+	// Function to toggle play/pause
+	const togglePlayPause = useCallback(() => {
+		if (!playerRef.current) return;
+
+		if (isPlaying) {
+			playerRef.current.pauseVideo();
+		} else {
+			playerRef.current.playVideo();
+		}
+	}, [isPlaying]);
 
 	const initializePlayer = useCallback(() => {
 		if (!playerRef.current && window.YT && containerRef.current) {
@@ -206,10 +224,14 @@ function YouTubePlayerInstance({
 							logoOverlay.style.height = '50px';
 							logoOverlay.style.zIndex = '10';
 							logoOverlay.style.cursor = 'default';
-							logoOverlay.addEventListener('click', (e) => {
+							// Prevent any interactions on this area for both click and touch
+							const preventInteraction = (e: Event) => {
 								e.preventDefault();
 								e.stopPropagation();
-							});
+							};
+							logoOverlay.addEventListener('click', preventInteraction);
+							logoOverlay.addEventListener('touchstart', preventInteraction);
+							logoOverlay.addEventListener('touchend', preventInteraction);
 
 							// Add a full-screen overlay that appears at the end of the video
 							const endOverlay = document.createElement('div');
@@ -247,6 +269,17 @@ function YouTubePlayerInstance({
 								}
 							});
 
+							// Add touch support for the end overlay
+							endOverlay.addEventListener('touchend', (e) => {
+								e.preventDefault();
+								e.stopPropagation();
+								// Replay the video when tapped
+								if (playerRef.current) {
+									playerRef.current.playVideo();
+									endOverlay.style.display = 'none';
+								}
+							});
+
 							// Create an interactive overlay for play/pause and fullscreen toggle
 							const interactiveOverlay = document.createElement('div');
 							interactiveOverlay.style.position = 'absolute';
@@ -254,75 +287,88 @@ function YouTubePlayerInstance({
 							interactiveOverlay.style.left = '0';
 							interactiveOverlay.style.width = '100%';
 							interactiveOverlay.style.height = '100%';
-							interactiveOverlay.style.zIndex = '5';
+							interactiveOverlay.style.zIndex = '5'; // Lower z-index so our React control is on top
 							interactiveOverlay.style.cursor = 'pointer';
 							interactiveOverlay.style.background = 'transparent';
 
-							// Add click handling for play/pause and double-click for fullscreen toggle
-							interactiveOverlay.addEventListener('click', (e) => {
-								e.preventDefault();
-								e.stopPropagation();
+							// Detect if we're on a mobile device for conditional event binding
+							const isMobileDevice = () => {
+								return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+									navigator.userAgent,
+								);
+							};
 
-								const now = new Date().getTime();
+							// Only add click handling on desktop
+							if (!isMobileDevice()) {
+								// Add click handling for play/pause and double-click for fullscreen toggle
+								interactiveOverlay.addEventListener('click', (e) => {
+									e.preventDefault();
+									e.stopPropagation();
 
-								if (now - clickTimeRef.current < 300) {
-									// Double click - toggle fullscreen
-									if (isFullscreenRef.current) {
-										// Exit fullscreen - restore original styles
-										if (containerRef.current) {
-											// Restore all original styles
-											const styles = originalStylesRef.current;
-											containerRef.current.style.position = styles.position ?? 'relative';
-											containerRef.current.style.width = styles.width ?? '100%';
-											containerRef.current.style.height = styles.height ?? 'auto';
-											containerRef.current.style.top = styles.top ?? '';
-											containerRef.current.style.left = styles.left ?? '';
-											containerRef.current.style.zIndex = styles.zIndex ?? '';
+									const now = new Date().getTime();
+
+									if (now - clickTimeRef.current < 300) {
+										// Double click - toggle fullscreen
+										if (isFullscreenRef.current) {
+											// Exit fullscreen - restore original styles
+											if (containerRef.current) {
+												// Restore all original styles
+												const styles = originalStylesRef.current;
+												containerRef.current.style.position = styles.position ?? 'relative';
+												containerRef.current.style.width = styles.width ?? '100%';
+												containerRef.current.style.height = styles.height ?? 'auto';
+												containerRef.current.style.top = styles.top ?? '';
+												containerRef.current.style.left = styles.left ?? '';
+												containerRef.current.style.zIndex = styles.zIndex ?? '';
+											}
+											isFullscreenRef.current = false;
+										} else {
+											// Enter fullscreen
+											if (containerRef.current) {
+												// Store original styles for restoration
+												originalStylesRef.current = {
+													width: containerRef.current.style.width,
+													height: containerRef.current.style.height,
+													position: containerRef.current.style.position,
+													top: containerRef.current.style.top,
+													left: containerRef.current.style.left,
+													zIndex: containerRef.current.style.zIndex,
+												};
+
+												// Apply fullscreen styles
+												containerRef.current.style.position = 'fixed';
+												containerRef.current.style.top = '0';
+												containerRef.current.style.left = '0';
+												containerRef.current.style.width = '100vw';
+												containerRef.current.style.height = '100vh';
+												containerRef.current.style.zIndex = '9999';
+
+												// Ensure any iframe inside also fills the container
+												const iframe = containerRef.current.querySelector('iframe');
+												if (iframe) {
+													iframe.style.width = '100%';
+													iframe.style.height = '100%';
+												}
+											}
+											isFullscreenRef.current = true;
 										}
-										isFullscreenRef.current = false;
 									} else {
-										// Enter fullscreen
-										if (containerRef.current) {
-											// Store original styles for restoration
-											originalStylesRef.current = {
-												width: containerRef.current.style.width,
-												height: containerRef.current.style.height,
-												position: containerRef.current.style.position,
-												top: containerRef.current.style.top,
-												left: containerRef.current.style.left,
-												zIndex: containerRef.current.style.zIndex,
-											};
-
-											// Apply fullscreen styles
-											containerRef.current.style.position = 'fixed';
-											containerRef.current.style.top = '0';
-											containerRef.current.style.left = '0';
-											containerRef.current.style.width = '100vw';
-											containerRef.current.style.height = '100vh';
-											containerRef.current.style.zIndex = '9999';
-
-											// Ensure any iframe inside also fills the container
-											const iframe = containerRef.current.querySelector('iframe');
-											if (iframe) {
-												iframe.style.width = '100%';
-												iframe.style.height = '100%';
+										// Single click - play/pause
+										if (playerRef.current) {
+											if (playerRef.current.getPlayerState() === window.YT.PlayerState.PLAYING) {
+												playerRef.current.pauseVideo();
+											} else {
+												playerRef.current.playVideo();
 											}
 										}
-										isFullscreenRef.current = true;
 									}
-								} else {
-									// Single click - play/pause
-									if (playerRef.current) {
-										if (playerRef.current.getPlayerState() === window.YT.PlayerState.PLAYING) {
-											playerRef.current.pauseVideo();
-										} else {
-											playerRef.current.playVideo();
-										}
-									}
-								}
 
-								clickTimeRef.current = now;
-							});
+									clickTimeRef.current = now;
+								});
+							}
+
+							// We'll skip adding touch event listeners since we have our React control for mobile
+							// But we'll keep the fullscreen capability for mobile with a double-tap
 
 							containerRef.current!.style.position = 'relative';
 							containerRef.current!.appendChild(logoOverlay);
@@ -358,11 +404,13 @@ function YouTubePlayerInstance({
 					showinfo: 0, // Hide video title (for older YouTube embeds)
 					origin: window.location.origin,
 					iv_load_policy: 3, // Hide video annotations
-					controls: 1, // Show video controls
+					controls: 0, // Hide default YouTube controls on mobile
 					disablekb: 0, // Enable keyboard controls
 					fs: 0, // Disable fullscreen button
 					playsinline: 1, // Play inline on iOS
 					enablejsapi: 1, // Enable JS API
+					autohide: 1, // Hide controls when playing
+					cc_load_policy: 0, // Hide closed captions by default
 				},
 			});
 		}
@@ -447,8 +495,60 @@ function YouTubePlayerInstance({
 	}, [youtubeUrl, initializePlayer]);
 
 	return (
-		<div ref={containerRef} className="aspect-video w-full">
+		<div ref={containerRef} className="relative aspect-video w-full">
 			<div id={playerId} className="aspect-video w-full" />
+
+			{/* Mobile Controls */}
+			<div className="lg:hidden">
+				{/* Transparent overlay for play/pause */}
+				<div
+					className="absolute inset-0 z-20"
+					onClick={togglePlayPause}
+					onTouchEnd={(e) => {
+						e.preventDefault();
+						togglePlayPause();
+					}}
+				/>
+
+				{/* Fixed control bar at bottom */}
+				<div className="absolute bottom-5 left-0 right-0 z-30 flex items-center justify-center">
+					<button
+						className="rounded-full bg-black bg-opacity-70 p-3 focus:outline-none"
+						onClick={(e) => {
+							e.preventDefault();
+							e.stopPropagation();
+							togglePlayPause();
+						}}
+						onTouchEnd={(e) => {
+							e.preventDefault();
+							e.stopPropagation();
+							togglePlayPause();
+						}}
+					>
+						{isPlaying ? (
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="36"
+								height="36"
+								viewBox="0 0 24 24"
+								fill="white"
+							>
+								<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+							</svg>
+						) : (
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="36"
+								height="36"
+								viewBox="0 0 24 24"
+								fill="white"
+							>
+								<path d="M8 5v14l11-7z" />
+							</svg>
+						)}
+					</button>
+				</div>
+			</div>
 		</div>
 	);
 }
