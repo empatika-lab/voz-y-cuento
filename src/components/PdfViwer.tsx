@@ -38,14 +38,18 @@ export default function PDFViewer({ file }: { file: string }) {
 	return (
 		<article className="relative z-0 mx-auto h-[650px] overflow-hidden border border-grey-900 lg:h-[968px] lg:w-[600px]">
 			<div className="bg-grey-50 absolute inset-0 border bg-gray-50">
-				<nav className="flex h-14 items-center justify-end gap-4">
+				<nav className="flex h-14 items-center justify-end gap-4 pr-5">
 					<button onClick={() => setScale((prev) => Math.max(0.5, prev - 0.1))} className="h-8 w-8">
 						<Image src={ZoomOut as string} alt="Zoom Out" className="h-auto w-4" />
 					</button>
 					<button onClick={() => setScale((prev) => Math.min(2, prev + 0.1))} className="h-8 w-8">
 						<Image src={ZoomIn as string} alt="Zoom In" className="h-auto w-4" />
 					</button>
-					<button className="h-8 w-8" onClick={() => window.open(file, '_blank')}>
+					<button
+						className="flex h-8 w-[153px] items-center justify-center gap-1 rounded-xl border border-grey-900 font-bold"
+						onClick={() => window.open(file, '_blank')}
+					>
+						Descargar
 						<Image src={Download as string} alt="Download" className="h-auto w-4" />
 					</button>
 				</nav>
