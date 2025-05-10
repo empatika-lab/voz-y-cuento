@@ -74,6 +74,7 @@ export default async function AcademyMyCoursesPage() {
 
 	if (cookieStore.has('vyc-buy-course-redirect')) {
 		const redirectSlug = cookieStore.get('vyc-buy-course-redirect')?.value;
+		cookieStore.delete('vyc-buy-course-redirect');
 		redirect(`${ROUTES.ACADEMY.EXPLORE}/${redirectSlug}/comprar`);
 	}
 
