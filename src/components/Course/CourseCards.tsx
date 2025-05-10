@@ -37,7 +37,7 @@ export function CourseCards({ courses, isAcademy = false, isOwned = false }: Cou
 						Aprenderás los fundamentos teóricos y al mismo tiempo pondrás en práctica tus
 						conocimientos a través de ejercicios prácticos.
 					</p>
-					<ul className="flex flex-col gap-5 md:flex-row">
+					<ul className="flex flex-col gap-5 md:flex-row md:flex-wrap">
 						{talleres.map((course) => (
 							<CourseCard key={course.id} course={course} isAcademy={isAcademy} isOwned={isOwned} />
 						))}
@@ -52,7 +52,7 @@ export function CourseCards({ courses, isAcademy = false, isOwned = false }: Cou
 						Clases intensivas donde profundizarás sobre temas en específico dentro de la narración
 						oral.
 					</p>
-					<ul className="flex flex-col gap-5 md:flex-row">
+					<ul className="flex flex-col gap-5 md:flex-row md:flex-wrap">
 						{seminarios.map((course) => (
 							<CourseCard key={course.id} course={course} isAcademy={isAcademy} isOwned={isOwned} />
 						))}
@@ -67,7 +67,7 @@ export function CourseCards({ courses, isAcademy = false, isOwned = false }: Cou
 						Espacio de experimetación libre donde podrás mejorar tu práctica con el acompañamiento
 						de la profesora.
 					</p>
-					<ul className="flex flex-col gap-5 md:flex-row">
+					<ul className="flex flex-col gap-5 md:flex-row md:flex-wrap">
 						{laboratorios.map((course) => (
 							<CourseCard key={course.id} course={course} isAcademy={isAcademy} isOwned={isOwned} />
 						))}
