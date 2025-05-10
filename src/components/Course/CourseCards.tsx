@@ -39,7 +39,12 @@ export function CourseCards({ courses, isAcademy = false, isOwned = false }: Cou
 					</p>
 					<ul className="flex flex-col gap-5 md:flex-row md:flex-wrap">
 						{talleres.map((course) => (
-							<CourseCard key={course.id} course={course} isAcademy={isAcademy} isOwned={isOwned} />
+							<CourseCard
+								key={`${course.category}-${course.id}`}
+								course={course}
+								isAcademy={isAcademy}
+								isOwned={isOwned}
+							/>
 						))}
 					</ul>
 				</ul>
@@ -54,7 +59,12 @@ export function CourseCards({ courses, isAcademy = false, isOwned = false }: Cou
 					</p>
 					<ul className="flex flex-col gap-5 md:flex-row md:flex-wrap">
 						{seminarios.map((course) => (
-							<CourseCard key={course.id} course={course} isAcademy={isAcademy} isOwned={isOwned} />
+							<CourseCard
+								key={`${course.category}-${course.id}`}
+								course={course}
+								isAcademy={isAcademy}
+								isOwned={isOwned}
+							/>
 						))}
 					</ul>
 				</ul>
@@ -69,7 +79,12 @@ export function CourseCards({ courses, isAcademy = false, isOwned = false }: Cou
 					</p>
 					<ul className="flex flex-col gap-5 md:flex-row md:flex-wrap">
 						{laboratorios.map((course) => (
-							<CourseCard key={course.id} course={course} isAcademy={isAcademy} isOwned={isOwned} />
+							<CourseCard
+								key={`${course.category}-${course.id}`}
+								course={course}
+								isAcademy={isAcademy}
+								isOwned={isOwned}
+							/>
 						))}
 					</ul>
 				</ul>
