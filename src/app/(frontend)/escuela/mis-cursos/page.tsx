@@ -66,13 +66,6 @@ async function fetchMyCourses(studentId: string) {
 export default async function AcademyMyCoursesPage() {
 	const cookieStore = await cookies();
 
-	// eslint-disable-next-line @typescript-eslint/require-await
-	async function deleteRedirectCookie() {
-		'use server';
-		const store = await cookies();
-		store.delete('vyc-buy-course-redirect');
-	}
-
 	const user = getUserFromJWT(cookieStore.get(SESSION_COOKIE_NAME)!.value);
 
 	if (!user) {
@@ -83,14 +76,14 @@ export default async function AcademyMyCoursesPage() {
 
 	if (cookieStore.has('vyc-buy-course-redirect')) {
 		const redirectSlug = cookieStore.get('vyc-buy-course-redirect')?.value;
-		await deleteRedirectCookie();
 
 		// Check if student already has the course
 		const hasCourse = courses.some((course) => course.slug === redirectSlug);
 
-		// Only redirect if student doesn't have the course
 		if (!hasCourse) {
 			redirect(`${ROUTES.ACADEMY.EXPLORE}/${redirectSlug}/comprar`);
+		} else {
+			redirect(`${ROUTES.ACADEMY.MY_COURSES}/${redirectSlug}`);
 		}
 	}
 

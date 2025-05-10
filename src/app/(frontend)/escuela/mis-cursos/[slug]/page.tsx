@@ -12,6 +12,7 @@ import ROUTES from '@/lib/utils/routes';
 import { AcademyNavbar } from '@/components/Layout/Navbar';
 import CourseNavigatorMobile from './components/CourseNavigatorMobile';
 import CourseNavigatorDesktop from './components/CourseNavigatorDesktop';
+import ClearRedirectCookie from './components/ClearRedirectCookie';
 
 /* Types */
 import type { Course } from '@/payload-types';
@@ -119,6 +120,7 @@ export default async function SchoolCoursePage({ searchParams, params }: SchoolC
 	return (
 		<>
 			<AcademyNavbar userName={user.name} isHidden={isShowingIndex} />
+			<ClearRedirectCookie />
 
 			<main className="mt-[62px] h-full lg:mt-6">
 				<WatchedLessonProvider>
