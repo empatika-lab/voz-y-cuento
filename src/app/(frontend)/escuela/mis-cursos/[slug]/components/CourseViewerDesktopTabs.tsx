@@ -26,8 +26,9 @@ export default function CourseViewerDesktopTabs({ tabs }: CourseViewerDesktopTab
 				{tabs.map((tab, index) => (
 					<button
 						key={index}
+						style={{ width: `${100 / tabs.length}%` }}
 						className={cn(
-							'w-[108px] rounded-t-xl border-grey-900 bg-cyan-100 px-[10px] py-1 text-sm font-bold text-grey-900',
+							'rounded-t-xl border-grey-900 bg-cyan-100 px-[10px] py-1 text-sm font-bold text-grey-900',
 							currentTabIndex === index &&
 								'text-primary -my-[1px] border-b border-l border-r-2 border-t border-b-cyan-50 border-t-grey-900 bg-cyan-50 text-opacity-100',
 							{ 'pointer-events-none border-none bg-transparent text-opacity-50': !tab.isEnabled },
